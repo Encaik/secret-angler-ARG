@@ -36,7 +36,7 @@
   // 沈辞主页额外消息
   if (window.location.pathname.includes('/user/shenci')) {
     console.log(
-      '%c[用户档案] 地下三尺 — 最后登录：2024-08-30 — 状态：离线超过7天',
+      '%c[用户档案] 地下三尺 — 最后登录：2026-05-25 — 状态：离线超过7天',
       styles.info
     );
   }

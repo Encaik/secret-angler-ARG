@@ -49,8 +49,8 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'easy',
     type: 'password',
     name: '会员区入口密码',
-    // echo -n "秘境探秘2024" | openssl dgst -sha256
-    answerHash: '3f8c2e1a9b7d5f4e6c8a0b2d4f6e8a0c2e4f6a8b0d2c4e6f8a0b2d4f6e8a',
+    // echo -n "秘境探秘2026" | openssl dgst -sha256
+    answerHash: 'e4a37c0c8ba9d736644d444510716106f854d427a73b911fb94d72e73846e8c9',
     clueLocations: [
       '/user/shenci (文章页眉微缩文字)',
       '/community/post/shenci-log-001 (正文暗示)',
@@ -71,16 +71,20 @@ export const PUZZLES: Puzzle[] = [
     stage: 2,
     difficulty: 'medium',
     type: 'base64',
-    name: '源码 Base64 解码',
-    // 在 HTML 源码注释中嵌入 Base64 编码的线索
-    answerHash: 'placeholder_stage2_base64',
+    name: '私密草稿 Base64 解码',
+    // echo -n "vkliw ydoxh lv wkuhh nhbzrug lv ghhs uliw" | openssl dgst -sha256
+    answerHash: '011c7a31dbe5fa24513f4fbee44147171dbba153399ac99ef37ca5379011bbdd',
     clueLocations: [
-      '/user/shenci (HTML源码注释)',
-      '/community/post/shenci-log-003 (正文暗示"留白处藏通路")',
+      '/user/shenci (私密草稿 — 需登录shenci账号，草稿中含Base64密文)',
+      '/inbox (沈辞私信箱中林屿的留言 — 需登录shenci账号，暗示沈辞藏了加密信息)',
+      '搜索"加密" → 林屿历史帖文关于Base64和凯撒密码的讨论',
+      '搜索"信号" → 林屿早期帖文提到移位加密',
     ],
     hintTexts: [
-      '沈辞在一篇文章中写道："有些真相藏在留白处，需要换一个角度才能看见"',
-      '浏览器的"查看源代码"功能或许能揭示更多信息',
+      '沈辞的私密草稿中展示了一串绿色乱码字符，旁边写道："外层是一层很常见的编码方式——计算机之间传数据经常用的那种"',
+      '林屿在给沈辞的私信中暗示沈辞"把东西藏在奇怪的地方"',
+      '在站内搜索"加密"，可以找到林屿早期关于Base64和凯撒密码的讨论帖',
+      '私密草稿中沈辞提到"什么事都绕不过三"——暗示位移值为3',
     ],
     requiresPuzzle: ['stage1_page_header_password'],
     unlocksPages: [],
@@ -93,15 +97,17 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'medium',
     type: 'caesar',
     name: '凯撒密码解码',
-    // Base64解码后获得的文本是凯撒密码加密的
-    answerHash: 'placeholder_stage2_caesar',
+    // echo -n "shift value is three keyword is deep rift" | openssl dgst -sha256
+    answerHash: '8e111fd5bfb53cb5c0977ec4315e69e70a4cc39dbf23be6b284d38400d8c7bb7',
     clueLocations: [
-      'Base64解码结果',
-      '/user/linyu (一篇文章中提到凯撒密码)',
+      'Base64解码结果（vkliw ydoxh lv wkuhh nhbzrug lv ghhs uliw）',
+      '/user/shenci (私密草稿提到"什么事都绕不过三"——暗示位移值=3)',
+      '搜索"加密" → 历史帖文中讨论凯撒移位原理',
     ],
     hintTexts: [
-      '解码后的文字看起来像乱码，但字母的排列似乎有规律',
-      '林屿在某篇外星信号分析文章中提到了"移位加密"',
+      'Base64解码后的文字看起来像乱码，但每个字母似乎都偏移了相同的位置',
+      '沈辞的私密草稿中提到"什么事都绕不过三"，暗示移位值为3',
+      '在站内搜索"加密"可以找到关于凯撒移位的历史讨论',
     ],
     requiresPuzzle: ['stage2_base64_source_comment'],
     unlocksPages: ['/trigger/rift'],

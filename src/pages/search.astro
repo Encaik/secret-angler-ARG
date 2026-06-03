@@ -1,0 +1,238 @@
+---
+// /search — 搜索结果页（独立页面，非弹窗）
+// 历史存档内容仅通过此页面可见
+import Layout from '../components/Layout.astro';
+import { ARCHIVED_CONTENT, MOCK_RESULTS, TRIGGER_KEYWORDS } from '../data/search-data';
+---
+
+<Layout title="搜索">
+  <div class="breadcrumb">
+    <a href="/home/" target="_blank">首页</a><span>›</span>
+    搜索
+  </div>
+
+  <!-- 搜索框 -->
+  <div style="margin: 0 auto 0;">
+    <div style="display: flex; gap: 8px;">
+      <input
+        type="text"
+        id="search-page-input"
+        placeholder="输入关键词搜索站内内容……"
+        style="flex: 1; max-width: 100%; font-size: 1rem; padding: 10px 14px;"
+      />
+      <button id="search-page-btn" style="padding: 10px 24px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm); white-space: nowrap;">
+        🔍 搜索
+      </button>
+    </div>
+  </div>
+
+  <hr style="margin: 20px 0;" />
+
+  <!-- 搜索结果区域 -->
+  <div id="search-results-area" style="margin: 0 auto;">
+    <p class="text-muted" id="search-status">正在搜索……</p>
+    <div id="search-results-list"></div>
+  </div>
+</Layout>
+
+<script define:vars={{
+  archivedContentJson: JSON.stringify(ARCHIVED_CONTENT),
+  mockResultsJson: JSON.stringify(MOCK_RESULTS),
+  triggerKeywordsJson: JSON.stringify(TRIGGER_KEYWORDS),
+}}>
+  // 从 Astro 服务端注入的搜索数据
+  const ARCHIVED_CONTENT = JSON.parse(archivedContentJson);
+  const MOCK_RESULTS = JSON.parse(mockResultsJson);
+  const TRIGGER_KEYWORDS = JSON.parse(triggerKeywordsJson);
+
+  function getQuery() {
+    var params = new URLSearchParams(window.location.search);
+    return params.get('q') || '';
+  }
+
+  function findArchivedContent(query) {
+    var results = [];
+    var lowerQuery = query.toLowerCase();
+    var entries = Object.entries(ARCHIVED_CONTENT);
+
+    for (var i = 0; i < entries.length; i++) {
+      var keyword = entries[i][0];
+      var posts = entries[i][1];
+      if (lowerQuery.includes(keyword.toLowerCase())) {
+        for (var j = 0; j < posts.length; j++) {
+          var post = posts[j];
+          if (!results.find(function(r) { return r.title === post.title && r.date === post.date; })) {
+            results.push(post);
+          }
+        }
+      }
+    }
+
+    var cluePosts = results.filter(function(p) { return p.isClue; });
+    var normalPosts = results.filter(function(p) { return !p.isClue; });
+    return cluePosts.concat(normalPosts);
+  }
+
+  function renderResults(query) {
+    var statusEl = document.getElementById('search-status');
+    var listEl = document.getElementById('search-results-list');
+
+    if (!query) {
+      statusEl.textContent = '请输入关键词进行搜索。';
+      listEl.innerHTML = `
+        <div class="card" style="text-align:center;padding:24px;">
+          <p class="text-muted">🔍 在站内搜索帖文、动态和探秘笔记</p>
+          <p style="font-size:0.82rem;color:var(--color-text-muted);">
+            试试搜索：<a href="/search/?q=沈辞">沈辞</a> ·
+            <a href="/search/?q=贺兰山">贺兰山</a> ·
+            <a href="/search/?q=外星">外星</a> ·
+            <a href="/search/?q=加密">加密</a>
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    // 1. 谜题答案检查
+    if (query === '秘境探秘2026') {
+      statusEl.innerHTML = `<span style="color:#27ae60;">✓ 搜索"${query}"触发了隐藏内容，正在跳转……</span>`;
+      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+      if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
+      progress.solvedPuzzles['stage1_page_header_password'] = true;
+      if (!progress.discoveredClues) progress.discoveredClues = [];
+      if (!progress.discoveredClues.includes('member_access')) {
+        progress.discoveredClues.push('member_access');
+      }
+      localStorage.setItem('arg_progress', JSON.stringify(progress));
+      setTimeout(() => { window.open('/member/', '_blank'); }, 500);
+      listEl.innerHTML = '';
+      return;
+    }
+
+    // 2. 触发关键词
+    var triggerEntries = Object.entries(TRIGGER_KEYWORDS);
+    for (var ti = 0; ti < triggerEntries.length; ti++) {
+      var keyword = triggerEntries[ti][0];
+      var url = triggerEntries[ti][1];
+      if (query.includes(keyword)) {
+        statusEl.innerHTML = `<span style="color:#27ae60;">✓ 搜索"${query}"触发了隐藏内容，正在跳转……</span>`;
+        setTimeout(() => { window.open(url, '_blank'); }, 500);
+        listEl.innerHTML = '';
+        return;
+      }
+    }
+
+    // 3. 历史存档检索
+    const archived = findArchivedContent(query);
+
+    // 4. 页面导航
+    var pageResults = [];
+    var mockEntries = Object.entries(MOCK_RESULTS);
+    for (var mi = 0; mi < mockEntries.length; mi++) {
+      var term = mockEntries[mi][0];
+      var pages = mockEntries[mi][1];
+      if (query.includes(term)) {
+        for (var pj = 0; pj < pages.length; pj++) {
+          if (pageResults.indexOf(pages[pj]) === -1) {
+            pageResults.push(pages[pj]);
+          }
+        }
+      }
+    }
+
+    // 无结果
+    if (archived.length === 0 && pageResults.length === 0) {
+      statusEl.textContent = `未找到与"${query}"相关的结果。请尝试其他关键词。`;
+      listEl.innerHTML = `
+        <div class="card" style="text-align:center;padding:24px;">
+          <p class="text-muted">🔍 没有找到匹配的内容</p>
+          <p style="font-size:0.82rem;color:var(--color-text-muted);">
+            试试搜索：<a href="/search/?q=沈辞">沈辞</a> ·
+            <a href="/search/?q=贺兰山">贺兰山</a> ·
+            <a href="/search/?q=外星">外星</a> ·
+            <a href="/search/?q=加密">加密</a>
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    statusEl.textContent = `搜索"${query}" — 找到 ${archived.length} 条历史存档${pageResults.length > 0 ? `、${pageResults.length} 个相关板块` : ''}`;
+
+    let html = '';
+
+    // 历史存档
+    if (archived.length > 0) {
+      html += `<h3 style="margin-bottom:8px;">📜 历史存档（${archived.length} 条）</h3>`;
+      html += archived.map(p => {
+        const borderStyle = p.isClue ? 'border-left: 3px solid var(--color-accent);' : '';
+        const escapedContent = p.content.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/<strong>/g, '<strong>').replace(/<\/strong>/g, '</strong>');
+        return `
+          <div class="card" style="margin-bottom:8px;padding:10px;${borderStyle}">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <strong><a href="${p.authorUrl}" target="_blank">${p.author}</a></strong>
+              <span class="text-muted" style="font-size:0.75rem;">${p.date}</span>
+            </div>
+            <div style="font-size:0.88rem;font-weight:500;margin-bottom:4px;">${p.title}</div>
+            <p style="font-size:0.84rem;margin:0;line-height:1.6;">${p.content}</p>
+          </div>
+        `;
+      }).join('');
+      html += `<p class="text-muted" style="font-size:0.72rem;margin-top:4px;">—— 以上为历史存档内容，可能包含早期讨论中的线索 ——</p>`;
+    }
+
+    // 页面导航
+    if (pageResults.length > 0) {
+      html += `<h3 style="margin-top:16px;margin-bottom:8px;">📂 相关板块</h3>`;
+      html += pageResults.map(url => `
+        <div class="card" style="margin-bottom:6px;padding:8px 12px;">
+          <a href="${url}" target="_blank" style="font-size:0.88rem;">${url}</a>
+        </div>
+      `).join('');
+    }
+
+    listEl.innerHTML = html;
+  }
+
+  // ========== 初始化 ==========
+  const query = getQuery();
+  var inputEl = document.getElementById('search-page-input');
+  var btnEl = document.getElementById('search-page-btn');
+
+  if (query) {
+    inputEl.value = query;
+  }
+
+  renderResults(query);
+
+  // 搜索按钮
+  btnEl.addEventListener('click', () => {
+    const q = inputEl.value.trim();
+    if (q) {
+      const newUrl = `/search/?q=${encodeURIComponent(q)}`;
+      window.history.pushState({}, '', newUrl);
+      renderResults(q);
+    }
+  });
+
+  // 回车
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const q = inputEl.value.trim();
+      if (q) {
+        const newUrl = `/search/?q=${encodeURIComponent(q)}`;
+        window.history.pushState({}, '', newUrl);
+        renderResults(q);
+      }
+    }
+  });
+
+  // 记录搜索
+  const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+  if (!progress.discoveredClues) progress.discoveredClues = [];
+  const clueKey = `search_${query}`;
+  if (query && !progress.discoveredClues.includes(clueKey)) {
+    progress.discoveredClues.push(clueKey);
+    localStorage.setItem('arg_progress', JSON.stringify(progress));
+  }
+</script>

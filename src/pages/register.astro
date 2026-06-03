@@ -1,0 +1,47 @@
+---
+// /register — 注册页（邀请制，当前关闭）
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="注册">
+  <div class="breadcrumb">
+    <a href="/home/" target="_blank">首页</a><span>›</span>
+    注册
+  </div>
+
+  <div style="max-width: 480px; margin: 40px auto; text-align: center;">
+    <h2>📝 注册探秘者联盟</h2>
+    <hr />
+    <p>探秘者联盟目前采用<strong>邀请制</strong>注册，暂不开放公开注册。</p>
+    <p class="text-muted">如果你收到了邀请邮件，请在下方输入邀请码完成注册。</p>
+
+    <form id="register-form" style="margin-top: 24px;">
+      <label style="display: block; margin-bottom: 12px; text-align: left;">
+        邀请码
+        <input type="text" id="invite-code" placeholder="请输入邀请码" autocomplete="off" style="max-width: 100%;" />
+      </label>
+      <button type="submit" style="width: 100%; padding: 10px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm);">
+        验证邀请码
+      </button>
+    </form>
+    <p id="invite-error" style="color: #c0392b; font-size: 0.82rem; margin-top: 8px; display: none;"></p>
+
+  </div>
+</Layout>
+
+<script>
+  document.getElementById('register-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const code = (document.getElementById('invite-code') as HTMLInputElement).value.trim();
+    const errorEl = document.getElementById('invite-error');
+    if (!code) {
+      if (errorEl) { errorEl.textContent = '请输入邀请码。'; errorEl.style.display = 'block'; }
+      return;
+    }
+    // 所有邀请码均无效 — 注册已关闭
+    if (errorEl) {
+      errorEl.textContent = '邀请码无效或已被使用。当前暂不接受新注册。';
+      errorEl.style.display = 'block';
+    }
+  });
+</script>

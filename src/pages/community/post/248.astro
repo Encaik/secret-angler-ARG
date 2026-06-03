@@ -1,0 +1,59 @@
+---
+// 废弃中 — 警告帖：废弃医院探秘点造假
+import Layout from '../../../components/Layout.astro';
+---
+
+<Layout title="提醒：最近很多废弃医院探秘点信息是假的" description="废弃中的讨论帖">
+  <div class="breadcrumb">
+    <a href="/home/" target="_blank">首页</a><span>›</span>
+    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    提醒：最近很多"废弃医院"探秘点信息是假的
+  </div>
+
+  <article>
+    <h1 style="font-size: 1.5rem; margin-bottom: 4px;">提醒：最近很多"废弃医院"探秘点信息是假的</h1>
+    <div class="post-meta" style="margin-bottom: 16px;">
+      作者：<a href="/user/urbexlf/" target="_blank">废弃中</a> ·
+      发布于 2026-04-18 ·
+      阅读 312 · 评论 6
+    </div>
+    <hr />
+    <p>给大家提个醒。最近不知道哪里冒出来好几个"废弃医院"的探秘点信息，坐标写得有模有样的，甚至配了图。但是我去验证了其中三个，全都不靠谱：</p>
+    <ol>
+      <li>一个是在建工地，门口保安报了警。差点进去喝茶。</li>
+      <li>一个是正常营业的卫生院，大白天跑过去被人当贼。</li>
+      <li>一个根本不存在——坐标指向一片荒地。</li>
+    </ol>
+    <p>不知道发布这些信息的人图什么。可能是有人专门编坐标骗人过去，也可能是信息被反复搬运之后失真了。总之大家注意甄别，出发前多查几个来源，别只看一个站的信息就直接冲。</p>
+    <p>安全第一。</p>
+  </article>
+
+  <div style="margin: 24px auto;">
+    <h3>评论 (4)</h3>
+    <div class="card" style="padding: 10px; margin-bottom: 8px;">
+      <strong>浪到没信号</strong> <span class="text-muted">2026-04-18 11:40</span>
+      <p style="margin: 4px 0 0; font-size: 0.88rem;">谢提醒。我也遇到过类似的情况，导航站推荐的点到了发现啥也没有。以后不能只看一个来源。</p>
+    </div>
+    <div class="card" style="padding: 10px; margin-bottom: 8px;">
+      <strong>地下三尺</strong> <span class="text-muted">2026-04-18 14:55</span>
+      <p style="margin: 4px 0 0; font-size: 0.88rem;">同感。最近去了几个站里推的点，有些描述和实地差距挺大。不知道是信息采集的问题还是有别的原因。</p>
+    </div>
+    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
+    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-04-19 09:30</span><p style="margin:4px 0 0;font-size:0.88rem;">我也踩过两个假点。最离谱的是一个废弃学校，去了发现是正常上课的职高，门卫以为我是人贩子……</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-20 22:11</span><p style="margin:4px 0 0;font-size:0.88rem;">假点位确实越来越多了。我怀疑有些是营销号瞎编的，搬来搬去就失真了。</p></div></div>
+  </div>
+<script>
+  (function(){
+    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
+    var hint = document.getElementById("login-hint");
+    var extra = document.getElementById("extra-comments");
+    if (!hint || !extra) return;
+    if (loggedIn) {
+      hint.style.display = "none";
+      extra.style.display = "block";
+    } else {
+      hint.style.display = "block";
+      extra.style.display = "none";
+    }
+  })();
+</script>
+</Layout>

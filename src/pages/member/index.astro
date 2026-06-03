@@ -1,0 +1,87 @@
+---
+// /member — 高级探秘者板块（需登录+会员权限）
+import Layout from '../../components/Layout.astro';
+---
+
+<Layout title="高级探秘者板块">
+  <div class="breadcrumb">
+    <a href="/home/" target="_blank">首页</a><span>›</span>
+    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    高级探秘者板块
+  </div>
+
+  <!-- 未登录 -->
+  <div id="need-login" class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto;">
+    <h2>🔒 高级探秘者板块</h2>
+    <hr />
+    <p class="text-muted">此板块仅对注册探秘者开放，请先登录。</p>
+    <div style="margin-top: 20px;">
+      <a href="/login/" target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+        前往登录 →
+      </a>
+    </div>
+  </div>
+
+  <!-- 已登录但无权限 -->
+  <div id="no-access" class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto; display: none;">
+    <h2>🔒 权限不足</h2>
+    <hr />
+    <p class="text-muted">此板块需要高级探秘者权限。请通过社区中的线索获取访问密钥。</p>
+    <div style="margin-top: 20px;">
+      <a href="/community/" target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+        返回社区 →
+      </a>
+    </div>
+  </div>
+
+  <!-- 有权限 -->
+  <div id="member-content" style="display: none;">
+    <h2>🔒 高级探秘者板块</h2>
+    <p class="text-muted">此板块内容仅登录探秘者可见，不在搜索引擎中索引。</p>
+    <hr />
+
+    <div class="two-col">
+      <div>
+        <div class="post-item">
+          <div class="post-title"><a href="#" target="_blank"><strong>📊 坐标交叉比对结果</strong></a></div>
+          <p style="margin: 2px 0; font-size: 0.88rem;">沈辞整理的坐标重合分析数据——外星目击点与古迹遗址的GPS匹配记录。</p>
+          <div class="post-meta">地下三尺 · 2026-05-20 · 仅会员可见</div>
+        </div>
+        <div class="post-item">
+          <div class="post-title"><a href="#" target="_blank"><strong>📡 信号频谱分析笔记</strong></a></div>
+          <p style="margin: 2px 0; font-size: 0.88rem;">林屿在凤凰山等点位采集的1420MHz频段扫描数据及分析。</p>
+          <div class="post-meta">signal_屿 · 2026-05-15 · 仅会员可见</div>
+        </div>
+      </div>
+      <div>
+        <div class="post-item">
+          <div class="post-title"><a href="#" target="_blank"><strong>🗺️ 探秘资料包</strong></a></div>
+          <p style="margin: 2px 0; font-size: 0.88rem;">加密笔记、离线地图、现场照片合集。下载需解压密码。</p>
+          <div class="post-meta">地下三尺 · 2026-05-18 · 仅会员可见</div>
+        </div>
+        <div class="post-item">
+          <div class="post-title"><a href="#" target="_blank"><strong>⚠️ 点位异常汇总</strong></a></div>
+          <p style="margin: 2px 0; font-size: 0.88rem;">导航站推荐点位中已验证为虚假或可疑的条目列表。</p>
+          <div class="post-meta">signal_屿 · 2026-05-22 · 仅会员可见</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
+  const username = localStorage.getItem('arg_username');
+  const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+  const isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
+
+  if (!loggedIn || !username) {
+    document.getElementById('need-login')!.style.display = 'block';
+  } else if (!isMember) {
+    document.getElementById('need-login')!.style.display = 'none';
+    document.getElementById('no-access')!.style.display = 'block';
+  } else {
+    document.getElementById('need-login')!.style.display = 'none';
+    document.getElementById('member-content')!.style.display = 'block';
+  }
+</script>

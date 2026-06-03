@@ -1,0 +1,55 @@
+---
+// 浪到没信号 — 旅行分享帖
+import Layout from '../../../components/Layout.astro';
+---
+
+<Layout title="刚从川西回来，说好的秘境没找到……" description="浪到没信号的旅行分享">
+  <div class="breadcrumb">
+    <a href="/home/" target="_blank">首页</a><span>›</span>
+    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    刚从川西回来，说好的秘境没找到……
+  </div>
+
+  <article>
+    <h1 style="font-size: 1.5rem; margin-bottom: 4px;">刚从川西回来，说好的秘境没找到……</h1>
+    <div class="post-meta" style="margin-bottom: 16px;">
+      作者：<a href="/user/driftlang/" target="_blank">浪到没信号</a> ·
+      发布于 2026-04-30 ·
+      阅读 89 · 评论 3
+    </div>
+    <hr />
+    <p>走了甘孜那条线，风景确实没得说。但是出发前在好几个地方看到有人提到一个"绝美秘境"——说是什么高山海子旁边的古寺遗址，配的照片美得不行。</p>
+    <p>到了之后按坐标找了半天，啥也没找到。问了当地牧民，说那里从来没听说过有什么古寺。回头一想，那些照片可能根本就不是那个地点拍的。</p>
+    <p>以后还是信旅游局靠谱点。网上这些"秘境"推荐，十个有九个是假的。剩下一个可能是真的，但路太难走。</p>
+    <p>放几张风景照吧。至少贡嘎的日落是真的好看。</p>
+  </article>
+
+  <div style="margin: 24px auto;">
+    <h3>评论 (4)</h3>
+    <div class="card" style="padding: 10px; margin-bottom: 8px;">
+      <strong>废弃中</strong> <span class="text-muted">2026-04-30 14:18</span>
+      <p style="margin: 4px 0 0; font-size: 0.88rem;">同感。现在网上编"秘境"的太多了。我在城探圈也遇到过——坐标写得很详细，去了发现是编的。</p>
+    </div>
+    <div class="card" style="padding: 10px; margin-bottom: 8px;">
+      <strong>地下三尺</strong> <span class="text-muted">2026-04-30 20:45</span>
+      <p style="margin: 4px 0 0; font-size: 0.88rem;">正常。我探了这么多年，真正靠谱的点位不到一半。筛选信息本身就是一门技术。不过有些"假"点位可能不是编的——可能是有别的原因。</p>
+    </div>
+    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
+    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-05-01 10:15</span><p style="margin:4px 0 0;font-size:0.88rem;">甘孜那边确实美。不过现在网红带火了一堆所谓的秘境，真去了全是人，体验很差。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-05-02 16:40</span><p style="margin:4px 0 0;font-size:0.88rem;">哈哈同感。我去过好几个网上说的秘境，十个有九个是滤镜加文案。剩下一个路太难走。</p></div></div>
+  </div>
+<script>
+  (function(){
+    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
+    var hint = document.getElementById("login-hint");
+    var extra = document.getElementById("extra-comments");
+    if (!hint || !extra) return;
+    if (loggedIn) {
+      hint.style.display = "none";
+      extra.style.display = "block";
+    } else {
+      hint.style.display = "block";
+      extra.style.display = "none";
+    }
+  })();
+</script>
+</Layout>

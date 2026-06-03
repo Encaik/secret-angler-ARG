@@ -1,9 +1,10 @@
 // ========================================
 // 搜索脚本 — 关键词触发 + 进度追踪
-// 在首页及其他页面中加载
+// 在 Layout 中加载，所有页面共用
+// 搜索行为：跳转到独立搜索页 /search/?q=xxx
 // ========================================
 
-// 关键词 → 隐藏页面映射
+// 关键词 → 隐藏页面（直接跳转，不经过搜索页）
 const TRIGGER_KEYWORDS: Record<string, string> = {
   '深海裂隙': '/trigger/rift',
   '星门坐标': '/trigger/stargate',
@@ -12,23 +13,13 @@ const TRIGGER_KEYWORDS: Record<string, string> = {
   '后台管理': '/hidden/admin',
 };
 
-// 搜索结果模拟（正常搜索时显示的内容）
-const MOCK_RESULTS: Record<string, string[]> = {
-  '外星': ['/alien/', '/user/lyu/', '/alien/alien-001/', '/alien/alien-003/'],
-  '古迹': ['/ruins/', '/user/shenci/', '/ruins/ruins-001/', '/ruins/ruins-003/'],
-  '秘境': ['/ruins/', '/mystery/', '/nature/'],
-  '信号': ['/user/lyu/', '/alien/alien-001/', '/alien/alien-006/'],
-  '坐标': ['/user/lyu/', '/user/shenci/', '/alien/', '/ruins/'],
-  '岩画': ['/ruins/ruins-001/', '/user/shenci/'],
-  '神农架': ['/alien/alien-003/', '/ruins/ruins-003/'],
-};
-
 // ========================================
 // 进度追踪（localStorage）
 // ========================================
 
 interface GameProgress {
   discoveredPages: string[];
+  discoveredClues: string[];
   solvedPuzzles: Record<string, boolean>;
   explorationProgress: number;
   currentStage: number;
@@ -47,6 +38,7 @@ function getProgress(): GameProgress {
   }
   const initial: GameProgress = {
     discoveredPages: [window.location.pathname],
+    discoveredClues: [],
     solvedPuzzles: {},
     explorationProgress: 0,
     currentStage: 1,
@@ -69,7 +61,6 @@ function recordPageVisit(url: string): void {
   const progress = getProgress();
   if (!progress.discoveredPages.includes(url)) {
     progress.discoveredPages.push(url);
-    // 如果访问了隐藏页面，增加标记
     if (url.includes('/hidden/') || url.includes('/trigger/')) {
       if (progress.discoveredPages.filter(p => p.includes('/hidden/') || p.includes('/trigger/')).length >= 4) {
         progress.playerTargeted = true;
@@ -81,7 +72,7 @@ function recordPageVisit(url: string): void {
 }
 
 function updateExplorationProgress(progress: GameProgress): void {
-  const totalDiscoverable = 40; // 总可发现页面数
+  const totalDiscoverable = 40;
   const hiddenBonus = progress.discoveredPages.filter(
     p => p.includes('/hidden/') || p.includes('/trigger/') || p.includes('/member/')
   ).length * 2;
@@ -103,7 +94,23 @@ function handleSearch(query: string): void {
 
   const progress = getProgress();
 
-  // 1. 检查关键词触发
+  // 1. 谜题答案检查（"秘境探秘2026"）→ 直接解锁会员区
+  if (trimmed === '秘境探秘2026') {
+    const p = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+    if (!p.solvedPuzzles) p.solvedPuzzles = {};
+    p.solvedPuzzles['stage1_page_header_password'] = true;
+    if (!p.discoveredClues) p.discoveredClues = [];
+    if (!p.discoveredClues.includes('member_access')) {
+      p.discoveredClues.push('member_access');
+      p.explorationProgress = (p.explorationProgress || 0) + 15;
+    }
+    localStorage.setItem('arg_progress', JSON.stringify(p));
+    recordPageVisit('/member/');
+    window.open('/member/', '_blank');
+    return;
+  }
+
+  // 2. 触发关键词 → 直接跳转隐藏页面
   for (const [keyword, url] of Object.entries(TRIGGER_KEYWORDS)) {
     if (trimmed.includes(keyword)) {
       recordPageVisit(url);
@@ -112,30 +119,8 @@ function handleSearch(query: string): void {
     }
   }
 
-  // 2. 模拟正常搜索结果
-  let found = false;
-  for (const [term, pages] of Object.entries(MOCK_RESULTS)) {
-    if (trimmed.includes(term)) {
-      found = true;
-      // 打开第一个匹配的页面
-      const firstPage = pages[0];
-      recordPageVisit(firstPage);
-      window.open(firstPage, '_blank');
-      return;
-    }
-  }
-
-  // 3. 无结果
-  if (!found) {
-    const hint = document.getElementById('search-hint');
-    if (hint) {
-      hint.textContent = `未找到与"${trimmed}"相关的结果。请尝试其他关键词。`;
-      hint.style.display = 'block';
-      setTimeout(() => {
-        hint.style.display = 'none';
-      }, 5000);
-    }
-  }
+  // 3. 其余所有搜索 → 跳转到独立搜索页
+  window.open(`/search/?q=${encodeURIComponent(trimmed)}`, '_blank');
 }
 
 // ========================================
@@ -143,13 +128,9 @@ function handleSearch(query: string): void {
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 确保进度已初始化
   getProgress();
-
-  // 记录当前页面访问
   recordPageVisit(window.location.pathname);
 
-  // 搜索按钮事件
   const searchBtn = document.getElementById('search-btn');
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
 

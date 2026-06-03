@@ -23,7 +23,7 @@ const { title, description, currentNav } = Astro.props;
   <!-- 顶部导航 -->
   <header class="site-header">
     <nav class="site-nav">
-      <a href="/" class="nav-brand" target="_blank">探秘者联盟</a>
+      <a href="/home/" class="nav-brand" target="_blank">探秘者联盟</a>
       <div class="nav-links">
         <a href="/alien/" target="_blank" class:list={["nav-alien", { active: currentNav === "alien" }]}>外星目击</a>
         <a href="/ruins/" target="_blank" class:list={["nav-ruins", { active: currentNav === "ruins" }]}>古迹秘境</a>
@@ -34,6 +34,10 @@ const { title, description, currentNav } = Astro.props;
         <a href="/hollow-earth/" target="_blank" class:list={["nav-hollow", { active: currentNav === "hollow-earth" }]}>地心文明</a>
         <a href="/community/" target="_blank" class:list={["nav-community", { active: currentNav === "community" }]}>社区</a>
         <a href="/guide/" target="_blank">指南</a>
+      </div>
+      <div id="nav-user-area">
+        <span style="color:#b0aca5;font-size:0.82rem;padding:4px 10px;white-space:nowrap;cursor:pointer;" onclick="window.open('/register/', '_blank')">注册</span>
+        <span style="color:#b0aca5;font-size:0.82rem;padding:4px 10px;white-space:nowrap;cursor:pointer;" onclick="window.open('/login/', '_blank')">登录</span>
       </div>
     </nav>
   </header>
@@ -50,13 +54,107 @@ const { title, description, currentNav } = Astro.props;
       <a href="/submit/" target="_blank">投稿</a> ·
       <a href="/links/" target="_blank">友情链接</a>
     </p>
-    <p>探秘者联盟导航站 © 2019-2025 | 探秘爱好者的精神家园</p>
+    <p>探秘者联盟导航站 © 2021-2026 | 探秘爱好者的精神家园</p>
     <p class="text-muted">本站为爱好者公益站点，所有内容由社区成员贡献。如有侵权请联系删除。</p>
   </footer>
 
   <!-- 客户端脚本 -->
   <script src="/src/scripts/console.ts"></script>
   <script src="/src/scripts/search.ts"></script>
+  <script>
+    // 导航栏用户区渲染
+    (function() {
+      const area = document.getElementById('nav-user-area');
+      if (!area) return;
+      const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
+      const username = localStorage.getItem('arg_username');
+      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+      const isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
+      const isAdmin = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage3_hidden_admin_password']);
+
+      // 根据登录用户映射显示名
+      const displayNames: Record<string, string> = { lyu: 'signal_屿', shenci: '地下三尺' };
+      const displayName = (username && displayNames[username]) || username || '';
+
+      if (!loggedIn || !username) {
+        // L0: 未登录 — 保持静态HTML中的登录链接，无需修改
+        return;
+      }
+
+      // L1+: 已登录，显示用户名 + 下拉
+      let menuItems = [
+        { label: '个人中心', href: '/user/center/' },
+        { label: '私信箱', href: '/inbox/' },
+      ];
+      if (isMember) {
+        menuItems.push({ label: '会员专区', href: '/member/' });
+      }
+      if (isAdmin) {
+        menuItems.push({ label: '后台管理', href: '/hidden/' });
+      }
+      menuItems.push({ label: '退出登录', href: '#', action: 'logout' });
+
+      const itemStyle = 'display:block;padding:8px 14px;color:#ccc;font-size:0.82rem;border-bottom:1px solid #3a3d44;cursor:pointer;';
+      const menuHTML = menuItems.map(item => {
+        if (item.action === 'logout') {
+          return `<span style="${itemStyle}color:#c0392b;" data-action="logout">退出登录</span>`;
+        }
+        return `<span style="${itemStyle}" data-href="${item.href}">${item.label}</span>`;
+      }).join('');
+
+      area.innerHTML = `
+        <span id="nav-user-name" style="color:#e0dcd5;font-size:0.82rem;padding:4px 2px 4px 10px;border-radius:2px 0 0 2px;white-space:nowrap;cursor:pointer;">${displayName}</span>
+        <span id="nav-user-arrow" style="color:#b0aca5;font-size:0.65rem;cursor:pointer;padding:4px 8px 4px 2px;user-select:none;">▾</span>
+        <div id="nav-dropdown" style="display:none;position:absolute;right:0;top:100%;margin-top:4px;background:#2a2d35;border:1px solid #444;border-radius:2px;min-width:120px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+          ${menuHTML}
+        </div>
+      `;
+
+      const userName = document.getElementById('nav-user-name')!;
+      const arrowEl = document.getElementById('nav-user-arrow')!;
+      const dropdown = document.getElementById('nav-dropdown')!;
+
+      // 用户名点击 → 个人中心
+      userName.addEventListener('click', () => { window.open('/user/center/', '_blank'); });
+      userName.addEventListener('mouseenter', () => { userName.style.color = '#fff'; userName.style.background = 'rgba(255,255,255,0.08)'; });
+      userName.addEventListener('mouseleave', () => { userName.style.color = '#e0dcd5'; userName.style.background = ''; });
+
+      // 箭头 hover
+      arrowEl.addEventListener('mouseenter', () => { arrowEl.style.color = '#fff'; });
+      arrowEl.addEventListener('mouseleave', () => { arrowEl.style.color = '#b0aca5'; });
+
+      // 箭头点击 → 切换下拉
+      arrowEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+      });
+      document.addEventListener('click', () => { dropdown.style.display = 'none'; });
+
+      // 下拉菜单项点击 → 跳转
+      dropdown.querySelectorAll('[data-href]').forEach(item => {
+        const el = item as HTMLElement;
+        el.addEventListener('mouseenter', () => { el.style.background = '#3a3d44'; el.style.color = '#fff'; });
+        el.addEventListener('mouseleave', () => { el.style.background = ''; el.style.color = '#ccc'; });
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const href = el.dataset.href;
+          if (href) window.open(href, '_blank');
+        });
+      });
+
+      // 退出登录
+      const logoutItem = dropdown.querySelector('[data-action="logout"]') as HTMLElement;
+      if (logoutItem) {
+        logoutItem.addEventListener('click', () => {
+          localStorage.removeItem('arg_logged_in');
+          localStorage.removeItem('arg_username');
+          window.location.reload();
+        });
+        logoutItem.addEventListener('mouseenter', () => { logoutItem.style.background = '#3a3d44'; logoutItem.style.color = '#e74c3c'; });
+        logoutItem.addEventListener('mouseleave', () => { logoutItem.style.background = ''; logoutItem.style.color = '#c0392b'; });
+      }
+    })();
+  </script>
 </body>
 </html>
 
@@ -70,4 +168,37 @@ const { title, description, currentNav } = Astro.props;
   .nav-deepsea.active { color: #fff !important; background: rgba(27, 94, 123, 0.4) !important; }
   .nav-hollow.active { color: #fff !important; background: rgba(123, 75, 58, 0.4) !important; }
   .nav-community.active { color: #fff !important; background: rgba(160, 82, 45, 0.4) !important; }
+
+  /* 导航用户区 */
+  #nav-user-area { margin-left: auto; position: relative; display: flex; align-items: center; gap: 0; }
+  .nav-login-link {
+    color: #b0aca5; font-size: 0.82rem;
+    padding: 4px 10px; white-space: nowrap; cursor: pointer;
+  }
+  .nav-login-link:hover { color: #fff; }
+  .nav-user-name {
+    color: #e0dcd5; font-size: 0.82rem; padding: 4px 2px 4px 10px;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm); white-space: nowrap;
+    cursor: pointer;
+  }
+  .nav-user-name:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-user-arrow {
+    color: #b0aca5; font-size: 0.65rem; cursor: pointer;
+    padding: 4px 8px 4px 2px; user-select: none;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .nav-user-arrow:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-dropdown {
+    position: absolute; right: 0; top: 100%; margin-top: 4px;
+    background: #2a2d35; border: 1px solid #444; border-radius: var(--radius-sm);
+    min-width: 120px; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .nav-dropdown .nu-item {
+    display: block; padding: 8px 14px; color: #ccc; font-size: 0.82rem;
+    border-bottom: 1px solid #3a3d44; cursor: pointer;
+  }
+  .nav-dropdown .nu-item:last-child { border-bottom: none; }
+  .nav-dropdown .nu-item:hover { background: #3a3d44; color: #fff; }
+  .nav-dropdown .nu-logout { color: #c0392b; }
+  .nav-dropdown .nu-logout:hover { color: #e74c3c; }
 </style>

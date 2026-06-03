@@ -1,0 +1,54 @@
+---
+// 地下三尺 — 组队帖：贺兰山岩画探秘
+import Layout from '../../../components/Layout.astro';
+---
+
+<Layout title="下周贺兰山岩画探秘——有没有一起的？" description="地下三尺的探秘日志">
+  <div class="breadcrumb">
+    <a href="/home/" target="_blank">首页</a><span>›</span>
+    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    下周贺兰山岩画探秘——有没有一起的？
+  </div>
+
+  <article>
+    <h1 style="font-size: 1.5rem; margin-bottom: 4px;">下周贺兰山岩画探秘——有没有一起的？</h1>
+    <div class="post-meta" style="margin-bottom: 16px;">
+      作者：<a href="/user/shenci/" target="_blank">地下三尺</a> ·
+      发布于 2026-03-30 ·
+      阅读 134 · 评论 5
+    </div>
+    <hr />
+    <p>如题。下周五出发，计划三天。目标是一批不在公开图录里的岩画，位置在银川西侧贺兰山深处。之前看别人发过一些照片，风格挺特别的，想实地去看一下。</p>
+    <p>路线：银川出发，西夏区方向进山，沿干沟徒步大约六公里到崖壁。难度中等，有一段要翻个垭口。我自己能走，但一个人去荒山总觉得不太踏实——多个人多双眼睛，万一崴了脚也有照应。</p>
+    <p>费用AA。有意私信。</p>
+  </article>
+
+  <div style="margin: 24px auto;">
+    <h3>评论 (4)</h3>
+    <div class="card" style="padding: 10px; margin-bottom: 8px;">
+      <strong>浪到没信号</strong> <span class="text-muted">2026-03-30 15:22</span>
+      <p style="margin: 4px 0 0; font-size: 0.88rem;">时间排不开，不然真想一起去。注意安全，提前下好离线地图。</p>
+    </div>
+    <div class="card" style="padding: 10px; margin-bottom: 8px;">
+      <strong>signal_屿</strong> <span class="text-muted">2026-03-30 16:08</span>
+      <p style="margin: 4px 0 0; font-size: 0.88rem;">我看看课表。你上次说的那个坐标数据集，我这边基本整理完了，出发前碰一下。</p>
+    </div>
+    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
+    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-01 20:15</span><p style="margin:4px 0 0;font-size:0.88rem;">时间对不上，五一那周可以吗？我对贺兰山那片也挺感兴趣的。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-02 11:30</span><p style="margin:4px 0 0;font-size:0.88rem;">贺兰山晚上风大，带好防风装备。等你们的岩画照片。</p></div></div>
+  </div>
+<script>
+  (function(){
+    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
+    var hint = document.getElementById("login-hint");
+    var extra = document.getElementById("extra-comments");
+    if (!hint || !extra) return;
+    if (loggedIn) {
+      hint.style.display = "none";
+      extra.style.display = "block";
+    } else {
+      hint.style.display = "block";
+      extra.style.display = "none";
+    }
+  })();
+</script>
+</Layout>
