@@ -1,0 +1,73 @@
+---
+// 全局布局组件 — 所有公开页面使用
+// MPA 设计：所有链接使用 target="_blank" 在新标签页打开
+export interface Props {
+  title: string;
+  description?: string;
+  currentNav?: string;
+}
+
+const { title, description, currentNav } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} - 探秘者联盟导航站</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="/" class="nav-brand" target="_blank">探秘者联盟</a>
+      <div class="nav-links">
+        <a href="/alien/" target="_blank" class:list={["nav-alien", { active: currentNav === "alien" }]}>外星目击</a>
+        <a href="/ruins/" target="_blank" class:list={["nav-ruins", { active: currentNav === "ruins" }]}>古迹秘境</a>
+        <a href="/mystery/" target="_blank" class:list={["nav-mystery", { active: currentNav === "mystery" }]}>未解之谜</a>
+        <a href="/urban-legend/" target="_blank" class:list={["nav-legend", { active: currentNav === "urban-legend" }]}>都市传说</a>
+        <a href="/nature/" target="_blank" class:list={["nav-nature", { active: currentNav === "nature" }]}>自然奇观</a>
+        <a href="/deep-sea/" target="_blank" class:list={["nav-deepsea", { active: currentNav === "deep-sea" }]}>深海探秘</a>
+        <a href="/hollow-earth/" target="_blank" class:list={["nav-hollow", { active: currentNav === "hollow-earth" }]}>地心文明</a>
+        <a href="/community/" target="_blank" class:list={["nav-community", { active: currentNav === "community" }]}>社区</a>
+        <a href="/guide/" target="_blank">指南</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="main-content">
+    <slot />
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <p>
+      <a href="/about/" target="_blank">关于我们</a> ·
+      <a href="/submit/" target="_blank">投稿</a> ·
+      <a href="/links/" target="_blank">友情链接</a>
+    </p>
+    <p>探秘者联盟导航站 © 2019-2025 | 探秘爱好者的精神家园</p>
+    <p class="text-muted">本站为爱好者公益站点，所有内容由社区成员贡献。如有侵权请联系删除。</p>
+  </footer>
+
+  <!-- 客户端脚本 -->
+  <script src="/src/scripts/console.ts"></script>
+  <script src="/src/scripts/search.ts"></script>
+</body>
+</html>
+
+<style>
+  /* 导航当前页高亮 */
+  .nav-alien.active { color: #fff !important; background: rgba(46, 107, 143, 0.4) !important; }
+  .nav-ruins.active { color: #fff !important; background: rgba(139, 105, 20, 0.4) !important; }
+  .nav-mystery.active { color: #fff !important; background: rgba(107, 58, 125, 0.4) !important; }
+  .nav-legend.active { color: #fff !important; background: rgba(74, 103, 65, 0.4) !important; }
+  .nav-nature.active { color: #fff !important; background: rgba(61, 122, 92, 0.4) !important; }
+  .nav-deepsea.active { color: #fff !important; background: rgba(27, 94, 123, 0.4) !important; }
+  .nav-hollow.active { color: #fff !important; background: rgba(123, 75, 58, 0.4) !important; }
+  .nav-community.active { color: #fff !important; background: rgba(160, 82, 45, 0.4) !important; }
+</style>

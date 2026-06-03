@@ -1,0 +1,133 @@
+---
+// /home — 社区首页（登录后可见，也可直接访问）
+// 原 index.astro 的内容移到这里
+import Layout from '../components/Layout.astro';
+---
+
+<Layout
+  title="首页"
+  description="探秘者联盟 — 小众探秘爱好者社区。外星目击、古迹秘境、未解之谜、都市传说……"
+>
+  <!-- 登录状态提示 -->
+  <div id="login-banner" class="card" style="margin-bottom: 20px; background: #eaf7ea; border-left: 3px solid #27ae60; display: none;">
+    <p style="margin: 0; font-size: 0.85rem;">
+      ✅ 已登录：<strong id="logged-user"></strong> |
+      <a href="/inbox/" target="_blank">📬 私信箱</a> |
+      <a href="/login/" target="_blank">切换账号</a> |
+      <a href="#" id="logout-link">退出登录</a>
+    </p>
+  </div>
+
+  <!-- 搜索栏 -->
+  <div class="search-bar" style="margin-bottom: 20px;">
+    <input type="text" id="search-input" placeholder="搜索探秘点位、帖子、用户……" maxlength="100" />
+    <button id="search-btn" type="button">搜索</button>
+  </div>
+  <div id="search-hint" class="text-muted" style="margin-bottom: 16px; display: none;"></div>
+
+  <!-- 欢迎横幅 -->
+  <div class="card" style="margin-bottom: 20px; background: linear-gradient(135deg, #f8f6f0 0%, #ede8df 100%); border-left: 3px solid var(--color-accent);">
+    <h2 style="margin-bottom: 6px;">🔭 欢迎来到探秘者联盟</h2>
+    <p style="margin-bottom: 0;">
+      一个由探秘爱好者共同维护的小众社区。无论你仰望星空、深入古迹、追踪未解之谜还是探寻自然奇观，
+      这里都有同路人。没有商业广告，没有算法推荐，只有最纯粹的探秘热情。
+    </p>
+  </div>
+
+  <!-- 双栏布局 -->
+  <div class="two-col">
+    <div>
+      <h3>📡 最新探秘动态</h3>
+      <div class="post-item">
+        <div class="post-title"><a href="/user/lyu/" target="_blank"><strong>signal_屿</strong></a></div>
+        <p style="margin: 2px 0; font-size: 0.88rem;">NASA最新公布的系外行星数据中，KOI-5715.01的信号特征有些反常……</p>
+        <div class="post-meta">2024-09-10 · <a href="/alien/" target="_blank">外星目击</a></div>
+      </div>
+      <div class="post-item">
+        <div class="post-title"><a href="/user/shenci/" target="_blank"><strong>地下三尺</strong></a></div>
+        <p style="margin: 2px 0; font-size: 0.88rem;">刚从神农架回来。那个所谓的"远古石阵"——石阵中央那块巨石上的熔化痕迹，确实是高温造成的……</p>
+        <div class="post-meta">2024-09-08 · <a href="/ruins/" target="_blank">古迹秘境</a></div>
+      </div>
+      <div class="post-item">
+        <div class="post-title"><a href="/user/nebulax/" target="_blank"><strong>nebu1a_x</strong></a></div>
+        <p style="margin: 2px 0; font-size: 0.88rem;">昨晚在郊区拍到了猎户座星云！用的小黑+EQ3赤道仪……</p>
+        <div class="post-meta">2024-09-03 · <a href="/alien/" target="_blank">外星目击</a></div>
+      </div>
+      <div class="post-item">
+        <div class="post-title"><a href="/user/urbexlf/" target="_blank"><strong>废弃中</strong></a></div>
+        <p style="margin: 2px 0; font-size: 0.88rem;">昨天探了成都东郊一个废弃化工厂。80年代的建筑，保存得还不错……</p>
+        <div class="post-meta">2024-09-01 · <a href="/urban-legend/" target="_blank">都市传说</a></div>
+      </div>
+      <div class="post-item">
+        <div class="post-title"><a href="/user/lyu/" target="_blank"><strong>signal_屿</strong></a></div>
+        <p style="margin: 2px 0; font-size: 0.88rem;">这几天在比对几个外星目击点的坐标……几乎所有"高可信度目击报告"的落点，都分布在北纬30-45度之间……</p>
+        <div class="post-meta">2024-09-05 · <a href="/alien/" target="_blank">外星目击</a></div>
+      </div>
+      <a href="/community/" target="_blank" style="font-size: 0.85rem;">查看更多动态 →</a>
+    </div>
+
+    <div>
+      <h3>📍 热门探秘点位</h3>
+      <div class="post-item"><span class="tag tag-alien">外星</span> <a href="/alien/alien-001/" target="_blank">凤凰山外星信号异常区</a><div class="post-meta">黑龙江·五常</div></div>
+      <div class="post-item"><span class="tag tag-ruins">古迹</span> <a href="/ruins/ruins-001/" target="_blank">贺兰山岩画未记录区</a><div class="post-meta">宁夏·银川</div></div>
+      <div class="post-item"><span class="tag tag-alien">外星</span> <a href="/alien/alien-003/" target="_blank">神农架不明飞行物走廊</a><div class="post-meta">湖北·神农架</div></div>
+      <div class="post-item"><span class="tag tag-ruins">古迹</span> <a href="/ruins/ruins-003/" target="_blank">神农架远古石阵</a><div class="post-meta">湖北·神农架</div></div>
+      <div class="post-item"><span class="tag tag-alien">外星</span> <a href="/alien/alien-005/" target="_blank">罗布泊外星残骸目击地</a><div class="post-meta">新疆·若羌</div></div>
+      <a href="/alien/" target="_blank" style="font-size: 0.85rem;">更多外星目击 →</a> &nbsp; <a href="/ruins/" target="_blank" style="font-size: 0.85rem;">更多古迹秘境 →</a>
+
+      <h3 style="margin-top: 20px;">🗺️ 探秘板块</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <a href="/alien/" target="_blank" class="tag tag-alien" style="font-size: 0.88rem; padding: 4px 12px;">外星目击</a>
+        <a href="/ruins/" target="_blank" class="tag tag-ruins" style="font-size: 0.88rem; padding: 4px 12px;">古迹秘境</a>
+        <a href="/mystery/" target="_blank" class="tag tag-mystery" style="font-size: 0.88rem; padding: 4px 12px;">未解之谜</a>
+        <a href="/urban-legend/" target="_blank" class="tag tag-legend" style="font-size: 0.88rem; padding: 4px 12px;">都市传说</a>
+        <a href="/nature/" target="_blank" class="tag tag-nature" style="font-size: 0.88rem; padding: 4px 12px;">自然奇观</a>
+        <a href="/deep-sea/" target="_blank" class="tag tag-deepsea" style="font-size: 0.88rem; padding: 4px 12px;">深海探秘</a>
+        <a href="/hollow-earth/" target="_blank" class="tag tag-hollow" style="font-size: 0.88rem; padding: 4px 12px;">地心文明</a>
+      </div>
+
+      <h3 style="margin-top: 20px;">👥 活跃探秘者</h3>
+      <div class="post-item"><a href="/user/lyu/" target="_blank"><strong>signal_屿</strong></a> <span class="text-muted">外星信号分析爱好者</span></div>
+      <div class="post-item"><a href="/user/shenci/" target="_blank"><strong>地下三尺</strong></a> <span class="text-muted">冷门古迹实地探访者</span></div>
+      <div class="post-item"><a href="/user/nebulax/" target="_blank">nebu1a_x</a> <span class="text-muted">天文摄影爱好者</span></div>
+      <div class="post-item"><a href="/user/urbexlf/" target="_blank">废弃中</a> <span class="text-muted">城市废墟探险</span></div>
+      <div class="post-item"><a href="/user/driftlang/" target="_blank">浪到没信号</a> <span class="text-muted">环游中国背包客</span></div>
+    </div>
+  </div>
+
+  <!-- 公告 -->
+  <div class="card" style="margin-top: 20px; background: var(--color-bg-secondary); font-size: 0.85rem;">
+    <p style="margin-bottom: 4px;"><strong>📢 站点公告</strong></p>
+    <p style="margin-bottom: 0; color: var(--color-text-muted);">
+      本站为探秘爱好者公益站点。独行探秘请注意安全，建议结伴出行。
+      <br/>最近更新：2024-09-12 | 收录点位：156个 | 活跃探秘者：89人
+    </p>
+  </div>
+</Layout>
+
+<script>
+  // 显示登录状态
+  const loggedIn = localStorage.getItem('arg_logged_in');
+  const username = localStorage.getItem('arg_username');
+  const banner = document.getElementById('login-banner');
+  const userSpan = document.getElementById('logged-user');
+  const logoutLink = document.getElementById('logout-link');
+
+  if (loggedIn === 'true' && username && banner && userSpan) {
+    banner.style.display = 'block';
+    userSpan.textContent = username;
+  }
+
+  logoutLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('arg_logged_in');
+    localStorage.removeItem('arg_username');
+    window.location.href = '/';
+  });
+</script>
+
+<style>
+  .search-bar { display: flex; gap: 0; justify-content: center; }
+  .search-bar input { width: 320px; max-width: 60%; padding: 8px 14px; border: 1px solid var(--color-border); border-right: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm); font-size: 0.95rem; }
+  .search-bar button { padding: 8px 18px; background: var(--color-bg-dark); color: #e0dcd5; border: 1px solid var(--color-bg-dark); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; cursor: pointer; font-size: 0.95rem; }
+</style>

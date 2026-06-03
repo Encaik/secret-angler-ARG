@@ -1,0 +1,219 @@
+---
+// 沈辞个人主页 — 古迹/历史探秘者
+// 包含动态、手绘笔记、坐标合集，隐藏文章含"留白处藏通路"暗示
+import Layout from '../../components/Layout.astro';
+---
+
+<Layout
+  title="地下三尺（沈辞）的个人主页"
+  description="沈辞，古文明探秘者，冷门古迹爱好者。用脚步丈量历史，用双眼发现被遗忘的真相。"
+>
+  <div class="breadcrumb">
+    <a href="/" target="_blank">首页</a><span>›</span>
+    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    地下三尺
+  </div>
+
+  <!-- 个人资料卡 -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div style="display: flex; gap: 16px; align-items: flex-start;">
+      <div style="width: 72px; height: 72px; background: #8b6914; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.8rem; flex-shrink: 0;">
+        🏛️
+      </div>
+      <div style="flex: 1;">
+        <h2 style="margin-bottom: 2px;">地下三尺</h2>
+        <p class="text-muted" style="margin-bottom: 6px;">
+          注册于 2023-06-03 · 古文明探秘者，冷门古迹爱好者
+        </p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px;">
+          用脚步丈量历史，用双眼发现被遗忘的真相。不追求热门景点，只探寻真正的秘境。
+          探访重点：未记录岩画群、古文明遗址、摩崖石刻、冷门墓葬结构。
+        </p>
+        <div>
+          <span class="tag tag-ruins">古迹探秘</span>
+          <span class="tag tag-ruins">古文明</span>
+          <span class="tag tag-ruins">摩崖石刻</span>
+          <span class="tag tag-ruins">实地考察</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- 左栏：探秘笔记 -->
+    <div>
+      <h3>📝 探秘笔记</h3>
+
+      <div class="post-item">
+        <div class="post-title">
+          <a href="/ruins/ruins-001/" target="_blank">贺兰山未记录岩画群手绘记录与初步分析</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
+          2024年8月实地探访了银川西侧贺兰山深处的一处岩画群。该地点未出现在任何公开文物图录中……
+        </p>
+        <div class="post-meta">2024-09-02 · 阅读 189 · 收藏 42</div>
+      </div>
+
+      <!-- ⭐ 关键文章：含坐标合集，用于对比发现重合 -->
+      <div class="post-item" style="border-left: 3px solid var(--color-accent); padding-left: 10px;">
+        <div class="post-title">
+          <a href="/ruins/ruins-002/" target="_blank">探秘笔记：全国冷门古迹实地考察坐标合集（持续更新）</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
+          历时一年多，实地探访了全国23处未被主流考古学关注的"冷门古迹"。每处记录了精确GPS坐标……
+          <span style="color: var(--color-text-muted);">
+            读者可将这些坐标与导航站"外星目击板块"的推荐点位进行对比——你会得到一个有趣的发现。
+          </span>
+        </p>
+        <div class="post-meta">2024-08-22 · 阅读 487 · 收藏 103</div>
+      </div>
+
+      <!-- ⭐ 隐藏文章：暗示"留白处藏通路" -->
+      <div class="post-item" style="border-left: 3px solid var(--color-accent); padding-left: 10px;">
+        <div class="post-title">
+          <a href="/community/post/shenci-log-003/" target="_blank">关于导航站的一些疑虑——写在出发之前</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
+          最近对导航站的信息源产生了严重怀疑。多次实地探访发现，站内推荐的"冷门秘境"存在不同程度的
+          描述失实和实地不符……有些真相，藏在<b>留白处</b>。
+        </p>
+        <div class="post-meta">2024-08-25 · 阅读 356 · 收藏 78</div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-title">
+          <a href="#" target="_blank">秦岭古栈道考古笔记：傥骆道段的诡异石刻</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
+          沿着傥骆古道走了三天，在华阳镇北侧悬崖上发现了一系列从未被记录的石刻符号……
+        </p>
+        <div class="post-meta">2024-07-20 · 阅读 234 · 收藏 51</div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-title">
+          <a href="#" target="_blank">古迹探秘安全手册：独行者的生存指南</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
+          经常独行探秘，总结一些安全经验：必备装备清单、行前报备流程、紧急联络设置……
+        </p>
+        <div class="post-meta">2024-07-02 · 阅读 412 · 收藏 89</div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-title">
+          <a href="#" target="_blank">手绘笔记：云南哀牢山古滇国祭祀台结构复原图</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
+          基于现场勘测数据，手绘复原了哀牢山祭祀台的结构平面图和立面图……
+        </p>
+        <div class="post-meta">2024-09-05 · 阅读 167 · 收藏 35</div>
+      </div>
+    </div>
+
+    <!-- 右栏：动态 + 收藏 + 线索 -->
+    <div>
+      <h3>💬 最近动态</h3>
+
+      <div class="card" style="padding: 12px; margin-bottom: 8px;">
+        <p style="font-size: 0.85rem; margin-bottom: 4px;">
+          刚从神农架回来。那个所谓的"远古石阵"——我仔细查看了每一块石头的切面和风化程度。结论：自然形成，不是人工。但诡异的是石阵中央那块巨石上的熔化痕迹，确实是高温造成的。
+        </p>
+        <div class="post-meta">2024-09-08</div>
+      </div>
+
+      <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
+        <p style="font-size: 0.85rem; margin-bottom: 4px;">
+          <a href="/user/lyu/" target="_blank"><strong>@signal_屿</strong></a> 林屿，我比对了你整理的目击点坐标和我自己探访过的古迹坐标。8个点位完全重合。8个！这不可能只是巧合。我觉得导航站的某些人知道些什么。
+        </p>
+        <div class="post-meta">2024-09-01</div>
+      </div>
+
+      <div class="card" style="padding: 12px; margin-bottom: 8px;">
+        <p style="font-size: 0.85rem; margin-bottom: 4px;">
+          导航站推送了个"冷门秘境"给我——秦岭某处未记录的摩崖石刻。看了坐标，那个位置我去过。根本没有任何石刻。导航站的信息源在撒谎。
+        </p>
+        <div class="post-meta">2024-08-25</div>
+      </div>
+
+      <div class="card" style="padding: 12px; margin-bottom: 8px;">
+        <p style="font-size: 0.85rem; margin-bottom: 4px;">
+          最近越想越不对劲……到了现场却发现有近期人类活动的明显痕迹——新鲜的火堆、矿泉水瓶、踩踏出来的小路。但是问过当地的人，都说很少有人去那里。
+        </p>
+        <div class="post-meta">2024-08-18</div>
+      </div>
+
+      <div class="card" style="padding: 12px; margin-bottom: 8px;">
+        <p style="font-size: 0.85rem; margin-bottom: 4px;">
+          重新检查了之前探访的10个点位照片。发现一个规律：每个"秘境"都有一些明显是人为布置的痕迹——像是……<b>有人的"布景"</b>。
+        </p>
+        <div class="post-meta">2024-08-10</div>
+      </div>
+
+      <!-- ⭐ 收藏点位（含与林屿坐标重合的标注） -->
+      <h3 style="margin-top: 16px;">📍 探访过的古迹点位</h3>
+      <div class="card" style="padding: 10px; font-size: 0.82rem;">
+        <table style="font-size: 0.8rem;">
+          <tr><th>点位名称</th><th>坐标</th><th>类型</th></tr>
+          <tr>
+            <td><a href="/ruins/ruins-001/" target="_blank">贺兰山未记录岩画群</a></td>
+            <td><code>38.78, 106.03</code></td>
+            <td><span class="tag tag-ruins">古迹</span></td>
+          </tr>
+          <tr style="background: #fdf5e6;">
+            <td><a href="/ruins/ruins-003/" target="_blank">神农架远古石阵</a> ⚠</td>
+            <td><code>31.58, 110.42</code></td>
+            <td><span class="tag tag-ruins">古迹</span> <span class="tag tag-alien">外星重合</span></td>
+          </tr>
+          <tr>
+            <td>凤凰山古祭祀遗址</td>
+            <td><code>44.52, 127.83</code></td>
+            <td><span class="tag tag-ruins">古迹</span> <span class="tag tag-alien">外星重合</span></td>
+          </tr>
+          <tr>
+            <td>昆仑山古道石刻群</td>
+            <td><code>36.12, 94.55</code></td>
+            <td><span class="tag tag-ruins">古迹</span> <span class="tag tag-alien">外星重合</span></td>
+          </tr>
+          <tr>
+            <td>罗布泊古城残垣</td>
+            <td><code>40.39, 90.22</code></td>
+            <td><span class="tag tag-ruins">古迹</span> <span class="tag tag-alien">外星重合</span></td>
+          </tr>
+          <tr>
+            <td><a href="/ruins/ruins-004/" target="_blank">秦岭古栈道石刻</a></td>
+            <td><code>33.25, 107.15</code></td>
+            <td><span class="tag tag-ruins">古迹</span></td>
+          </tr>
+          <tr>
+            <td>哀牢山古滇国祭祀台</td>
+            <td><code>24.05, 101.67</code></td>
+            <td><span class="tag tag-ruins">古迹</span></td>
+          </tr>
+        </table>
+        <p class="text-muted" style="margin-top: 6px;">⚠ 标记的为与<a href="/user/lyu/" target="_blank">@signal_屿</a>外星目击点位坐标重合的条目</p>
+      </div>
+
+      <!-- 关注 -->
+      <h3 style="margin-top: 16px;">👥 关注</h3>
+      <div class="post-item">
+        <a href="/user/lyu/" target="_blank"><strong>signal_屿</strong></a>
+        <span class="text-muted">林屿 · 互相关注</span>
+      </div>
+      <div class="post-item">
+        <a href="/user/urbexlf/" target="_blank">废弃中</a>
+        <span class="text-muted">老废</span>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<!--
+  ⭐ 隐藏线索：HTML 源码注释
+  此处藏有凯撒密码线索（在 Base64 解码之后获得）
+  "留白处藏通路" — 你找到这里了
+-->
+<!--
+  U2hpZnQgdmFsdWU6IEtleSA9IDMgKEtob3J1Z2h0IFYhfch Hqwurg)
+  (这段文本是混淆过的 — 需要先 Base64 解码，再凯撒解密)
+-->

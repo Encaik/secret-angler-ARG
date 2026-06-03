@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-astro@latest . -- --template minimal --typescript strict --skip-houston)",
+      "Bash(npm create *)",
+      "Bash(npx create-astro@4.9.0 . --template minimal --typescript strict --skip-houston)",
+      "Bash(mkdir -p \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/alien\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/ruins\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/mystery\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/urban-legend\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/nature\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/deep-sea\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/hollow-earth\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/community/post\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/user\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/member/live-room\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/member/profile\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/hidden\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/trigger\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/pages/ending\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/components\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/scripts\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/data\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/styles\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/assets/images/site\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/assets/images/clues\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/assets/images/endings\" \"c:/Users/encai/Desktop/secret-angler-ARG/src/assets/downloads\" \"c:/Users/encai/Desktop/secret-angler-ARG/public\" \"c:/Users/encai/Desktop/secret-angler-ARG/.claude/skills\")",
+      "Bash(npm install *)",
+      "Bash(npx astro *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{url_effective}\\\\n\" http://localhost:4321/user/linyu/ http://localhost:4321/user/shenci/ http://localhost:4321/alien/ http://localhost:4321/ruins/ http://localhost:4321/mystery/ http://localhost:4321/community/ http://localhost:4321/about/ http://localhost:4321/404/ http://localhost:4321/alien/alien-003/ http://localhost:4321/ruins/ruins-003/)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:4321__TRACKED_VAR__)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/home/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/inbox/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/user/linyu/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/user/shenci/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/community/post/shenci-final/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \" http://localhost:4321/login/)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude"
+    ]
+  }
+}
