@@ -90,8 +90,8 @@ import '../styles/global.css';
 
       // L1+: 已登录，显示用户名 + 下拉
       let menuItems = [
-        { label: '个人中心', href: BASE + 'user/center/' },
-        { label: '私信箱', href: BASE + 'inbox/' },
+        { label: '个人中心', href: BASE + 'user/center/' + (username || '') + '/' },
+        { label: '私信箱', href: BASE + 'inbox/' + (username || '') + '/' },
       ];
       if (isMember) {
         menuItems.push({ label: '会员专区', href: BASE + 'member/' });
@@ -155,7 +155,7 @@ import '../styles/global.css';
         logoutItem.addEventListener('click', () => {
           localStorage.removeItem('arg_logged_in');
           localStorage.removeItem('arg_username');
-          window.location.reload();
+          window.location.href = BASE + 'login/';
         });
         logoutItem.addEventListener('mouseenter', () => { logoutItem.style.background = '#3a3d44'; logoutItem.style.color = '#e74c3c'; });
         logoutItem.addEventListener('mouseleave', () => { logoutItem.style.background = ''; logoutItem.style.color = '#c0392b'; });

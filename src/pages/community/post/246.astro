@@ -34,22 +34,6 @@ const BASE = __BASE_PATH__;
       <strong>地下三尺</strong> <span class="text-muted">2026-04-11 00:32</span>
       <p style="margin: 4px 0 0; font-size: 0.88rem;">注意安全。你说的那个频段我之前好像也在某个古迹点位附近遇到过奇怪的干扰。下次碰面聊。</p>
     </div>
-    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
-    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-12 11:20</span><p style="margin:4px 0 0;font-size:0.88rem;">带设备我可以帮忙。不过凌晨1-3点在野外蹲着确实够呛，多带件衣服。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-14 16:45</span><p style="margin:4px 0 0;font-size:0.88rem;">凤凰山那边我去过几次，后山确实有个废弃的微波站。你们去的时候注意安全，山路上有些地方塌方过。</p></div></div>
+    <div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-12 11:20</span><p style="margin:4px 0 0;font-size:0.88rem;">带设备我可以帮忙。不过凌晨1-3点在野外蹲着确实够呛，多带件衣服。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-14 16:45</span><p style="margin:4px 0 0;font-size:0.88rem;">凤凰山那边我去过几次，后山确实有个废弃的微波站。你们去的时候注意安全，山路上有些地方塌方过。</p></div>
   </div>
-<script>
-  (function(){
-    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
-    var hint = document.getElementById("login-hint");
-    var extra = document.getElementById("extra-comments");
-    if (!hint || !extra) return;
-    if (loggedIn) {
-      hint.style.display = "none";
-      extra.style.display = "block";
-    } else {
-      hint.style.display = "block";
-      extra.style.display = "none";
-    }
-  })();
-</script>
 </Layout>

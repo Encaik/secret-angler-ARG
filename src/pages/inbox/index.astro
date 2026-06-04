@@ -1,0 +1,26 @@
+---
+// /inbox/ — 私信箱入口，已登录用户自动跳转到对应静态私信页
+import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
+---
+
+<Layout title="私信箱">
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>私信箱</div>
+
+  <div class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto;">
+    <h2>📬 私信箱</h2>
+    <hr />
+    <p class="text-muted">请先<a href={`${BASE}login/`} target="_blank">登录</a>后再查看私信。</p>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    var loggedIn = localStorage.getItem('arg_logged_in');
+    var username = localStorage.getItem('arg_username');
+    if (loggedIn === 'true' && username) {
+      var BASE = window.__BASE__ || '/';
+      window.location.replace(BASE + 'inbox/' + username + '/');
+    }
+  })();
+</script>

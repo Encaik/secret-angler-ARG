@@ -1,278 +1,36 @@
 ---
-// /member — 高级探秘者板块（需登录+会员权限）
+// /member/ — 会员专区入口
+// 如果已通过"深海裂隙2026"解锁，直接跳转到云盘共享页
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<Layout title="高级探秘者板块">
+<Layout title="会员专区">
   <div class="breadcrumb">
     <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
     <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
-    高级探秘者板块
+    会员专区
   </div>
 
-  <!-- 未登录 -->
-  <div id="need-login" class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto;">
-    <h2>🔒 高级探秘者板块</h2>
+  <div class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto;">
+    <h2>🔒 会员专区</h2>
     <hr />
-    <p class="text-muted">此板块仅对注册探秘者开放，请先登录。</p>
-    <div style="margin-top: 20px;">
-      <a href={`${BASE}login/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
-        前往登录 →
-      </a>
-    </div>
-  </div>
-
-  <!-- 已登录但无权限 -->
-  <div id="no-access" class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto; display: none;">
-    <h2>🔒 权限不足</h2>
-    <hr />
-    <p class="text-muted">此板块需要高级探秘者权限。请通过社区中的线索获取访问密钥。</p>
+    <p class="text-muted">此板块需要会员权限。请通过社区中的线索获取访问密钥。</p>
     <div style="margin-top: 20px;">
       <a href={`${BASE}community/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
         返回社区 →
       </a>
     </div>
   </div>
-
-  <!-- 有权限 -->
-  <div id="member-content" style="display: none;">
-    <h2>🔒 高级探秘者板块</h2>
-    <p class="text-muted">此板块内容仅通过认证的探秘者可见，不在搜索引擎中索引。访问码：秘境探秘2026</p>
-    <hr />
-
-    <!-- 系统通知 -->
-    <div style="background: #fef9e7; border: 1px solid #f9e79f; padding: 10px 14px; border-radius: 2px; margin-bottom: 16px; font-size: 0.82rem;">
-      <strong>⚠️ 系统通知：</strong>检测到管理员账号于 2026-06-04 00:05 尝试批量删除此板块内容。部分数据已被标记为"待删除"。请尽快保存关键信息。
-    </div>
-
-    <div class="two-col">
-      <!-- 左栏 -->
-      <div>
-        <!-- 1. 坐标交叉比对 — 沈辞的核心发现 -->
-        <div class="card" style="border-left: 3px solid var(--color-accent); margin-bottom: 12px;">
-          <h4 style="margin-bottom: 4px;">📊 坐标交叉比对结果</h4>
-          <div class="post-meta" style="margin-bottom: 8px;">地下三尺 · 2026-05-20 · 仅会员可见 · 阅读 89</div>
-          <p style="font-size: 0.85rem; margin-bottom: 8px;">
-            历时两个月，交叉比对了导航站"外星目击"板块的47个推荐点位与我实地探访过的23处古迹坐标。结论：
-          </p>
-          <table style="font-size: 0.78rem; margin-bottom: 8px;">
-            <tr><th>指标</th><th>数值</th></tr>
-            <tr><td>总比对点位数</td><td>47（外星）+ 23（古迹）</td></tr>
-            <tr style="background: #fdf5e6;"><td><strong>坐标重合数</strong></td><td><strong style="color: #c0392b;">8 个点位完全重合</strong></td></tr>
-            <tr><td>重合率</td><td>古迹点位的 34.8%，外星点位的 17.0%</td></tr>
-            <tr><td>重合点位距最近公路</td><td>平均 7.2 公里</td></tr>
-            <tr><td>重合点位所在纬度带</td><td>北纬 30°-40°（集中分布）</td></tr>
-          </table>
-          <p style="font-size: 0.82rem; color: #888;">
-            8个重合点位列表：贺兰山(38.78,106.03)、凤凰山(44.52,127.83)、神农架(31.58,110.42)、秦岭(33.25,107.15)、昆仑山(36.12,94.55)、罗布泊(40.39,90.22)、哀牢山(24.05,101.67)、[第8个坐标已加密]
-          </p>
-          <p style="font-size: 0.82rem; color: #c0392b;">
-            <strong>结论：这不是巧合。有人故意将"外星信号"和"古迹秘境"的推荐坐标设在同一批偏远地点。建议所有会员交叉核对自己的探访记录。如果你去过这些坐标中的任何一个——请私信我。</strong>
-          </p>
-        </div>
-
-        <!-- 2. 拦截到的异常通讯 — 林屿日常SDR扫描的意外发现（沈辞出发前拦截，当时未理解） -->
-        <div class="card" style="border-left: 3px solid #c0392b; margin-bottom: 12px;">
-          <h4 style="margin-bottom: 4px;">📡 SDR扫频拦截记录：GSM频段异常短信片段</h4>
-          <div class="post-meta" style="margin-bottom: 8px;">signal_屿 · 2026-05-20 · 最后编辑 2026-06-03 · 仅会员可见 · 阅读 67</div>
-          <p style="font-size: 0.85rem; margin-bottom: 8px;">
-            <em>【6月3日注】翻出这条旧记录。当初没看懂，现在回头看——和三尺说的"招募页面"、首页那几行字放在一起，感觉能对上。把原文保留在下面，不做修改。</em>
-          </p>
-          <p style="font-size: 0.85rem; margin-bottom: 8px;">
-            上周在调试 SDR 扫频的时候——本来是日常监测凤凰山那个假信号的频段——结果在 <strong>935-960 MHz</strong> GSM下行频段意外抓到一个没加密的短信。A5/0算法（基本上等于没加密），应该是某个虚拟运营商的基站回落到2G了：
-          </p>
-          <div style="background: #0a0a0a; color: #4a8c4a; font-family: monospace; padding: 10px 14px; border-radius: 3px; font-size: 0.8rem; margin-bottom: 8px; line-height: 1.6;">
-            SMS-DOWNLINK | 2026-05-19 23:12:44 | MCC:460 MNC:01 | A5/0<br/>
-            FROM: [未知短码]<br/>
-            TO: [未注册临时号码]<br/>
-            CONTENT(hex): ...6B6253 65B05E 706C28 <strong style="color:#7acc7a;">31 37 30 39 33 32 38 30 30 34 35</strong> 209D 6E3A...<br/>
-            <br/>
-            ASCII解码 (片段):<br/>
-            "...<strong style="color:#7acc7a;">17093280045</strong> 新客待激活 下批出 勿复 龙骨尾款未结..."
-          </div>
-          <p style="font-size: 0.82rem; margin-bottom: 4px;">
-            170开头——虚商号段。内容提到"新客待激活"、"下批出货"——措辞不像普通商业短信，但当时想不出能跟什么关联起来。暂时存档，万一以后有用。
-          </p>
-        </div>
-
-        <!-- 3. 信号频谱分析 — 林屿的技术发现 -->
-        <div class="card" style="border-left: 3px solid var(--color-tag-alien); margin-bottom: 12px;">
-          <h4 style="margin-bottom: 4px;">📡 信号频谱分析笔记：凤凰山1420MHz异常信号</h4>
-          <div class="post-meta" style="margin-bottom: 8px;">signal_屿 · 2026-05-15 · 仅会员可见 · 阅读 134</div>
-          <p style="font-size: 0.85rem; margin-bottom: 8px;">
-            使用 HackRF One + SDR# 在凤凰山点位（44.52, 127.83）进行了48小时连续扫频。以下是关键发现：
-          </p>
-          <ul style="font-size: 0.82rem; margin-bottom: 8px; color: var(--color-text-secondary);">
-            <li><strong>载波频率：</strong>1420.405 MHz（非常接近氢线 1420.406 MHz——像是故意选的）</li>
-            <li><strong>调制模式：</strong>不规则脉冲调制，占空比约 12%。<strong>这不是自然天体的频谱特征</strong>——自然天体（如脉冲星）的脉冲周期极其稳定，而这个信号的脉冲间隔有明显的人为随机性。</li>
-            <li><strong>信号强度：</strong>-42 dBm（近距离、低功率发射器的典型值）</li>
-            <li><strong>发射周期：</strong>每天 18:00-06:00 活跃（夜间——减少被普通游客发现的概率）</li>
-            <li><strong>设备推测：</strong>基于调制特征和频率稳定性，高度疑似 <strong>HackRF One + 功放模块</strong>——成本约 $300 的民用SDR设备。</li>
-          </ul>
-          <p style="font-size: 0.82rem; color: #c0392b;">
-            <strong>结论：这个"外星信号"是人造的。设备选型和调制方式表明发射者有基础的无线电知识，但不是专业的——真正的信号模拟会用更复杂的调制来避免被轻易识破。建议发送至更专业的信号分析社区进行二次验证。</strong>
-          </p>
-        </div>
-      </div>
-
-      <!-- 右栏 -->
-      <div>
-        <!-- 3. 点位异常汇总 -->
-        <div class="card" style="border-left: 3px solid #c0392b; margin-bottom: 12px;">
-          <h4 style="margin-bottom: 4px;">⚠️ 点位异常汇总（协同编辑）</h4>
-          <div class="post-meta" style="margin-bottom: 8px;">signal_屿 & 地下三尺 · 最后更新 2026-05-22 · 仅会员可见</div>
-          <p style="font-size: 0.85rem; margin-bottom: 8px;">
-            以下为两人交叉验证后确认的<strong>虚假/可疑点位</strong>列表。请其他会员补充：
-          </p>
-          <table style="font-size: 0.76rem;">
-            <tr><th>点位</th><th>类型</th><th>问题</th><th>验证者</th></tr>
-            <tr>
-              <td>秦岭"唐代摩崖石刻"</td>
-              <td>古迹</td>
-              <td style="font-size:0.72rem;">不存在。崖壁光滑无石刻痕迹。且站内描述存在明清/唐代术语混用。</td>
-              <td>三尺 + signal_屿</td>
-            </tr>
-            <tr>
-              <td>凤凰山"信号塔"</td>
-              <td>外星</td>
-              <td style="font-size:0.72rem;">实际是废弃微波中继站。设备铭牌清晰可见。</td>
-              <td>signal_屿</td>
-            </tr>
-            <tr>
-              <td>神农架"远古石阵"</td>
-              <td>古迹</td>
-              <td style="font-size:0.72rem;">石头为自然形成。但中央巨石有1500°C高温熔化痕迹——人为造成。</td>
-              <td>三尺</td>
-            </tr>
-            <tr>
-              <td>哀牢山"古滇国祭祀台"</td>
-              <td>古迹</td>
-              <td style="font-size:0.72rem;">石刻符号风格与滇文化不符。疑似现代仿品。</td>
-              <td>三尺</td>
-            </tr>
-            <tr>
-              <td>"明代烽燧遗址"</td>
-              <td>古迹</td>
-              <td style="font-size:0.72rem;">砖砌方式为清代做法。明代烽燧不用叠砌法。</td>
-              <td>三尺</td>
-            </tr>
-          </table>
-          <p style="font-size: 0.78rem; color: #888; margin-top: 6px;">
-            <em>如果你验证过以上或其它点位，请在评论区补充。不要在公开板块讨论此内容。</em>
-          </p>
-        </div>
-
-        <!-- 4. 探秘资料包 -->
-        <div class="card" style="border-left: 3px solid #555; margin-bottom: 12px;">
-          <h4 style="margin-bottom: 4px;">🗺️ 探秘资料包（加密压缩）</h4>
-          <div class="post-meta" style="margin-bottom: 8px;">地下三尺 · 2026-05-18 · 仅会员可见 · 下载 47 次</div>
-          <p style="font-size: 0.85rem; margin-bottom: 8px;">
-            包含以下内容（<strong>解压密码提示</strong>：我们共同的关键词，四个字）：
-          </p>
-          <ul style="font-size: 0.82rem; margin-bottom: 8px; color: var(--color-text-secondary);">
-            <li>📷 现场照片合集（47个点位的实地拍摄，含GPS水印）</li>
-            <li>🗺️ 离线地图包（MBTiles格式，覆盖北纬30-45°）</li>
-            <li>📝 加密笔记（Markdown格式，含坐标标注）</li>
-            <li>📊 信号扫描原始数据（CSV格式，可导入SDR软件）</li>
-          </ul>
-          <div style="text-align: center; padding: 10px; background: #f5f0e8; border-radius: 2px;">
-            <span style="font-size: 0.82rem; color: #888;">📦 shenci_field_data_2026.zip (47.3 MB)</span><br />
-            <a href="javascript:void(0)" onclick="alert('解压密码提示：四个字——你们第一次在私信中确认的关键发现。搜索"加密"可找到线索。')" style="font-size: 0.78rem;">⬇ 下载（需解压密码）</a>
-          </div>
-        </div>
-
-        <!-- 5. 沈辞的疑虑 — 叙事关键文章 -->
-        <div class="card" style="border-left: 3px solid var(--color-accent); margin-bottom: 12px;">
-          <h4 style="margin-bottom: 4px;">🔍 关于这个站的一些疑虑（草稿）</h4>
-          <div class="post-meta" style="margin-bottom: 8px;">地下三尺 · 2026-04-25 · 仅会员可见 · 阅读 203</div>
-          <p style="font-size: 0.85rem; margin-bottom: 6px;">
-            在站内混了半年多，去了不下20个推荐点位。以下是我整理的<strong>系统性疑点</strong>，尚不成熟，仅供你（signal_屿）参考。暂时不要在公开板块讨论——我不确定站里有多少眼睛在看着。
-          </p>
-          <ol style="font-size: 0.82rem; margin-bottom: 6px; color: var(--color-text-secondary);">
-            <li><strong>描述的"专业硬伤"太有规律了。</strong>三个独立的古迹描述犯了同一类错误——时代错位。唐代的东西用明清术语描述。如果是信息采集失误，应该是随机的——不会三个都犯同一种错误。</li>
-            <li><strong>点位分布太"刚刚好"了。</strong>每个推荐点位距离最近村落都在5-10公里。不多不少。自然形成的遗址分布不可能这么均匀——这是按照"徒步可达但够偏远"的标准筛选过的。</li>
-            <li><strong>站内信息更新的时间模式。</strong>新点位总是在月初推送。活跃用户的帖子得到回复和推荐的速度异常快——像是有人在刻意维持社区活跃度。</li>
-            <li><strong>某些关键词搜不到。</strong>试过搜索几个探秘圈子里常用的术语——结果为空或者被重定向到无关页面。像是<strong>有人在控制搜索可见性</strong>。</li>
-          </ol>
-          <p style="font-size: 0.82rem; color: #888;">
-            <em>更新（5月20日）：和 signal_屿 交叉比对后确认——8个点位完全重合。不写了，我要去亲眼看看。如果5月底我还没更新这篇文章——signal_屿，后面的交给你了。</em>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 底部：会员讨论区 -->
-    <hr style="margin-top: 20px;" />
-    <h4>💬 会员讨论区</h4>
-    <p class="text-muted" style="font-size: 0.78rem;">以下为会员可见的讨论。普通用户无法访问此板块。</p>
-
-    <div class="card" style="margin-bottom: 8px; padding: 10px;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-        <strong>signal_屿</strong>
-        <span class="text-muted">2026-05-22 23:10</span>
-      </div>
-      <p style="font-size: 0.84rem; margin-bottom: 0;">
-        三尺，资料包收到了。解压密码我知道了——<strong>深海裂隙</strong>。（你那个仅自己可见的帖文写得也太明显了，每段开头第一个字连起来😂）
-      </p>
-    </div>
-
-    <div class="card" style="margin-bottom: 8px; padding: 10px;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-        <strong>地下三尺</strong>
-        <span class="text-muted">2026-05-23 01:40</span>
-      </div>
-      <p style="font-size: 0.84rem; margin-bottom: 0;">
-        哈，被你看穿了。对，密码就是那四个字。资料包里的坐标数据是最全的——包括我还没来得及发到站上的几个。你对比一下你的信号数据，看看还有没有新的重合点。另外注意安全，最近别去太偏的地方。有些事等我回来再聊。
-      </p>
-    </div>
-
-    <div class="card" style="margin-bottom: 8px; padding: 10px; border-left: 3px solid #c0392b;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-        <strong>signal_屿</strong>
-        <span class="text-muted">2026-05-28 19:55</span>
-      </div>
-      <p style="font-size: 0.84rem; margin-bottom: 0; color: #c0392b;">
-        三尺，你回来了吗？按计划你今天应该到学校了。看到消息回我。私信、微信、电话都试过了——全部联系不上。我去问了辅导员，他说你没请假。你在哪？
-      </p>
-    </div>
-
-    <div class="card" style="margin-bottom: 8px; padding: 10px; border-left: 3px solid #c0392b;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-        <strong>signal_屿</strong>
-        <span class="text-muted">2026-05-30 14:22</span>
-      </div>
-      <p style="font-size: 0.84rem; margin-bottom: 0; color: #c0392b;">
-        已经报警了。警方说会联系宁夏那边。我把你整理的坐标数据和我的信号分析都交给了警方——他们需要知道你到底去了哪里。三尺，不管你在哪里，坚持住。我会找到你。
-      </p>
-    </div>
-
-    <div class="card" style="padding: 10px; background: #fdf6f6;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-        <strong>signal_屿</strong>
-        <span class="text-muted">2026-06-03 02:17</span>
-      </div>
-      <p style="font-size: 0.84rem; margin-bottom: 0;">
-        一周了。警方还在搜寻。我今天重新看了你所有的帖文和私信。你在247号帖里凌晨两点多发帖——你从来没有在那个时间发过帖。你是不是在被人盯着？那个"老GPS手持机"……你明明去年12月就换了新的。你在用暗语告诉我什么，对不对？<strong>我会找到答案的。</strong><br/><br/>
-        另外——5月20号我发的那条SDR拦截记录你还记得吗？当时你说那条短信"看着有点奇怪但说不上来"。我现在重新看了一遍："新客待激活"、"下批出货"。再结合你说的<strong>首页那几行字的措辞</strong>和<strong>招募页面底下的联系方式</strong>——我觉得那条短信里那个170开头的号码不是偶然。虚商号段、待激活——这就是一个还没被使用的邀请凭证。三尺，如果你当时也看到了这条消息……但你出发之后我才发的。是我的错。我现在去试试。
-      </p>
-    </div>
-  </div>
 </Layout>
 
-<script>
-  const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
-  const username = localStorage.getItem('arg_username');
-  const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-  const isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
-
-  if (!loggedIn || !username) {
-    document.getElementById('need-login')!.style.display = 'block';
-  } else if (!isMember) {
-    document.getElementById('need-login')!.style.display = 'none';
-    document.getElementById('no-access')!.style.display = 'block';
-  } else {
-    document.getElementById('need-login')!.style.display = 'none';
-    document.getElementById('member-content')!.style.display = 'block';
-  }
+<script is:inline>
+  (function() {
+    var progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+    var hasAccess = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
+    if (hasAccess) {
+      var BASE = window.__BASE__ || '/';
+      window.location.replace(BASE + 'share/');
+    }
+  })();
 </script>

@@ -43,21 +43,20 @@ const BASE = __BASE_PATH__;
   </div>
 </Layout>
 
-<script>
-  const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
-  const username = localStorage.getItem('arg_username');
-  const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-  const isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
+<script is:inline>
+  (function() {
+    var loggedIn = localStorage.getItem('arg_logged_in') === 'true';
+    var progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+    var isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
 
-  if (!loggedIn || !username) {
-    // 未登录
-    document.getElementById('need-login')!.style.display = 'block';
-  } else if (isMember) {
-    // 已登录 + 会员 → 直接进入
-    window.location.replace('/member/');
-  } else {
-    // 已登录但无会员权限
-    document.getElementById('need-login')!.style.display = 'none';
-    document.getElementById('no-access')!.style.display = 'block';
-  }
+    if (loggedIn && isMember) {
+      var BASE = window.__BASE__ || '/';
+      window.location.replace(BASE + 'member/');
+      return;
+    }
+    if (loggedIn && !isMember) {
+      document.getElementById('need-login').style.display = 'none';
+      document.getElementById('no-access').style.display = 'block';
+    }
+  })();
 </script>

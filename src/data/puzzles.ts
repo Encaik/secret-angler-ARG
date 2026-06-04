@@ -98,18 +98,18 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'medium',
     type: 'keyword',
     name: '会员区访问码拼合',
-    // echo -n "秘境探秘2026" | openssl dgst -sha256
-    answerHash: 'e4a37c0c8ba9d736644d444510716106f854d427a73b911fb94d72e73846e8c9',
+    // echo -n "深海裂隙2026" | openssl dgst -sha256
+    answerHash: 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0',
     clueLocations: [
+      '/user/shenci (仅自己可见帖文：藏头文解密得"深海裂隙")',
       '/trigger/rift (缓存3：访问码末尾4位"2026")',
-      '/home (站点公告："深度探秘"会员等级)',
-      '/inbox (沈辞5/24私信：暗示"加粗词"+"日期"组合)',
+      '/inbox (沈辞私信：暗示"加粗词"+"日期"组合)',
     ],
     hintTexts: [
+      '沈辞隐藏帖文的藏头文解密结果：深海裂隙',
       '触发页缓存中暗示访问码末尾是年份"2026"',
-      '沈辞私信中提到"首页的加粗词"和"日期"——拼在一起',
-      '公告中"深度探秘"被加粗——这是一个关键词',
-      '组合：关键词 + 年份 = 访问码',
+      '沈辞私信中提到"把年份和那个加粗的词拼在一起"',
+      '组合：藏头文结果 + 年份 = 访问码',
     ],
     requiresClue: ['deep_rift_discovered'],
     unlocksPages: ['/member/'],

@@ -7,16 +7,6 @@
 // BASE 路径前缀，从 window.__BASE__ 读取（由 Layout head 中 define:vars 脚本注入）
 const BASE: string = (window as any).__BASE__ || '/';
 
-// 关键词 → 隐藏页面（直接跳转，不经过搜索页）
-const TRIGGER_KEYWORDS: Record<string, string> = {
-  '深海裂隙': BASE + 'trigger/rift',
-  '星门坐标': BASE + 'trigger/stargate',
-  '布景基地': BASE + 'trigger/base',
-  '秘境之下': BASE + 'member/login',
-  '后台管理': BASE + 'hidden/admin',
-  '深度探秘': BASE + 'hidden/darknet',
-};
-
 // ========================================
 // 进度追踪（localStorage）
 // ========================================
@@ -96,44 +86,24 @@ function handleSearch(query: string): void {
   const trimmed = query.trim();
   if (!trimmed) return;
 
-  const progress = getProgress();
-
-  // 1. 谜题答案检查（"秘境探秘2026"）→ 直接解锁会员区
-  if (trimmed === '秘境探秘2026') {
+  // 谜题答案（"深海裂隙2026"）：解锁云盘访问权限，跳转到云盘页
+  if (trimmed === '深海裂隙2026') {
     const p = JSON.parse(localStorage.getItem('arg_progress') || '{}');
     if (!p.solvedPuzzles) p.solvedPuzzles = {};
     p.solvedPuzzles['stage1_page_header_password'] = true;
     if (!p.discoveredClues) p.discoveredClues = [];
-    if (!p.discoveredClues.includes('member_access')) {
-      p.discoveredClues.push('member_access');
+    if (!p.discoveredClues.includes('cloud_share_accessed')) {
+      p.discoveredClues.push('cloud_share_accessed');
       p.explorationProgress = (p.explorationProgress || 0) + 15;
     }
     localStorage.setItem('arg_progress', JSON.stringify(p));
-    recordPageVisit('/member/');
-    window.open(BASE + 'member/', '_blank');
+    recordPageVisit('/share/');
+    window.open(BASE + 'share/', '_blank');
     return;
   }
 
-  // 2. 触发关键词 → 直接跳转隐藏页面
-  for (const [keyword, url] of Object.entries(TRIGGER_KEYWORDS)) {
-    if (trimmed.includes(keyword)) {
-      recordPageVisit(url);
-      // 追踪暗网入口发现
-      if (keyword === '深度探秘') {
-        const p = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-        if (!p.discoveredClues) p.discoveredClues = [];
-        if (!p.discoveredClues.includes('darknet_entrance_found')) {
-          p.discoveredClues.push('darknet_entrance_found');
-          p.explorationProgress = (p.explorationProgress || 0) + 5;
-          localStorage.setItem('arg_progress', JSON.stringify(p));
-        }
-      }
-      window.open(url, '_blank');
-      return;
-    }
-  }
-
-  // 3. 其余所有搜索 → 跳转到独立搜索页
+  // 所有搜索 → 跳转到独立搜索页（包含历史存档 + 隐藏页面缓存）
+  // 不再直接跳转——用户在搜索结果页中看到链接后自行点击访问
   window.open(`${BASE}search/?q=${encodeURIComponent(trimmed)}`, '_blank');
 }
 

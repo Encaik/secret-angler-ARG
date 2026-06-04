@@ -34,22 +34,6 @@ const BASE = __BASE_PATH__;
       <strong>signal_屿</strong> <span class="text-muted">2026-03-30 16:08</span>
       <p style="margin: 4px 0 0; font-size: 0.88rem;">我看看课表。你上次说的那个坐标数据集，我这边基本整理完了，出发前碰一下。</p>
     </div>
-    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
-    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-01 20:15</span><p style="margin:4px 0 0;font-size:0.88rem;">时间对不上，五一那周可以吗？我对贺兰山那片也挺感兴趣的。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-02 11:30</span><p style="margin:4px 0 0;font-size:0.88rem;">贺兰山晚上风大，带好防风装备。等你们的岩画照片。</p></div></div>
+    <div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-01 20:15</span><p style="margin:4px 0 0;font-size:0.88rem;">时间对不上，五一那周可以吗？我对贺兰山那片也挺感兴趣的。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-02 11:30</span><p style="margin:4px 0 0;font-size:0.88rem;">贺兰山晚上风大，带好防风装备。等你们的岩画照片。</p></div>
   </div>
-<script>
-  (function(){
-    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
-    var hint = document.getElementById("login-hint");
-    var extra = document.getElementById("extra-comments");
-    if (!hint || !extra) return;
-    if (loggedIn) {
-      hint.style.display = "none";
-      extra.style.display = "block";
-    } else {
-      hint.style.display = "block";
-      extra.style.display = "none";
-    }
-  })();
-</script>
 </Layout>

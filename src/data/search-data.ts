@@ -11,17 +11,9 @@ export interface ArchivedPost {
   content: string;
   /** 是否为关键线索（高亮显示） */
   isClue: boolean;
+  /** 可选：点击标题跳转到的页面（用于缓存页面/隐藏页面） */
+  pageUrl?: string;
 }
-
-// 关键词 → 隐藏页面映射（触发跳转）
-export const TRIGGER_KEYWORDS: Record<string, string> = {
-  '深海裂隙': '/trigger/rift',
-  '星门坐标': '/trigger/stargate',
-  '布景基地': '/trigger/base',
-  '秘境之下': '/member/login',
-  '后台管理': '/hidden/admin',
-  '深度探秘': '/hidden/darknet',
-};
 
 // 历史存档内容（仅通过搜索关键词可见）
 // 模拟"沉底的老帖"，不在任何页面上直接显示
@@ -208,6 +200,99 @@ export const ARCHIVED_CONTENT: Record<string, ArchivedPost[]> = {
       isClue: true,
     },
   ],
+  '轻舟云盘': [
+    {
+      title: '推荐一个探秘资料备份工具——轻舟云盘',
+      author: '星海漫步',
+      authorUrl: '/user/starwalker/',
+      date: '2026-01-15',
+      content: '探了几年，照片、手绘、GPS轨迹攒了几十个G。之前一直用移动硬盘，结果去年在川西淋了雨报废了一个——血的教训。后来换了<strong>轻舟云盘</strong>，国产的，免费容量够用，关键是支持<strong>加密共享文件夹</strong>。你可以设提取码，把整个文件夹加密分享给队友——码丢了谁也打不开。我们几个常一起跑的探友现在都用这个同步数据。网页版直接访问就行，不用装客户端。<strong>强烈推荐给经常出野外的</strong>。',
+      isClue: true,
+    },
+  ],
+  '云盘': [
+    {
+      title: '推荐一个探秘资料备份工具——轻舟云盘',
+      author: '星海漫步',
+      authorUrl: '/user/starwalker/',
+      date: '2026-01-15',
+      content: '探了几年，照片、手绘、GPS轨迹攒了几十个G。之前一直用移动硬盘，结果去年在川西淋了雨报废了一个——血的教训。后来换了<strong>轻舟云盘</strong>，国产的，免费容量够用，关键是支持<strong>加密共享文件夹</strong>。你可以设提取码，把整个文件夹加密分享给队友——码丢了谁也打不开。我们几个常一起跑的探友现在都用这个同步数据。网页版直接访问就行，不用装客户端。<strong>强烈推荐给经常出野外的</strong>。',
+      isClue: true,
+    },
+  ],
+};
+
+// 搜索"深海裂隙2026"触发谜题解锁（唯一的特殊逻辑，不直接跳转）
+export const PUZZLE_ANSWER = '深海裂隙2026';
+
+// ========================================
+// 隐藏页面缓存结果（搜索关键词 → 出现在搜索结果中，用户点击链接访问）
+// 替代之前的直接跳转逻辑。模拟搜索引擎缓存了这些内部页面。
+// ========================================
+export const HIDDEN_PAGE_CACHE: Record<string, ArchivedPost> = {
+  '深海裂隙': {
+    title: '内部系统操作日志 · 缓存片段',
+    author: '[搜索引擎缓存]',
+    authorUrl: '',
+    date: '快照于 2026-06-01',
+    content: '……项目索引表（5个条目）、通讯记录片段（05/24-06/01）、站点状态快照。多处数据因缓存损坏无法恢复。来源页面已不可访问（HTTP 410 Gone）。',
+    isClue: true,
+    pageUrl: '/trigger/rift',
+  },
+  '星门坐标': {
+    title: '信号点位部署清单 · 缓存片段',
+    author: '[搜索引擎缓存]',
+    authorUrl: '',
+    date: '快照于 2026-05-29',
+    content: '……共47处信号点位部署记录。设备类型、频段参数、部署日期。贺兰山点位SG-003标记为"任务完成"。原始文件已被删除，仅恢复5条记录。',
+    isClue: true,
+    pageUrl: '/trigger/stargate',
+  },
+  '布景基地': {
+    title: '设施运营文档 · 缓存片段',
+    author: '[暗网缓存]',
+    authorUrl: '',
+    date: '快照于 2026-05-28',
+    content: '……废弃萤石矿改造的地下设施。含体检分类区、收容区、直播区、手术区、交易控制室、警卫后勤区六个模块说明。原始页面位于.onion站点，已不可访问。',
+    isClue: true,
+    pageUrl: '/trigger/base',
+  },
+  '深度探秘': {
+    title: '秘境 · 登录',
+    author: '[受限页面]',
+    authorUrl: '',
+    date: '',
+    content: '……该页面需要专属账号和密码才能访问。账号由推荐人发放。页面标题仅显示一个符号：🔻',
+    isClue: true,
+    pageUrl: '/hidden/darknet',
+  },
+  '后台管理': {
+    title: '系统管理 · 认证入口',
+    author: '[受限页面]',
+    authorUrl: '',
+    date: '',
+    content: '……需要操作员ID和认证密钥。如遗忘认证密钥，请联系系统管理员重置。',
+    isClue: true,
+    pageUrl: '/hidden/admin',
+  },
+  '秘境之下': {
+    title: '高级探秘者认证',
+    author: '[受限页面]',
+    authorUrl: '',
+    date: '',
+    content: '……此区域为探秘者联盟的会员专区，仅对注册探秘者开放。需要会员权限才能访问。',
+    isClue: false,
+    pageUrl: '/member/login',
+  },
+  '轻舟云盘': {
+    title: '轻舟云盘 · 加密共享文件夹',
+    author: '[外部服务]',
+    authorUrl: '',
+    date: '',
+    content: '……共享文件夹"调查资料"，创建者shenci933。5个文件。需要提取码才能查看文件内容。',
+    isClue: true,
+    pageUrl: '/share',
+  },
 };
 
 // 正常搜索时导航到的页面

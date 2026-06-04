@@ -39,22 +39,6 @@ const BASE = __BASE_PATH__;
       <strong>地下三尺</strong> <span class="text-muted">2026-04-18 14:55</span>
       <p style="margin: 4px 0 0; font-size: 0.88rem;">同感。最近去了几个站里推的点，有些描述和实地差距挺大。不知道是信息采集的问题还是有别的原因。</p>
     </div>
-    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
-    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-04-19 09:30</span><p style="margin:4px 0 0;font-size:0.88rem;">我也踩过两个假点。最离谱的是一个废弃学校，去了发现是正常上课的职高，门卫以为我是人贩子……</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-20 22:11</span><p style="margin:4px 0 0;font-size:0.88rem;">假点位确实越来越多了。我怀疑有些是营销号瞎编的，搬来搬去就失真了。</p></div></div>
+    <div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-04-19 09:30</span><p style="margin:4px 0 0;font-size:0.88rem;">我也踩过两个假点。最离谱的是一个废弃学校，去了发现是正常上课的职高，门卫以为我是人贩子……</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-04-20 22:11</span><p style="margin:4px 0 0;font-size:0.88rem;">假点位确实越来越多了。我怀疑有些是营销号瞎编的，搬来搬去就失真了。</p></div>
   </div>
-<script>
-  (function(){
-    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
-    var hint = document.getElementById("login-hint");
-    var extra = document.getElementById("extra-comments");
-    if (!hint || !extra) return;
-    if (loggedIn) {
-      hint.style.display = "none";
-      extra.style.display = "block";
-    } else {
-      hint.style.display = "block";
-      extra.style.display = "none";
-    }
-  })();
-</script>
 </Layout>

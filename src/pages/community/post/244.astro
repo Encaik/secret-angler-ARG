@@ -34,22 +34,6 @@ const BASE = __BASE_PATH__;
       <strong>浪到没信号</strong> <span class="text-muted">2026-03-29 08:35</span>
       <p style="margin: 4px 0 0; font-size: 0.88rem;">神农架那边听当地人说见过几次，描述都差不多——三角形的飞行器，底部三盏白灯。我觉得人多口杂但描述一致的话，可能性就高一些。</p>
     </div>
-    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
-    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-03-30 14:22</span><p style="margin:4px 0 0;font-size:0.88rem;">我小时候在乡下见过一次，三角飞行器，完全没声音。后来查了很多资料也没找到合理解释。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-01 08:45</span><p style="margin:4px 0 0;font-size:0.88rem;">目击报告最有说服力的还是多人同时目击+有物理证据的案例。单人说辞确实容易被质疑。</p></div></div>
+    <div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-03-30 14:22</span><p style="margin:4px 0 0;font-size:0.88rem;">我小时候在乡下见过一次，三角飞行器，完全没声音。后来查了很多资料也没找到合理解释。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-04-01 08:45</span><p style="margin:4px 0 0;font-size:0.88rem;">目击报告最有说服力的还是多人同时目击+有物理证据的案例。单人说辞确实容易被质疑。</p></div>
   </div>
-<script>
-  (function(){
-    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
-    var hint = document.getElementById("login-hint");
-    var extra = document.getElementById("extra-comments");
-    if (!hint || !extra) return;
-    if (loggedIn) {
-      hint.style.display = "none";
-      extra.style.display = "block";
-    } else {
-      hint.style.display = "block";
-      extra.style.display = "none";
-    }
-  })();
-</script>
 </Layout>

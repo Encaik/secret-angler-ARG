@@ -35,22 +35,6 @@ const BASE = __BASE_PATH__;
       <strong>地下三尺</strong> <span class="text-muted">2026-04-30 20:45</span>
       <p style="margin: 4px 0 0; font-size: 0.88rem;">正常。我探了这么多年，真正靠谱的点位不到一半。筛选信息本身就是一门技术。不过有些"假"点位可能不是编的——可能是有别的原因。</p>
     </div>
-    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
-    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-05-01 10:15</span><p style="margin:4px 0 0;font-size:0.88rem;">甘孜那边确实美。不过现在网红带火了一堆所谓的秘境，真去了全是人，体验很差。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-05-02 16:40</span><p style="margin:4px 0 0;font-size:0.88rem;">哈哈同感。我去过好几个网上说的秘境，十个有九个是滤镜加文案。剩下一个路太难走。</p></div></div>
+    <div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-05-01 10:15</span><p style="margin:4px 0 0;font-size:0.88rem;">甘孜那边确实美。不过现在网红带火了一堆所谓的秘境，真去了全是人，体验很差。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>城市野人</strong> <span class="text-muted">2026-05-02 16:40</span><p style="margin:4px 0 0;font-size:0.88rem;">哈哈同感。我去过好几个网上说的秘境，十个有九个是滤镜加文案。剩下一个路太难走。</p></div>
   </div>
-<script>
-  (function(){
-    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
-    var hint = document.getElementById("login-hint");
-    var extra = document.getElementById("extra-comments");
-    if (!hint || !extra) return;
-    if (loggedIn) {
-      hint.style.display = "none";
-      extra.style.display = "block";
-    } else {
-      hint.style.display = "block";
-      extra.style.display = "none";
-    }
-  })();
-</script>
 </Layout>

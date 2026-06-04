@@ -80,22 +80,6 @@ const BASE = __BASE_PATH__;
       <strong>废弃中</strong> <span class="text-muted">2026-05-25 15:30</span>
       <p style="margin: 4px 0 0; font-size: 0.88rem;">一个人走三天两夜？胆子大的。记得出发前跟人说一下路线。我每次探废弃工厂都被人说太冒险，你这比我还拼。</p>
     </div>
-    <p class="text-muted" id="login-hint" style="display:none;">—— 仅登录用户可查看全部评论 ——</p>
-    <div id="extra-comments" style="display:none;"><div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-05-26 18:30</span><p style="margin:4px 0 0;font-size:0.88rem;">老哥什么时候回来？贺兰山那边最近天气不太稳，有点担心。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-05-27 09:12</span><p style="margin:4px 0 0;font-size:0.88rem;">有谁联系上地下三尺了吗？他说三天回来，这都第四天了。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>浪到没信号</strong> <span class="text-muted">2026-05-28 14:05</span><p style="margin:4px 0 0;font-size:0.88rem;">刚看到这帖子……他出发前我还说注意安全来着。希望只是没信号。</p></div></div>
+    <div class="card" style="padding:10px;margin-bottom:8px;"><strong>山野探秘人</strong> <span class="text-muted">2026-05-26 18:30</span><p style="margin:4px 0 0;font-size:0.88rem;">老哥什么时候回来？贺兰山那边最近天气不太稳，有点担心。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>星海漫步</strong> <span class="text-muted">2026-05-27 09:12</span><p style="margin:4px 0 0;font-size:0.88rem;">有谁联系上地下三尺了吗？他说三天回来，这都第四天了。</p></div><div class="card" style="padding:10px;margin-bottom:8px;"><strong>浪到没信号</strong> <span class="text-muted">2026-05-28 14:05</span><p style="margin:4px 0 0;font-size:0.88rem;">刚看到这帖子……他出发前我还说注意安全来着。希望只是没信号。</p></div>
   </div>
-<script>
-  (function(){
-    var loggedIn = localStorage.getItem("arg_logged_in") === "true";
-    var hint = document.getElementById("login-hint");
-    var extra = document.getElementById("extra-comments");
-    if (!hint || !extra) return;
-    if (loggedIn) {
-      hint.style.display = "none";
-      extra.style.display = "block";
-    } else {
-      hint.style.display = "block";
-      extra.style.display = "none";
-    }
-  })();
-</script>
 </Layout>
