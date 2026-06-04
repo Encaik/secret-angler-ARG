@@ -1,0 +1,157 @@
+---
+// HiddenLayout — 隐藏/触发页面专用布局
+// 暗色主题，无导航栏，无页脚，营造"闯入后台"的氛围
+// 所有隐藏页面添加 noindex,nofollow
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const BASE = __BASE_PATH__;
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <script define:vars={{ basePath: BASE }}>
+    window.__BASE__ = basePath;
+  </script>
+</head>
+<body class="hidden-page">
+  <main style="width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px; min-height: 100vh;">
+    <slot />
+  </main>
+
+  <script src="../scripts/console.ts"></script>
+  <script src="../scripts/search.ts"></script>
+  <script>
+    const BASE = window.__BASE__ || '/';
+    // 记录页面访问
+    const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+    if (!progress.discoveredClues) progress.discoveredClues = [];
+    const pagePath = window.location.pathname.replace(BASE.replace(/\/$/, ''), '').replace(/^\//, '');
+    const clueKey = `visited_${pagePath.replace(/\//g, '_')}`;
+    if (!progress.discoveredClues.includes(clueKey)) {
+      progress.discoveredClues.push(clueKey);
+      progress.explorationProgress = Math.min(100, (progress.explorationProgress || 0) + 3);
+      localStorage.setItem('arg_progress', JSON.stringify(progress));
+    }
+  </script>
+</body>
+</html>
+
+<style>
+  /* HiddenLayout 覆盖：暗色主题 */
+  .hidden-page {
+    background: #0d0d0d;
+    color: #ccc;
+    min-height: 100vh;
+  }
+  .hidden-page a {
+    color: #6cb4d9;
+  }
+  .hidden-page a:hover {
+    color: #8cc4e0;
+  }
+  .hidden-page h1, .hidden-page h2, .hidden-page h3, .hidden-page h4 {
+    color: #e0dcd5;
+  }
+  .hidden-page .card {
+    background: #1a1d23;
+    border-color: #2a2d33;
+    color: #bbb;
+  }
+  .hidden-page p {
+    color: #aaa;
+  }
+  .hidden-page .text-muted {
+    color: #666;
+  }
+  .hidden-page hr {
+    border-color: #2a2d33;
+  }
+  .hidden-page .breadcrumb {
+    border-bottom-color: #2a2d33;
+    color: #666;
+  }
+  .hidden-page .breadcrumb a {
+    color: #555;
+  }
+  .hidden-page .breadcrumb a:hover {
+    color: #8cc4e0;
+  }
+  .hidden-page input, .hidden-page textarea {
+    background: #111;
+    border-color: #333;
+    color: #ccc;
+  }
+  .hidden-page code {
+    background: #111;
+    color: #c7254e;
+  }
+  .hidden-page pre {
+    background: #111;
+    color: #aaa;
+  }
+  .hidden-page blockquote {
+    background: #15171b;
+    border-left-color: #444;
+    color: #999;
+  }
+  .hidden-page .tag {
+    opacity: 0.85;
+  }
+  .hidden-page .post-item {
+    border-bottom-color: #222;
+  }
+  .hidden-page .post-item .post-meta {
+    color: #555;
+  }
+  .hidden-page table th {
+    background: #15171b;
+    color: #ccc;
+  }
+  .hidden-page table td {
+    border-color: #2a2d33;
+    color: #aaa;
+  }
+  .hidden-page strong {
+    color: #e0dcd5;
+  }
+
+  /* 隐藏页面特有元素 */
+  .hidden-badge {
+    display: inline-block;
+    background: #c0392b;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+  }
+  .hidden-warning {
+    background: #1a0a0a;
+    border: 1px solid #5a1a1a;
+    color: #d88;
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    margin: 12px 0;
+  }
+  .hidden-notice {
+    background: #0a0a1a;
+    border: 1px solid #1a1a5a;
+    color: #88d;
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    margin: 12px 0;
+  }
+</style>

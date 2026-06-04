@@ -1,0 +1,174 @@
+---
+// /trigger/base — "布景基地"搜索结果页
+// 揭示团伙地下基地的真面目——囚禁+分类处置+商品展示一体化设施
+// 核心罪行：器官贩卖 + 人口贩卖，直播仅为商品展示窗
+import HiddenLayout from '../../components/HiddenLayout.astro';
+const BASE = __BASE_PATH__;
+---
+
+<HiddenLayout title="搜索结果 — 布景基地">
+  <div class="breadcrumb">
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    搜索结果
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <input
+        type="text"
+        value="布景基地"
+        readonly
+        style="flex: 1; max-width: 100%; font-size: 1rem; padding: 10px 14px; background: #111; border: 1px solid #333; color: #888; cursor: default;"
+      />
+      <span class="hidden-badge" style="font-size: 0.75rem; padding: 6px 12px;">受限结果</span>
+    </div>
+  </div>
+
+  <div class="hidden-warning">
+    ⚠ 以下内容来自暗网缓存。原始页面位于 .onion 站点，已不可访问。<strong>以下信息涉及严重犯罪活动</strong>——请谨慎浏览，建议保存证据后立即报告执法部门。
+  </div>
+
+  <p class="text-muted" style="margin-bottom: 16px;">
+    找到 <strong style="color:#c0392b;">3</strong> 条缓存记录 · 来源：暗网搜索引擎爬虫快照
+  </p>
+
+  <!-- 结果 1：基地设施说明（核心） -->
+  <div class="card" style="margin-bottom: 16px; border-left: 3px solid #c0392b;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <strong style="color: #e0dcd5;">🏗️ "布景基地" — 地下囚禁与"商品"处置设施</strong>
+      <span class="text-muted" style="font-size: 0.72rem;">缓存于 2026-05-28</span>
+    </div>
+    <p class="text-muted" style="font-size: 0.72rem; margin-bottom: 8px;">
+      原始来源：<code style="color:#666;">deeprift323.onion/facility/</code> · 访问状态：<span style="color:#c0392b;">Server Unreachable</span>
+    </p>
+    <hr />
+
+    <p style="font-size: 0.84rem; margin-bottom: 10px; color: #aaa;">
+      "布景基地"是"深海裂隙"项目的<strong>下游核心设施</strong>——表面用于暗网直播，实则是一个<strong style="color:#c0392b;">集囚禁、体检分类、器官配型、人口贩卖和"商品展示"于一体的地下加工厂</strong>。基地位于某废弃萤石矿的深层巷道中，通过伪装入口和监控系统与外界隔离。
+    </p>
+
+    <div class="hidden-warning" style="font-size: 0.82rem; margin-bottom: 10px;">
+      <strong>⚠ 核心发现：</strong>暗网直播<strong>不是</strong>该团伙的主营业务。直播只是<strong>"商品展示窗"</strong>——每场直播叠加受害者实时健康数据（心率、血氧、体能指标），供潜在买家评估"商品质量"。该团伙的真正收入来源是<strong>器官贩卖</strong>（肾脏、肝脏、角膜，通过地下医疗网络流入黑市移植链）和<strong>人口贩卖</strong>（强迫劳动、性剥削、跨境贩运）。直播月收入$25K-35K只是冰山一角——器官和人口交易的利润是其数十倍。
+    </div>
+
+    <table style="font-size: 0.8rem;">
+      <tr><th style="width: 22%;">设施模块</th><th>功能</th><th style="width: 16%;">状态</th></tr>
+      <tr>
+        <td><strong>体检分类区</strong></td>
+        <td style="font-size:0.78rem;">受害者抵达后的<strong>第一站</strong>。进行血型配型、HLA组织分型、全身健康评估、体能测试。评估结果决定受害者的"商品等级"和去向——<strong>高价值</strong>（年轻健康/血型稀有→优先匹配器官买家）、<strong>中等价值</strong>（直播展示→供买家观察）、<strong>低价值</strong>（等待处置）。<span style="color:#c0392b;">沈辞在此处。</span></td>
+        <td><span style="color:#c0392b;">活跃</span></td>
+      </tr>
+      <tr>
+        <td><strong>收容区</strong></td>
+        <td style="font-size:0.78rem;">受害者关押区。按"商品等级"分区隔离，每人单独囚室。配备基础维生设施和监控设备。受害者被告知"你们穿越到了另一个空间"——<strong>目的在于让受害者保持困惑和顺从</strong>，比起"你即将被摘取器官"或"你已被卖给人贩子"，这个说法更容易让受害者不激烈反抗。当前收容人数：<strong>4人</strong>（含沈辞）。</td>
+        <td><span style="color:#e67e22;">收容中：<strong>4人</strong></span></td>
+      </tr>
+      <tr>
+        <td><strong>直播区</strong></td>
+        <td style="font-size:0.78rem;">仿外星遗迹/古文明遗址场景（利用矿洞天然岩壁+人工布景搭建）。表面是"秘境探险直播"，实为<strong>"活体展示窗"</strong>。每场直播叠加受害者实时健康数据（心率、血氧、步数、体能指标），这些数据不需要医学学位就能理解——<strong>买家在看"商品"是否健康、是否值得购买</strong>。分为三个频道：外星秘境（A区）、古文明探秘（B区）、荒野求生（C区）。</td>
+        <td><span style="color:#27ae60;">3个频道运行中</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:#c0392b;">手术区</strong></td>
+        <td style="font-size:0.78rem;"><strong style="color:#c0392b;">器官摘取手术室</strong>。团伙<strong>不具备自主手术能力</strong>——依赖外部地下医疗团队飞抵操作。这是他们链条中<strong>最脆弱的一环</strong>：外部医生有被追踪的风险、手术排期受限于医疗团队的可用时间、器官运输需要冷链物流配合。配有基础麻醉和急救设备，但卫生条件远不达标——手术感染率据内部记录"高于可接受水平"。</td>
+        <td><span style="color:#e67e22;">待命中</span></td>
+      </tr>
+      <tr>
+        <td><strong>暗网交易控制室</strong></td>
+        <td style="font-size:0.78rem;">管理整个暗网市场的神经中枢。功能包括：①买家沟通（加密聊天）；②"商品"上架与信息更新（健康评估数据同步）；③加密货币收款（BTC/XMR）；④器官物流协调（与地下医疗网络对接，安排器官冷链运输）；⑤人口贩卖订单管理（与跨境贩运网络对接）。</td>
+        <td><span style="color:#27ae60;">运行中</span></td>
+      </tr>
+      <tr>
+        <td><strong>警卫/后勤区</strong></td>
+        <td style="font-size:0.78rem;">武装看守轮班宿舍 + 物资存储（医疗耗材、维生补给、直播设备备件）+ 紧急撤离通道。内部人员每班4-6人，轮班制。基地入口伪装为废弃矿场封堵区，三处隐藏监控覆盖周边500米。</td>
+        <td><span style="color:#27ae60;">运行中</span></td>
+      </tr>
+    </table>
+
+    <div style="font-size: 0.84rem; margin-top: 12px; color: #aaa;">
+      <p style="margin-bottom: 4px;"><strong>基地位置：</strong></p>
+      <p style="margin-bottom: 8px; color: #888;">
+        缓存中位置数据已被部分清除。残留信息：<strong>北纬 30-35°</strong> 之间、<strong>某废弃萤石矿</strong>深层巷道、距离最近公路约 <strong>15 公里</strong>。矿场名称：<code style="color:#666;">[数据丢失]</code>
+      </p>
+
+      <p style="margin-bottom: 4px;"><strong>紧急撤离预案：</strong></p>
+      <ul style="margin-bottom: 0; color: #888;">
+        <li>一旦基地暴露，可在 <strong>48 小时内</strong>完成"高价值库存"（待售器官供体）转移</li>
+        <li>低价值受害者可能被<strong>就地处置</strong></li>
+        <li>手术区设备可拆卸装箱，2小时内清空</li>
+        <li>矿道入口可定向爆破封堵，掩盖一切痕迹</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 结果 2：直播+商品数据（合并） -->
+  <div class="card" style="margin-bottom: 16px; border-left: 3px solid #c0392b;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <strong style="color: #e0dcd5;">💰 暗网直播频道与"商品"展示数据（2026年5月快照）</strong>
+      <span class="text-muted" style="font-size: 0.72rem;">缓存于 2026-06-02</span>
+    </div>
+    <hr />
+    <div style="font-size: 0.84rem; line-height: 1.8; color: #aaa;">
+      <p><strong>直播频道（"活体展示窗"）：</strong></p>
+      <ul style="margin-bottom: 10px;">
+        <li><strong>频道 A「外星秘境」</strong>— 约340订阅者。月费$29。受害者在"外星场景"中活动，屏幕叠加实时心率/血氧/步数。</li>
+        <li><strong>频道 B「古文明探秘」</strong>— 约280订阅者。月费$29。"古迹场景"直播，屏幕叠加体能指标。</li>
+        <li><strong>频道 C「荒野求生」</strong>— 约210订阅者。月费$19。"极限环境"直播，突出"耐力测试"——对买家而言=体能评估。</li>
+      </ul>
+
+      <p style="margin-top: 8px;"><strong>⚠ 直播的隐藏功能（买家视角）：</strong></p>
+      <ul style="margin-bottom: 10px; color: #c0392b;">
+        <li>每场直播都是一份<strong>"活体质量报告"</strong></li>
+        <li>心率稳定=心脏健康；步数多=体能好；血氧正常=肺功能良好</li>
+        <li>买家通过观察直播选择"商品"，然后私信下单</li>
+        <li>"特殊活动"（"新发现场景"、"新人加入"）额外收费——这些往往是<strong>新受害者首次亮相</strong></li>
+      </ul>
+
+      <p><strong>营收结构（注意：直播只是零头）：</strong></p>
+      <ul style="margin-bottom: 10px;">
+        <li>直播订阅收入：约 <strong>$25,000-35,000/月</strong>（加密货币，扣除手续费后）</li>
+        <li>器官交易收入：<strong>未公开</strong>——单颗肾脏黑市价约$50,000-120,000，肝脏部分约$80,000-150,000</li>
+        <li>人口贩卖收入：<strong>未公开</strong>——整人交易起拍价通常$15,000-40,000（按"用途"和"质量"浮动）</li>
+        <li style="color:#c0392b;">估算：器官+人口交易年收入可达直播收入的<strong>20-50倍</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 结果 3：受害者的真实处境——缓存的外部报道片段 -->
+  <div class="card" style="margin-bottom: 16px; border-left: 3px solid #c0392b;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <strong style="color: #e0dcd5;">🔴 "穿越到另一个空间"——维持顺从的心理控制手段</strong>
+      <span class="text-muted" style="font-size: 0.72rem;">缓存于 2026-05-20</span>
+    </div>
+    <hr />
+    <div style="font-size: 0.84rem; line-height: 1.8; color: #aaa;">
+      <p>内部文档片段——受害者心理控制策略（节选）：</p>
+      <blockquote style="border-left: 3px solid #555; padding-left: 12px; color: #999; font-style: italic;">
+        "告知目标'你已经穿越到了另一个空间/维度'。这个说法的优势在于：<br/>
+        ① 目标无法立即证伪（任何异常都可以解释为'不同空间的物理规律不同'）；<br/>
+        ② 目标会认为逃跑无意义（'已经不在原来的世界了'）；<br/>
+        ③ 相比'你即将被摘取器官'或'你已被出售'，这个说法引起的反抗情绪最低；<br/>
+        ④ 目标在困惑状态下更易管理，配合度更高（特别是直播时需要的'自然反应'）。<br/>
+        <strong>注意：</strong>此策略的有效期通常为4-8周。之后目标会开始怀疑。届时需要<strong>转阶段处理</strong>（手术或转移）。"
+      </blockquote>
+      <p style="margin-top: 8px; color: #c0392b;">
+        <strong>这意味着：</strong>受害者被告知的"穿越"只是控制手段。他们不是"被困在平行宇宙的探险者"——他们是<strong>等待被出售或摘取器官的囚犯</strong>。而且<strong>"有效期"只有4-8周</strong>——过了这个窗口，就会被"转阶段处理"。
+      </p>
+    </div>
+  </div>
+
+  <div class="hidden-notice" style="margin-top: 20px;">
+    <p style="margin-bottom: 4px;"><strong>💡 关键发现：</strong></p>
+    <ul style="margin-bottom: 0; padding-left: 1.5em; color: #88d;">
+      <li>基地不是"直播秀场"——它是一个<strong>集囚禁、体检、配型、贩卖于一体的地下加工厂</strong>。</li>
+      <li>暗网直播的真实功能是<strong>"活体展示窗"</strong>——让买家在购买前观察"商品"的健康和体能。</li>
+      <li>团伙的<strong>核心罪行是器官贩卖和人口贩卖</strong>——直播只是副业和伪装层。</li>
+      <li>基地收容区当前有 <strong>4 人</strong>。沈辞已被列入"在售清单"，状态："体检评估中"。</li>
+      <li><strong style="color:#c0392b;">⚠ 团伙最大的弱点：依赖外部地下医疗团队进行器官摘取手术。</strong>这意味着追踪医疗网络的线索可能成为突破口。</li>
+      <li>基地位置在<strong>北纬 30-35° 之间的废弃萤石矿</strong>——精确坐标见后台系统的位置数据库。</li>
+      <li>团伙有 <strong>48 小时紧急撤离预案</strong>——一旦被发现，"高价值库存"会被转移，低价值受害者可能被"就地处置"。</li>
+      <li>受害者被告知的"穿越"只是心理控制——<strong>有效期仅4-8周</strong>。每拖延一天，沈辞离"转阶段处理"就更近一步。</li>
+      <li>搜索"<strong>后台管理</strong>"可能找到团伙的内部管理系统入口。</li>
+    </ul>
+  </div>
+</HiddenLayout>

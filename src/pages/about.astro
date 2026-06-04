@@ -2,7 +2,8 @@
 import Layout from '../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
-<Layout title="关于我们">
+
+<Layout title="关于我们 / 加入我们">
   <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>关于我们</div>
   <h2>📡 关于探秘者联盟导航站</h2>
   <hr />
@@ -17,9 +18,268 @@ const BASE = __BASE_PATH__;
     <tr><td>累计访问</td><td><strong>87,492</strong> 次</td></tr>
     <tr><td>站点建立</td><td>2021年3月</td></tr>
   </table>
-  <h3>团队介绍</h3>
-  <p>本站由一群业余探秘爱好者共同维护。我们没有固定的办公室，有人用周末维护服务器，有人用探秘途中的空闲时间审稿。如果你也热爱探秘，欢迎<a href={`${BASE}submit/`} target="_blank">加入我们</a>。</p>
-  <p style="font-size:0.85rem;margin-top:20px;padding:10px;background:var(--color-bg-secondary);border-radius:var(--radius-sm);">联系邮箱：admin@explorers-alliance.cn<br/>（由于站长经常进山探秘，邮件回复可能延迟，敬请谅解）</p>
+
+  <h3 style="margin-top: 28px;">🙋 加入我们</h3>
+  <p>本站由一群业余探秘爱好者共同维护。我们没有固定的办公室，有人用周末维护服务器，有人用探秘途中的空闲时间审稿。如果你也热爱探秘，欢迎加入我们的团队。</p>
+
+  <!-- 招募岗位列表——表面是社区招募，隐藏层为暗网入口线索 -->
+  <div class="card" style="margin-bottom: 16px;">
+    <h4 style="margin-bottom: 8px;">📋 当前招募岗位</h4>
+
+    <div class="post-item" style="padding: 12px 0;">
+      <strong>🗺️ 探秘线路投稿人</strong>
+      <p style="margin: 2px 0; font-size: 0.85rem;">如果你在探秘过程中发现了值得分享的点位——无论是未记录的岩画、信号异常区、还是冷门古迹——欢迎投稿。<strong>优先收录偏远、人迹罕至的秘境</strong>，让更多同好知道这些隐秘的角落。</p>
+      <span class="text-muted" style="font-size: 0.78rem;">要求：至少完成过 3 次独立探秘行程</span>
+    </div>
+
+    <div class="post-item" style="padding: 12px 0;">
+      <strong>📝 内容审核员（深度探秘方向）</strong>
+      <p style="margin: 2px 0; font-size: 0.85rem;">负责审核探秘投稿的<strong>真实性与专业度</strong>。需要对探秘领域有较深理解，能辨别投稿中的不实信息或抄袭内容。<strong>深度探秘</strong>级别的审核员可访问站点<strong>历史档案库</strong>和<strong>专属资料线路</strong>，用于交叉验证投稿内容。</p>
+      <span class="text-muted" style="font-size: 0.78rem;">要求：注册满一年，发布过至少 5 篇原创探秘内容</span>
+    </div>
+
+    <div class="post-item" style="padding: 12px 0;">
+      <strong>🔧 服务器运维志愿者</strong>
+      <p style="margin: 2px 0; font-size: 0.85rem;">协助维护站点服务器和数据库。<strong>需要熟悉加密通讯协议</strong>，因为部分内部管理功能通过<strong>安全通道</strong>访问。有暗网/Tor 网络经验者优先——仅为技术需求，非用于非法用途。</p>
+      <span class="text-muted" style="font-size: 0.78rem;">要求：2年以上Linux运维经验，了解 .onion 站点部署</span>
+    </div>
+
+    <div class="post-item" style="padding: 12px 0;">
+      <strong>🌐 社区联络员</strong>
+      <p style="margin: 2px 0; font-size: 0.85rem;">负责与其他探秘社区保持联系，寻找<strong>"有潜力的新成员"</strong>加入我们的圈子。如果你在其他平台（户外论坛、B站、知乎等）上发现过认真做探秘内容的人，欢迎<strong>引荐</strong>——我们会发送<strong>定向邀请</strong>。</p>
+      <span class="text-muted" style="font-size: 0.78rem;">要求：活跃于多个探秘/户外圈子</span>
+    </div>
+  </div>
+
+  <!-- 申请表单——表面是志愿者申请表，"联系电话"栏实为暗网邀请码入口 -->
+  <div class="card" style="margin-bottom: 16px; background: var(--color-bg-secondary);" id="apply-form-card">
+    <h4 style="margin-bottom: 8px;">📝 申请加入</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 12px;">
+      请填写以下信息，我们会尽快审核。如符合条件，将发送<strong>专属账号</strong>至您的站内私信。
+    </p>
+
+    <div style="max-width: 420px;">
+      <div style="margin-bottom: 10px;">
+        <label style="font-size: 0.82rem; display: block; margin-bottom: 3px;">站内用户名</label>
+        <input type="text" id="apply-username" placeholder="你的站内用户名" style="width: 100%; max-width: 100%; padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 3px; font-size: 0.88rem;" readonly />
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label style="font-size: 0.82rem; display: block; margin-bottom: 3px;">意向岗位</label>
+        <select id="apply-role" style="width: 100%; max-width: 100%; padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 3px; font-size: 0.88rem;">
+          <option value="">请选择…</option>
+          <option>探秘线路投稿人</option>
+          <option>内容审核员（深度探秘方向）</option>
+          <option>服务器运维志愿者</option>
+          <option>社区联络员</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label style="font-size: 0.82rem; display: block; margin-bottom: 3px;">
+          联系电话
+          <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: normal;">（选填）</span>
+        </label>
+        <input
+          type="text"
+          id="apply-phone"
+          placeholder="11位手机号（选填）"
+          maxlength="20"
+          style="width: 100%; max-width: 100%; padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 3px; font-size: 0.88rem;"
+        />
+        <p style="font-size: 0.7rem; color: var(--color-text-muted); margin: 2px 0 0 0;">
+          如不便透露手机号，可填写<strong>邀请凭证</strong>（若你有的话）
+        </p>
+      </div>
+
+      <button id="apply-submit" style="padding: 8px 24px; background: var(--color-bg-dark); color: #e0dcd5; border: none; border-radius: 3px; cursor: pointer; font-size: 0.9rem;">
+        提交申请
+      </button>
+      <span id="apply-msg" style="margin-left: 10px; font-size: 0.82rem;"></span>
+    </div>
+  </div>
+
+  <!-- 暗网账号弹窗（初始隐藏） -->
+  <div id="account-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="background: #1a1a1a; border: 2px solid #4a8c6a; border-radius: 8px; padding: 28px; max-width: 420px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.6);">
+      <div style="text-align: center; margin-bottom: 16px;">
+        <span style="font-size: 2rem;">🔻</span>
+      </div>
+      <h3 style="color: #4a8c6a; text-align: center; margin-bottom: 4px; font-size: 1.1rem;">申请已受理</h3>
+      <p style="color: #888; text-align: center; font-size: 0.82rem; margin-bottom: 20px;">
+        您的<strong style="color:#7aac8a;">深度探秘</strong>级别权限已开通。
+      </p>
+
+      <div style="background: #0d0d0d; border: 1px solid #333; border-radius: 4px; padding: 16px; margin-bottom: 16px;">
+        <p style="color: #aaa; font-size: 0.78rem; margin-bottom: 10px; text-align: center;">
+          以下为您的<strong>专属访问凭证</strong>，请妥善保管：
+        </p>
+        <div style="margin-bottom: 8px;">
+          <span style="color: #666; font-size: 0.75rem;">账号</span><br/>
+          <code style="color: #4a8c6a; font-size: 1rem; font-weight: bold; background: #111; padding: 4px 8px; border-radius: 3px;" id="darknet-account">---</code>
+        </div>
+        <div>
+          <span style="color: #666; font-size: 0.75rem;">密码</span><br/>
+          <code style="color: #4a8c6a; font-size: 1rem; font-weight: bold; background: #111; padding: 4px 8px; border-radius: 3px;" id="darknet-password">---</code>
+        </div>
+      </div>
+
+      <p style="color: #666; font-size: 0.75rem; text-align: center; margin-bottom: 16px;">
+        请通过<strong style="color:#7aac8a;">站点公告</strong>中的指引访问登录页面。<br/>
+        秘境之中，安全第一。
+      </p>
+
+      <div style="text-align: center;">
+        <button id="modal-close" style="padding: 8px 28px; background: #1a3a2a; color: #7aac8a; border: 1px solid #2a5a3a; border-radius: 4px; cursor: pointer; font-size: 0.88rem;">
+          我记下了
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 联系方式 -->
+  <div class="card" style="margin-bottom: 16px; background: var(--color-bg-secondary);">
+    <h4 style="margin-bottom: 8px;">📧 联系我们</h4>
+    <p style="font-size: 0.88rem; margin-bottom: 8px;">
+      对以上岗位感兴趣？也可直接将个人简介和探秘经历发送至：
+    </p>
+    <p style="font-size: 0.92rem; margin-bottom: 4px;">
+      <strong>联系邮箱：</strong><code style="background: #e8e4dc; padding: 2px 8px; border-radius: 3px;">admin@deeprift323.onion</code>
+    </p>
+    <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 8px;">
+      （.onion 邮箱需通过 Tor 浏览器访问。如不便使用 Tor，可通过站内私信联系管理员"山野探秘人"）
+    </p>
+    <p style="font-size: 0.82rem; color: var(--color-text-muted);">
+      ⚠ 由于站长经常进山探秘，邮件回复可能延迟，敬请谅解。<br/>
+      💡 <strong>秘境之中，安全第一</strong>——请勿在公开渠道透露探秘点位的精确坐标。
+    </p>
+  </div>
+
+  <p style="font-size:0.85rem;margin-top:20px;padding:10px;background:var(--color-bg-secondary);border-radius:var(--radius-sm);color: var(--color-text-muted);">
+    <strong>📌 探秘者联盟 · 站点守则：</strong><br/>
+    独行探秘请注意安全，建议结伴出行。探秘之路，永无止境。<br/>
+    本站所有内容仅供探秘爱好者交流，不构成出行建议。
+  </p>
+
   <!-- ⭐ 隐写图片位置 — 后期在此处嵌入含LSB隐写的"团队合影"图片 -->
   <!-- <img src="/assets/images/clues/team-photo.png" alt="探秘者联盟导航站团队合影" /> -->
 </Layout>
+
+<style>
+  .post-item { border-bottom: 1px dashed var(--color-border); }
+  .post-item:last-child { border-bottom: none; }
+</style>
+
+<script>
+  const BASE = (window as any).__BASE__ || '/';
+
+  // 邀请码列表——在"联系电话"栏中输入这些码会触发暗网账号弹窗
+  // 邀请码"深度探秘2026"由公告中的"深度探秘"+日期"2026"组成
+  const INVITE_CODES: Record<string, { account: string; password: string }> = {
+    '深度探秘2026': { account: 'DR-2026-03', password: 'rift0603' },
+    // 可扩展更多邀请码
+  };
+
+  // 自动填入当前登录用户名
+  function initForm() {
+    const stored = localStorage.getItem('arg_progress');
+    if (stored) {
+      const p = JSON.parse(stored);
+      // 从localStorage推断当前登录用户
+      const loggedInUser = localStorage.getItem('arg_current_user');
+      const usernameInput = document.getElementById('apply-username') as HTMLInputElement;
+      if (usernameInput) {
+        if (loggedInUser) {
+          usernameInput.value = loggedInUser;
+        } else {
+          usernameInput.value = '（请先登录站点）';
+        }
+      }
+    }
+  }
+
+  // 弹窗控制
+  function showModal(account: string, password: string) {
+    const modal = document.getElementById('account-modal');
+    const accountEl = document.getElementById('darknet-account');
+    const passwordEl = document.getElementById('darknet-password');
+    if (modal && accountEl && passwordEl) {
+      accountEl.textContent = account;
+      passwordEl.textContent = password;
+      modal.style.display = 'flex';
+
+      // 保存暗网账号到进度
+      const stored = localStorage.getItem('arg_progress');
+      if (stored) {
+        const p = JSON.parse(stored);
+        if (!p.solvedPuzzles) p.solvedPuzzles = {};
+        p.solvedPuzzles['stage4_darknet_invite'] = true;
+        if (!p.discoveredClues) p.discoveredClues = [];
+        if (!p.discoveredClues.includes('darknet_account')) {
+          p.discoveredClues.push('darknet_account');
+          p.explorationProgress = (p.explorationProgress || 0) + 10;
+        }
+        // 存储暗网账号
+        p.darknetAccount = { account, password };
+        localStorage.setItem('arg_progress', JSON.stringify(p));
+      }
+    }
+  }
+
+  function hideModal() {
+    const modal = document.getElementById('account-modal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initForm();
+
+    // 提交按钮
+    document.getElementById('apply-submit')?.addEventListener('click', () => {
+      const phoneInput = document.getElementById('apply-phone') as HTMLInputElement;
+      const msgEl = document.getElementById('apply-msg');
+      const phone = phoneInput?.value.trim() || '';
+
+      if (!phone) {
+        if (msgEl) {
+          msgEl.textContent = '✅ 申请已提交，我们会尽快审核。';
+          msgEl.style.color = '#27ae60';
+        }
+        return;
+      }
+
+      // 检查是否为邀请码
+      const match = INVITE_CODES[phone];
+      if (match) {
+        // 邀请码匹配 → 弹窗显示暗网账号
+        if (msgEl) {
+          msgEl.textContent = '';
+        }
+        showModal(match.account, match.password);
+      } else {
+        // 普通手机号 → 常规回复
+        if (msgEl) {
+          msgEl.textContent = '✅ 申请已提交，我们会通过站内私信联系你。';
+          msgEl.style.color = '#27ae60';
+        }
+      }
+    });
+
+    // 关闭弹窗
+    document.getElementById('modal-close')?.addEventListener('click', hideModal);
+
+    // 点击遮罩关闭
+    document.getElementById('account-modal')?.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).id === 'account-modal') {
+        hideModal();
+      }
+    });
+
+    // 回车提交
+    document.getElementById('apply-phone')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('apply-submit')?.click();
+      }
+    });
+  });
+</script>

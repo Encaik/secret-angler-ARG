@@ -14,6 +14,8 @@ const TRIGGER_KEYWORDS: Record<string, string> = {
   '布景基地': BASE + 'trigger/base',
   '秘境之下': BASE + 'member/login',
   '后台管理': BASE + 'hidden/admin',
+  // 暗网入口——公告中"深度探秘"关键词触发暗网登录页
+  '深度探秘': BASE + 'hidden/darknet',
 };
 
 // ========================================

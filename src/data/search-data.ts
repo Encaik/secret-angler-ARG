@@ -20,6 +20,9 @@ export const TRIGGER_KEYWORDS: Record<string, string> = {
   '布景基地': '/trigger/base',
   '秘境之下': '/member/login',
   '后台管理': '/hidden/admin',
+  // 暗网入口——公告中"深度探秘"为暗网会员等级关键词
+  // 对暗网用户而言，公告中的"深度探秘"即指向暗网登录页
+  '深度探秘': '/hidden/darknet',
 };
 
 // 历史存档内容（仅通过搜索关键词可见）
