@@ -59,9 +59,9 @@ import '../styles/global.css';
     <p class="text-muted">本站为爱好者公益站点，所有内容由社区成员贡献。如有侵权请联系删除。</p>
   </footer>
 
-  <!-- 客户端脚本 -->
-  <script src={`${BASE}src/scripts/console.ts`}></script>
-  <script src={`${BASE}src/scripts/search.ts`}></script>
+  <!-- 客户端脚本（相对路径让 Astro 自动编译打包，并自动添加 base 前缀） -->
+  <script src="../scripts/console.ts"></script>
+  <script src="../scripts/search.ts"></script>
   <script>
     // BASE 路径前缀，由 Astro 构建时注入（兼容根目录和二级目录部署）
     const BASE = __BASE_PATH__;

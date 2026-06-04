@@ -1,1 +1,0 @@
-import"./hoisted.RJw2xY92.js";(function(){const t=localStorage.getItem("arg_logged_in")==="true",n=localStorage.getItem("arg_username");if(t&&n==="shenci"){const e=document.getElementById("shenci-private-draft");e&&(e.style.display="block")}})();
