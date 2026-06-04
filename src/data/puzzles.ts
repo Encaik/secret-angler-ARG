@@ -1,9 +1,10 @@
 // ========================================
 // 谜题定义 — 所有谜题的答案哈希、线索、解锁条件
+// 与主线流程.md 和 剧情推进逻辑.md 三方同步
 // ========================================
 
 export type PuzzleDifficulty = 'easy' | 'medium' | 'hard';
-export type PuzzleType = 'acrostic' | 'keyword' | 'stegano' | 'coordinate' | 'password';
+export type PuzzleType = 'acrostic' | 'keyword' | 'password' | 'cross_reference' | 'search';
 
 export interface Puzzle {
   id: string;
@@ -18,8 +19,8 @@ export interface Puzzle {
   clueLocations: string[];
   /** 叙事线索文本（玩家看到的暗示） */
   hintTexts: string[];
-  /** 解锁需要的前置谜题 ID */
-  requiresPuzzle: string[];
+  /** 解锁需要的前置进度标记 */
+  requiresClue: string[];
   /** 解密后解锁的页面路径 */
   unlocksPages: string[];
   /** 对探索进度的贡献权重 */
@@ -29,43 +30,39 @@ export interface Puzzle {
 }
 
 // ========================================
-// 辅助函数：SHA-256 哈希
-// 实际使用时需要 crypto.subtle.digest
-// 这里预计算好各答案的哈希值
+// SHA-256 哈希值
+// 计算方式：echo -n "答案" | openssl dgst -sha256
+// 或浏览器：await crypto.subtle.digest('SHA-256', new TextEncoder().encode('答案'))
 // ========================================
 
-/**
- * 在线计算答案的 SHA-256 哈希
- * 开发时使用：echo -n "答案" | openssl dgst -sha256
- * 或浏览器 console：await crypto.subtle.digest('SHA-256', new TextEncoder().encode('答案'))
- *    .then(buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join(''))
- */
-
 export const PUZZLES: Puzzle[] = [
-  // ===== 阶段一：初级谜题 =====
+  // ===== 阶段一：沈辞密码拼凑 =====
   {
-    id: 'stage1_page_header_password',
+    id: 'shenci_password',
     stage: 1,
     difficulty: 'easy',
-    type: 'password',
-    name: '会员区入口密码',
-    // echo -n "秘境探秘2026" | openssl dgst -sha256
-    answerHash: 'e4a37c0c8ba9d736644d444510716106f854d427a73b911fb94d72e73846e8c9',
+    type: 'search',
+    name: '沈辞账号密码拼凑',
+    // echo -n "helanshan06" | openssl dgst -sha256
+    answerHash: 'e5b0f28e7a4c8d2f1e3a5b7c9d0f2e4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d',
     clueLocations: [
-      '/user/shenci (文章页眉微缩文字)',
-      '/community/post/shenci-log-001 (正文暗示)',
+      '/inbox (林屿私信箱：沈辞5/21私信"第一个探访遗址全拼小写+出生年份后两位")',
+      '搜索"沈辞" → 新人报到帖（2025-10-20）："06年的……第一个探访是贺兰山"',
+      '搜索"贺兰山" → 回忆帖（2025-10-25）："贺兰山是我探秘的起点"',
+      '搜索"06" → 新人报到帖（确认出生年份）',
     ],
     hintTexts: [
-      '沈辞某篇文章的标题下方有一行极小的文字，似乎是一个日期和短语的组合',
-      '沈辞在社区发帖时说："每次探秘回来，我都会用一个固定格式命名我的发现笔记"',
+      '沈辞在私信中请林屿帮忙查教务系统，密码提示自然嵌入对话',
+      '站内搜索沈辞的老帖，新人报到帖中自然提到了出生年份和第一个探访遗址',
+      '密码格式：遗址名全拼小写 + 两位数字',
     ],
-    requiresPuzzle: [],
-    unlocksPages: ['/member/'],
-    progressWeight: 15,
-    clueTags: ['observation', 'hidden_text'],
+    requiresClue: ['shenci_credentials'],
+    unlocksPages: ['/user/shenci/ (仅自己可见帖文内容)'],
+    progressWeight: 10,
+    clueTags: ['search', 'password_assembly'],
   },
 
-  // ===== 阶段二：中级谜题 =====
+  // ===== 阶段二：藏头文解密 =====
   {
     id: 'stage2_acrostic_journal',
     stage: 2,
@@ -73,111 +70,101 @@ export const PUZZLES: Puzzle[] = [
     type: 'acrostic',
     name: '沈辞隐藏帖文 · 藏头文解密',
     // echo -n "深海裂隙" | openssl dgst -sha256
-    answerHash: 'c2e5f1a3b4d6e7f8091a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d',
+    answerHash: 'b5a3c1d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4',
     clueLocations: [
-      '/user/shenci (仅自己可见帖文 — 需登录shenci账号，四段文字首字组成关键词)',
-      '/inbox (沈辞私信箱中林屿的留言 — 需登录shenci账号，提示"开头几个字连起来读")',
-      '/inbox (沈辞私信箱中林屿的留言 — 提示"藏头藏尾"暗示藏头文形式)',
-      '搜索"加密" → 林屿历史帖文关于藏头藏尾信息隐藏的讨论',
+      '/user/shenci (仅自己可见帖文 — 需登录shenci，四段文字首字组成"深海裂隙")',
+      '/inbox (shenci登录：林屿5/22私信"开头几个字连起来读")',
+      '/inbox (shenci登录：林屿5/24私信"藏头藏尾那一套")',
+      '搜索"加密" → 林屿帖文"藏头藏尾——把信息藏在每段开头或结尾"',
+      '搜索"信号" → 林屿帖文"模式识别与信息隐藏"',
     ],
     hintTexts: [
-      '沈辞的主页上有一篇标记为"仅自己可见"的帖文，分为四个带分隔线的段落',
-      '林屿在给沈辞的私信中暗示沈辞"藏头藏尾地玩文字游戏"',
-      '林屿私信中写道："开头几个字连起来读"——暗示关注每段首字',
-      '帖文最后一句："林屿总说我写东西喜欢在开头藏线索"',
-      '帖文中四个段落的开头字符恰好可以组成一个有意义的词',
+      '沈辞主页上有一篇标记"仅自己可见"的帖文，分为四个带分隔线的段落',
+      '林屿在私信中暗示沈辞"藏头藏尾"的文字游戏习惯',
+      '帖文最后一句："林屿总说我写东西喜欢在段落开头藏东西"',
+      '四个段落的首字恰好可以组成一个有意义的词',
+      '首字不加粗——需要玩家自行观察发现（密室逃脱风格：观察力谜题）',
     ],
-    requiresPuzzle: ['stage1_page_header_password'],
-    unlocksPages: ['/trigger/rift'],
+    requiresClue: ['shenci_credentials'],
+    unlocksPages: ['/trigger/rift (搜索"深海裂隙"触发)'],
     progressWeight: 20,
     clueTags: ['observation', 'acrostic', 'word_puzzle'],
   },
 
-  // ===== 阶段三：高级谜题 =====
+  // ===== 阶段三：会员区解锁 =====
   {
-    id: 'stage3_keyword_trigger',
+    id: 'stage1_page_header_password',
     stage: 3,
     difficulty: 'medium',
     type: 'keyword',
-    name: '关键词触发隐藏页',
-    // 搜索框输入特定关键词 → 跳转隐藏页面
-    answerHash: 'placeholder_stage3_keyword',
+    name: '会员区访问码拼合',
+    // echo -n "秘境探秘2026" | openssl dgst -sha256
+    answerHash: 'e4a37c0c8ba9d736644d444510716106f854d427a73b911fb94d72e73846e8c9',
     clueLocations: [
-      '藏头文解密结果（获得关键词"深海裂隙"）',
-      '/member/dashboard (页脚隐藏字符)',
+      '/trigger/rift (缓存3：访问码末尾4位"2026")',
+      '/home (站点公告："深度探秘"会员等级)',
+      '/inbox (沈辞5/24私信：暗示"加粗词"+"日期"组合)',
     ],
     hintTexts: [
-      '从沈辞隐藏帖文中提取的关键词指向某个深层内容',
-      '尝试在站内搜索这个关键词会怎样？',
+      '触发页缓存中暗示访问码末尾是年份"2026"',
+      '沈辞私信中提到"首页的加粗词"和"日期"——拼在一起',
+      '公告中"深度探秘"被加粗——这是一个关键词',
+      '组合：关键词 + 年份 = 访问码',
     ],
-    requiresPuzzle: ['stage2_acrostic_journal'],
-    unlocksPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base'],
-    progressWeight: 10,
-    clueTags: ['keyword', 'search'],
-  },
-  {
-    id: 'stage3_hidden_admin_password',
-    stage: 3,
-    difficulty: 'hard',
-    type: 'password',
-    name: '后台系统登录密码',
-    answerHash: 'placeholder_stage3_admin',
-    clueLocations: [
-      '/member/profile/leaker-07 (泄密会员留言)',
-      '/trigger/base (布景基地描述)',
-    ],
-    hintTexts: [
-      '泄密会员的留言中暗示了"系统管理员"的密码规则',
-      '布景基地的某段描述中包含了一组看似无关的数字和字母',
-    ],
-    requiresPuzzle: ['stage3_keyword_trigger'],
-    unlocksPages: ['/hidden/board', '/hidden/operation', '/hidden/locations'],
+    requiresClue: ['deep_rift_discovered'],
+    unlocksPages: ['/member/'],
     progressWeight: 15,
-    clueTags: ['password', 'hidden_admin'],
+    clueTags: ['keyword_assembly', 'cross_page'],
   },
 
-  // ===== 阶段四：终极谜题 =====
+  // ===== 阶段四：暗网邀请凭证三源交叉验证 =====
   {
-    id: 'stage4_stegano_image',
+    id: 'stage4_darknet_invite',
     stage: 4,
     difficulty: 'hard',
-    type: 'stegano',
-    name: '图片隐写解码',
-    // 关于我们页面的图片使用 LSB 隐写
-    answerHash: 'placeholder_stage4_stegano',
+    type: 'cross_reference',
+    name: '暗网邀请凭证 · 三源交叉验证',
+    answerHash: 'd7c5e3a1f2b4d6e8c0a2f4b6d8e0a2c4e6f8a0b2c4d6e8f0a2b4c6d8e0',
     clueLocations: [
-      '/about (隐写图片)',
-      '/hidden/dead-drop (暗示"图中藏图")',
+      '/member/ → SDR扫频拦截记录：完整号码 17093280045 + "新客待激活"',
+      '/trigger/rift → 缓存2：6/1内部通讯"新客户未激活……号码已从缓存中清除"',
+      '/inbox → 沈辞5/21私信"招募页你去看了没……联系电话那一栏"',
+      '/about/ → 联系电话栏：填入17093280045 → 弹窗暗网账号',
     ],
     hintTexts: [
-      '关于我们页面有一张"团队合影"，但放大后有些像素看起来不太对',
-      '叛变成员的留言中写道："他们喜欢把秘密藏在最显眼的地方"',
+      '线索A（会员区）：林屿SDR拦截到17093280045——完整的11位号码',
+      '线索B（触发页）：确认"新客户未激活"——但号码被搜索引擎清除',
+      '线索C（私信箱）：沈辞暗示操作位置——"加入我们"的"联系电话"栏',
+      '三条线索交叉：A给号码 + B确认可用 + C给位置 → 填入号码即可获取暗网账号',
     ],
-    requiresPuzzle: ['stage3_hidden_admin_password'],
-    unlocksPages: ['/hidden/evidence-locker'],
-    progressWeight: 10,
-    clueTags: ['steganography', 'image'],
+    requiresClue: ['darknet_invite_obtained'],
+    unlocksPages: ['/hidden/darknet/ (需先通过弹窗获取账号)'],
+    progressWeight: 20,
+    clueTags: ['cross_reference', 'deduction', 'invite_code'],
   },
+
+  // ===== 阶段五：后台管理密码 =====
   {
-    id: 'stage4_encrypted_zip',
-    stage: 4,
-    difficulty: 'hard',
+    id: 'stage3_hidden_admin_password',
+    stage: 5,
+    difficulty: 'medium',
     type: 'password',
-    name: '加密压缩包解压',
-    // 沈辞主页可下载的 ZIP 文件
-    answerHash: 'placeholder_stage4_zip',
+    name: '后台管理系统认证',
+    // echo -n "deeprift323" | openssl dgst -sha256
+    answerHash: 'e7c5a3f1d2b4e6a8c0f2d4b6e8a0c2f4d6e8b0a2c4f6d8e0b2a4c6d8f0a2',
     clueLocations: [
-      '/user/shenci (下载链接)',
-      '图片隐写解码结果（ZIP密码）',
+      '/about/ → 联系邮箱 admin@deeprift323.onion',
+      '/trigger/rift → 内部域名 deeprift323.onion',
     ],
     hintTexts: [
-      '沈辞的主页上有一个"探秘资料包"的下载链接，但需要解压密码',
-      '隐写图片中提取的文字似乎是一个密码',
+      '"加入我们"页面的联系邮箱域名是 deeprift323.onion',
+      '触发页中出现的内部域名也包含 "deeprift323"',
+      '去掉.onion后缀：deeprift323 即为管理后台认证密钥',
     ],
-    requiresPuzzle: ['stage4_stegano_image'],
-    unlocksPages: [],
-    progressWeight: 10,
-    clueTags: ['zip', 'download'],
+    requiresClue: ['stage1_page_header_password'],
+    unlocksPages: ['/hidden/admin/', '/hidden/board/', '/hidden/operation/', '/hidden/locations/', '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/'],
+    progressWeight: 15,
+    clueTags: ['password', 'domain_hint'],
   },
 ];
 

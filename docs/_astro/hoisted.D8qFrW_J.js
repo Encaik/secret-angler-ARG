@@ -1,4 +1,4 @@
-import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage.getItem("arg_logged_in"),e=localStorage.getItem("arg_username");if(n==="true"&&e){document.getElementById("not-logged-in").style.display="none",document.getElementById("inbox-content").style.display="block",document.getElementById("inbox-user").textContent={lyu:"signal_屿",shenci:"地下三尺"}[e]||e,o(e);const t=JSON.parse(localStorage.getItem("arg_progress")||"{}");t.discoveredClues||(t.discoveredClues=[]),t.discoveredClues.includes("inbox_visited")||(t.discoveredClues.push("inbox_visited"),t.explorationProgress=(t.explorationProgress||0)+5,localStorage.setItem("arg_progress",JSON.stringify(t))),e==="lyu"&&!t.discoveredClues.includes("shenci_credentials")&&(t.discoveredClues.push("shenci_credentials"),t.explorationProgress=(t.explorationProgress||0)+5,localStorage.setItem("arg_progress",JSON.stringify(t)))}function o(t){const s=document.getElementById("inbox-messages");t==="shenci"?s.innerHTML=`
+import"./hoisted.Thh_4WaH.js";import"./console.DQSMw5De.js";const n=localStorage.getItem("arg_logged_in"),e=localStorage.getItem("arg_username");if(n==="true"&&e){document.getElementById("not-logged-in").style.display="none",document.getElementById("inbox-content").style.display="block",document.getElementById("inbox-user").textContent={lyu:"signal_屿",shenci:"地下三尺"}[e]||e,o(e);const t=JSON.parse(localStorage.getItem("arg_progress")||"{}");t.discoveredClues||(t.discoveredClues=[]),t.discoveredClues.includes("inbox_visited")||(t.discoveredClues.push("inbox_visited"),t.explorationProgress=(t.explorationProgress||0)+5,localStorage.setItem("arg_progress",JSON.stringify(t))),e==="lyu"&&!t.discoveredClues.includes("shenci_credentials")&&(t.discoveredClues.push("shenci_credentials"),t.explorationProgress=(t.explorationProgress||0)+5,localStorage.setItem("arg_progress",JSON.stringify(t)))}function o(t){const s=document.getElementById("inbox-messages");t==="shenci"?s.innerHTML=`
         <div class="card" style="margin-bottom: 12px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
             <strong>signal_屿</strong>
@@ -8,10 +8,16 @@ import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage
             大半夜的别折腾了，早点睡。装备明天再检查也来得及。
           </p>
           <p style="font-size: 0.9rem; margin-bottom: 4px;">
-            对了，你那个设了<strong>"仅自己可见"</strong>的帖子我看了——里面那几段文字读起来有种奇怪的韵律感。你是不是又在玩<strong>藏头藏尾</strong>那一套？开头几个字连起来读，是不是藏了什么？等我再仔细看看。
+            等等——你上一封信息说得我心里发毛。什么叫'万一出了什么状况'？你是去探秘还是去干嘛？别吓我。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
+            你说的那个加粗词我看到了。首页那几行字里确实有个词是加粗的——太刻意了，不像是无心的排版。招募页我也去看了，同一个词确实出现了。日期我也注意到了。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
+            对了，你那个设了<strong>"仅自己可见"</strong>的帖子我看了——里面那几段文字读起来有种奇怪的韵律感。你是不是又在玩<strong>藏头藏尾</strong>那一套？开头几个字连起来读，感觉有东西。
           </p>
           <p style="font-size: 0.9rem; margin-bottom: 0;">
-            路上注意安全。贺兰山那边蝮蛇多，把蛇药带上。
+            路上注意安全。贺兰山那边蝮蛇多，把蛇药带上。<strong>到了立刻回信息。别让我担心。</strong>
           </p>
         </div>
 
@@ -39,8 +45,11 @@ import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage
           <p style="font-size: 0.9rem; margin-bottom: 4px;">
             还有你说的那篇设了权限的帖文，我用这个密码登了你的号——在你主页上看到一篇标了<strong>"仅自己可见"</strong>的帖子。你是不是又在<strong>开头藏了什么东西</strong>？一段一段的，每段开头第一个字连起来读，感觉像是在拼什么词。
           </p>
-          <p style="font-size: 0.9rem; margin-bottom: 0;">
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
             你是不是又在玩你那些编码把戏？至少给点提示，别每次都让我猜。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 0;">
+            你说的首页那几行字的事我查了。那个废弃站的快照里确实有一样的——<strong>'永无止境，安全第一'</strong>，连换行位置都一样。两个完全没关系的网站不可能写成这样。你发现这个可能比坐标重合还关键——坐标重合只能说明他们在做同一类事，<strong>文字一模一样说明是同一批人</strong>。我再去翻翻其他废弃站的快照，看看能不能找到更多。
           </p>
         </div>
 
@@ -97,8 +106,14 @@ import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage
           <p style="font-size: 0.9rem; margin-bottom: 4px;">
             我把之前聊的那些数据整理好了，放在我账号的资料区了。你登录进去就能看到——账号和密码之前告诉过你，就在那条消息里。
           </p>
-          <p style="font-size: 0.9rem; margin-bottom: 0;">
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
             等我回来咱们碰一下。有些事我想当面跟你说。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
+            还有一件事——万一我这边出了什么状况。首页那几行字里有个<strong>加粗的词</strong>，你去看。招募页里某个岗位描述也用了同一个词。首页那几行字最下面标的日期，把<strong>年份和那个加粗的词拼在一起</strong>。然后去招募页——你知道该填在哪。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 0;">
+            那个词你自己找——我已经给了你足够多的提示了。有些事等我回来当面说。如果没回来……你知道该怎么办。
           </p>
         </div>
 
@@ -110,8 +125,11 @@ import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage
           <p style="font-size: 0.9rem; margin-bottom: 4px;">
             神农架那个点我去过了。石阵是<strong>自然形成</strong>的，不是人工。但那块祭坛石上的熔化痕迹——<strong>1500°C以上</strong>才能造成。没有火山，没有陨石坑。你觉得是什么？
           </p>
-          <p style="font-size: 0.9rem; margin-bottom: 0;">
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
             另外，我到的时候发现现场有很新的篝火残骸。不是游客留下的——太偏僻了，普通游客不会去那里。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 0;">
+            关于首页那几行字，越想越觉得不对劲。同一伙人如果开了好几个站，每个站的首页文字就是他们之间的<strong>通讯方式</strong>——我们看着是普通的社区通知，另一拨人看着就是操作指引。我把对比数据整理了一下，放在账号资料区了，你登进去之后能找到。
           </p>
         </div>
 
@@ -132,8 +150,11 @@ import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage
           <p style="font-size: 0.9rem; margin-bottom: 4px;">
             算了，<strong>考你一道题</strong>，答出来你就想起来了——<b>我第一个正经探访的遗址叫啥？全拼小写，加上我出生年份最后两位</b>。答不上来的话去站里搜搜我的老帖，报到帖里都写着。要是这都找不着，那等我回去自己查也行，不急。
           </p>
-          <p style="font-size: 0.9rem; margin-bottom: 0;">
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
             另外，我最近把一些不方便公开的想法写成了一篇帖文，设了<strong>仅自己可见</strong>——你登录我账号之后就能看到。密码也是这个。<strong>暂时不要外传</strong>，有些东西我还没确认。
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 0;">
+            对了，站里那个<strong>招募志愿者的页面</strong>你看过没？有个岗位叫'内容审核员'，后面还跟了个什么方向——你读读那个方向的名称，再看首页那几行字里提到的一个'会员等级'的名称。同一个词。还有那个页面底下留的联系方式，邮箱域名有点意思。我越来越觉得这个站有些页面的目标读者不是我们。
           </p>
         </div>
 
@@ -149,9 +170,12 @@ import"./hoisted.B-Gnm1pJ.js";import"./console.By6bCD5-.js";const n=localStorage
           <p style="font-size: 0.9rem; margin-bottom: 4px;">
             更让人在意的是站里对那个点的<strong>描述有很大问题</strong>——说是"唐代摩崖"，但描述里提到的凿刻技法和纹样风格明显是明清时期的特征。唐代摩崖根本不用那种<strong>斜刀浅刻</strong>的手法。
           </p>
-          <p style="font-size: 0.9rem; margin-bottom: 0;">
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">
             写这些描述的人<strong>根本不懂石刻</strong>——像是从网上东拼西凑了一些术语，但拼错了年代。
             这已经是第三个对不上号的了。你有遇到过类似的情况吗？
+          </p>
+          <p style="font-size: 0.9rem; margin-bottom: 0;">
+            还有一件事——你仔细看过站里首页那<strong>几行置顶文字</strong>没有？我昨天搜老帖的时候翻到一个叫'秘境徒步联盟'的网页快照（那个站去年就没人管了），发现他们首页那几行字的<strong>写法跟这个站一样</strong>。'永无止境'、'安全第一'——两个看上去没关系的网站，用一模一样的八个字收尾。你觉得是模板巧合还是同一批人写的？
           </p>
         </div>
 

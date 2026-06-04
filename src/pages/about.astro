@@ -124,14 +124,19 @@ const BASE = __BASE_PATH__;
         </div>
       </div>
 
-      <p style="color: #666; font-size: 0.75rem; text-align: center; margin-bottom: 16px;">
-        请通过<strong style="color:#7aac8a;">站点公告</strong>中的指引访问登录页面。<br/>
-        秘境之中，安全第一。
+      <div style="text-align: center; margin-bottom: 8px;">
+        <a id="darknet-link" href={`${BASE}hidden/darknet/`} target="_blank"
+           style="display: inline-block; padding: 10px 32px; background: #1a3a2a; color: #7aac8a; border: 1px solid #2a5a3a; border-radius: 4px; text-decoration: none; font-size: 0.9rem;">
+          🔻 进入秘境
+        </a>
+      </div>
+      <p style="color: #555; font-size: 0.7rem; text-align: center; margin-bottom: 16px;">
+        请使用上述凭证登录。秘境之中，安全第一。
       </p>
 
       <div style="text-align: center;">
-        <button id="modal-close" style="padding: 8px 28px; background: #1a3a2a; color: #7aac8a; border: 1px solid #2a5a3a; border-radius: 4px; cursor: pointer; font-size: 0.88rem;">
-          我记下了
+        <button id="modal-close" style="padding: 6px 20px; background: none; color: #666; border: none; cursor: pointer; font-size: 0.8rem;">
+          关闭
         </button>
       </div>
     </div>
@@ -173,11 +178,10 @@ const BASE = __BASE_PATH__;
 <script>
   const BASE = (window as any).__BASE__ || '/';
 
-  // 邀请码列表——在"联系电话"栏中输入这些码会触发暗网账号弹窗
-  // 邀请码"深度探秘2026"由公告中的"深度探秘"+日期"2026"组成
+  // 暗网账号映射——虚拟手机号 → 专属账号（一对一绑定，首次使用后激活）
+  // 手机号 17093280045 为团伙预分配给新客户的虚商号码，尚未激活
   const INVITE_CODES: Record<string, { account: string; password: string }> = {
-    '深度探秘2026': { account: 'DR-2026-03', password: 'rift0603' },
-    // 可扩展更多邀请码
+    '17093280045': { account: 'DR-2026-03', password: 'rift0603' },
   };
 
   // 自动填入当前登录用户名

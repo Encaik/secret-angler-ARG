@@ -14,7 +14,6 @@ const TRIGGER_KEYWORDS: Record<string, string> = {
   '布景基地': BASE + 'trigger/base',
   '秘境之下': BASE + 'member/login',
   '后台管理': BASE + 'hidden/admin',
-  // 暗网入口——公告中"深度探秘"关键词触发暗网登录页
   '深度探秘': BASE + 'hidden/darknet',
 };
 
@@ -119,6 +118,16 @@ function handleSearch(query: string): void {
   for (const [keyword, url] of Object.entries(TRIGGER_KEYWORDS)) {
     if (trimmed.includes(keyword)) {
       recordPageVisit(url);
+      // 追踪暗网入口发现
+      if (keyword === '深度探秘') {
+        const p = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+        if (!p.discoveredClues) p.discoveredClues = [];
+        if (!p.discoveredClues.includes('darknet_entrance_found')) {
+          p.discoveredClues.push('darknet_entrance_found');
+          p.explorationProgress = (p.explorationProgress || 0) + 5;
+          localStorage.setItem('arg_progress', JSON.stringify(p));
+        }
+      }
       window.open(url, '_blank');
       return;
     }

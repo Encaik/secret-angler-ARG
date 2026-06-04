@@ -72,7 +72,31 @@ const BASE = __BASE_PATH__;
           </p>
         </div>
 
-        <!-- 2. 信号频谱分析 — 林屿的技术发现 -->
+        <!-- 2. 拦截到的异常通讯 — 林屿日常SDR扫描的意外发现（沈辞出发前拦截，当时未理解） -->
+        <div class="card" style="border-left: 3px solid #c0392b; margin-bottom: 12px;">
+          <h4 style="margin-bottom: 4px;">📡 SDR扫频拦截记录：GSM频段异常短信片段</h4>
+          <div class="post-meta" style="margin-bottom: 8px;">signal_屿 · 2026-05-20 · 最后编辑 2026-06-03 · 仅会员可见 · 阅读 67</div>
+          <p style="font-size: 0.85rem; margin-bottom: 8px;">
+            <em>【6月3日注】翻出这条旧记录。当初没看懂，现在回头看——和三尺说的"招募页面"、首页那几行字放在一起，感觉能对上。把原文保留在下面，不做修改。</em>
+          </p>
+          <p style="font-size: 0.85rem; margin-bottom: 8px;">
+            上周在调试 SDR 扫频的时候——本来是日常监测凤凰山那个假信号的频段——结果在 <strong>935-960 MHz</strong> GSM下行频段意外抓到一个没加密的短信。A5/0算法（基本上等于没加密），应该是某个虚拟运营商的基站回落到2G了：
+          </p>
+          <div style="background: #0a0a0a; color: #4a8c4a; font-family: monospace; padding: 10px 14px; border-radius: 3px; font-size: 0.8rem; margin-bottom: 8px; line-height: 1.6;">
+            SMS-DOWNLINK | 2026-05-19 23:12:44 | MCC:460 MNC:01 | A5/0<br/>
+            FROM: [未知短码]<br/>
+            TO: [未注册临时号码]<br/>
+            CONTENT(hex): ...6B6253 65B05E 706C28 <strong style="color:#7acc7a;">31 37 30 39 33 32 38 30 30 34 35</strong> 209D 6E3A...<br/>
+            <br/>
+            ASCII解码 (片段):<br/>
+            "...<strong style="color:#7acc7a;">17093280045</strong> 新客待激活 下批出 勿复 龙骨尾款未结..."
+          </div>
+          <p style="font-size: 0.82rem; margin-bottom: 4px;">
+            170开头——虚商号段。内容提到"新客待激活"、"下批出货"——措辞不像普通商业短信，但当时想不出能跟什么关联起来。暂时存档，万一以后有用。
+          </p>
+        </div>
+
+        <!-- 3. 信号频谱分析 — 林屿的技术发现 -->
         <div class="card" style="border-left: 3px solid var(--color-tag-alien); margin-bottom: 12px;">
           <h4 style="margin-bottom: 4px;">📡 信号频谱分析笔记：凤凰山1420MHz异常信号</h4>
           <div class="post-meta" style="margin-bottom: 8px;">signal_屿 · 2026-05-15 · 仅会员可见 · 阅读 134</div>
@@ -229,7 +253,8 @@ const BASE = __BASE_PATH__;
         <span class="text-muted">2026-06-03 02:17</span>
       </div>
       <p style="font-size: 0.84rem; margin-bottom: 0;">
-        一周了。警方还在搜寻。我今天重新看了你所有的帖文和私信。你在247号帖里凌晨两点多发帖——你从来没有在那个时间发过帖。你是不是在被人盯着？那个"老GPS手持机"……你明明去年12月就换了新的。你在用暗语告诉我什么，对不对？<strong>我会找到答案的。</strong>
+        一周了。警方还在搜寻。我今天重新看了你所有的帖文和私信。你在247号帖里凌晨两点多发帖——你从来没有在那个时间发过帖。你是不是在被人盯着？那个"老GPS手持机"……你明明去年12月就换了新的。你在用暗语告诉我什么，对不对？<strong>我会找到答案的。</strong><br/><br/>
+        另外——5月20号我发的那条SDR拦截记录你还记得吗？当时你说那条短信"看着有点奇怪但说不上来"。我现在重新看了一遍："新客待激活"、"下批出货"。再结合你说的<strong>首页那几行字的措辞</strong>和<strong>招募页面底下的联系方式</strong>——我觉得那条短信里那个170开头的号码不是偶然。虚商号段、待激活——这就是一个还没被使用的邀请凭证。三尺，如果你当时也看到了这条消息……但你出发之后我才发的。是我的错。我现在去试试。
       </p>
     </div>
   </div>

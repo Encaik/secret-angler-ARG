@@ -1,202 +1,185 @@
 ---
-// /hidden/darknet — 暗网交易市场（内部站）
-// 通过搜索"深度探秘"（公告中的暗网会员关键词）触发
-// 需要暗网专属账号登录——账号从"加入我们"页面获得
-import HiddenLayout from '../../../components/HiddenLayout.astro';
+// /hidden/darknet — 暗网交易市场
+// 通过"加入我们"弹窗中的链接进入
+import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<HiddenLayout title="秘境 · 深度探秘">
-  <!-- 无面包屑——切断与钓鱼站的视觉关联 -->
-  <!-- 使用 HiddenLayout 暗色主题 + 绿色强调色（区别于后台页的红色） -->
+<HiddenLayout title="秘境">
+  <div style="max-width: 960px; margin: 0 auto;">
 
-  <div style="text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #1a3a2a;">
-    <div style="font-size: 1.4rem; font-weight: bold; color: #4a8c6a; letter-spacing: 2px; margin-bottom: 4px;">
-      🔻 秘境 · 深度探秘
-    </div>
-    <div style="font-size: 0.72rem; color: #3a5a4a; letter-spacing: 1px;">
-      THE SANCTUM · DEEP EXPLORATION
-    </div>
-    <div style="font-size: 0.68rem; color: #555; margin-top: 4px;">
-      永无止境 · 安全第一
-    </div>
-  </div>
-
-  <!-- 登录区域 -->
-  <div id="login-section">
-    <div class="card" style="border-left: 3px solid #4a8c6a; max-width: 380px; margin: 0 auto;">
-      <p style="color: #7aac8a; font-size: 0.85rem; margin-bottom: 12px;">
-        <strong>🔐 会员登录</strong>
-      </p>
-      <p style="color: #888; font-size: 0.78rem; margin-bottom: 16px;">
-        请输入您的<strong>专属访问凭证</strong>。如尚未获得账号，请通过"加入我们"页面申请。
-      </p>
-
-      <div style="margin-bottom: 10px;">
-        <label style="font-size: 0.78rem; color: #666; display: block; margin-bottom: 3px;">账号</label>
-        <input
-          type="text"
-          id="darknet-username"
-          placeholder="输入账号"
-          style="width: 100%; max-width: 100%; padding: 8px 12px; background: #0a0f0a; border: 1px solid #333; color: #aaa; font-size: 0.9rem;"
-        />
+    <!-- 顶部——极简标识 -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #1a2a1a;">
+      <div>
+        <span style="font-size: 1.1rem; font-weight: bold; color: #4a7c5a; letter-spacing: 1px;">THE SANCTUM</span>
+        <span style="font-size: 0.7rem; color: #3a5a3a; margin-left: 8px;">v2.4.1</span>
       </div>
-
-      <div style="margin-bottom: 14px;">
-        <label style="font-size: 0.78rem; color: #666; display: block; margin-bottom: 3px;">密码</label>
-        <input
-          type="password"
-          id="darknet-password"
-          placeholder="输入密码"
-          style="width: 100%; max-width: 100%; padding: 8px 12px; background: #0a0f0a; border: 1px solid #333; color: #aaa; font-size: 0.9rem;"
-        />
+      <div style="font-size: 0.72rem; color: #555;">
+        <span id="header-balance" style="color: #4a7c5a;">--</span> ·
+        <span id="header-user" style="color: #666;">未登录</span>
       </div>
-
-      <button
-        id="darknet-login-btn"
-        style="width: 100%; padding: 10px; background: #1a3a2a; color: #7aac8a; border: 1px solid #2a5a3a; cursor: pointer; font-size: 0.92rem;"
-      >登录</button>
-      <p id="login-error" style="color: #c0392b; font-size: 0.78rem; margin-top: 8px; display: none;"></p>
     </div>
 
-    <!-- 登录提示 -->
-    <p style="text-align: center; color: #555; font-size: 0.72rem; margin-top: 12px;">
-      没有账号？访问<a href={`${BASE}about/`} target="_blank" style="color: #4a8c6a;">加入我们</a>页面获取专属凭证。
-    </p>
-  </div>
-
-  <!-- ============ 登录后内容（初始隐藏） ============ -->
-  <div id="darknet-content" style="display: none;">
-
-    <!-- 已登录状态条 -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 8px 12px; background: #0d1a0d; border-radius: 3px; font-size: 0.78rem;">
-      <span style="color: #4a8c6a;">🟢 已登录 · <strong id="logged-user">---</strong> · 深度探秘会员</span>
-      <a href="javascript:void(0)" id="logout-btn" style="color: #888; font-size: 0.75rem;">退出</a>
-    </div>
-
-    <!-- 导航栏——内部站功能导航 -->
-    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; padding: 10px 0; border-bottom: 1px solid #1a3a2a;">
-      <span style="color: #4a8c6a; font-size: 0.82rem; cursor: pointer; padding: 4px 10px; background: #0d1a0d; border-radius: 3px;">📊 在售商品</span>
-      <span style="color: #666; font-size: 0.82rem; padding: 4px 10px;">📺 直播频道</span>
-      <span style="color: #666; font-size: 0.82rem; padding: 4px 10px;">🫁 器官交易</span>
-      <span style="color: #666; font-size: 0.82rem; padding: 4px 10px;">👤 人口贩卖</span>
-      <span style="color: #666; font-size: 0.82rem; padding: 4px 10px;">📋 交易记录</span>
-      <span style="color: #666; font-size: 0.82rem; padding: 4px 10px;">💬 买家讨论</span>
-    </div>
-
-    <!-- 警告横幅 -->
-    <div class="hidden-warning" style="margin-bottom: 20px; font-size: 0.82rem;">
-      <strong>⚠ 你正在浏览的是一个真实的暗网交易平台。</strong><br/>
-      以下内容涉及<strong>器官贩卖、人口贩卖</strong>等严重犯罪行为。页面中的"商品"均为被绑架的真实受害者。
-      请保存所有可获取的证据，并立即报告执法部门。
-    </div>
-
-    <!-- "在售商品"列表 -->
-    <div style="margin-bottom: 20px;">
-      <h3 style="color: #aaa; font-size: 0.95rem; margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 6px;">
-        📊 当前在售商品
-      </h3>
-
-      <!-- 沈辞 -->
-      <div class="card" style="border-left: 3px solid #c0392b; margin-bottom: 12px; background: #0d0d0d;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <div style="flex: 1;">
-            <strong style="color: #c0392b; font-size: 0.95rem;">#SKU-2026-003 · 代号"三尺"</strong>
-            <span style="color: #e67e22; font-size: 0.72rem; margin-left: 8px;">状态：体检评估中</span>
+    <!-- 登录区域 -->
+    <div id="login-section">
+      <div style="max-width: 360px; margin: 60px auto;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <span style="font-size: 2rem;">🔻</span>
+        </div>
+        <div style="background: #0d0d0d; border: 1px solid #222; border-radius: 4px; padding: 24px;">
+          <div style="margin-bottom: 14px;">
+            <label style="font-size: 0.75rem; color: #555; display: block; margin-bottom: 4px;">账号</label>
+            <input type="text" id="darknet-username" placeholder="" style="width: 100%; max-width: 100%; padding: 8px 10px; background: #0a0a0a; border: 1px solid #2a2a2a; color: #aaa; font-size: 0.88rem;" />
           </div>
-          <span style="color: #888; font-size: 0.72rem;">入库：2026-05-26</span>
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 0.75rem; color: #555; display: block; margin-bottom: 4px;">密码</label>
+            <input type="password" id="darknet-password" placeholder="" style="width: 100%; max-width: 100%; padding: 8px 10px; background: #0a0a0a; border: 1px solid #2a2a2a; color: #aaa; font-size: 0.88rem;" />
+          </div>
+          <button id="darknet-login-btn" style="width: 100%; padding: 9px; background: #1a2a1a; color: #5a8a5a; border: 1px solid #2a3a2a; cursor: pointer; font-size: 0.85rem;">登录</button>
+          <p id="login-error" style="color: #8b3a3a; font-size: 0.72rem; margin-top: 8px; display: none;"></p>
         </div>
-        <table style="font-size: 0.78rem; margin-top: 8px;">
-          <tr><td style="width: 25%; color: #666;">年龄/性别</td><td>22岁 / 男</td></tr>
-          <tr><td style="color: #666;">血型</td><td>O型（已确认）</td></tr>
-          <tr><td style="color: #666;">HLA分型</td><td><span style="color: #888;">检测中——预计6月8日完成</span></td></tr>
-          <tr><td style="color: #666;">健康评分</td><td><span style="color: #e67e22;">待发布——体能评估进行中</span></td></tr>
-          <tr><td style="color: #666;">商品等级</td><td><span style="color: #f39c12;">A-（年轻健康，无已知疾病，O型血适配面广）</span></td></tr>
-          <tr><td style="color: #666;">适用方向</td><td>肾脏（双肾健康）· 肝脏部分 · 角膜 · 整人交易</td></tr>
-          <tr><td style="color: #666;">当前出价</td><td><span style="color: #888;">暂无——等待健康评估报告发布</span></td></tr>
+        <p style="text-align: center; color: #444; font-size: 0.68rem; margin-top: 10px;">
+          没有凭证？通过推荐人获取邀请码。
+        </p>
+      </div>
+    </div>
+
+    <!-- 登录后内容 -->
+    <div id="darknet-content" style="display: none;">
+
+      <!-- 导航标签 -->
+      <div style="display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid #1a2a1a;">
+        <span class="nav-tab active" data-tab="market" style="padding: 8px 16px; font-size: 0.8rem; color: #4a7c5a; border-bottom: 2px solid #4a7c5a; cursor: pointer;">市场</span>
+        <span class="nav-tab" data-tab="live" style="padding: 8px 16px; font-size: 0.8rem; color: #555; cursor: pointer;">直播</span>
+        <span class="nav-tab" data-tab="history" style="padding: 8px 16px; font-size: 0.8rem; color: #555; cursor: pointer;">成交记录</span>
+        <span class="nav-tab" data-tab="wallet" style="padding: 8px 16px; font-size: 0.8rem; color: #555; cursor: pointer;">钱包</span>
+      </div>
+
+      <!-- ============ 市场标签页 ============ -->
+      <div id="tab-market">
+
+        <!-- 筛选栏 -->
+        <div style="display: flex; gap: 12px; margin-bottom: 16px; font-size: 0.78rem; color: #666;">
+          <span style="color: #4a7c5a;">全部</span>
+          <span style="cursor: pointer;">器官</span>
+          <span style="cursor: pointer;">整人</span>
+          <span style="cursor: pointer;">待评估</span>
+          <span style="margin-left: auto; font-size: 0.72rem;">共 4 件商品</span>
+        </div>
+
+        <!-- 商品卡片：沈辞 -->
+        <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 16px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <div>
+              <span style="color: #aaa; font-size: 0.9rem; font-weight: bold;">#SKU-2026-003</span>
+              <span style="color: #4a7c5a; font-size: 0.75rem; margin-left: 6px;">三尺</span>
+              <span style="background: #1a1a1a; color: #8b7a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">评估中</span>
+            </div>
+            <span style="color: #555; font-size: 0.7rem;">入库 05-26</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 0.78rem; margin-bottom: 8px;">
+            <div><span style="color: #555;">年龄/性别</span><br/><span style="color: #999;">20 / 男</span></div>
+            <div><span style="color: #555;">血型</span><br/><span style="color: #999;">O</span></div>
+            <div><span style="color: #555;">HLA</span><br/><span style="color: #8b7a3a;">检测中</span></div>
+            <div><span style="color: #555;">健康</span><br/><span style="color: #8b7a3a;">评估中</span></div>
+            <div><span style="color: #555;">等级</span><br/><span style="color: #999;">A-</span></div>
+            <div><span style="color: #555;">估价</span><br/><span style="color: #555;">待发布</span></div>
+          </div>
+          <div style="font-size: 0.72rem; color: #555; padding: 6px 8px; background: #0a0a0a; border-radius: 2px;">
+            适用：肾脏（双） · 肝脏（部分） · 角膜 · 整人
+            &nbsp;|&nbsp; 直播：频道B「古文明探秘」
+          </div>
+        </div>
+
+        <!-- 商品卡片：已售 -->
+        <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px; margin-bottom: 10px; opacity: 0.7;">
+          <span style="color: #777; font-size: 0.85rem;">#SKU-2026-001</span>
+          <span style="color: #666; font-size: 0.72rem; margin-left: 6px;">旅人</span>
+          <span style="background: #1a2a1a; color: #4a7c5a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">已售</span>
+          <span style="color: #555; font-size: 0.72rem; float: right;">整人 · $48,000</span>
+        </div>
+
+        <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px; margin-bottom: 10px; opacity: 0.7;">
+          <span style="color: #777; font-size: 0.85rem;">#SKU-2026-002</span>
+          <span style="color: #666; font-size: 0.72rem; margin-left: 6px;">观星者</span>
+          <span style="background: #1a1a1a; color: #8b5a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">已拆解</span>
+          <span style="color: #555; font-size: 0.72rem; float: right;">肾脏×1 · 角膜×2 · $135,000</span>
+        </div>
+
+        <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px; margin-bottom: 10px;">
+          <span style="color: #aaa; font-size: 0.85rem;">#SKU-2026-004</span>
+          <span style="color: #666; font-size: 0.72rem; margin-left: 6px;">行者</span>
+          <span style="background: #1a1a1a; color: #6a8a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">展示中</span>
+          <span style="color: #555; font-size: 0.72rem; float: right;">频道A「外星秘境」</span>
+        </div>
+      </div>
+
+      <!-- ============ 直播标签页 ============ -->
+      <div id="tab-live" style="display: none;">
+        <div style="font-size: 0.82rem; color: #888; margin-bottom: 16px;">当前在线频道</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px;">
+            <div style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">外星秘境</div>
+            <div style="font-size: 0.72rem; color: #555;">频道A · 340订阅</div>
+            <div style="font-size: 0.72rem; color: #4a7c5a; margin-top: 4px;">● 在线</div>
+            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $29 · 行者</div>
+          </div>
+          <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px;">
+            <div style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">古文明探秘</div>
+            <div style="font-size: 0.72rem; color: #555;">频道B · 280订阅</div>
+            <div style="font-size: 0.72rem; color: #4a7c5a; margin-top: 4px;">● 在线</div>
+            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $29 · 三尺</div>
+          </div>
+          <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px;">
+            <div style="color: #666; font-size: 0.85rem; margin-bottom: 6px;">荒野求生</div>
+            <div style="font-size: 0.72rem; color: #555;">频道C · 210订阅</div>
+            <div style="font-size: 0.72rem; color: #555; margin-top: 4px;">○ 离线</div>
+            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $19</div>
+          </div>
+        </div>
+        <div style="font-size: 0.7rem; color: #444; margin-top: 12px;">
+          每场直播叠加实时体征数据（心率、血氧、步数）。频道A/B支持高阶数据分析（$39/月附加包）。
+        </div>
+      </div>
+
+      <!-- ============ 成交记录标签页 ============ -->
+      <div id="tab-history" style="display: none;">
+        <table style="font-size: 0.78rem; width: 100%;">
+          <tr style="color: #555;"><th style="text-align: left; padding: 6px 8px;">日期</th><th style="text-align: left;">商品</th><th style="text-align: left;">来源</th><th style="text-align: right;">成交价</th><th style="text-align: right;">买家地区</th></tr>
+          <tr style="color: #888;"><td style="padding: 6px 8px;">2026-05-20</td><td>肾脏×1 + 角膜×2</td><td>观星者</td><td style="text-align: right;">$135,000</td><td style="text-align: right;">东南亚</td></tr>
+          <tr style="color: #888;"><td style="padding: 6px 8px;">2026-04-15</td><td>整人</td><td>旅人</td><td style="text-align: right;">$48,000</td><td style="text-align: right;">中东</td></tr>
+          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-03-08</td><td>肝脏（部分）</td><td>—</td><td style="text-align: right;">$82,000</td><td style="text-align: right;">东欧</td></tr>
+          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-02-21</td><td>整人</td><td>—</td><td style="text-align: right;">$35,000</td><td style="text-align: right;">南美</td></tr>
+          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-01-14</td><td>肾脏×1</td><td>—</td><td style="text-align: right;">$58,000</td><td style="text-align: right;">中东</td></tr>
         </table>
-        <div style="margin-top: 8px; padding: 6px 10px; background: #0a0f0a; border-radius: 3px; font-size: 0.75rem; color: #666;">
-          <strong>📺 直播预览：</strong>可在频道B「古文明探秘」观看该商品的日常活动。直播叠加实时健康数据。
+        <div style="font-size: 0.7rem; color: #444; margin-top: 10px;">仅展示最近6个月记录。完整历史数据需升级至企业账户。</div>
+      </div>
+
+      <!-- ============ 钱包标签页 ============ -->
+      <div id="tab-wallet" style="display: none;">
+        <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 16px; max-width: 400px;">
+          <div style="font-size: 0.8rem; color: #555; margin-bottom: 4px;">账户余额</div>
+          <div style="font-size: 1.4rem; color: #4a7c5a; margin-bottom: 12px;">$0.00</div>
+          <div style="font-size: 0.72rem; color: #555; margin-bottom: 4px;">充值地址（BTC）</div>
+          <code style="font-size: 0.68rem; color: #666; background: #0a0a0a; padding: 4px 8px; display: block; word-break: break-all;">bc1qly0w63v0s0dujf0ly5kz5v0cw0kq0d5s0x0r0y</code>
+          <div style="font-size: 0.72rem; color: #555; margin-top: 10px; margin-bottom: 4px;">充值地址（XMR）</div>
+          <code style="font-size: 0.68rem; color: #666; background: #0a0a0a; padding: 4px 8px; display: block; word-break: break-all;">48x0v0d0u0j0f0l0y0k0z0v0c0w0k0q0d0s0x0r0y0a0b0c0d0e0f0123456789ab</code>
         </div>
       </div>
 
-      <!-- 其他商品 -->
-      <div class="card" style="border-left: 3px solid #555; margin-bottom: 12px; background: #0d0d0d;">
-        <strong style="color: #aaa; font-size: 0.9rem;">#SKU-2026-001 · 代号"旅人"</strong>
-        <span style="color: #27ae60; font-size: 0.72rem; margin-left: 8px;">已售出</span>
-        <span style="color: #888; font-size: 0.72rem; float: right;">成交价：$48,000（整人交易）</span>
-      </div>
-
-      <div class="card" style="border-left: 3px solid #555; margin-bottom: 12px; background: #0d0d0d;">
-        <strong style="color: #aaa; font-size: 0.9rem;">#SKU-2026-002 · 代号"观星者"</strong>
-        <span style="color: #c0392b; font-size: 0.72rem; margin-left: 8px;">器官已摘取</span>
-        <span style="color: #888; font-size: 0.72rem; float: right;">肾脏×1 + 角膜×2 · 合计$135,000</span>
-      </div>
-
-      <div class="card" style="border-left: 3px solid #555; margin-bottom: 12px; background: #0d0d0d;">
-        <strong style="color: #aaa; font-size: 0.9rem;">#SKU-2026-004 · 代号"行者"</strong>
-        <span style="color: #e67e22; font-size: 0.72rem; margin-left: 8px;">直播展示中</span>
-        <span style="color: #888; font-size: 0.72rem; float: right;">频道A「外星秘境」· 买家评估中</span>
-      </div>
-    </div>
-
-    <!-- 器官交易区 -->
-    <div style="margin-bottom: 20px;">
-      <h3 style="color: #aaa; font-size: 0.95rem; margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 6px;">
-        🫁 器官交易 · 当前挂牌
-      </h3>
-      <table style="font-size: 0.78rem;">
-        <tr><th style="width: 20%;">器官</th><th style="width: 15%;">血型</th><th>来源代号</th><th style="width: 15%;">状态</th><th style="width: 20%;">估价</th></tr>
-        <tr><td>肾脏（左）</td><td>B型</td><td>"观星者"</td><td><span style="color:#27ae60;">已售</span></td><td>$62,000</td></tr>
-        <tr><td>角膜（双）</td><td>—</td><td>"观星者"</td><td><span style="color:#27ae60;">已售</span></td><td>$11,000</td></tr>
-        <tr><td>肾脏（双）</td><td>O型</td><td>"三尺"</td><td><span style="color:#e67e22;">待评估</span></td><td>待健康报告</td></tr>
-        <tr><td>肝脏（部分）</td><td>O型</td><td>"三尺"</td><td><span style="color:#e67e22;">待评估</span></td><td>待健康报告</td></tr>
-      </table>
-    </div>
-
-    <!-- 买家讨论区 -->
-    <div style="margin-bottom: 20px;">
-      <h3 style="color: #aaa; font-size: 0.95rem; margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 6px;">
-        💬 买家讨论 · 最近留言
-      </h3>
-      <div style="font-size: 0.8rem; color: #777; line-height: 1.6;">
-        <p style="margin-bottom: 6px; padding: 6px 8px; background: #0a0f0a; border-radius: 3px;">
-          <strong style="color: #5a8a6a;">User_9a3f</strong> <span style="color: #555;">· 2026-06-02</span><br/>
-          "三尺那个O型血确认了吗？我这里有个肾衰竭病人等了三个月了。健康报告出来后私我。"
-        </p>
-        <p style="margin-bottom: 6px; padding: 6px 8px; background: #0a0f0a; border-radius: 3px;">
-          <strong style="color: #5a8a6a;">User_b7d2</strong> <span style="color: #555;">· 2026-06-01</span><br/>
-          "这批货质量比上一批好。旅人那个有点可惜——买家是中东那边的，付款拖了很久。观星者的角膜已经装上了，配型完美。"
-        </p>
-        <p style="margin-bottom: 6px; padding: 6px 8px; background: #0a0f0a; border-radius: 3px;">
-          <strong style="color: #5a8a6a;">User_1e8c</strong> <span style="color: #555;">· 2026-05-30</span><br/>
-          "频道C那个'行者'耐力不错，我看了两周直播，心率数据一直很稳定。脑子也清楚——语言测试反应快。我在考虑整人下单，有没有其他人竞价？"
-        </p>
-      </div>
-    </div>
-
-    <!-- 关键证据摘要 -->
-    <div class="hidden-notice" style="margin-top: 20px;">
-      <p style="margin-bottom: 4px;"><strong>💡 已获取的关键证据：</strong></p>
-      <ul style="margin-bottom: 0; padding-left: 1.5em; color: #88d; font-size: 0.82rem;">
-        <li>沈辞（代号"三尺"）被列为#SKU-2026-003号商品——<strong>HLA分型预计6月8日完成</strong>。在此之前必须采取行动。</li>
-        <li>已确认<strong>至少4名受害者</strong>（三尺/旅人/观星者/行者），其中1人已被摘取器官、1人已被整人出售。</li>
-        <li>器官交易通过<strong>独立的地下医疗网络</strong>完成——这是追踪链条中最脆弱的环节。</li>
-        <li>买家讨论中提及的"中东买家"、"肾衰竭病人"、"角膜配型"等细节可协助警方追踪下游犯罪网络。</li>
-        <li><strong>沈辞的O型血确认、健康评估报告预计6月8日前完成</strong>——届时器官交易将正式挂牌。时间窗口正在关闭。</li>
-        <li>搜索"<strong>后台管理</strong>"可进入团伙内部管理系统，获取更详细的证据（坐标、通讯记录、叛变成员信息）。</li>
-      </ul>
     </div>
   </div>
 </HiddenLayout>
 
+<style>
+  .nav-tab:hover { color: #888; }
+</style>
+
 <script>
   const BASE = (window as any).__BASE__ || '/';
 
-  // 有效的暗网账号列表
   const VALID_ACCOUNTS: Record<string, string> = {
     'DR-2026-03': 'rift0603',
-    // 可扩展更多账号
   };
 
   function doLogin() {
@@ -205,17 +188,16 @@ const BASE = __BASE_PATH__;
     const errorEl = document.getElementById('login-error');
     const loginSection = document.getElementById('login-section');
     const content = document.getElementById('darknet-content');
-    const loggedUser = document.getElementById('logged-user');
+    const headerUser = document.getElementById('header-user');
+    const headerBalance = document.getElementById('header-balance');
 
-    // 验证账号密码
     if (VALID_ACCOUNTS[username] && VALID_ACCOUNTS[username] === password) {
-      // 登录成功
       if (errorEl) errorEl.style.display = 'none';
       if (loginSection) loginSection.style.display = 'none';
       if (content) content.style.display = 'block';
-      if (loggedUser) loggedUser.textContent = username;
+      if (headerUser) headerUser.textContent = username;
+      if (headerBalance) headerBalance.textContent = '$0.00';
 
-      // 记录进度
       const stored = localStorage.getItem('arg_progress');
       if (stored) {
         const p = JSON.parse(stored);
@@ -226,27 +208,29 @@ const BASE = __BASE_PATH__;
           p.discoveredClues.push('darknet_marketplace');
           p.explorationProgress = (p.explorationProgress || 0) + 20;
         }
+        if (!p.discoveredPages) p.discoveredPages = [];
+        if (!p.discoveredPages.includes('/hidden/darknet')) {
+          p.discoveredPages.push('/hidden/darknet');
+        }
         localStorage.setItem('arg_progress', JSON.stringify(p));
       }
     } else {
-      // 登录失败
       if (errorEl) {
-        errorEl.textContent = '⚠ 账号或密码错误。请检查您的访问凭证。如尚未获得账号，请通过"加入我们"页面申请。';
+        errorEl.textContent = '账号或密码错误。';
         errorEl.style.display = 'block';
       }
     }
   }
 
-  // 尝试自动填入之前保存的暗网账号
   function tryAutoFill() {
     const stored = localStorage.getItem('arg_progress');
     if (stored) {
       const p = JSON.parse(stored);
       if (p.darknetAccount) {
-        const usernameInput = document.getElementById('darknet-username') as HTMLInputElement;
-        const passwordInput = document.getElementById('darknet-password') as HTMLInputElement;
-        if (usernameInput) usernameInput.value = p.darknetAccount.account || '';
-        if (passwordInput) passwordInput.value = p.darknetAccount.password || '';
+        const u = document.getElementById('darknet-username') as HTMLInputElement;
+        const pw = document.getElementById('darknet-password') as HTMLInputElement;
+        if (u) u.value = p.darknetAccount.account || '';
+        if (pw) pw.value = p.darknetAccount.password || '';
       }
     }
   }
@@ -254,25 +238,27 @@ const BASE = __BASE_PATH__;
   document.addEventListener('DOMContentLoaded', () => {
     tryAutoFill();
 
-    // 登录按钮
     document.getElementById('darknet-login-btn')?.addEventListener('click', doLogin);
-
-    // 回车登录
-    document.getElementById('darknet-password')?.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') doLogin();
-    });
+    document.getElementById('darknet-password')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
     document.getElementById('darknet-username')?.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        (document.getElementById('darknet-password') as HTMLInputElement)?.focus();
-      }
+      if (e.key === 'Enter') (document.getElementById('darknet-password') as HTMLInputElement)?.focus();
     });
 
-    // 退出登录
-    document.getElementById('logout-btn')?.addEventListener('click', () => {
-      const loginSection = document.getElementById('login-section');
-      const content = document.getElementById('darknet-content');
-      if (loginSection) loginSection.style.display = 'block';
-      if (content) content.style.display = 'none';
+    // 标签切换
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = (tab as HTMLElement).dataset.tab;
+        document.querySelectorAll('.nav-tab').forEach(t => {
+          (t as HTMLElement).style.color = '#555';
+          (t as HTMLElement).style.borderBottom = 'none';
+        });
+        (tab as HTMLElement).style.color = '#4a7c5a';
+        (tab as HTMLElement).style.borderBottom = '2px solid #4a7c5a';
+        ['market','live','history','wallet'].forEach(id => {
+          const el = document.getElementById('tab-' + id);
+          if (el) el.style.display = id === tabName ? 'block' : 'none';
+        });
+      });
     });
   });
 </script>

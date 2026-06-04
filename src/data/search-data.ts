@@ -20,8 +20,6 @@ export const TRIGGER_KEYWORDS: Record<string, string> = {
   '布景基地': '/trigger/base',
   '秘境之下': '/member/login',
   '后台管理': '/hidden/admin',
-  // 暗网入口——公告中"深度探秘"为暗网会员等级关键词
-  // 对暗网用户而言，公告中的"深度探秘"即指向暗网登录页
   '深度探秘': '/hidden/darknet',
 };
 
@@ -150,6 +148,66 @@ export const ARCHIVED_CONTENT: Record<string, ArchivedPost[]> = {
       isClue: true,
     },
   ],
+  'GPS': [
+    {
+      title: '寒假探秘计划，求建议',
+      author: '地下三尺',
+      authorUrl: '/user/shenci/',
+      date: '2025-12-15',
+      content: '寒假打算去秦岭走一趟，主要目标是傥骆道沿线的摩崖石刻。有去过的前辈吗？求路线建议。顺便说一下我装备已经升级了——换了个<strong>新的GPS手持机</strong>，之前那个老的在贺兰山淋了雨不太好使了。',
+      isClue: true,
+    },
+  ],
+  '蛇药': [
+    {
+      title: '银川出发贺兰山三日徒步路线分享',
+      author: '山野探秘人',
+      authorUrl: '/user/mountainwolf/',
+      date: '2024-09-12',
+      content: '分享一条银川出发的经典路线：西夏区方向进山，沿干沟徒步约六公里，翻过海拔1800米左右的垭口到达岩画所在的崖面。沿途有明显的牧道可以跟随。需要注意的是夏季蝮蛇活跃，<strong>务必带蛇药</strong>。水源地距离岩画区约一公里，扎营需要提前备水。',
+      isClue: false,
+    },
+  ],
+  '山野探秘人': [
+    {
+      title: '银川出发贺兰山三日徒步路线分享',
+      author: '山野探秘人',
+      authorUrl: '/user/mountainwolf/',
+      date: '2024-09-12',
+      content: '分享一条银川出发的经典路线：西夏区方向进山，沿干沟徒步约六公里到达岩画所在的崖面。沿途有明显的牧道可以跟随。需要注意的是夏季蝮蛇活跃，务必带蛇药。',
+      isClue: false,
+    },
+  ],
+  '龙骨': [
+    {
+      title: 'SDR扫频拦截记录（会员区存档）',
+      author: 'signal_屿',
+      authorUrl: '/user/lyu/',
+      date: '2026-05-30',
+      content: '昨晚SDR扫频，935-960MHz GSM下行频段拦到一条未加密短信。内容片段："新客待激活"、"下批出货"、"<strong>龙骨尾款</strong>"。虚商号段，加密方式已废弃（A5/0）。这种措辞不像正常的商业短信——更像是某种圈内黑话。',
+      isClue: true,
+    },
+  ],
+  '永无止境': [
+    {
+      title: '关于这个站的一些疑虑 — 写在下次出发之前',
+      author: '地下三尺',
+      authorUrl: '/user/shenci/',
+      date: '2026-04-25',
+      content: '最近对这个站的信息源产生了严重怀疑。多次实地探访发现站内推荐的"冷门秘境"存在系统性的描述失实。更让人在意的是，翻看已废弃的"秘境徒步联盟"网页快照时发现——两个站点的公告措辞模板几乎一致。"<strong>永无止境</strong>"、"安全第一"——连断行位置都相同。如果这两个站是同一伙人运营的，那公告就不是单纯的公告。',
+      isClue: true,
+    },
+  ],
+  '凤凰山': [
+    {
+      title: '凤凰山1420MHz异常信号全频段分析',
+      author: 'signal_屿',
+      authorUrl: '/user/lyu/',
+      date: '2026-04-18',
+      content: '三次实地扫描<strong>凤凰山</strong>点位的数据。信号确实存在，但调制模式分析显示——信号源并非自然天体。频谱特征更接近<strong>民用SDR设备</strong>（HackRF One级别）产生的调制信号。写那个目击报告的人要不就是根本不懂无线电，要不就是故意的。',
+      isClue: true,
+    },
+  ],
 };
 
 // 正常搜索时导航到的页面
@@ -161,6 +219,11 @@ export const MOCK_RESULTS: Record<string, string[]> = {
   '坐标': ['/user/lyu/', '/user/shenci/', '/alien/', '/ruins/'],
   '岩画': ['/ruins/ruins-001/', '/user/shenci/'],
   '神农架': ['/alien/alien-003/', '/ruins/ruins-003/'],
+  '凤凰山': ['/alien/alien-001/', '/user/lyu/'],
+  '秦岭': ['/ruins/ruins-001/', '/user/shenci/'],
+  '贺兰山': ['/ruins/ruins-001/', '/user/shenci/', '/community/post/247/'],
+  '深空': ['/alien/', '/ruins/', '/hollow-earth/'],
+  '探秘': ['/community/', '/user/shenci/', '/alien/', '/ruins/'],
 };
 
 /** 根据查询词查找历史存档 */

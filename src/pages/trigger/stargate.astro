@@ -1,6 +1,6 @@
 ---
 // /trigger/stargate — "星门坐标"搜索结果页
-// 揭示团伙伪造外星信号坐标系统的技术细节
+// 揭示信号伪造系统的技术片段。信息碎片化，需要玩家与rift/base页交叉验证。
 import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
@@ -24,89 +24,79 @@ const BASE = __BASE_PATH__;
   </div>
 
   <div class="hidden-warning">
-    ⚠ 以下内容来自搜索引擎缓存。原始文件已被删除。部分数据可能存在缺失。
+    ⚠ 以下为搜索引擎缓存片段。原始文件已被删除，多处数据损坏。请自行交叉验证各片段之间的信息。
   </div>
 
   <p class="text-muted" style="margin-bottom: 16px;">
-    找到 <strong style="color:#c0392b;">2</strong> 条缓存记录
+    找到 <strong style="color:#c0392b;">2</strong> 条缓存 · 存在字段级数据丢失
   </p>
 
-  <!-- 结果 1：星门坐标部署清单 -->
+  <!-- 结果 1：信号点位部署清单（多处数据丢失） -->
   <div class="card" style="margin-bottom: 16px; border-left: 3px solid var(--color-tag-alien);">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-      <strong style="color: #e0dcd5;">📡 "星门坐标"项目 — 伪造信号点位部署清单</strong>
+      <strong style="color: #e0dcd5;">📡 信号点位部署清单 · 片段（共47条，仅恢复5条）</strong>
       <span class="text-muted" style="font-size: 0.72rem;">缓存于 2026-05-29</span>
     </div>
     <p class="text-muted" style="font-size: 0.72rem; margin-bottom: 8px;">
-      原始来源：<code style="color:#666;">ops.internal/stargate/deployment-2026Q1.csv</code> · 访问状态：<span style="color:#c0392b;">403 Forbidden</span>
+      原始来源：<code style="color:#666;">ops.[域名丢失]/deploy-2026Q1.csv</code> · 访问状态：<span style="color:#c0392b;">403</span>
     </p>
     <hr />
     <p style="font-size: 0.84rem; margin-bottom: 10px; color: #aaa;">
-      "星门坐标"是"深海裂隙"项目的技术子方案。利用民用无线电设备在偏远地点发射特定频率的信号，模拟"外星信号源"。配合导航站"外星目击"板块的推荐点位，引导目标前往预设的伏击区域。
+      "星门坐标"为"深海裂隙"的配套方案。利用民用无线电设备在偏远坐标发射特定频段信号。配合导航站内推荐点位引导目标前往。以下为缓存恢复的部分点位：
     </p>
     <table style="font-size: 0.8rem;">
-      <tr>
-        <th>点位编号</th><th>伪装名称</th><th>坐标</th><th>信号频段</th><th>设备类型</th><th>状态</th>
-      </tr>
-      <tr>
-        <td>SG-001</td><td>凤凰山异常信号</td><td><code>44.52, 127.83</code></td><td>1420 MHz</td><td>可编程SDR发射器</td><td><span style="color:#e67e22;">运行中</span></td>
-      </tr>
-      <tr>
-        <td>SG-002</td><td>神农架石阵信号</td><td><code>31.58, 110.42</code></td><td>1420 MHz</td><td>可编程SDR发射器</td><td><span style="color:#27ae60;">已回收</span></td>
-      </tr>
-      <tr>
-        <td>SG-003</td><td>贺兰山脉冲源</td><td><code>38.78, 106.03</code></td><td>2380 MHz</td><td>高功率脉冲发生器</td><td><span style="color:#27ae60;">任务完成</span></td>
-      </tr>
-      <tr style="opacity: 0.5;">
-        <td>SG-004</td><td>罗布泊残骸区</td><td><code>40.39, 90.22</code></td><td>—</td><td>—</td><td>待部署</td>
-      </tr>
-      <tr style="opacity: 0.5;">
-        <td>SG-005</td><td>昆仑山石刻区</td><td><code>36.12, 94.55</code></td><td>—</td><td>—</td><td>待部署</td>
-      </tr>
+      <tr><th>编号</th><th>名称</th><th>坐标</th><th>频段</th><th>状态</th></tr>
+      <tr><td>SG-001</td><td>凤凰山</td><td><code>44.52, 127.83</code></td><td>1420 MHz</td><td><span style="color:#e67e22;">运行中</span></td></tr>
+      <tr><td>SG-002</td><td>神农架</td><td><code>31.58, 110.42</code></td><td>1420 MHz</td><td><span style="color:#27ae60;">已回收</span></td></tr>
+      <tr><td>SG-003</td><td>贺兰山</td><td><code>38.78, 106.03</code></td><td>2380 MHz</td><td><span style="color:#27ae60;">任务完成</span></td></tr>
+      <tr style="opacity: 0.5;"><td>SG-004</td><td>罗布泊</td><td><code>[损坏]</code></td><td>—</td><td>待部署</td></tr>
+      <tr style="opacity: 0.5;"><td>SG-005</td><td>昆仑山</td><td><code>[损坏]</code></td><td>—</td><td>待部署</td></tr>
     </table>
-    <p style="font-size: 0.72rem; color: #666; margin-top: 8px;">
-      —— 共 <strong>47</strong> 个点位，其中 <strong>12</strong> 个已部署设备，<strong>3</strong> 个任务完成/已回收，剩余为诱饵坐标（无实际设备，仅在导航站上发布信息）。
+    <p style="font-size: 0.7rem; color: #555; margin-top: 8px;">
+      ※ 共47个点位。已部署设备：<span style="color:#888;">[数字丢失]</span>个。任务完成/已回收：<span style="color:#888;">[数字丢失]</span>个。其余为无设备的诱饵坐标（仅在导航站上发布信息）。设备类型字段全部损坏，无法恢复。
     </p>
   </div>
 
-  <!-- 结果 2：技术说明 -->
+  <!-- 结果 2：技术说明（多处截断） -->
   <div class="card" style="margin-bottom: 16px; border-left: 3px solid var(--color-tag-alien);">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-      <strong style="color: #e0dcd5;">🔧 信号伪造技术说明（内部文档片段）</strong>
+      <strong style="color: #e0dcd5;">🔧 设备部署说明 · 残篇</strong>
       <span class="text-muted" style="font-size: 0.72rem;">缓存于 2026-05-28</span>
     </div>
     <hr />
     <div style="font-size: 0.84rem; line-height: 1.8; color: #aaa;">
       <p><strong>设备选型：</strong></p>
       <ul style="margin-bottom: 12px;">
-        <li>主选：HackRF One + 功放模块（成本低、频段宽、可编程）</li>
-        <li>备选：LimeSDR（用于1420MHz氢线频段的精细调制）</li>
-        <li>供电：太阳能板 + 12V铅酸电池组（无人值守可持续运行2-4周）</li>
+        <li>主选：[字段丢失] + 功放模块</li>
+        <li>频段覆盖：<span style="color:#888;">[范围丢失]</span></li>
+        <li>供电：太阳能 + 电池组（持续运行 <span style="color:#888;">[数字丢失]</span> 周）</li>
       </ul>
 
-      <p><strong>信号设计原则：</strong></p>
+      <p><strong>信号特征：</strong></p>
       <ul style="margin-bottom: 12px;">
-        <li>信号特征：窄带载波 + 不规则的脉冲调制（听起来"像是有信息"但无法解码——因为没有信息）</li>
-        <li>频段选择：优先使用SETI关注的频段（1420 MHz氢线、1662 MHz羟基线），增加被业余射电天文学家发现的概率</li>
-        <li><strong style="color:#c0392b;">⚠ 局限</strong>：非天文学专业人士用频谱仪一拉就能看出调制模式不像自然天体。此方案对<strong>有信号分析经验的人无效</strong>——但目标群体中这类人极少。</li>
+        <li>窄带载波 + 不规则脉冲调制</li>
+        <li>优先部署于 <strong>1420 MHz</strong> 频段附近——此频段为[字段丢失]常用监测范围</li>
+        <li style="color:#888;">[中间段落缓存损坏——约150字丢失]</li>
+        <li><strong style="color:#c0392b;">⚠ 已知局限</strong>：具备<span style="color:#888;">[字段丢失]</span>经验的人员可使用频谱分析设备识别调制模式异常。但目标群体中此类人员占比极低，风险可控。</li>
       </ul>
 
-      <p><strong>部署位置选择：</strong></p>
+      <p><strong>部署选址原则：</strong></p>
       <ul style="margin-bottom: 0;">
-        <li>与"古迹秘境"推荐点位的地理坐标<strong>高度重合</strong>——因为两套方案共用同一批伏击地点</li>
-        <li>距离最近公路至少 5 公里，确保目标需徒步进入</li>
-        <li>信号覆盖半径约 1-3 公里（受地形和功放功率限制）</li>
+        <li>与另一套方案的推荐点位<strong>坐标高度重合</strong>——共用同一批[字段丢失]</li>
+        <li>距离最近公路 ≥ <span style="color:#888;">[数字丢失]</span> 公里</li>
+        <li>信号有效半径约 1-3 公里（受地形和[字段丢失]限制）</li>
       </ul>
     </div>
+    <p style="font-size:0.7rem;color:#555;margin-top:8px;">
+      ※ 本文档多处字段因缓存损坏无法恢复。关键技术参数（设备型号、频段范围）已丢失。
+    </p>
   </div>
 
-  <div class="hidden-notice" style="margin-top: 20px;">
-    <p style="margin-bottom: 4px;"><strong>💡 关键发现：</strong></p>
-    <ul style="margin-bottom: 0; padding-left: 1.5em; color: #88d;">
-      <li>所有"外星信号"都是<strong>民用无线电设备伪造的</strong>——林屿的频谱分析结论是对的。</li>
-      <li>信号点位与古迹点位坐标重合——因为团伙<strong>共用同一批伏击地点</strong>。</li>
-      <li>贺兰山点位（SG-003）标记为<strong>"任务完成"</strong>——确认沈辞在此处被伏击。</li>
-      <li>搜索"<strong>布景基地</strong>"可了解更多关于囚禁场所的信息。</li>
-    </ul>
+  <div style="margin-top: 16px; text-align: center;">
+    <p style="color: #555; font-size: 0.75rem;">
+      —— 缓存到此结束 ——<br />
+      上述两份文档来自不同缓存时间点，部分信息存在矛盾。<br />
+      建议与"<strong>深海裂隙</strong>"和"<strong>布景基地</strong>"的缓存对照阅读。
+    </p>
   </div>
 </HiddenLayout>

@@ -54,7 +54,8 @@
       "Bash(BASE_URL=secret-angler-ARG pnpm build)",
       "Bash(echo \"draft-count: $?\")",
       "Bash(echo \"base64-count: $?\")",
-      "Bash(echo \"count: $?\")"
+      "Bash(echo \"count: $?\")",
+      "Bash(pnpm build *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",
