@@ -1,19 +1,20 @@
 ---
 // 地下三尺 — 组队帖：贺兰山岩画探秘
 import Layout from '../../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="下周贺兰山岩画探秘——有没有一起的？" description="地下三尺的探秘日志">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     下周贺兰山岩画探秘——有没有一起的？
   </div>
 
   <article>
     <h1 style="font-size: 1.5rem; margin-bottom: 4px;">下周贺兰山岩画探秘——有没有一起的？</h1>
     <div class="post-meta" style="margin-bottom: 16px;">
-      作者：<a href="/user/shenci/" target="_blank">地下三尺</a> ·
+      作者：<a href={`${BASE}user/shenci/`} target="_blank">地下三尺</a> ·
       发布于 2026-03-30 ·
       阅读 134 · 评论 5
     </div>

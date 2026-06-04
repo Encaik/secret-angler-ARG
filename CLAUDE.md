@@ -54,6 +54,34 @@ public/           # 直接映射到根路径（robots.txt 等）
 - 状态读写通过 `src/scripts/progress.ts` 统一接口
 - 跨标签页状态通过 `storage` 事件同步
 
+### 路径引用规范（兼容根目录与二级目录部署）
+
+项目同时支持根目录部署（本地开发 `pnpm dev`）和 GitHub Pages 二级目录部署（`BASE_URL=secret-angler-ARG pnpm build`）。
+
+**核心机制：**
+- `astro.config.mjs` 通过 `BASE_URL` 环境变量拼接 `base` 路径（`/repo-name/`），同时通过 Vite `define` 注入全局常量 `__BASE_PATH__`
+- `.astro` 文件 frontmatter 中定义 `const BASE = __BASE_PATH__;`，模板内所有 `href` 使用模板表达式：`href={`${BASE}home/`}`
+- 客户端 `.ts` 脚本中同样使用 `const BASE = __BASE_PATH__;`（Vite 构建时替换为实际字符串）
+- 内联 `<script>` 块中使用 `const BASE = __BASE_PATH__;`（不带引号/大括号包裹——它是 Vite define 标识符，不是 Astro 模板表达式）
+
+**强制规则：**
+- **禁止在 `href`、`src`、`action` 等属性中硬编码绝对路径**（如 `href="/home/"`、`src="/src/scripts/xxx.ts"`）
+- **禁止使用 `import.meta.env.BASE_URL`**——Windows Git Bash 下 MSYS2 会将其转译为文件系统路径（如 `C:/Program Files/Git/...`）。统一使用 `__BASE_PATH__`
+- **`window.open()` 和 JS 内字符串拼接路径也必须加 BASE 前缀**：`window.open(BASE + 'member/', '_blank')`
+- 数据文件（`src/data/*.ts`）中存储的 `pageUrl`、`authorUrl` 等路径字段保持根相对格式（`/user/xxx/`），在模板/脚本渲染时动态拼接 BASE
+- 内联脚本中 `${BASE}xxx` 的 JS 模板字面量用法必须是 JS 变量 `BASE`（小写），而非 Astro 模板表达式
+
+**构建命令：**
+```bash
+# 本地开发（根目录）
+pnpm dev
+
+# GitHub Pages 部署（二级目录）
+BASE_URL=secret-angler-ARG pnpm build
+```
+
+**TypeScript 声明：** `src/env.d.ts` 中已声明 `declare const __BASE_PATH__: string;`
+
 ## 命名规范
 
 ### 文件命名

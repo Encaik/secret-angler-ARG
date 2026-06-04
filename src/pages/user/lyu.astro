@@ -2,6 +2,7 @@
 // 林屿个人主页 — 外星/太空探秘者
 // 包含动态、文章、收藏点位，坐标数据埋在此处作为线索
 import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout
@@ -10,8 +11,8 @@ import Layout from '../../components/Layout.astro';
 >
   <!-- 面包屑 -->
   <div class="breadcrumb">
-    <a href="/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     signal_屿
   </div>
 
@@ -49,7 +50,7 @@ import Layout from '../../components/Layout.astro';
 
       <div class="post-item">
         <div class="post-title">
-          <a href="/alien/alien-001/" target="_blank">凤凰山异常信号全频段分析报告（2026年5月更新）</a>
+          <a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山异常信号全频段分析报告（2026年5月更新）</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           基于三次实地考察数据，对凤凰山区域1420MHz波段异常信号进行了全频段扫描……
@@ -59,7 +60,7 @@ import Layout from '../../components/Layout.astro';
 
       <div class="post-item">
         <div class="post-title">
-          <a href="/alien/alien-002/" target="_blank">全国外星目击高发区坐标数据集（2025-2026年度）</a>
+          <a href={`${BASE}alien/alien-002/`} target="_blank">全国外星目击高发区坐标数据集（2025-2026年度）</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           整理了近两年收集的47个"高可信度"外星目击点坐标。使用GIS工具进行空间分析……
@@ -120,7 +121,7 @@ import Layout from '../../components/Layout.astro';
 
       <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          <a href="/user/shenci/" target="_blank"><strong>@地下三尺</strong></a> 沈辞，你上次说的贺兰山岩画，我在卫星图上找到了对应的经纬度。对比了我自己的目击点数据库……真的重合了。我们见面细聊。
+          <a href={`${BASE}user/shenci/`} target="_blank"><strong>@地下三尺</strong></a> 沈辞，你上次说的贺兰山岩画，我在卫星图上找到了对应的经纬度。对比了我自己的目击点数据库……真的重合了。我们见面细聊。
         </p>
         <div class="post-meta">2026-04-28</div>
       </div>
@@ -145,22 +146,22 @@ import Layout from '../../components/Layout.astro';
         <table style="font-size: 0.8rem;">
           <tr><th>点位名称</th><th>坐标</th><th>类型</th></tr>
           <tr>
-            <td><a href="/alien/alien-001/" target="_blank">凤凰山信号异常区</a></td>
+            <td><a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山信号异常区</a></td>
             <td><code>44.52, 127.83</code></td>
             <td><span class="tag tag-alien">外星</span></td>
           </tr>
           <tr style="background: #fdf5e6;">
-            <td><a href="/alien/alien-003/" target="_blank">神农架UFO走廊</a> ⚠</td>
+            <td><a href={`${BASE}alien/alien-003/`} target="_blank">神农架UFO走廊</a> ⚠</td>
             <td><code>31.58, 110.42</code></td>
             <td><span class="tag tag-alien">外星</span> <span class="tag tag-ruins">古迹重合</span></td>
           </tr>
           <tr>
-            <td><a href="/alien/alien-005/" target="_blank">罗布泊残骸目击地</a> ⚠</td>
+            <td><a href={`${BASE}alien/alien-005/`} target="_blank">罗布泊残骸目击地</a> ⚠</td>
             <td><code>40.39, 90.22</code></td>
             <td><span class="tag tag-alien">外星</span> <span class="tag tag-ruins">古迹重合</span></td>
           </tr>
           <tr>
-            <td><a href="/alien/alien-006/" target="_blank">昆仑山脉冲星信号带</a> ⚠</td>
+            <td><a href={`${BASE}alien/alien-006/`} target="_blank">昆仑山脉冲星信号带</a> ⚠</td>
             <td><code>36.12, 94.55</code></td>
             <td><span class="tag tag-alien">外星</span> <span class="tag tag-ruins">古迹重合</span></td>
           </tr>
@@ -170,17 +171,17 @@ import Layout from '../../components/Layout.astro';
             <td><span class="tag tag-alien">外星</span></td>
           </tr>
         </table>
-        <p class="text-muted" style="margin-top: 6px;">⚠ 标记的为与<a href="/user/shenci/" target="_blank">@地下三尺</a>收藏点位坐标重合的条目</p>
+        <p class="text-muted" style="margin-top: 6px;">⚠ 标记的为与<a href={`${BASE}user/shenci/`} target="_blank">@地下三尺</a>收藏点位坐标重合的条目</p>
       </div>
 
       <!-- 关注/粉丝 -->
       <h3 style="margin-top: 16px;">👥 关注</h3>
       <div class="post-item">
-        <a href="/user/shenci/" target="_blank"><strong>地下三尺</strong></a>
+        <a href={`${BASE}user/shenci/`} target="_blank"><strong>地下三尺</strong></a>
         <span class="text-muted">沈辞 · 互相关注</span>
       </div>
       <div class="post-item">
-        <a href="/user/nebulax/" target="_blank">nebu1a_x</a>
+        <a href={`${BASE}user/nebulax/`} target="_blank">nebu1a_x</a>
         <span class="text-muted">小星</span>
       </div>
     </div>

@@ -1,19 +1,20 @@
 ---
 // 浪到没信号 — 旅行分享帖
 import Layout from '../../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="刚从川西回来，说好的秘境没找到……" description="浪到没信号的旅行分享">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     刚从川西回来，说好的秘境没找到……
   </div>
 
   <article>
     <h1 style="font-size: 1.5rem; margin-bottom: 4px;">刚从川西回来，说好的秘境没找到……</h1>
     <div class="post-meta" style="margin-bottom: 16px;">
-      作者：<a href="/user/driftlang/" target="_blank">浪到没信号</a> ·
+      作者：<a href={`${BASE}user/driftlang/`} target="_blank">浪到没信号</a> ·
       发布于 2026-04-30 ·
       阅读 89 · 评论 3
     </div>

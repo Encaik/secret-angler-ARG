@@ -1,26 +1,27 @@
 ---
 // signal_屿 — 讨论帖：凤凰山信号异常组队考察
 import Layout from '../../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="凤凰山信号异常——有人一起去实地考察吗？" description="signal_屿的讨论帖">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     凤凰山信号异常——有人一起去实地考察吗？
   </div>
 
   <article>
     <h1 style="font-size: 1.5rem; margin-bottom: 4px;">凤凰山信号异常——有人一起去实地考察吗？</h1>
     <div class="post-meta" style="margin-bottom: 16px;">
-      作者：<a href="/user/lyu/" target="_blank">signal_屿</a> ·
+      作者：<a href={`${BASE}user/lyu/`} target="_blank">signal_屿</a> ·
       发布于 2026-04-10 ·
       阅读 247 · 评论 8
     </div>
     <hr />
     <p>之前在凤凰山那边用SDR扫到了几组窄带信号，频率在1420MHz附近，时间窗口比较规律。我做了初步的频谱分析，调制模式跟常见的人造干扰不太一样。不一定是ET——大概率是某个未知的地面源——但值得去实地确认一下。</p>
     <p>计划下周末去，带便携SDR和定向天线。如果能在信号出现的时间窗口内（根据之前的记录是凌晨1-3点），在不同位置做三角定位，也许能确定信号源的大致方位。</p>
-    <p>有没有感兴趣的？不需要专业知识，帮忙记录数据和守夜就行。我在<a href="/alien/" target="_blank">外星目击板块</a>发了更详细的分析报告，可以先看看。</p>
+    <p>有没有感兴趣的？不需要专业知识，帮忙记录数据和守夜就行。我在<a href={`${BASE}alien/`} target="_blank">外星目击板块</a>发了更详细的分析报告，可以先看看。</p>
   </article>
 
   <div style="margin: 24px auto;">

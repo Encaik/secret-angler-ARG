@@ -1,12 +1,13 @@
 ---
 // /member — 高级探秘者板块（需登录+会员权限）
 import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="高级探秘者板块">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     高级探秘者板块
   </div>
 
@@ -16,7 +17,7 @@ import Layout from '../../components/Layout.astro';
     <hr />
     <p class="text-muted">此板块仅对注册探秘者开放，请先登录。</p>
     <div style="margin-top: 20px;">
-      <a href="/login/" target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a href={`${BASE}login/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
         前往登录 →
       </a>
     </div>
@@ -28,7 +29,7 @@ import Layout from '../../components/Layout.astro';
     <hr />
     <p class="text-muted">此板块需要高级探秘者权限。请通过社区中的线索获取访问密钥。</p>
     <div style="margin-top: 20px;">
-      <a href="/community/" target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a href={`${BASE}community/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
         返回社区 →
       </a>
     </div>

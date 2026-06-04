@@ -2,6 +2,7 @@
 // 登录页 — 模拟浏览器"保存的密码"自动填充
 // 玩家点击signal_屿 → 自动填入 → 登录
 import Layout from '../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="登录">
@@ -45,7 +46,7 @@ import Layout from '../components/Layout.astro';
     <p id="login-success" style="color: #27ae60; font-size: 0.82rem; margin-top: 8px; display: none;"></p>
 
     <p style="text-align: center; margin-top: 20px;">
-      <a href="/home/" target="_blank" style="font-size: 0.85rem; color: var(--color-text-muted);">暂不登录，先随便看看</a>
+      <a href={`${BASE}home/`} target="_blank" style="font-size: 0.85rem; color: var(--color-text-muted);">暂不登录，先随便看看</a>
     </p>
   </div>
 </Layout>

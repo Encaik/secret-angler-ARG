@@ -4,14 +4,15 @@
 //   lyu → 林屿的私信箱，含沈辞的账号密码线索
 //   shenci → 沈辞的私信箱，含与林屿的另一半对话 + 指向源码的线索
 import Layout from '../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="私信箱">
-  <div class="breadcrumb"><a href="/home/" target="_blank">首页</a><span>›</span>私信箱</div>
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>私信箱</div>
 
   <div id="not-logged-in" class="card" style="text-align: center; padding: 40px;">
     <h2>📬 私信箱</h2>
-    <p class="text-muted">请先<a href="/login/" target="_blank">登录</a>后再查看私信。</p>
+    <p class="text-muted">请先<a href={`${BASE}login/`} target="_blank">登录</a>后再查看私信。</p>
   </div>
 
   <div id="inbox-content" style="display: none;">

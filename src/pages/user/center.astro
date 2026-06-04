@@ -2,11 +2,12 @@
 // /user/center — 个人中心（登录后可见）
 // 论坛标准用户面板：个人资料 + 我的帖文 + 私信入口
 import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="个人中心">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
     个人中心
   </div>
 
@@ -14,7 +15,7 @@ import Layout from '../../components/Layout.astro';
   <div id="not-logged-in" class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto;">
     <h2>👤 个人中心</h2>
     <hr />
-    <p class="text-muted">请先<a href="/login/" target="_blank">登录</a>后再访问个人中心。</p>
+    <p class="text-muted">请先<a href={`${BASE}login/`} target="_blank">登录</a>后再访问个人中心。</p>
   </div>
 
   <!-- 已登录 -->
@@ -29,7 +30,7 @@ import Layout from '../../components/Layout.astro';
         </p>
       </div>
       <div>
-        <a href="/inbox/" target="_blank" style="display: inline-block; padding: 6px 16px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm); font-size: 0.85rem;">
+        <a href={`${BASE}inbox/`} target="_blank" style="display: inline-block; padding: 6px 16px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm); font-size: 0.85rem;">
           📬 私信箱
         </a>
       </div>

@@ -1,17 +1,18 @@
 ---
 import Layout from '../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 <Layout title="404 页面未找到">
-  <div class="breadcrumb"><a href="/home/" target="_blank">首页</a><span>›</span>404</div>
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>404</div>
   <div style="text-align:center;padding:40px 0;">
     <h1 style="font-size:3rem;color:var(--color-text-muted);margin-bottom:0;">404</h1>
     <p style="font-size:1.2rem;margin-bottom:20px;">你来到了一片未知的领域……</p>
     <p class="text-muted">这个页面不存在，或者从未存在过。</p>
     <p class="text-muted">也许你找的答案在别处。也许答案根本不存在。</p>
     <p style="margin-top:20px;">
-      <a href="/" target="_blank">返回首页</a> ·
-      <a href="/alien/" target="_blank">外星目击</a> ·
-      <a href="/ruins/" target="_blank">古迹秘境</a>
+      <a href={`${BASE}`} target="_blank">返回首页</a> ·
+      <a href={`${BASE}alien/`} target="_blank">外星目击</a> ·
+      <a href={`${BASE}ruins/`} target="_blank">古迹秘境</a>
     </p>
     <!-- ⭐ 404 彩蛋：隐藏的线索 -->
     <!-- 有时答案不在页面上，而是在页面背后。右键 -> 查看源代码，你会发现更多。 -->

@@ -1,8 +1,9 @@
 ---
 import Layout from '../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 <Layout title="探秘者指南">
-  <div class="breadcrumb"><a href="/home/" target="_blank">首页</a><span>›</span>探秘者指南</div>
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>探秘者指南</div>
   <h2>🧭 探秘者指南</h2>
   <hr />
   <h3>必备装备清单</h3>

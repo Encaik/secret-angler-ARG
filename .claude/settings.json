@@ -37,10 +37,21 @@
       "Bash(curl -s http://localhost:4322/search/)",
       "Bash(curl -s http://localhost:4322/home/)",
       "Bash(curl -s http://localhost:4322/community/post/247/)",
-      "Bash(curl -s http://localhost:4322/src/styles/global.css)"
+      "Bash(curl -s http://localhost:4322/src/styles/global.css)",
+      "Bash(node scripts/fix-paths.cjs)",
+      "Bash(grep -n 'href={`' src/pages/search.astro)",
+      "Bash(BASE_URL='/secret-angler-ARG/' npx astro build)",
+      "Bash(grep -v '^$')",
+      "Bash(BASE_URL=secret-angler-ARG npx astro build)",
+      "Bash(cd c:/Users/encai/Desktop/secret-angler-ARG && sed -i 's/import\\\\.meta\\\\.env\\\\.BASE_URL/__BASE_PATH__/g' src/components/Layout.astro src/pages/*.astro src/pages/**/*.astro src/scripts/search.ts)",
+      "Bash(xargs grep -l 'import\\\\.meta\\\\.env\\\\.BASE_URL')",
+      "Bash(xargs sed -i 's/import\\\\.meta\\\\.env\\\\.BASE_URL/__BASE_PATH__/g')",
+      "Bash(pnpm dev *)",
+      "Bash(cmd.exe /c start http://localhost:4321/)"
     ],
     "additionalDirectories": [
-      "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude"
+      "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",
+      "C:\\Users\\encai\\Desktop\\secret-angler-ARG\\src\\pages"
     ]
   }
 }

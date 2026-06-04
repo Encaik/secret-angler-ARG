@@ -1,19 +1,20 @@
 ---
 // nebu1a_x — 闲聊讨论帖
 import Layout from '../../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="你们觉得最靠谱的外星目击是哪一次？" description="nebu1a_x的讨论帖">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     你们觉得最靠谱的外星目击是哪一次？
   </div>
 
   <article>
     <h1 style="font-size: 1.5rem; margin-bottom: 4px;">你们觉得最靠谱的外星目击是哪一次？</h1>
     <div class="post-meta" style="margin-bottom: 16px;">
-      作者：<a href="/user/nebulax/" target="_blank">nebu1a_x</a> ·
+      作者：<a href={`${BASE}user/nebulax/`} target="_blank">nebu1a_x</a> ·
       发布于 2026-03-28 ·
       阅读 189 · 评论 9
     </div>

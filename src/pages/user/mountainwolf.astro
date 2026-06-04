@@ -1,8 +1,9 @@
 ---
 import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 <Layout title="山野探秘人的个人主页">
-  <div class="breadcrumb"><a href="/home/" target="_blank">首页</a><span>›</span>山野探秘人</div>
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>山野探秘人</div>
   <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
     <div style="width:72px;height:72px;background:#4a6741;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.8rem;flex-shrink:0;">⛰️</div>
     <div style="flex:1;">

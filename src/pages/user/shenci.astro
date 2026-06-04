@@ -2,6 +2,7 @@
 // 沈辞个人主页 — 古迹/历史探秘者
 // 包含动态、手绘笔记、坐标合集，隐藏文章含"留白处藏通路"暗示
 import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout
@@ -9,8 +10,8 @@ import Layout from '../../components/Layout.astro';
   description="沈辞，古文明探秘者，冷门古迹爱好者。用脚步丈量历史，用双眼发现被遗忘的真相。"
 >
   <div class="breadcrumb">
-    <a href="/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     地下三尺
   </div>
 
@@ -46,7 +47,7 @@ import Layout from '../../components/Layout.astro';
 
       <div class="post-item">
         <div class="post-title">
-          <a href="/ruins/ruins-001/" target="_blank">贺兰山未记录岩画群手绘记录与初步分析</a>
+          <a href={`${BASE}ruins/ruins-001/`} target="_blank">贺兰山未记录岩画群手绘记录与初步分析</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           2026年5月实地探访了银川西侧贺兰山深处的一处岩画群。该地点未出现在任何公开文物图录中……
@@ -57,7 +58,7 @@ import Layout from '../../components/Layout.astro';
       <!-- ⭐ 关键文章：含坐标合集，用于对比发现重合 -->
       <div class="post-item" style="border-left: 3px solid var(--color-accent); padding-left: 10px;">
         <div class="post-title">
-          <a href="/ruins/ruins-002/" target="_blank">探秘笔记：全国冷门古迹实地考察坐标合集（持续更新）</a>
+          <a href={`${BASE}ruins/ruins-002/`} target="_blank">探秘笔记：全国冷门古迹实地考察坐标合集（持续更新）</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           历时一年多，实地探访了全国23处未被主流考古学关注的"冷门古迹"。每处记录了精确GPS坐标……
@@ -71,7 +72,7 @@ import Layout from '../../components/Layout.astro';
       <!-- ⭐ 隐藏文章：暗示"留白处藏通路" -->
       <div class="post-item" style="border-left: 3px solid var(--color-accent); padding-left: 10px;">
         <div class="post-title">
-          <a href="/community/post/247/" target="_blank">明天去贺兰山，简单记录一下准备情况</a>
+          <a href={`${BASE}community/post/247/`} target="_blank">明天去贺兰山，简单记录一下准备情况</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           出发前的一篇准备工作记录。装备、路线、顺便看看导航站推荐的点位……看起来就是一篇普通的探秘日记。
@@ -124,7 +125,7 @@ import Layout from '../../components/Layout.astro';
 
       <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          <a href="/user/lyu/" target="_blank"><strong>@signal_屿</strong></a> 林屿，我比对了你整理的目击点坐标和我自己探访过的古迹坐标。8个点位完全重合。8个！这不可能只是巧合。我觉得导航站的某些人知道些什么。
+          <a href={`${BASE}user/lyu/`} target="_blank"><strong>@signal_屿</strong></a> 林屿，我比对了你整理的目击点坐标和我自己探访过的古迹坐标。8个点位完全重合。8个！这不可能只是巧合。我觉得导航站的某些人知道些什么。
         </p>
         <div class="post-meta">2026-05-01</div>
       </div>
@@ -156,12 +157,12 @@ import Layout from '../../components/Layout.astro';
         <table style="font-size: 0.8rem;">
           <tr><th>点位名称</th><th>坐标</th><th>类型</th></tr>
           <tr>
-            <td><a href="/ruins/ruins-001/" target="_blank">贺兰山未记录岩画群</a></td>
+            <td><a href={`${BASE}ruins/ruins-001/`} target="_blank">贺兰山未记录岩画群</a></td>
             <td><code>38.78, 106.03</code></td>
             <td><span class="tag tag-ruins">古迹</span></td>
           </tr>
           <tr style="background: #fdf5e6;">
-            <td><a href="/ruins/ruins-003/" target="_blank">神农架远古石阵</a> ⚠</td>
+            <td><a href={`${BASE}ruins/ruins-003/`} target="_blank">神农架远古石阵</a> ⚠</td>
             <td><code>31.58, 110.42</code></td>
             <td><span class="tag tag-ruins">古迹</span> <span class="tag tag-alien">外星重合</span></td>
           </tr>
@@ -181,7 +182,7 @@ import Layout from '../../components/Layout.astro';
             <td><span class="tag tag-ruins">古迹</span> <span class="tag tag-alien">外星重合</span></td>
           </tr>
           <tr>
-            <td><a href="/ruins/ruins-004/" target="_blank">秦岭古栈道石刻</a></td>
+            <td><a href={`${BASE}ruins/ruins-004/`} target="_blank">秦岭古栈道石刻</a></td>
             <td><code>33.25, 107.15</code></td>
             <td><span class="tag tag-ruins">古迹</span></td>
           </tr>
@@ -191,17 +192,17 @@ import Layout from '../../components/Layout.astro';
             <td><span class="tag tag-ruins">古迹</span></td>
           </tr>
         </table>
-        <p class="text-muted" style="margin-top: 6px;">⚠ 标记的为与<a href="/user/lyu/" target="_blank">@signal_屿</a>外星目击点位坐标重合的条目</p>
+        <p class="text-muted" style="margin-top: 6px;">⚠ 标记的为与<a href={`${BASE}user/lyu/`} target="_blank">@signal_屿</a>外星目击点位坐标重合的条目</p>
       </div>
 
       <!-- 关注 -->
       <h3 style="margin-top: 16px;">👥 关注</h3>
       <div class="post-item">
-        <a href="/user/lyu/" target="_blank"><strong>signal_屿</strong></a>
+        <a href={`${BASE}user/lyu/`} target="_blank"><strong>signal_屿</strong></a>
         <span class="text-muted">林屿 · 互相关注</span>
       </div>
       <div class="post-item">
-        <a href="/user/urbexlf/" target="_blank">废弃中</a>
+        <a href={`${BASE}user/urbexlf/`} target="_blank">废弃中</a>
         <span class="text-muted">老废</span>
       </div>
     </div>

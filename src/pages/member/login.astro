@@ -2,11 +2,12 @@
 // /member/login — 高级探秘者认证入口
 // 已登录用户直接进入会员区，未登录提示登录
 import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="高级探秘者认证">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
     高级探秘者认证
   </div>
 
@@ -17,7 +18,7 @@ import Layout from '../../components/Layout.astro';
     <p>此区域为探秘者联盟的<strong>会员专区</strong>，仅对注册探秘者开放。</p>
     <p class="text-muted">请先登录你的探秘者联盟账号。</p>
     <div style="margin-top: 24px;">
-      <a href="/login/" target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a href={`${BASE}login/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
         前往登录 →
       </a>
     </div>
@@ -35,7 +36,7 @@ import Layout from '../../components/Layout.astro';
     <p>你的账号尚未获得会员专区的访问权限。</p>
     <p class="text-muted">会员权限需要通过探秘者认证获得。提示：关注社区中其他探秘者分享的信息。</p>
     <div style="margin-top: 24px;">
-      <a href="/community/" target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a href={`${BASE}community/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
         返回社区 →
       </a>
     </div>

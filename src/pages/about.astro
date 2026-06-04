@@ -1,8 +1,9 @@
 ---
 import Layout from '../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 <Layout title="关于我们">
-  <div class="breadcrumb"><a href="/home/" target="_blank">首页</a><span>›</span>关于我们</div>
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>关于我们</div>
   <h2>📡 关于探秘者联盟导航站</h2>
   <hr />
   <p><strong>探秘者联盟导航站</strong>成立于2021年，是一个由探秘爱好者自发维护的非营利性社区站点。</p>
@@ -17,7 +18,7 @@ import Layout from '../components/Layout.astro';
     <tr><td>站点建立</td><td>2021年3月</td></tr>
   </table>
   <h3>团队介绍</h3>
-  <p>本站由一群业余探秘爱好者共同维护。我们没有固定的办公室，有人用周末维护服务器，有人用探秘途中的空闲时间审稿。如果你也热爱探秘，欢迎<a href="/submit/" target="_blank">加入我们</a>。</p>
+  <p>本站由一群业余探秘爱好者共同维护。我们没有固定的办公室，有人用周末维护服务器，有人用探秘途中的空闲时间审稿。如果你也热爱探秘，欢迎<a href={`${BASE}submit/`} target="_blank">加入我们</a>。</p>
   <p style="font-size:0.85rem;margin-top:20px;padding:10px;background:var(--color-bg-secondary);border-radius:var(--radius-sm);">联系邮箱：admin@explorers-alliance.cn<br/>（由于站长经常进山探秘，邮件回复可能延迟，敬请谅解）</p>
   <!-- ⭐ 隐写图片位置 — 后期在此处嵌入含LSB隐写的"团队合影"图片 -->
   <!-- <img src="/assets/images/clues/team-photo.png" alt="探秘者联盟导航站团队合影" /> -->

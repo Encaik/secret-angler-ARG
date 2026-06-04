@@ -4,13 +4,16 @@
 // 搜索行为：跳转到独立搜索页 /search/?q=xxx
 // ========================================
 
+// BASE 路径前缀，由 Vite 构建时注入（兼容根目录和二级目录部署）
+const BASE = __BASE_PATH__;
+
 // 关键词 → 隐藏页面（直接跳转，不经过搜索页）
 const TRIGGER_KEYWORDS: Record<string, string> = {
-  '深海裂隙': '/trigger/rift',
-  '星门坐标': '/trigger/stargate',
-  '布景基地': '/trigger/base',
-  '秘境之下': '/member/login',
-  '后台管理': '/hidden/admin',
+  '深海裂隙': BASE + 'trigger/rift',
+  '星门坐标': BASE + 'trigger/stargate',
+  '布景基地': BASE + 'trigger/base',
+  '秘境之下': BASE + 'member/login',
+  '后台管理': BASE + 'hidden/admin',
 };
 
 // ========================================
@@ -106,7 +109,7 @@ function handleSearch(query: string): void {
     }
     localStorage.setItem('arg_progress', JSON.stringify(p));
     recordPageVisit('/member/');
-    window.open('/member/', '_blank');
+    window.open(BASE + 'member/', '_blank');
     return;
   }
 
@@ -120,7 +123,7 @@ function handleSearch(query: string): void {
   }
 
   // 3. 其余所有搜索 → 跳转到独立搜索页
-  window.open(`/search/?q=${encodeURIComponent(trimmed)}`, '_blank');
+  window.open(`${BASE}search/?q=${encodeURIComponent(trimmed)}`, '_blank');
 }
 
 // ========================================

@@ -6,19 +6,20 @@
 //   2. 文中提到"老GPS手持机" —— 但他半年前换了新设备，还跟林屿炫耀过
 //   3. 发帖时间是凌晨2点 —— 沈辞作息规律，从不在深夜发帖
 import Layout from '../../../components/Layout.astro';
+const BASE = __BASE_PATH__;
 ---
 
 <Layout title="明天去贺兰山，简单记录一下准备情况" description="地下三尺的探秘日志">
   <div class="breadcrumb">
-    <a href="/home/" target="_blank">首页</a><span>›</span>
-    <a href="/community/" target="_blank">探秘者社区</a><span>›</span>
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
+    <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
     明天去贺兰山，简单记录一下准备情况
   </div>
 
   <article>
     <h1 style="font-size: 1.5rem; margin-bottom: 4px;">明天去贺兰山，简单记录一下准备情况</h1>
     <div class="post-meta" style="margin-bottom: 16px;">
-      作者：<a href="/user/shenci/" target="_blank">地下三尺</a> ·
+      作者：<a href={`${BASE}user/shenci/`} target="_blank">地下三尺</a> ·
       发布于 2026-05-25 02:13 ·
       阅读 478 · 评论 12
     </div>
