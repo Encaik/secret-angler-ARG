@@ -9,6 +9,7 @@ export interface Props {
 
 const { title, description, currentNav } = Astro.props;
 const BASE = __BASE_PATH__;
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -18,7 +19,6 @@ const BASE = __BASE_PATH__;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} - 探秘者联盟导航站</title>
   {description && <meta name="description" content={description} />}
-  <link rel="stylesheet" href={`${BASE}src/styles/global.css`} />
 </head>
 <body>
   <!-- 顶部导航 -->
