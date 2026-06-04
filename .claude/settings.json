@@ -55,7 +55,8 @@
       "Bash(echo \"draft-count: $?\")",
       "Bash(echo \"base64-count: $?\")",
       "Bash(echo \"count: $?\")",
-      "Bash(pnpm build *)"
+      "Bash(pnpm build *)",
+      "Bash(pnpm --version)"
     ],
     "additionalDirectories": [
       "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",
