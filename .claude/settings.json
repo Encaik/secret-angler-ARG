@@ -47,7 +47,14 @@
       "Bash(xargs grep -l 'import\\\\.meta\\\\.env\\\\.BASE_URL')",
       "Bash(xargs sed -i 's/import\\\\.meta\\\\.env\\\\.BASE_URL/__BASE_PATH__/g')",
       "Bash(pnpm dev *)",
-      "Bash(cmd.exe /c start http://localhost:4321/)"
+      "Bash(cmd.exe /c start http://localhost:4321/)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'fix: 添加 .nojekyll 防止 GitHub Pages 忽略 _astro 目录 *)",
+      "Bash(git push *)",
+      "Bash(BASE_URL=secret-angler-ARG pnpm build)",
+      "Bash(echo \"draft-count: $?\")",
+      "Bash(echo \"base64-count: $?\")",
+      "Bash(echo \"count: $?\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",

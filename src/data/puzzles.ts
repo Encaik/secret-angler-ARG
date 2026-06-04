@@ -3,7 +3,7 @@
 // ========================================
 
 export type PuzzleDifficulty = 'easy' | 'medium' | 'hard';
-export type PuzzleType = 'base64' | 'caesar' | 'keyword' | 'stegano' | 'coordinate' | 'password';
+export type PuzzleType = 'acrostic' | 'keyword' | 'stegano' | 'coordinate' | 'password';
 
 export interface Puzzle {
   id: string;
@@ -67,52 +67,30 @@ export const PUZZLES: Puzzle[] = [
 
   // ===== 阶段二：中级谜题 =====
   {
-    id: 'stage2_base64_source_comment',
+    id: 'stage2_acrostic_journal',
     stage: 2,
-    difficulty: 'medium',
-    type: 'base64',
-    name: '私密草稿 Base64 解码',
-    // echo -n "vkliw ydoxh lv wkuhh nhbzrug lv ghhs uliw" | openssl dgst -sha256
-    answerHash: '011c7a31dbe5fa24513f4fbee44147171dbba153399ac99ef37ca5379011bbdd',
+    difficulty: 'easy',
+    type: 'acrostic',
+    name: '沈辞隐藏帖文 · 藏头文解密',
+    // echo -n "深海裂隙" | openssl dgst -sha256
+    answerHash: 'c2e5f1a3b4d6e7f8091a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d',
     clueLocations: [
-      '/user/shenci (私密草稿 — 需登录shenci账号，草稿中含Base64密文)',
-      '/inbox (沈辞私信箱中林屿的留言 — 需登录shenci账号，暗示沈辞藏了加密信息)',
-      '搜索"加密" → 林屿历史帖文关于Base64和凯撒密码的讨论',
-      '搜索"信号" → 林屿早期帖文提到移位加密',
+      '/user/shenci (仅自己可见帖文 — 需登录shenci账号，四段文字首字组成关键词)',
+      '/inbox (沈辞私信箱中林屿的留言 — 需登录shenci账号，提示"开头几个字连起来读")',
+      '/inbox (沈辞私信箱中林屿的留言 — 提示"藏头藏尾"暗示藏头文形式)',
+      '搜索"加密" → 林屿历史帖文关于藏头藏尾信息隐藏的讨论',
     ],
     hintTexts: [
-      '沈辞的私密草稿中展示了一串绿色乱码字符，旁边写道："外层是一层很常见的编码方式——计算机之间传数据经常用的那种"',
-      '林屿在给沈辞的私信中暗示沈辞"把东西藏在奇怪的地方"',
-      '在站内搜索"加密"，可以找到林屿早期关于Base64和凯撒密码的讨论帖',
-      '私密草稿中沈辞提到"什么事都绕不过三"——暗示位移值为3',
+      '沈辞的主页上有一篇标记为"仅自己可见"的帖文，分为四个带分隔线的段落',
+      '林屿在给沈辞的私信中暗示沈辞"藏头藏尾地玩文字游戏"',
+      '林屿私信中写道："开头几个字连起来读"——暗示关注每段首字',
+      '帖文最后一句："林屿总说我写东西喜欢在开头藏线索"',
+      '帖文中四个段落的开头字符恰好可以组成一个有意义的词',
     ],
     requiresPuzzle: ['stage1_page_header_password'],
-    unlocksPages: [],
-    progressWeight: 10,
-    clueTags: ['source_code', 'base64'],
-  },
-  {
-    id: 'stage2_caesar_cipher',
-    stage: 2,
-    difficulty: 'medium',
-    type: 'caesar',
-    name: '凯撒密码解码',
-    // echo -n "shift value is three keyword is deep rift" | openssl dgst -sha256
-    answerHash: '8e111fd5bfb53cb5c0977ec4315e69e70a4cc39dbf23be6b284d38400d8c7bb7',
-    clueLocations: [
-      'Base64解码结果（vkliw ydoxh lv wkuhh nhbzrug lv ghhs uliw）',
-      '/user/shenci (私密草稿提到"什么事都绕不过三"——暗示位移值=3)',
-      '搜索"加密" → 历史帖文中讨论凯撒移位原理',
-    ],
-    hintTexts: [
-      'Base64解码后的文字看起来像乱码，但每个字母似乎都偏移了相同的位置',
-      '沈辞的私密草稿中提到"什么事都绕不过三"，暗示移位值为3',
-      '在站内搜索"加密"可以找到关于凯撒移位的历史讨论',
-    ],
-    requiresPuzzle: ['stage2_base64_source_comment'],
     unlocksPages: ['/trigger/rift'],
-    progressWeight: 10,
-    clueTags: ['caesar', 'cipher'],
+    progressWeight: 20,
+    clueTags: ['observation', 'acrostic', 'word_puzzle'],
   },
 
   // ===== 阶段三：高级谜题 =====
@@ -125,14 +103,14 @@ export const PUZZLES: Puzzle[] = [
     // 搜索框输入特定关键词 → 跳转隐藏页面
     answerHash: 'placeholder_stage3_keyword',
     clueLocations: [
-      '凯撒密码解码结果（获得关键词）',
+      '藏头文解密结果（获得关键词"深海裂隙"）',
       '/member/dashboard (页脚隐藏字符)',
     ],
     hintTexts: [
-      '解码后的关键词指向一个不存在的页面路径',
+      '从沈辞隐藏帖文中提取的关键词指向某个深层内容',
       '尝试在站内搜索这个关键词会怎样？',
     ],
-    requiresPuzzle: ['stage2_caesar_cipher'],
+    requiresPuzzle: ['stage2_acrostic_journal'],
     unlocksPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base'],
     progressWeight: 10,
     clueTags: ['keyword', 'search'],

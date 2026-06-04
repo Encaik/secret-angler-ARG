@@ -19,6 +19,10 @@ import '../styles/global.css';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} - 探秘者联盟导航站</title>
   {description && <meta name="description" content={description} />}
+  <!-- 运行时注入 BASE 路径，供所有脚本使用（避免依赖 Vite define 在 define:vars / dev 模式下的替换问题） -->
+  <script define:vars={{ basePath: BASE }}>
+    window.__BASE__ = basePath;
+  </script>
 </head>
 <body>
   <!-- 顶部导航 -->
@@ -63,8 +67,8 @@ import '../styles/global.css';
   <script src="../scripts/console.ts"></script>
   <script src="../scripts/search.ts"></script>
   <script>
-    // BASE 路径前缀，由 Astro 构建时注入（兼容根目录和二级目录部署）
-    const BASE = __BASE_PATH__;
+    // BASE 路径前缀，从 window.__BASE__ 读取（由 head 中 define:vars 脚本注入）
+    const BASE = window.__BASE__ || '/';
     // 导航栏用户区渲染
     (function() {
       const area = document.getElementById('nav-user-area');

@@ -59,6 +59,8 @@ const BASE = __BASE_PATH__;
 </Layout>
 
 <script>
+  // BASE 路径前缀，从 window.__BASE__ 读取（由 Layout head 中 define:vars 脚本注入）
+  const BASE = window.__BASE__ || '/';
   const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
   const username = localStorage.getItem('arg_username');
   const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
@@ -113,7 +115,7 @@ const BASE = __BASE_PATH__;
     document.getElementById('logout-btn')!.addEventListener('click', () => {
       localStorage.removeItem('arg_logged_in');
       localStorage.removeItem('arg_username');
-      window.location.href = '/home/';
+      window.location.href = BASE + 'home/';
     });
 
     if (!progress.discoveredClues) progress.discoveredClues = [];

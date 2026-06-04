@@ -40,9 +40,10 @@ const BASE = __BASE_PATH__;
   archivedContentJson: JSON.stringify(ARCHIVED_CONTENT),
   mockResultsJson: JSON.stringify(MOCK_RESULTS),
   triggerKeywordsJson: JSON.stringify(TRIGGER_KEYWORDS),
+  basePath: BASE,
 }}>
-  // BASE 路径前缀，由 Astro 构建时注入（兼容根目录和二级目录部署）
-  const BASE = __BASE_PATH__;
+  // BASE 路径前缀，通过 define:vars 传入（define:vars 脚本内 Vite define 不会被替换，必须通过 vars 传入）
+  const BASE = basePath;
   // 从 Astro 服务端注入的搜索数据
   const ARCHIVED_CONTENT = JSON.parse(archivedContentJson);
   const MOCK_RESULTS = JSON.parse(mockResultsJson);

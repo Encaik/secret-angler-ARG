@@ -24,7 +24,7 @@ const BASE = __BASE_PATH__;
       <div style="flex: 1;">
         <h2 style="margin-bottom: 2px;">地下三尺</h2>
         <p class="text-muted" style="margin-bottom: 6px;">
-          注册于 2025-10-20 · 古文明探秘者，冷门古迹爱好者
+          账号：<strong>shenci</strong> · 注册于 2025-10-20 · 古文明探秘者，冷门古迹爱好者
         </p>
         <p style="font-size: 0.9rem; margin-bottom: 8px;">
           用脚步丈量历史，用双眼发现被遗忘的真相。不追求热门景点，只探寻真正的秘境。
@@ -110,6 +110,18 @@ const BASE = __BASE_PATH__;
         </p>
         <div class="post-meta">2026-05-05 · 阅读 167 · 收藏 35</div>
       </div>
+
+      <!-- ⭐ 仅自己可见帖文：藏头文线索，仅沈辞本人登录后可查看内容 -->
+      <div class="post-item" id="shenci-hidden-post-entry" style="border-left: 3px solid #c0392b; padding-left: 10px;">
+        <div class="post-title">
+          <span class="tag" style="background:#c0392b;color:#fff;font-size:0.72rem;padding:1px 6px;border-radius:3px;margin-right:4px;">仅自己可见</span>
+          <a href="javascript:void(0)" style="color: #c0392b;">关于贺兰山之行的一些补充笔记</a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary);" id="shenci-hidden-post-preview">
+          出发前整理的一些想法和发现。有些推测还不太成熟，暂时不便公开……
+        </p>
+        <div class="post-meta">2026-05-25 02:40 · 阅读权限：255 · 仅作者本人可见</div>
+      </div>
     </div>
 
     <!-- 右栏：动态 + 收藏 + 线索 -->
@@ -132,23 +144,30 @@ const BASE = __BASE_PATH__;
 
       <div class="card" style="padding: 12px; margin-bottom: 8px;">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          导航站推送了个"冷门秘境"给我——秦岭某处未记录的摩崖石刻。看了坐标，那个位置我去过。根本没有任何石刻。挺奇怪的，不知道他们的信息是哪里来的。
+          导航站推送了个"冷门秘境"给我——秦岭某处"唐代摩崖石刻"。看了坐标，那个位置我去过。根本没有任何石刻。而且站里对那个点的<strong>描述有明显的历史错误</strong>——说的凿刻技法是唐代的，但描述的纹样风格和术语全是明清时期的特征。写这个描述的人<strong>根本不懂石刻</strong>，像是从网上拼凑出来的。
         </p>
         <div class="post-meta">2026-04-25</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px;">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          最近越想越不对劲……到了现场却发现有近期人类活动的明显痕迹——新鲜的火堆、矿泉水瓶、踩踏出来的小路。但是问过当地的人，都说很少有人去那里。
+          最近越想越不对劲……到了现场却发现有近期人类活动的明显痕迹——新鲜的火堆、矿泉水瓶、踩踏出来的小路。但是问过当地的人，都说很少有人去那里。<strong>像是有人在那里等过什么</strong>。
         </p>
         <div class="post-meta">2026-04-18</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px;">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          重新检查了之前探访的10个点位照片。发现一个规律：每个"秘境"都有一些不太自然的地方——磨损痕迹的分布、石头的排列方式、一些看起来很旧但仔细看切口很新的金属碎片。说不上来，就是感觉不太对。
+          重新检查了之前探访的10个点位照片。发现一个规律：每个"秘境"附近都有一些不太自然的地方——<strong>被刻意清理过的灌木、不自然折断的树枝、一些看起来很新但被匆忙掩埋的金属残片</strong>。不像探秘者留下的——探秘者不会刻意把东西埋起来。
         </p>
         <div class="post-meta">2026-04-10</div>
+      </div>
+
+      <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
+        <p style="font-size: 0.85rem; margin-bottom: 4px;">
+          仔细看了站里一个"明代烽燧遗址"的描述。越看越不对——描述的砖砌方式是典型的<strong>清代做法</strong>，明代烽燧根本不用那种叠砌法。提到的"青花瓷片"纹样也对不上号。搞考古的人一眼就能看出来——这些描述不是"信息采集有误"，而是<strong>根本就是编的</strong>。编的人不懂考古。
+        </p>
+        <div class="post-meta">2026-04-14</div>
       </div>
 
       <!-- ⭐ 收藏点位（含与林屿坐标重合的标注） -->
@@ -208,44 +227,63 @@ const BASE = __BASE_PATH__;
     </div>
   </div>
 
-  <!-- 仅沈辞本人可见：私密草稿 -->
-  <div id="shenci-private-draft" style="display:none; margin: 32px auto 0;">
-    <h3 style="color: #c0392b;">🔒 私密草稿（仅自己可见）</h3>
-    <div class="card" style="border: 1px dashed #c0392b; background: #fdf6f6;">
-      <p style="font-size: 0.9rem; margin-bottom: 8px;">
-        <strong>草稿标题：备忘——给林屿留的信息</strong>
-      </p>
-      <p style="font-size: 0.85rem; margin-bottom: 6px;">
-        2026-05-24 凌晨 2:40 —— 睡不着，把一些东西写下来。
-      </p>
-      <hr />
-      <p style="font-size: 0.85rem; margin-bottom: 6px;">
-        林屿说他看了我的主页，但没找到我藏的加密信息。也是，我藏得确实隐蔽了点。万一哪天需要他自己找过来，我把那段密文直接记在这里：
-      </p>
-      <p style="font-size: 0.85rem; margin-bottom: 6px; background: #2a2d35; color: #8fbc8f; padding: 10px; font-family: 'Courier New', monospace; word-break: break-all; letter-spacing: 0.5px;">
-        dmtsaXcgeWRveGggbHYgd2t1aGggbmhienJ1ZyBsdiBnaGhzIHVsaXc=
-      </p>
-      <p style="font-size: 0.85rem; margin-bottom: 6px;">
-        这串东西看起来是乱码，但其实是两层编码叠在一起。外层是一层很常见的<strong>编码方式</strong>——计算机之间传数据经常用的那种（提示：不是加密，是编码）。解开外层之后会得到一段英文，但字母全都<strong>往后偏移了固定位数</strong>——我习惯用那个数，林屿老说我<strong>"什么事都绕不过三"</strong>。
-      </p>
-      <p style="font-size: 0.85rem; margin-bottom: 6px;">
-        把两层都解开之后，会得到一个指向。那个指向是一个<strong>中文词</strong>，用站里的搜索框搜一下就能打开一扇门。
-      </p>
-      <p style="font-size: 0.85rem; margin-bottom: 0;">
-        如果有人看到这篇草稿——说明我的账号被登录了。林屿，如果是你，上面这些都看得懂。如果是别人……那就看你的本事了。
-      </p>
+  <!-- ⭐ 仅沈辞本人可见帖文：四段藏头文，首字组成关键词 -->
+  <div id="shenci-hidden-post" style="display:none; margin: 32px auto 0;">
+    <h3 style="color: #c0392b;">🔒 帖子内容（阅读权限：仅作者本人）</h3>
+    <div class="card" style="border: 1px dashed #c0392b; background: #fdf6f6; padding: 20px;">
+      <h4 style="margin-bottom: 4px;">关于贺兰山之行的一些补充笔记</h4>
+      <p class="text-muted" style="font-size:0.8rem; margin-bottom: 12px;">发布于 2026-05-25 02:40 · 阅读权限：255（仅作者本人可见）</p>
+      <hr style="margin-bottom: 16px;" />
+
+      <div style="font-size:0.9rem; line-height:1.9;">
+        <p>出发前整理了一些零散的想法。有些话不便公开，就记在这里。林屿，如果你看到这篇帖文——说明你找到了我的密码。下面这些，是我出发前想跟你说的。</p>
+
+        <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
+
+        <p><strong>深</strong>夜里反复核查过站内推送的"秘境"坐标之后，我开始觉得事情没那么简单。每个点位都太"恰好"了——恰好够偏、恰好够吸引某个特定类型的人、恰好出现在某个特定时间段。那种不自然的重合不可能是偶然。</p>
+        <p>我也想过是不是自己多虑了。毕竟探秘圈子本来就小，信息源互相引用也很常见。但数据不会骗人。</p>
+
+        <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
+
+        <p><strong>海</strong>一般的信息量背后，是一个我不想面对的结论。47个推荐点位，超过三分之二与集中失踪案件的最后已知位置存在地理关联。这不是我臆想的——我核对了公开的寻人启事数据，交叉比对了坐标和时间窗口。结论让人脊背发凉。</p>
+        <p>林屿那边的信号分析也指向了同样一批坐标。这不是巧合。</p>
+
+        <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
+
+        <p><strong>裂</strong>开的不仅是信息的表面。当你开始认真对比不同来源的数据时，整幅图景都在瓦解。站里推荐的"唐代摩崖石刻"用的是清代术语，"古滇国祭祀台"的纹样风格对不上滇文化——这不是信息有误，是有人在编造内容。</p>
+        <p>但并非所有描述都是假的——这恰恰是最可怕的地方。正确的部分是诱饵——足够真实，让有经验的人也愿意相信。假的部分是筛选器——能认出专业错误的人就不会深入。</p>
+
+        <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
+
+        <p><strong>隙</strong>缝中透进来的光，从来不在你正前方。它总是在你不经意偏头时，从眼角余光里一闪而过。真相也是这样——它不藏在你努力寻找的地方，藏在你停下来喘息的空隙里。</p>
+        <p>把这些记下来的时候，我其实已经知道这意味着什么了。但不管怎样，贺兰山还是要去。有些事必须亲眼确认。</p>
+
+        <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
+
+        <p style="color: #666; font-style: italic;">林屿总说我写东西喜欢在<strong>开头</strong>藏线索。也许吧。如果这些笔记能帮上忙，那就不算白写。</p>
+      </div>
     </div>
   </div>
 </Layout>
 
 <script>
-  // 沈辞本人登录时显示私密草稿
+  // 沈辞本人登录时显示仅自己可见帖文内容；非本人显示权限提示
   (function() {
     const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
     const username = localStorage.getItem('arg_username');
-    if (loggedIn && username === 'shenci') {
-      const draft = document.getElementById('shenci-private-draft');
-      if (draft) draft.style.display = 'block';
+    const isShenci = loggedIn && username === 'shenci';
+
+    const postContent = document.getElementById('shenci-hidden-post');
+    const postEntry = document.getElementById('shenci-hidden-post-entry');
+    const postPreview = document.getElementById('shenci-hidden-post-preview');
+
+    if (isShenci) {
+      // 沈辞本人：显示完整帖文内容
+      if (postContent) postContent.style.display = 'block';
+      if (postEntry) postEntry.style.borderLeftColor = 'var(--color-accent)';
+    } else if (postPreview) {
+      // 非本人：帖文卡片可见但内容替换为权限提示
+      postPreview.textContent = '该帖设置了仅作者本人可见，你没有权限查看内容。';
     }
   })();
 </script>

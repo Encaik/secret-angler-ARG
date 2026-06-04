@@ -35,7 +35,6 @@ const BASE = __BASE_PATH__;
             </div>
             <span class="bubble-fill">▸ 自动填充</span>
           </div>
-          <div id="bubble-shenci-container"></div>
         </div>
       </label>
       <button type="submit" style="width: 100%; padding: 10px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm);">
@@ -52,10 +51,12 @@ const BASE = __BASE_PATH__;
 </Layout>
 
 <script>
+  // BASE 路径前缀，从 window.__BASE__ 读取（由 Layout head 中 define:vars 脚本注入）
+  const BASE = window.__BASE__ || '/';
   // 已验证的账号密码
   const CREDENTIALS: Record<string, { password: string; redirect: string }> = {
-    'lyu': { password: 'starchaser24', redirect: '/user/center/' },
-    'shenci': { password: 'helanshan06', redirect: '/user/center/' },
+    'lyu': { password: 'starchaser24', redirect: BASE + 'user/center/' },
+    'shenci': { password: 'helanshan06', redirect: BASE + 'user/center/' },
   };
 
   // 账号或密码框聚焦时显示气泡
@@ -135,33 +136,31 @@ const BASE = __BASE_PATH__;
     }
   });
 
-  // 后期线索标记：当玩家发现沈辞账号后，气泡中出现沈辞的密码
+  // 后期线索标记：当玩家发现沈辞账号后，气泡中动态插入沈辞的密码条目
   const discoveredShenci = JSON.parse(localStorage.getItem('arg_progress') || '{}')
     .discoveredClues?.includes('shenci_credentials');
   if (discoveredShenci) {
-    const container = document.getElementById('bubble-shenci-container');
-    if (container) {
-      container.innerHTML = `
-        <div class="bubble-item" data-username="shenci" data-password="helanshan06">
-          <div class="bubble-item-left">
-            <div class="bubble-avatar">🏛️</div>
-            <div>
-              <div class="bubble-name">shenci — 地下三尺</div>
-              <div class="bubble-site">探秘者联盟 · 已解锁</div>
-            </div>
-          </div>
-          <span class="bubble-fill">▸ 自动填充</span>
+    const shenciItem = document.createElement('div');
+    shenciItem.className = 'bubble-item';
+    shenciItem.dataset.username = 'shenci';
+    shenciItem.dataset.password = 'helanshan06';
+    shenciItem.innerHTML = `
+      <div class="bubble-item-left">
+        <div class="bubble-avatar">🏛️</div>
+        <div>
+          <div class="bubble-name">shenci — 地下三尺</div>
+          <div class="bubble-site">探秘者联盟 · 已解锁</div>
         </div>
-      `;
-      // 重新绑定点击事件
-      container.querySelector('.bubble-item')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const el = e.currentTarget as HTMLElement;
-        (document.getElementById('username') as HTMLInputElement).value = el.dataset.username || '';
-        (document.getElementById('password') as HTMLInputElement).value = el.dataset.password || '';
-        (document.getElementById('password-bubble') as HTMLElement).style.display = 'none';
-      });
-    }
+      </div>
+      <span class="bubble-fill">▸ 自动填充</span>
+    `;
+    shenciItem.addEventListener('click', (e) => {
+      e.stopPropagation();
+      (document.getElementById('username') as HTMLInputElement).value = 'shenci';
+      (document.getElementById('password') as HTMLInputElement).value = 'helanshan06';
+      (document.getElementById('password-bubble') as HTMLElement).style.display = 'none';
+    });
+    bubble.appendChild(shenciItem);
   }
 </script>
 

@@ -4,8 +4,8 @@
 // 搜索行为：跳转到独立搜索页 /search/?q=xxx
 // ========================================
 
-// BASE 路径前缀，由 Vite 构建时注入（兼容根目录和二级目录部署）
-const BASE = __BASE_PATH__;
+// BASE 路径前缀，从 window.__BASE__ 读取（由 Layout head 中 define:vars 脚本注入）
+const BASE: string = (window as any).__BASE__ || '/';
 
 // 关键词 → 隐藏页面（直接跳转，不经过搜索页）
 const TRIGGER_KEYWORDS: Record<string, string> = {
