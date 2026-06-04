@@ -98,13 +98,65 @@ const BASE = __BASE_PATH__;
     </p>
   </div>
 
-  <div class="hidden-notice" style="margin-top: 16px;">
-    <p style="margin-bottom: 4px;"><strong>💡 时间紧迫：</strong></p>
-    <ul style="margin-bottom: 0; padding-left: 1.5em; color: #88d;">
-      <li>4项待删除数据中，<strong>沈辞仅自己可见帖文（#DEL-2026-0604-004）排程于今晚凌晨3点执行删除</strong>。</li>
-      <li>删除后，藏头文"深海裂隙"的唯一来源将消失——后续玩家将无法通过正常途径发现此关键词。</li>
-      <li>但当前玩家（你）已经看到了这些内容——你比清理程序快了一步。</li>
-      <li>所有缓存的证据都指向同一结论：这是一个<strong>系统性的犯罪网络</strong>，而非个别的"探秘失踪"事件。</li>
-    </ul>
+  <!-- 操作区 —— 导出证据并触发结局-->
+  <div style="margin-top:20px;padding:16px;background:#0d0d0d;border:1px solid #1a1a1a;text-align:center;">
+    <p style="font-size:0.78rem;color:#666;margin-bottom:10px;">
+      以上缓存项尚未被系统自动清理。导出全部数据并匿名提交至执法部门。
+    </p>
+    <button id="submit-evidence-btn" style="padding:10px 32px;background:#1a0a0a;color:#8b3a3a;border:1px solid #2a1a1a;cursor:pointer;font-size:0.85rem;">
+      导出全部证据 · 匿名提交
+    </button>
+    <p id="submit-status" style="font-size:0.7rem;color:#555;margin-top:8px;display:none;"></p>
   </div>
 </HiddenLayout>
+
+<script>
+  const BASE = window.__BASE__ || '/';
+
+  // 证据评分映射
+  const EVIDENCE = {
+    '/trigger/rift':      { weight: 2 },
+    '/trigger/stargate':  { weight: 2 },
+    '/trigger/base':      { weight: 3 },
+    '/hidden/darknet':    { weight: 3 },
+    '/hidden/board':      { weight: 2 },
+    '/hidden/operation':  { weight: 2 },
+    '/hidden/locations':  { weight: 3 },
+    '/hidden/dead-drop':  { weight: 4 },
+  };
+
+  document.getElementById('submit-evidence-btn').addEventListener('click', function() {
+    const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+    const visited = progress.discoveredPages || [];
+    let score = 0;
+    let hasDeadDrop = false;
+
+    for (const [page, ev] of Object.entries(EVIDENCE)) {
+      const found = visited.some(function(v) {
+        return v === page || v === page + '/' || v.replace(/\/$/, '') === page;
+      });
+      if (found) {
+        score += ev.weight;
+        if (page === '/hidden/dead-drop') hasDeadDrop = true;
+      }
+    }
+
+    // 判定结局
+    let ending;
+    if (score >= 18) ending = 4;
+    else if (score >= 12) ending = 3;
+    else if (score >= 7) ending = 2;
+    else ending = 1;
+
+    // 有举报脚本+分数≥12 → 升级结局4
+    if (hasDeadDrop && score >= 12 && ending < 4) ending = 4;
+
+    // 保存结局到进度
+    progress.ending = ending;
+    progress.evidenceScore = score;
+    localStorage.setItem('arg_progress', JSON.stringify(progress));
+
+    // 跳转到对应结局
+    window.location.href = BASE + 'ending/' + ending + '/';
+  });
+</script>

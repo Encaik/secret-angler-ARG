@@ -58,13 +58,14 @@ const BASE = __BASE_PATH__;
       <!-- ============ 市场标签页 ============ -->
       <div id="tab-market">
 
-        <!-- 筛选栏 -->
+        <!-- 筛选栏——用行业黑话分类 -->
         <div style="display: flex; gap: 12px; margin-bottom: 16px; font-size: 0.78rem; color: #666;">
-          <span style="color: #4a7c5a;">全部</span>
-          <span style="cursor: pointer;">器官</span>
-          <span style="cursor: pointer;">整人</span>
+          <span style="color: #4a7c5a;">全部标的</span>
+          <span style="cursor: pointer;">鲜源</span>
+          <span style="cursor: pointer;">整件</span>
+          <span style="cursor: pointer;">龙骨</span>
           <span style="cursor: pointer;">待评估</span>
-          <span style="margin-left: auto; font-size: 0.72rem;">共 4 件商品</span>
+          <span style="margin-left: auto; font-size: 0.72rem;">共 4 件标的</span>
         </div>
 
         <!-- 商品卡片：沈辞 -->
@@ -73,62 +74,64 @@ const BASE = __BASE_PATH__;
             <div>
               <span style="color: #aaa; font-size: 0.9rem; font-weight: bold;">#SKU-2026-003</span>
               <span style="color: #4a7c5a; font-size: 0.75rem; margin-left: 6px;">三尺</span>
-              <span style="background: #1a1a1a; color: #8b7a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">评估中</span>
+              <span style="background: #1a1a1a; color: #8b7a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">养护中</span>
             </div>
             <span style="color: #555; font-size: 0.7rem;">入库 05-26</span>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 0.78rem; margin-bottom: 8px;">
-            <div><span style="color: #555;">年龄/性别</span><br/><span style="color: #999;">20 / 男</span></div>
-            <div><span style="color: #555;">血型</span><br/><span style="color: #999;">O</span></div>
-            <div><span style="color: #555;">HLA</span><br/><span style="color: #8b7a3a;">检测中</span></div>
-            <div><span style="color: #555;">健康</span><br/><span style="color: #8b7a3a;">评估中</span></div>
-            <div><span style="color: #555;">等级</span><br/><span style="color: #999;">A-</span></div>
+            <div><span style="color: #555;">来源</span><br/><span style="color: #999;">野外·贺兰山</span></div>
+            <div><span style="color: #555;">品级</span><br/><span style="color: #999;">A-</span></div>
+            <div><span style="color: #555;">匹配</span><br/><span style="color: #8b7a3a;">检测中</span></div>
+            <div><span style="color: #555;">体况</span><br/><span style="color: #8b7a3a;">养护评估中</span></div>
+            <div><span style="color: #555;">品相</span><br/><span style="color: #999;">完整·无损伤</span></div>
             <div><span style="color: #555;">估价</span><br/><span style="color: #555;">待发布</span></div>
           </div>
           <div style="font-size: 0.72rem; color: #555; padding: 6px 8px; background: #0a0a0a; border-radius: 2px;">
-            适用：肾脏（双） · 肝脏（部分） · 角膜 · 整人
-            &nbsp;|&nbsp; 直播：频道B「古文明探秘」
+            可出：龙骨配件（双组） · 鲜源套装（多部位） · 整件
+            &nbsp;|&nbsp; 活体陈列：频道B「古文明探秘」
           </div>
         </div>
 
-        <!-- 商品卡片：已售 -->
+        <!-- 已售标的 -->
         <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px; margin-bottom: 10px; opacity: 0.7;">
           <span style="color: #777; font-size: 0.85rem;">#SKU-2026-001</span>
           <span style="color: #666; font-size: 0.72rem; margin-left: 6px;">旅人</span>
-          <span style="background: #1a2a1a; color: #4a7c5a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">已售</span>
-          <span style="color: #555; font-size: 0.72rem; float: right;">整人 · $48,000</span>
+          <span style="background: #1a2a1a; color: #4a7c5a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">已出</span>
+          <span style="color: #555; font-size: 0.72rem; float: right;">整件 · $48,000</span>
         </div>
 
         <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px; margin-bottom: 10px; opacity: 0.7;">
           <span style="color: #777; font-size: 0.85rem;">#SKU-2026-002</span>
           <span style="color: #666; font-size: 0.72rem; margin-left: 6px;">观星者</span>
-          <span style="background: #1a1a1a; color: #8b5a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">已拆解</span>
-          <span style="color: #555; font-size: 0.72rem; float: right;">肾脏×1 · 角膜×2 · $135,000</span>
+          <span style="background: #1a1a1a; color: #8b5a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">已拆</span>
+          <span style="color: #555; font-size: 0.72rem; float: right;">鲜源·龙骨×1 · 鲜源×2 · $135,000</span>
         </div>
 
         <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px; margin-bottom: 10px;">
           <span style="color: #aaa; font-size: 0.85rem;">#SKU-2026-004</span>
           <span style="color: #666; font-size: 0.72rem; margin-left: 6px;">行者</span>
-          <span style="background: #1a1a1a; color: #6a8a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">展示中</span>
+          <span style="background: #1a1a1a; color: #6a8a3a; font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; margin-left: 6px;">陈列中</span>
           <span style="color: #555; font-size: 0.72rem; float: right;">频道A「外星秘境」</span>
         </div>
       </div>
 
       <!-- ============ 直播标签页 ============ -->
       <div id="tab-live" style="display: none;">
-        <div style="font-size: 0.82rem; color: #888; margin-bottom: 16px;">当前在线频道</div>
+        <div style="font-size: 0.82rem; color: #888; margin-bottom: 16px;">野外实景频道 · 当前在线</div>
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
           <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px;">
             <div style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">外星秘境</div>
             <div style="font-size: 0.72rem; color: #555;">频道A · 340订阅</div>
             <div style="font-size: 0.72rem; color: #4a7c5a; margin-top: 4px;">● 在线</div>
-            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $29 · 行者</div>
+            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $29 · 陈列标的：行者</div>
+            <div style="font-size: 0.65rem; color: #444; margin-top: 4px;">体征监测：心率·血氧·步数</div>
           </div>
           <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px;">
             <div style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">古文明探秘</div>
             <div style="font-size: 0.72rem; color: #555;">频道B · 280订阅</div>
             <div style="font-size: 0.72rem; color: #4a7c5a; margin-top: 4px;">● 在线</div>
-            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $29 · 三尺</div>
+            <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $29 · 陈列标的：三尺</div>
+            <div style="font-size: 0.65rem; color: #444; margin-top: 4px;">体征监测：心率·血氧·步数</div>
           </div>
           <div style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 4px; padding: 14px;">
             <div style="color: #666; font-size: 0.85rem; margin-bottom: 6px;">荒野求生</div>
@@ -137,20 +140,20 @@ const BASE = __BASE_PATH__;
             <div style="font-size: 0.68rem; color: #555; margin-top: 6px;">月费 $19</div>
           </div>
         </div>
-        <div style="font-size: 0.7rem; color: #444; margin-top: 12px;">
-          每场直播叠加实时体征数据（心率、血氧、步数）。频道A/B支持高阶数据分析（$39/月附加包）。
+        <div style="font-size: 0.68rem; color: #444; margin-top: 12px;">
+          所有频道叠加实时体征数据。频道A/B支持品相评估数据包（$39/月）。
         </div>
       </div>
 
       <!-- ============ 成交记录标签页 ============ -->
       <div id="tab-history" style="display: none;">
         <table style="font-size: 0.78rem; width: 100%;">
-          <tr style="color: #555;"><th style="text-align: left; padding: 6px 8px;">日期</th><th style="text-align: left;">商品</th><th style="text-align: left;">来源</th><th style="text-align: right;">成交价</th><th style="text-align: right;">买家地区</th></tr>
-          <tr style="color: #888;"><td style="padding: 6px 8px;">2026-05-20</td><td>肾脏×1 + 角膜×2</td><td>观星者</td><td style="text-align: right;">$135,000</td><td style="text-align: right;">东南亚</td></tr>
-          <tr style="color: #888;"><td style="padding: 6px 8px;">2026-04-15</td><td>整人</td><td>旅人</td><td style="text-align: right;">$48,000</td><td style="text-align: right;">中东</td></tr>
-          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-03-08</td><td>肝脏（部分）</td><td>—</td><td style="text-align: right;">$82,000</td><td style="text-align: right;">东欧</td></tr>
-          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-02-21</td><td>整人</td><td>—</td><td style="text-align: right;">$35,000</td><td style="text-align: right;">南美</td></tr>
-          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-01-14</td><td>肾脏×1</td><td>—</td><td style="text-align: right;">$58,000</td><td style="text-align: right;">中东</td></tr>
+          <tr style="color: #555;"><th style="text-align: left; padding: 6px 8px;">日期</th><th style="text-align: left;">品类</th><th style="text-align: left;">来源标的</th><th style="text-align: right;">成交价</th><th style="text-align: right;">去向</th></tr>
+          <tr style="color: #888;"><td style="padding: 6px 8px;">2026-05-20</td><td>鲜源·龙骨×1 + 鲜源×2</td><td>观星者</td><td style="text-align: right;">$135,000</td><td style="text-align: right;">东南亚</td></tr>
+          <tr style="color: #888;"><td style="padding: 6px 8px;">2026-04-15</td><td>整件</td><td>旅人</td><td style="text-align: right;">$48,000</td><td style="text-align: right;">中东</td></tr>
+          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-03-08</td><td>鲜源（部分）</td><td>—</td><td style="text-align: right;">$82,000</td><td style="text-align: right;">东欧</td></tr>
+          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-02-21</td><td>整件</td><td>—</td><td style="text-align: right;">$35,000</td><td style="text-align: right;">南美</td></tr>
+          <tr style="color: #666;"><td style="padding: 6px 8px;">2026-01-14</td><td>鲜源·龙骨×1</td><td>—</td><td style="text-align: right;">$58,000</td><td style="text-align: right;">中东</td></tr>
         </table>
         <div style="font-size: 0.7rem; color: #444; margin-top: 10px;">仅展示最近6个月记录。完整历史数据需升级至企业账户。</div>
       </div>
@@ -165,6 +168,11 @@ const BASE = __BASE_PATH__;
           <div style="font-size: 0.72rem; color: #555; margin-top: 10px; margin-bottom: 4px;">充值地址（XMR）</div>
           <code style="font-size: 0.68rem; color: #666; background: #0a0a0a; padding: 4px 8px; display: block; word-break: break-all;">48x0v0d0u0j0f0l0y0k0z0v0c0w0k0q0d0s0x0r0y0a0b0c0d0e0f0123456789ab</code>
         </div>
+      </div>
+
+      <!-- 页脚——隐含后台入口线索 -->
+      <div style="margin-top: 28px; padding-top: 12px; border-top: 1px solid #1a1a1a; font-size: 0.65rem; color: #333; text-align: center;">
+        运营管理 · <span style="color: #2a2a2a;">deeprift323.onion</span> · 仅授权操作员可访问
       </div>
 
     </div>

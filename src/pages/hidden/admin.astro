@@ -1,158 +1,154 @@
 ---
-// /hidden/admin — 团伙后台管理系统入口
-// 模拟团伙内部管理面板。需输入管理密码。
-// 密码线索来自 trigger 页面中的内部通讯记录
+// /hidden/admin — 团伙内部运营管理系统
+// 设计原则：真实的内部工具面板，不是给玩家看的线索索引
 import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<HiddenLayout title="后台管理系统">
+<HiddenLayout title="运营管理系统">
   <!-- 登录界面 -->
-  <div id="admin-login" style="max-width: 420px; margin: 60px auto;">
-    <div style="text-align: center; margin-bottom: 24px;">
-      <h2 style="color: #c0392b; margin-bottom: 4px;">⛔ 后台管理系统</h2>
-      <p class="text-muted">内部使用 · 未经授权访问将被记录</p>
+  <div id="admin-login" style="max-width: 400px; margin: 80px auto;">
+    <div style="text-align: center; margin-bottom: 20px;">
+      <span style="font-size: 1.5rem;">🔻</span>
     </div>
-
-    <div class="card">
-      <div style="margin-bottom: 14px;">
-        <label style="display: block; font-size: 0.82rem; color: #888; margin-bottom: 4px;">操作员ID</label>
-        <input type="text" id="admin-user" placeholder="输入操作员ID" style="max-width: 100%;" value="admin" />
+    <div class="card" style="background: #0d0d0d; border: 1px solid #222;">
+      <div style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 0.78rem; color: #666; margin-bottom: 4px;">操作员ID</label>
+        <input type="text" id="admin-user" placeholder="" value="admin" style="width:100%;max-width:100%;padding:7px 10px;background:#0a0a0a;border:1px solid #2a2a2a;color:#aaa;font-size:0.85rem;" />
       </div>
       <div style="margin-bottom: 14px;">
-        <label style="display: block; font-size: 0.82rem; color: #888; margin-bottom: 4px;">认证密钥</label>
-        <input type="password" id="admin-pass" placeholder="输入认证密钥" style="max-width: 100%;" />
+        <label style="display: block; font-size: 0.78rem; color: #666; margin-bottom: 4px;">认证密钥</label>
+        <input type="password" id="admin-pass" placeholder="" style="width:100%;max-width:100%;padding:7px 10px;background:#0a0a0a;border:1px solid #2a2a2a;color:#aaa;font-size:0.85rem;" />
       </div>
-      <button id="admin-login-btn" style="width: 100%; padding: 10px; background: #c0392b; color: #fff; border: none; cursor: pointer; font-size: 0.9rem;">
-        验证身份
+      <button id="admin-login-btn" style="width:100%;padding:8px;background:#1a0a0a;color:#8b3a3a;border:1px solid #2a1a1a;cursor:pointer;font-size:0.85rem;">
+        验证
       </button>
-      <p id="admin-login-error" style="color: #c0392b; font-size: 0.78rem; margin-top: 8px; display: none; text-align: center;"></p>
+      <p id="admin-login-error" style="color:#8b3a3a;font-size:0.72rem;margin-top:6px;display:none;text-align:center;"></p>
     </div>
-
-    <p class="text-muted" style="text-align: center; font-size: 0.72rem; margin-top: 16px;">
-      如遗忘认证密钥，请联系系统管理员重置。<br />
-      密钥格式：项目代号+安全后缀
-    </p>
   </div>
 
   <!-- 管理面板（登录后显示） -->
   <div id="admin-panel" style="display: none;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-      <div>
-        <h2 style="color: #c0392b; margin-bottom: 2px;">⛔ 后台管理系统</h2>
-        <p class="text-muted" style="font-size: 0.78rem;">已认证 · 操作员：<strong id="admin-op-name" style="color: #e0dcd5;"></strong> · 最后登录：2026-06-03 22:47</p>
+
+    <!-- 顶栏 -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #1a1a1a;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span style="font-size:0.9rem;color:#888;">运营管理系统 v3.2</span>
+        <span style="font-size:0.72rem;color:#555;">操作员：<strong id="admin-op-name" style="color:#aaa;"></strong></span>
+        <span style="font-size:0.68rem;color:#444;">上次登录：2026-06-03 22:47</span>
       </div>
-      <button id="admin-logout-btn" style="padding: 6px 14px; background: #333; color: #888; border: 1px solid #444; cursor: pointer; font-size: 0.78rem;">
-        退出
-      </button>
-    </div>
-
-    <div class="hidden-warning">
-      ⚠ 系统通知：上级指示——"深海裂隙"项目捕获目标"三尺"后，本站进入<strong>三个月冷却期</strong>。期间禁止新诱捕行动。对 signal_屿 的监控持续进行，如发现其有实地探查行为立即上报。
-    </div>
-
-    <!-- 功能模块列表 -->
-    <div class="two-col" style="margin-top: 16px;">
-      <!-- 左栏 -->
-      <div>
-        <div class="card" style="border-left: 3px solid #c0392b;">
-          <h4 style="margin-bottom: 8px;">📋 内部通讯板</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">团伙成员加密通讯。最近更新：2026-06-03。</p>
-          <a href={`${BASE}hidden/board/`} target="_blank" style="font-size: 0.82rem;">进入通讯板 →</a>
-        </div>
-
-        <div class="card" style="border-left: 3px solid #c0392b;">
-          <h4 style="margin-bottom: 8px;">📁 作案流程手册</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">标准作案全流程文档。从筛选目标到清理痕迹。</p>
-          <a href={`${BASE}hidden/operation/`} target="_blank" style="font-size: 0.82rem;">查看手册 →</a>
-        </div>
-
-        <div class="card" style="border-left: 3px solid #c0392b;">
-          <h4 style="margin-bottom: 8px;">🗺️ 全国基地坐标</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">各伏击点位与主基地的精确坐标 + 设施模块分布 + 库存状态。</p>
-          <a href={`${BASE}hidden/locations/`} target="_blank" style="font-size: 0.82rem;">查看坐标 →</a>
-        </div>
-      </div>
-
-      <!-- 右栏 -->
-      <div>
-        <div class="card" style="border-left: 3px solid #c0392b;">
-          <h4 style="margin-bottom: 8px;">👤 目标档案</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">所有已筛选目标的详细档案与评估报告。</p>
-          <a href={`${BASE}hidden/targets/`} target="_blank" style="font-size: 0.82rem;">查看档案 →</a>
-        </div>
-
-        <div class="card" style="border-left: 3px solid #c0392b;">
-          <h4 style="margin-bottom: 8px;">⚠️ 叛变成员信息</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">一名前成员试图向警方举报。已处理。残留信息存档。</p>
-          <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="font-size: 0.82rem;">查看信息 →</a>
-        </div>
-
-        <div class="card" style="border-left: 3px solid #c0392b;">
-          <h4 style="margin-bottom: 8px;">🔒 证据缓存</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">用于反侦察的证据销毁缓存区。定时清理。</p>
-          <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="font-size: 0.82rem;">查看缓存 →</a>
-        </div>
-
-        <div class="card" style="border-left: 3px solid #4a8c6a;">
-          <h4 style="margin-bottom: 8px;">🕵️ 暗网交易市场</h4>
-          <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">外部入口——暗网商品交易平台（器官/人口）。</p>
-          <a href={`${BASE}hidden/darknet/`} target="_blank" style="font-size: 0.82rem; color: #4a8c6a;">进入市场 →</a>
-        </div>
+      <div style="display:flex;gap:8px;">
+        <span style="font-size:0.68rem;color:#8b3a3a;padding:2px 8px;background:#1a0a0a;border-radius:2px;">冷却期 · 距下次可行动：87天</span>
+        <button id="admin-logout-btn" style="padding:4px 12px;background:none;color:#555;border:1px solid #2a2a2a;cursor:pointer;font-size:0.72rem;">退出</button>
       </div>
     </div>
 
-    <!-- 最近操作日志 -->
-    <div class="card" style="margin-top: 16px;">
-      <h4 style="margin-bottom: 8px;">📜 最近操作日志</h4>
-      <table style="font-size: 0.78rem;">
-        <tr><th>时间</th><th>操作员</th><th>操作</th><th>详情</th></tr>
-        <tr>
-          <td>2026-06-03 18:22</td>
-          <td>运营_A</td>
-          <td>内容删除</td>
-          <td style="font-size:0.72rem;">删除贺兰山相关推荐帖3篇。理由：点位任务已完成。</td>
+    <!-- 导航标签 -->
+    <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid #1a1a1a;">
+      <a href={`${BASE}hidden/admin/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#8b3a3a;border-bottom:2px solid #8b3a3a;text-decoration:none;">总览</a>
+      <a href={`${BASE}hidden/board/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">通讯</a>
+      <a href={`${BASE}hidden/operation/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">流程手册</a>
+      <a href={`${BASE}hidden/locations/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">坐标</a>
+      <a href={`${BASE}hidden/targets/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">目标</a>
+      <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">安全</a>
+      <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">清理队列</a>
+      <span style="margin-left:auto;padding:6px 14px;font-size:0.72rem;color:#4a7c5a;">暗网市场：<a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#4a7c5a;">运行中</a></span>
+    </div>
+
+    <!-- 系统告警 -->
+    <div style="background:#1a0a0a;border:1px solid #2a1a1a;padding:8px 14px;margin-bottom:16px;font-size:0.72rem;color:#8b5a3a;">
+      ⚠ 未处理事项：访问凭证逾期未更换（风险等级：中）· 三尺的会员数据未完全清理（帖文权限255，需数据库直操）· 证据清理队列待确认（#DEL-004 排程：06-06 00:00）
+    </div>
+
+    <!-- 统计卡片 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
+        <div style="font-size:0.65rem;color:#555;">活跃项目</div>
+        <div style="font-size:1.2rem;color:#aaa;">3</div>
+        <div style="font-size:0.6rem;color:#444;">深海裂隙 · 星门坐标 · 布景基地</div>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
+        <div style="font-size:0.65rem;color:#555;">当前库存</div>
+        <div style="font-size:1.2rem;color:#aaa;">4</div>
+        <div style="font-size:0.6rem;color:#444;">2 养护中 · 1 陈列 · 1 待评估</div>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
+        <div style="font-size:0.65rem;color:#555;">本月营收</div>
+        <div style="font-size:1.2rem;color:#aaa;">$183K</div>
+        <div style="font-size:0.6rem;color:#444;">暗网市场 + 直播订阅</div>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
+        <div style="font-size:0.65rem;color:#555;">监控目标</div>
+        <div style="font-size:1.2rem;color:#8b3a3a;">2</div>
+        <div style="font-size:0.6rem;color:#444;">signal_屿（重点）· 废弃中（常规）</div>
+      </div>
+    </div>
+
+    <!-- 操作日志（主要区域） -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.78rem;color:#888;margin-bottom:6px;">最近操作记录</div>
+      <table style="font-size:0.72rem;width:100%;">
+        <tr style="color:#555;"><th style="text-align:left;padding:4px 8px;">时间</th><th style="text-align:left;padding:4px 8px;">操作员</th><th style="text-align:left;padding:4px 8px;">模块</th><th style="text-align:left;padding:4px 8px;">摘要</th></tr>
+        <tr style="color:#777;">
+          <td style="padding:3px 8px;">06-03 18:22</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">内容管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">删除贺兰山推荐帖×3。SKU-2026-003点位已完成。</td>
         </tr>
-        <tr>
-          <td>2026-06-02 14:10</td>
-          <td>技术_B</td>
-          <td>账号监控</td>
-          <td style="font-size:0.72rem;">标记 signal_屿 为"重点观察"。未检测到实地探查迹象。</td>
+        <tr style="color:#777;">
+          <td style="padding:3px 8px;">06-03 00:05</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">证据清理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">批量标记删除项。操作中断——部分文件权限不足。</td>
         </tr>
-        <tr>
-          <td>2026-06-01 09:45</td>
-          <td>运营_A</td>
-          <td>舆论引导</td>
-          <td style="font-size:0.72rem;">通过"山野探秘人"账号发布正常路线分享帖，稀释质疑帖的搜索权重。</td>
+        <tr style="color:#777;">
+          <td style="padding:3px 8px;">06-02 14:10</td><td style="padding:3px 8px;">技术_B</td><td style="padding:3px 8px;">监控</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">signal_屿 标记为"重点观察"。未检测到实地探查行为。</td>
         </tr>
-        <tr>
-          <td>2026-05-29 23:15</td>
-          <td>技术_B</td>
-          <td>数据清理</td>
-          <td style="font-size:0.72rem;">清理会员区部分缓存数据（未完成——三尺的帖文权限过高，需直接操作数据库）。</td>
+        <tr style="color:#777;">
+          <td style="padding:3px 8px;">06-01 09:45</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">舆论管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">山野探秘人发布正常路线帖×2，稀释质疑帖权重。</td>
         </tr>
-        <tr>
-          <td>2026-05-26 08:30</td>
-          <td>运营_A</td>
-          <td>任务确认</td>
-          <td style="font-size:0.72rem;">贺兰山点位任务完成。目标"三尺"已入库#SKU-2026-003。体检分类中——HLA分型待外部实验室确认（预计6月8日）。</td>
+        <tr style="color:#777;">
+          <td style="padding:3px 8px;">05-29 23:15</td><td style="padding:3px 8px;">技术_B</td><td style="padding:3px 8px;">数据清理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">清理会员区缓存——部分失败。SKU-003的帖文权限过高。</td>
+        </tr>
+        <tr style="color:#777;">
+          <td style="padding:3px 8px;">05-26 08:30</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">库存管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">新入库 #SKU-2026-003"三尺"。HLA分型待外部实验室确认。</td>
         </tr>
       </table>
     </div>
+
+    <!-- 快捷入口 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.72rem;">
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
+        <span style="color:#666;">库存管理</span>
+        <span style="float:right;color:#aaa;">4 标的 · <a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#4a7c5a;">查看挂牌</a></span>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
+        <span style="color:#666;">安全事件</span>
+        <span style="float:right;color:#8b3a3a;">1 未处理 · <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="color:#8b3a3a;">查看</a></span>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
+        <span style="color:#666;">站点管理</span>
+        <span style="float:right;color:#aaa;">冷却期 · 87天剩余</span>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
+        <span style="color:#666;">证据清理队列</span>
+        <span style="float:right;color:#8b7a3a;">4 项待处理 · <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="color:#8b7a3a;">确认</a></span>
+      </div>
+    </div>
+
   </div>
 </HiddenLayout>
 
 <script>
   const BASE = window.__BASE__ || '/';
 
-  // 管理密码：线索来自 trigger/rift 页面中的内部域名 "deeprift323.onion"
   const ADMIN_PASSWORD = 'deeprift323';
   const ADMIN_USERS = ['admin', '运营_A', '技术_B'];
 
-  document.getElementById('admin-login-btn')!.addEventListener('click', () => {
-    const user = (document.getElementById('admin-user') as HTMLInputElement).value.trim();
-    const pass = (document.getElementById('admin-pass') as HTMLInputElement).value.trim();
-    const errorEl = document.getElementById('admin-login-error')!;
+  document.getElementById('admin-login-btn').addEventListener('click', () => {
+    const user = document.getElementById('admin-user').value.trim();
+    const pass = document.getElementById('admin-pass').value.trim();
+    const errorEl = document.getElementById('admin-login-error');
 
     if (!user || !pass) {
       errorEl.textContent = '请输入操作员ID和认证密钥。';
@@ -161,12 +157,10 @@ const BASE = __BASE_PATH__;
     }
 
     if (ADMIN_USERS.includes(user) && pass === ADMIN_PASSWORD) {
-      // 登录成功
-      document.getElementById('admin-login')!.style.display = 'none';
-      document.getElementById('admin-panel')!.style.display = 'block';
-      document.getElementById('admin-op-name')!.textContent = user;
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      document.getElementById('admin-op-name').textContent = user;
 
-      // 记录进度
       const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
       if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
       progress.solvedPuzzles['stage3_hidden_admin_password'] = true;
@@ -184,17 +178,13 @@ const BASE = __BASE_PATH__;
     }
   });
 
-  // 回车键提交
-  document.getElementById('admin-pass')!.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      document.getElementById('admin-login-btn')!.click();
-    }
+  document.getElementById('admin-pass').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('admin-login-btn').click();
   });
 
-  // 退出
-  document.getElementById('admin-logout-btn')!.addEventListener('click', () => {
-    document.getElementById('admin-login')!.style.display = 'block';
-    document.getElementById('admin-panel')!.style.display = 'none';
-    (document.getElementById('admin-pass') as HTMLInputElement).value = '';
+  document.getElementById('admin-logout-btn').addEventListener('click', () => {
+    document.getElementById('admin-login').style.display = 'block';
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('admin-pass').value = '';
   });
 </script>

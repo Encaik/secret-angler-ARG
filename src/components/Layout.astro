@@ -55,7 +55,7 @@ import '../styles/global.css';
   <!-- 页脚 -->
   <footer class="site-footer">
     <p>
-      <a href={`${BASE}about/`} target="_blank">关于我们</a> ·
+      <a href={`${BASE}about/`} target="_blank">加入我们</a> ·
       <a href={`${BASE}submit/`} target="_blank">投稿</a> ·
       <a href={`${BASE}links/`} target="_blank">友情链接</a>
     </p>
@@ -75,10 +75,6 @@ import '../styles/global.css';
       if (!area) return;
       const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
       const username = localStorage.getItem('arg_username');
-      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-      const isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
-      const isAdmin = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage3_hidden_admin_password']);
-
       // 根据登录用户映射显示名
       const displayNames: Record<string, string> = { lyu: 'signal_屿', shenci: '地下三尺' };
       const displayName = (username && displayNames[username]) || username || '';
@@ -93,12 +89,6 @@ import '../styles/global.css';
         { label: '个人中心', href: BASE + 'user/center/' + (username || '') + '/' },
         { label: '私信箱', href: BASE + 'inbox/' + (username || '') + '/' },
       ];
-      if (isMember) {
-        menuItems.push({ label: '会员专区', href: BASE + 'member/' });
-      }
-      if (isAdmin) {
-        menuItems.push({ label: '后台管理', href: BASE + 'hidden/' });
-      }
       menuItems.push({ label: '退出登录', href: '#', action: 'logout' });
 
       const itemStyle = 'display:block;padding:8px 14px;color:#ccc;font-size:0.82rem;border-bottom:1px solid #3a3d44;cursor:pointer;';

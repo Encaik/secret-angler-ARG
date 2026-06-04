@@ -71,7 +71,7 @@ html {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: #e8e1d5;
 }
 
 body {
@@ -79,6 +79,33 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* 纸张纹理：微妙的噪点 + 轻微渐变 */
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(180,160,140,0.03) 2px,
+      rgba(180,160,140,0.03) 4px
+    ),
+    linear-gradient(
+      180deg,
+      #f5f0e8 0%,
+      #f2ede4 30%,
+      #f0ebe1 60%,
+      #ede6db 100%
+    );
+  background-attachment: fixed;
+}
+
+/* 纸张纹理叠加（通过伪元素，不影响内容） */
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
 }
 
 /* --- 链接样式 — 复古下划线风格 --- */
@@ -397,6 +424,73 @@ input:focus, textarea:focus, select:focus {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- 点位景观头图（CSS渐变模拟真实风景照） --- */
+.location-hero {
+  width: 100%; height: 180px; border-radius: var(--radius-sm);
+  margin-bottom: 16px; overflow: hidden; position: relative;
+}
+.location-hero.mountains {
+  background: linear-gradient(180deg, #87CEEB 0%, #B0C4DE 30%, #8B9DC3 45%, #6B7B8D 55%, #4A6741 65%, #3D5C30 80%, #5C7A4A 100%);
+}
+.location-hero.mountains::before {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 55%;
+  background:
+    /* 山峦剪影 */
+    linear-gradient(175deg, transparent 30%, #5C7A4A 30.5%, #4A5E3A 50%, transparent 50.5%),
+    linear-gradient(185deg, transparent 40%, #6B8B5A 40.5%, #556B3A 55%, #3D4E2A 60%, transparent 60.5%),
+    linear-gradient(170deg, transparent 45%, #7A9A6A 45.5%, #6A8A5A 65%, transparent 65.5%);
+}
+.location-hero.desert {
+  background: linear-gradient(180deg, #F4A460 0%, #DEB887 35%, #D2A679 50%, #C4956A 65%, #D2B48C 80%, #C4A882 100%);
+}
+.location-hero.desert::before {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
+  background:
+    linear-gradient(175deg, transparent 60%, #B8956A 60.5%, #A08060 75%, transparent 75.5%);
+}
+.location-hero.forest {
+  background: linear-gradient(180deg, #87CEEB 0%, #90B4A0 25%, #4A7C59 45%, #2D5A3D 60%, #1E3D28 80%, #0F1F14 100%);
+}
+.location-hero.forest::before {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+  background:
+    linear-gradient(170deg, transparent 40%, #3D6B4A 40.5%, #2D4A35 55%, transparent 55.5%),
+    linear-gradient(190deg, transparent 35%, #4D7B5A 35.5%, #3D6B4A 55%, #1D2D25 70%, transparent 70.5%);
+}
+.location-hero.plateau {
+  background: linear-gradient(180deg, #87CEEB 0%, #B0C4DE 20%, #8B9D8B 50%, #6B7B5D 65%, #4A5A3D 100%);
+}
+.location-hero.plateau::before {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 45%;
+  background:
+    linear-gradient(180deg, transparent 30%, #7A9A6A 30.5%, #5A7A4A 50%, #3A5A2A 70%, transparent 70.5%),
+    /* 雪山 */
+    linear-gradient(160deg, transparent 55%, #F0F0F0 55.5%, #E0E0E0 60%, #D0D0D0 65%, transparent 65.5%);
+}
+
+/* --- 帖文配图占位（模拟真实论坛的低清照片） --- */
+.post-photo {
+  width: 100%; max-width: 500px; height: 200px; border-radius: var(--radius-sm);
+  margin: 12px 0; overflow: hidden; position: relative;
+  border: 1px solid var(--color-border-light);
+  background: #d5cdc0;
+}
+.post-photo::after {
+  content: '📷';
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 2rem; opacity: 0.4;
+}
+.post-photo.landscape {
+  background: linear-gradient(180deg, #B0C4DE 0%, #9AB0C4 30%, #7A9A6A 50%, #5A7A4A 75%, #3A4A2A 100%);
+}
+.post-photo.ruins {
+  background: linear-gradient(180deg, #C4B896 0%, #A89878 40%, #8B7D6B 60%, #6B5D4B 100%);
+}
+.post-photo.night-sky {
+  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3a 60%, #2a2a4a 80%, #3a3a4a 100%);
+}
+.post-photo.night-sky::after { content: '✨'; }
 
 /* --- 文章列表项 --- */
 .post-item, .location-item {
