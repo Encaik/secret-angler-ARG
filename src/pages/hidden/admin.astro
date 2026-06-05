@@ -1,138 +1,288 @@
 ---
-// /hidden/admin — 团伙内部运营管理系统
-// 设计原则：真实的内部工具面板，不是给玩家看的线索索引
+// /hidden/admin — 寺院管理系统（团伙后台）
+// staff 视图：客堂运营面板（有限权限）
+// admin 视图：方丈管理面板（全部权限）
 import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<HiddenLayout title="运营管理系统">
+<HiddenLayout title="寺院管理系统">
   <!-- 登录界面 -->
   <div id="admin-login" style="max-width: 400px; margin: 80px auto;">
-    <div style="text-align: center; margin-bottom: 20px;">
-      <span style="font-size: 1.5rem;">🔻</span>
+    <div class="temple-header">
+      <div class="sect-name">归 源 宗</div>
+      <div class="sect-subtitle">寺院管理系统</div>
     </div>
-    <div class="card" style="background: #0d0d0d; border: 1px solid #222;">
+    <div class="card" style="background: #fefcf7; border: 1px solid #e0d5c0;">
       <div style="margin-bottom: 12px;">
-        <label style="display: block; font-size: 0.78rem; color: #666; margin-bottom: 4px;">操作员ID</label>
-        <input type="text" id="admin-user" placeholder="" value="admin" style="width:100%;max-width:100%;padding:7px 10px;background:#0a0a0a;border:1px solid #2a2a2a;color:#aaa;font-size:0.85rem;" />
+        <label style="display: block; font-size: 0.78rem; color: #6b5d4a; margin-bottom: 4px;">账号</label>
+        <input type="text" id="admin-user" placeholder="" value="" style="width:100%;max-width:100%;padding:7px 10px;background:#fdfaf4;border:1px solid #d5c8b0;color:#4a3728;font-size:0.85rem;" />
       </div>
       <div style="margin-bottom: 14px;">
-        <label style="display: block; font-size: 0.78rem; color: #666; margin-bottom: 4px;">认证密钥</label>
-        <input type="password" id="admin-pass" placeholder="" style="width:100%;max-width:100%;padding:7px 10px;background:#0a0a0a;border:1px solid #2a2a2a;color:#aaa;font-size:0.85rem;" />
+        <label style="display: block; font-size: 0.78rem; color: #6b5d4a; margin-bottom: 4px;">密码</label>
+        <input type="password" id="admin-pass" placeholder="" style="width:100%;max-width:100%;padding:7px 10px;background:#fdfaf4;border:1px solid #d5c8b0;color:#4a3728;font-size:0.85rem;" />
       </div>
-      <button id="admin-login-btn" style="width:100%;padding:8px;background:#1a0a0a;color:#8b3a3a;border:1px solid #2a1a1a;cursor:pointer;font-size:0.85rem;">
-        验证
+      <button id="admin-login-btn" style="width:100%;padding:8px;background:#8b6914;color:#fefcf7;border:1px solid #7a5a10;cursor:pointer;font-size:0.85rem;">
+        登录
       </button>
       <p id="admin-login-error" style="color:#8b3a3a;font-size:0.72rem;margin-top:6px;display:none;text-align:center;"></p>
     </div>
+    <p style="text-align:center;font-size:0.68rem;color:#b0a090;margin-top:12px;">
+      归源宗内部系统 · 仅限授权人员
+    </p>
   </div>
 
-  <!-- 管理面板（登录后显示） -->
-  <div id="admin-panel" style="display: none;">
+  <!-- ========== STAFF 视图：客堂运营面板 ========== -->
+  <div id="staff-panel" style="display: none;">
 
-    <!-- 顶栏 -->
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #1a1a1a;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #e0d5c0;">
       <div style="display:flex;align-items:center;gap:16px;">
-        <span style="font-size:0.9rem;color:#888;">运营管理系统 v3.2</span>
-        <span style="font-size:0.72rem;color:#555;">操作员：<strong id="admin-op-name" style="color:#aaa;"></strong></span>
-        <span style="font-size:0.68rem;color:#444;">上次登录：2026-06-03 22:47</span>
+        <span style="font-size:0.9rem;color:#2c1810;font-weight:bold;">寺院管理系统 · 客堂视图</span>
+        <span style="font-size:0.72rem;color:#9b8c7a;">当前用户：<strong id="staff-op-name" style="color:#4a3728;"></strong></span>
       </div>
       <div style="display:flex;gap:8px;">
-        <span style="font-size:0.68rem;color:#8b3a3a;padding:2px 8px;background:#1a0a0a;border-radius:2px;">冷却期 · 距下次可行动：87天</span>
-        <button id="admin-logout-btn" style="padding:4px 12px;background:none;color:#555;border:1px solid #2a2a2a;cursor:pointer;font-size:0.72rem;">退出</button>
+        <span style="font-size:0.68rem;color:#b0a090;">完整管理功能需方丈授权</span>
+        <button id="staff-logout-btn" style="padding:4px 12px;background:none;color:#9b8c7a;border:1px solid #e0d5c0;cursor:pointer;font-size:0.72rem;">退出</button>
       </div>
     </div>
 
-    <!-- 导航标签 -->
-    <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid #1a1a1a;">
-      <a href={`${BASE}hidden/admin/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#8b3a3a;border-bottom:2px solid #8b3a3a;text-decoration:none;">总览</a>
-      <a href={`${BASE}hidden/board/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">通讯</a>
-      <a href={`${BASE}hidden/operation/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">流程手册</a>
-      <a href={`${BASE}hidden/locations/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">坐标</a>
-      <a href={`${BASE}hidden/targets/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">目标</a>
-      <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">安全</a>
-      <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#555;text-decoration:none;">清理队列</a>
-      <span style="margin-left:auto;padding:6px 14px;font-size:0.72rem;color:#4a7c5a;">暗网市场：<a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#4a7c5a;">运行中</a></span>
+    <!-- 导航（受限） -->
+    <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid #e0d5c0;flex-wrap:wrap;">
+      <span style="padding:6px 14px;font-size:0.78rem;color:#8b6914;border-bottom:2px solid #8b6914;">总览</span>
+      <span style="padding:6px 14px;font-size:0.78rem;color:#c0b090;cursor:not-allowed;" title="权限不足 - 需方丈授权">内部通讯</span>
+      <a href={`${BASE}hidden/operation/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">操作手册</a>
+      <span style="padding:6px 14px;font-size:0.78rem;color:#c0b090;cursor:not-allowed;" title="权限不足 - 需方丈授权">据点坐标</span>
+      <span style="padding:6px 14px;font-size:0.78rem;color:#c0b090;cursor:not-allowed;" title="权限不足 - 需方丈授权">目标档案</span>
+      <span style="padding:6px 14px;font-size:0.78rem;color:#c0b090;cursor:not-allowed;" title="权限不足 - 需方丈授权">人员处置</span>
+      <span style="padding:6px 14px;font-size:0.78rem;color:#c0b090;cursor:not-allowed;" title="权限不足 - 需方丈授权">证据管理</span>
+      <span style="margin-left:auto;padding:6px 14px;font-size:0.72rem;color:#3d6b6b;">功德流通：<a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#3d6b6b;">归源宗香火站</a></span>
     </div>
 
-    <!-- 系统告警 -->
-    <div style="background:#1a0a0a;border:1px solid #2a1a1a;padding:8px 14px;margin-bottom:16px;font-size:0.72rem;color:#8b5a3a;">
-      ⚠ 未处理事项：访问凭证逾期未更换（风险等级：中）· 三尺的会员数据未完全清理（帖文权限255，需数据库直操）· 证据清理队列待确认（#DEL-004 排程：06-06 00:00）
+    <!-- 统计卡片（仅基础数据） -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">本月法会场次</div>
+        <div style="font-size:1.2rem;color:#2c1810;">3</div>
+        <div style="font-size:0.6rem;color:#b0a090;">春季 · 夏季 · 秋季（筹备中）</div>
+      </div>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">在寺信众</div>
+        <div style="font-size:1.2rem;color:#2c1810;">4</div>
+        <div style="font-size:0.6rem;color:#b0a090;">2 闭关 · 1 示现 · 1 待评估</div>
+      </div>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">本月供养收入</div>
+        <div style="font-size:1.2rem;color:#2c1810;">$183K</div>
+        <div style="font-size:0.6rem;color:#b0a090;">功德流通 + 法会直播</div>
+      </div>
+    </div>
+
+    <!-- 法会日程管理 -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.78rem;color:#6b5d4a;margin-bottom:6px;">法会日程管理</div>
+      <table style="font-size:0.72rem;width:100%;">
+        <tr style="color:#6b5d4a;"><th style="text-align:left;padding:4px 8px;">法会</th><th style="text-align:left;padding:4px 8px;">日期</th><th style="text-align:left;padding:4px 8px;">地点</th><th style="text-align:left;padding:4px 8px;">状态</th></tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">春季归源法会</td><td style="padding:3px 8px;">04-15 至 04-20</td>
+          <td style="padding:3px 8px;">贺兰山净修禅院</td><td style="padding:3px 8px;color:#3d6b6b;">已圆满</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">夏季归源法会</td><td style="padding:3px 8px;">05-25 至 05-28</td>
+          <td style="padding:3px 8px;">凤凰山</td><td style="padding:3px 8px;color:#3d6b6b;">已圆满</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">秋季归源法会</td><td style="padding:3px 8px;">09-01 起</td>
+          <td style="padding:3px 8px;">待公告</td><td style="padding:3px 8px;color:#a0702c;">筹备中</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 信众名录（部分列） -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.78rem;color:#6b5d4a;margin-bottom:6px;">信众名录</div>
+      <table style="font-size:0.72rem;width:100%;">
+        <tr style="color:#6b5d4a;"><th style="text-align:left;padding:4px 8px;">法号</th><th style="text-align:left;padding:4px 8px;">入院日期</th><th style="text-align:left;padding:4px 8px;">状态</th><th style="text-align:left;padding:4px 8px;">备注</th></tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">旅人</td><td style="padding:3px 8px;">2026-03-15</td><td style="padding:3px 8px;color:#3d6b6b;">已离寺</td><td style="padding:3px 8px;font-size:0.65rem;">——</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">观星者</td><td style="padding:3px 8px;">2026-04-02</td><td style="padding:3px 8px;color:#3d6b6b;">已离寺</td><td style="padding:3px 8px;font-size:0.65rem;">——</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">三尺</td><td style="padding:3px 8px;">2026-05-26</td><td style="padding:3px 8px;color:#8b6914;">闭关中</td><td style="padding:3px 8px;font-size:0.65rem;">需冷链</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">行者</td><td style="padding:3px 8px;">2026-05-30</td><td style="padding:3px 8px;color:#5a7a3a;">示现中</td><td style="padding:3px 8px;font-size:0.65rem;">法台甲</td>
+        </tr>
+      </table>
+      <p style="font-size:0.65rem;color:#c0b090;margin-top:4px;">※ 完整档案（含俗名、来源地、评估数据）需方丈权限。</p>
+    </div>
+
+    <!-- 供养记录 -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.78rem;color:#6b5d4a;margin-bottom:6px;">本月供养记录（部分）</div>
+      <table style="font-size:0.72rem;width:100%;">
+        <tr style="color:#6b5d4a;"><th style="text-align:left;padding:4px 8px;">日期</th><th style="text-align:left;padding:4px 8px;">施主</th><th style="text-align:left;padding:4px 8px;">项目</th><th style="text-align:right;padding:4px 8px;">功德金</th></tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">05-20</td><td style="padding:3px 8px;">陈居士</td><td style="padding:3px 8px;">金刚舍利 + 甘露</td><td style="padding:3px 8px;text-align:right;">135,000</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">04-15</td><td style="padding:3px 8px;">王居士</td><td style="padding:3px 8px;">金身渡化</td><td style="padding:3px 8px;text-align:right;">48,000</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">03-08</td><td style="padding:3px 8px;">——</td><td style="padding:3px 8px;">甘露</td><td style="padding:3px 8px;text-align:right;">82,000</td>
+        </tr>
+      </table>
+      <p style="font-size:0.65rem;color:#c0b090;margin-top:4px;">※ 完整功德簿含施主详情与去向，需方丈权限。</p>
+    </div>
+
+    <!-- 功德流通入口 -->
+    <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <span style="font-size:0.78rem;color:#6b5d4a;">功德流通处 · 演示账号</span>
+        <span style="font-size:0.7rem;color:#9b8c7a;margin-left:12px;">DR-2026-03 / rift0603</span>
+      </div>
+      <a href={`${BASE}hidden/darknet/`} target="_blank" style="padding:6px 16px;background:#3d6b6b;color:#fefcf7;text-decoration:none;font-size:0.72rem;border-radius:2px;">前往功德流通处 →</a>
+    </div>
+
+    <!-- 操作日志（仅内容相关） -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.78rem;color:#6b5d4a;margin-bottom:6px;">操作日志</div>
+      <table style="font-size:0.72rem;width:100%;">
+        <tr style="color:#6b5d4a;"><th style="text-align:left;padding:4px 8px;">时间</th><th style="text-align:left;padding:4px 8px;">操作人</th><th style="text-align:left;padding:4px 8px;">内容</th></tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">06-03 17:00</td><td style="padding:3px 8px;">首座</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">删除贺兰山相关引导帖×3。甲辰003已收押。</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">06-01 09:00</td><td style="padding:3px 8px;">首座</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">外联人员发布常规帖文×2，维持站点活跃度。</td>
+        </tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">05-29 23:00</td><td style="padding:3px 8px;">监院</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">清理缓存数据——部分失败。甲辰003文件权限过高。</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 提示横幅 -->
+    <div style="background:#fdf6ed;border:1px solid #e0d0a0;padding:8px 14px;font-size:0.72rem;color:#6b4a2a;">
+      ⚠ 当前为客堂视图。完整管理功能（内部通讯、档案管理、坐标数据、人员处置记录、证据管理）需以方丈身份登录。如需获取方丈权限，请在功德流通系统中查找管理员密钥。
+    </div>
+  </div>
+
+  <!-- ========== ADMIN 视图：方丈管理面板（当前完整面板） ========== -->
+  <div id="admin-panel" style="display: none;">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #e0d5c0;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span style="font-size:0.9rem;color:#2c1810;font-weight:bold;">归源宗 · 管理后台</span>
+        <span style="font-size:0.72rem;color:#9b8c7a;">当前用户：<strong id="admin-op-name" style="color:#4a3728;"></strong></span>
+        <span style="font-size:0.68rem;color:#b0a090;">上次登录：2026-06-03 21:00</span>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <span style="font-size:0.68rem;color:#8b6914;padding:2px 8px;background:#faf3e0;border:1px solid #e0d0a0;border-radius:2px;">冷却期 · 距下次行动：87天</span>
+        <button id="admin-logout-btn" style="padding:4px 12px;background:none;color:#9b8c7a;border:1px solid #e0d5c0;cursor:pointer;font-size:0.72rem;">退出</button>
+      </div>
+    </div>
+
+    <!-- 导航标签（完整） -->
+    <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid #e0d5c0;">
+      <a href={`${BASE}hidden/admin/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#8b6914;border-bottom:2px solid #8b6914;text-decoration:none;">总览</a>
+      <a href={`${BASE}hidden/board/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">内部通讯</a>
+      <a href={`${BASE}hidden/operation/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">操作手册</a>
+      <a href={`${BASE}hidden/locations/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">据点坐标</a>
+      <a href={`${BASE}hidden/targets/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">目标档案</a>
+      <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">人员处置</a>
+      <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="padding:6px 14px;font-size:0.78rem;color:#6b5d4a;text-decoration:none;">证据管理</a>
+      <span style="margin-left:auto;padding:6px 14px;font-size:0.72rem;color:#3d6b6b;">暗网市场：<a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#3d6b6b;">因缘海</a></span>
+    </div>
+
+    <!-- 待办警示 -->
+    <div style="background:#fdf6ed;border:1px solid #e0d0a0;padding:8px 14px;margin-bottom:16px;font-size:0.72rem;color:#6b4a2a;">
+      ⚠ 待处理：管理员密码逾期未更换（风险等级：中）· 甲辰003（沈辞）档案权限过高未清理 · 证据删除队列待确认（甲辰004号 排程：06-06 00:00）· <strong style="color:#5c2e2e;">郑义（深观）的自动举报脚本仍在重发中（第5轮）——不可逆。证据已送达66天。建议全员查阅人员处置记录。</strong>
     </div>
 
     <!-- 统计卡片 -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
-        <div style="font-size:0.65rem;color:#555;">活跃项目</div>
-        <div style="font-size:1.2rem;color:#aaa;">3</div>
-        <div style="font-size:0.6rem;color:#444;">深海裂隙 · 星门坐标 · 布景基地</div>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">活跃站点</div>
+        <div style="font-size:1.2rem;color:#2c1810;">3</div>
+        <div style="font-size:0.6rem;color:#b0a090;">论坛 · 信号网络 · 中央基地</div>
       </div>
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
-        <div style="font-size:0.65rem;color:#555;">当前库存</div>
-        <div style="font-size:1.2rem;color:#aaa;">4</div>
-        <div style="font-size:0.6rem;color:#444;">2 养护中 · 1 陈列 · 1 待评估</div>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">在押人员</div>
+        <div style="font-size:1.2rem;color:#2c1810;">4</div>
+        <div style="font-size:0.6rem;color:#b0a090;">2 待处理 · 1 展示中 · 1 待评估</div>
       </div>
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
-        <div style="font-size:0.65rem;color:#555;">本月营收</div>
-        <div style="font-size:1.2rem;color:#aaa;">$183K</div>
-        <div style="font-size:0.6rem;color:#444;">暗网市场 + 直播订阅</div>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">本月收入</div>
+        <div style="font-size:1.2rem;color:#2c1810;">$183K</div>
+        <div style="font-size:0.6rem;color:#b0a090;">暗网市场 + 直播频道</div>
       </div>
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:12px;">
-        <div style="font-size:0.65rem;color:#555;">监控目标</div>
-        <div style="font-size:1.2rem;color:#8b3a3a;">2</div>
-        <div style="font-size:0.6rem;color:#444;">signal_屿（重点）· 废弃中（常规）</div>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+        <div style="font-size:0.65rem;color:#9b8c7a;">监控目标</div>
+        <div style="font-size:1.2rem;color:#5c2e2e;">2</div>
+        <div style="font-size:0.6rem;color:#b0a090;">signal_屿（重点）· 废弃中（普通）</div>
       </div>
     </div>
 
-    <!-- 操作日志（主要区域） -->
+    <!-- 操作日志（完整） -->
     <div style="margin-bottom:16px;">
-      <div style="font-size:0.78rem;color:#888;margin-bottom:6px;">最近操作记录</div>
+      <div style="font-size:0.78rem;color:#6b5d4a;margin-bottom:6px;">操作日志</div>
       <table style="font-size:0.72rem;width:100%;">
-        <tr style="color:#555;"><th style="text-align:left;padding:4px 8px;">时间</th><th style="text-align:left;padding:4px 8px;">操作员</th><th style="text-align:left;padding:4px 8px;">模块</th><th style="text-align:left;padding:4px 8px;">摘要</th></tr>
-        <tr style="color:#777;">
-          <td style="padding:3px 8px;">06-03 18:22</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">内容管理</td>
-          <td style="padding:3px 8px;font-size:0.68rem;">删除贺兰山推荐帖×3。SKU-2026-003点位已完成。</td>
+        <tr style="color:#6b5d4a;"><th style="text-align:left;padding:4px 8px;">时间</th><th style="text-align:left;padding:4px 8px;">操作人</th><th style="text-align:left;padding:4px 8px;">模块</th><th style="text-align:left;padding:4px 8px;">内容</th></tr>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">06-03 17:00</td><td style="padding:3px 8px;">首座</td><td style="padding:3px 8px;">内容管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">删除贺兰山相关引导帖×3。甲辰003（沈辞）已收押。</td>
         </tr>
-        <tr style="color:#777;">
-          <td style="padding:3px 8px;">06-03 00:05</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">证据清理</td>
-          <td style="padding:3px 8px;font-size:0.68rem;">批量标记删除项。操作中断——部分文件权限不足。</td>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">06-03 23:00</td><td style="padding:3px 8px;">首座</td><td style="padding:3px 8px;">证据管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">批量标记待删除数据。操作中断——部分文件权限不足。</td>
         </tr>
-        <tr style="color:#777;">
-          <td style="padding:3px 8px;">06-02 14:10</td><td style="padding:3px 8px;">技术_B</td><td style="padding:3px 8px;">监控</td>
-          <td style="padding:3px 8px;font-size:0.68rem;">signal_屿 标记为"重点观察"。未检测到实地探查行为。</td>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">06-02 13:00</td><td style="padding:3px 8px;">监院</td><td style="padding:3px 8px;">目标监控</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">signal_屿（林屿）升级为"重点监控"。暂无实地调查迹象。</td>
         </tr>
-        <tr style="color:#777;">
-          <td style="padding:3px 8px;">06-01 09:45</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">舆论管理</td>
-          <td style="padding:3px 8px;font-size:0.68rem;">山野探秘人发布正常路线帖×2，稀释质疑帖权重。</td>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">06-01 09:00</td><td style="padding:3px 8px;">首座</td><td style="padding:3px 8px;">外联</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">外联人员发布常规帖文×2，维持站点活跃度。</td>
         </tr>
-        <tr style="color:#777;">
-          <td style="padding:3px 8px;">05-29 23:15</td><td style="padding:3px 8px;">技术_B</td><td style="padding:3px 8px;">数据清理</td>
-          <td style="padding:3px 8px;font-size:0.68rem;">清理会员区缓存——部分失败。SKU-003的帖文权限过高。</td>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">05-29 23:00</td><td style="padding:3px 8px;">监院</td><td style="padding:3px 8px;">内容管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">清理在押人员区缓存数据——部分失败。甲辰003（沈辞）文件权限过高。</td>
         </tr>
-        <tr style="color:#777;">
-          <td style="padding:3px 8px;">05-26 08:30</td><td style="padding:3px 8px;">运营_A</td><td style="padding:3px 8px;">库存管理</td>
-          <td style="padding:3px 8px;font-size:0.68rem;">新入库 #SKU-2026-003"三尺"。HLA分型待外部实验室确认。</td>
+        <tr style="color:#4a3728;">
+          <td style="padding:3px 8px;">05-26 07:00</td><td style="padding:3px 8px;">首座</td><td style="padding:3px 8px;">目标管理</td>
+          <td style="padding:3px 8px;font-size:0.68rem;">新增目标 甲辰003·三尺（沈辞）。体检评估待外院医生确认。</td>
         </tr>
       </table>
     </div>
 
     <!-- 快捷入口 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.72rem;">
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
-        <span style="color:#666;">库存管理</span>
-        <span style="float:right;color:#aaa;">4 标的 · <a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#4a7c5a;">查看挂牌</a></span>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:8px 12px;">
+        <span style="color:#9b8c7a;">在押人员</span>
+        <span style="float:right;color:#4a3728;">4 人 · <a href={`${BASE}hidden/darknet/`} target="_blank" style="color:#3d6b6b;">查看市场</a></span>
       </div>
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
-        <span style="color:#666;">安全事件</span>
-        <span style="float:right;color:#8b3a3a;">1 未处理 · <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="color:#8b3a3a;">查看</a></span>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:8px 12px;">
+        <span style="color:#9b8c7a;">安全警报</span>
+        <span style="float:right;color:#5c2e2e;">1 项未处理 · <a href={`${BASE}hidden/dead-drop/`} target="_blank" style="color:#5c2e2e;">查看</a></span>
       </div>
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
-        <span style="color:#666;">站点管理</span>
-        <span style="float:right;color:#aaa;">冷却期 · 87天剩余</span>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:8px 12px;">
+        <span style="color:#9b8c7a;">站点管理</span>
+        <span style="float:right;color:#4a3728;">冷却期 · 剩余87天</span>
       </div>
-      <div style="background:#0d0d0d;border:1px solid #1a1a1a;padding:8px 12px;">
-        <span style="color:#666;">证据清理队列</span>
-        <span style="float:right;color:#8b7a3a;">4 项待处理 · <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="color:#8b7a3a;">确认</a></span>
+      <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:8px 12px;">
+        <span style="color:#9b8c7a;">证据队列</span>
+        <span style="float:right;color:#a0702c;">4 条待删除 · <a href={`${BASE}hidden/evidence-locker/`} target="_blank" style="color:#a0702c;">确认</a></span>
+      </div>
+    </div>
+
+    <!-- 工作备注 -->
+    <div class="incense-block" style="margin-top: 16px;">
+      <div style="font-size: 0.72rem; color: #6b5d4a; line-height: 1.8;">
+        工作备注：甲辰年第三轮行动已完成。沈辞（三尺）体检结果良好，待外院医生确认配型后即可上架。各部门注意——<strong>管理员密码逾期未更换</strong>一事，首座已做记录。冷却期内禁止新行动。监院报告：监控目标一人（signal_屿/林屿）近日频繁搜索本组织旧帖，需密切关注。
       </div>
     </div>
 
@@ -143,19 +293,42 @@ const BASE = __BASE_PATH__;
   const BASE = window.__BASE__ || '/';
 
   const ADMIN_PASSWORD = 'deeprift323';
-  const ADMIN_USERS = ['admin', '运营_A', '技术_B'];
+  const STAFF_PASSWORD = 'portal2026';
+  const ADMIN_USERS = ['admin', '首座', '监院'];
+  const STAFF_USERS = ['staff'];
 
-  document.getElementById('admin-login-btn').addEventListener('click', () => {
+  function doLogin() {
     const user = document.getElementById('admin-user').value.trim();
     const pass = document.getElementById('admin-pass').value.trim();
     const errorEl = document.getElementById('admin-login-error');
 
     if (!user || !pass) {
-      errorEl.textContent = '请输入操作员ID和认证密钥。';
+      errorEl.textContent = '请输入账号和密码。';
       errorEl.style.display = 'block';
       return;
     }
 
+    // Staff 登录
+    if (STAFF_USERS.includes(user.toLowerCase()) && pass === STAFF_PASSWORD) {
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('staff-panel').style.display = 'block';
+      document.getElementById('staff-op-name').textContent = user;
+
+      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+      if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
+      progress.solvedPuzzles['stage_staff_access'] = true;
+      if (!progress.discoveredClues) progress.discoveredClues = [];
+      if (!progress.discoveredClues.includes('staff_access')) {
+        progress.discoveredClues.push('staff_access');
+      }
+      progress.explorationProgress = Math.min(100, (progress.explorationProgress || 0) + 5);
+      localStorage.setItem('arg_progress', JSON.stringify(progress));
+
+      errorEl.style.display = 'none';
+      return;
+    }
+
+    // Admin 登录
     if (ADMIN_USERS.includes(user) && pass === ADMIN_PASSWORD) {
       document.getElementById('admin-login').style.display = 'none';
       document.getElementById('admin-panel').style.display = 'block';
@@ -172,17 +345,27 @@ const BASE = __BASE_PATH__;
       localStorage.setItem('arg_progress', JSON.stringify(progress));
 
       errorEl.style.display = 'none';
-    } else {
-      errorEl.textContent = '认证失败：操作员ID或密钥不正确。';
-      errorEl.style.display = 'block';
+      return;
     }
-  });
+
+    errorEl.textContent = '账号或密码错误，请重试。';
+    errorEl.style.display = 'block';
+  }
+
+  document.getElementById('admin-login-btn').addEventListener('click', doLogin);
 
   document.getElementById('admin-pass').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') document.getElementById('admin-login-btn').click();
+    if (e.key === 'Enter') doLogin();
   });
 
-  document.getElementById('admin-logout-btn').addEventListener('click', () => {
+  // 退出按钮
+  document.getElementById('staff-logout-btn')?.addEventListener('click', () => {
+    document.getElementById('admin-login').style.display = 'block';
+    document.getElementById('staff-panel').style.display = 'none';
+    document.getElementById('admin-pass').value = '';
+  });
+
+  document.getElementById('admin-logout-btn')?.addEventListener('click', () => {
     document.getElementById('admin-login').style.display = 'block';
     document.getElementById('admin-panel').style.display = 'none';
     document.getElementById('admin-pass').value = '';

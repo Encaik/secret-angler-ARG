@@ -24,8 +24,8 @@
 
   // 在隐藏/后台页面输出不同的消息
   if (window.location.pathname.includes('/hidden/')) {
-    console.log('%c[后台] 管理员登录检测中……', styles.warn);
-    console.log('%c[系统] 警告：您正在访问受限区域。所有操作将被记录。', styles.warn);
+    console.log('%c[法务寮] 常住僧众法印验证中……', styles.warn);
+    console.log('%c[戒律] 此区域为归源宗内参系统。所有阅览将被记入法堂审记。', styles.warn);
   }
 
   if (window.location.pathname.includes('/member/')) {

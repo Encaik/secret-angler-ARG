@@ -1,78 +1,72 @@
 ---
-// /hidden/targets — 目标档案
-// 团伙筛选的所有目标详细档案
+// /hidden/targets — 目标档案库（团伙目标数据库）
 import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
 
 <HiddenLayout title="目标档案">
   <div class="breadcrumb">
-    <a href={`${BASE}hidden/admin/`} target="_blank">后台管理</a><span>›</span>
+    <a href={`${BASE}hidden/admin/`} target="_blank">管理后台</a><span>›</span>
     目标档案
   </div>
 
-  <h2 style="color: #c0392b; margin-bottom: 4px;">👤 目标档案库</h2>
-  <p class="text-muted" style="margin-bottom: 16px;">所有已筛选、已评估、已处理目标的完整档案 · 分类：绝密</p>
+  <h2 style="color: #2c1810; margin-bottom: 4px;">目标档案库</h2>
+  <p class="text-muted" style="margin-bottom: 16px;">已评估、已行动全部目标之完整记录 · 密级：内部</p>
 
   <!-- 沈辞档案 -->
-  <div class="card" style="border-left: 3px solid #c0392b; margin-bottom: 12px;">
-    <h4>📋 档案 #DL-2026-001：三尺（沈辞）<span class="hidden-badge" style="margin-left:8px;">已处理</span></h4>
+  <div class="card" style="border-left: 3px solid #5c2e2e; margin-bottom: 12px;">
+    <h4>编号·甲辰001：三尺（沈辞）<span class="hidden-badge maroon" style="margin-left:8px;">已行动</span></h4>
     <table style="font-size: 0.8rem;">
-      <tr><td style="width:20%;color:#888;">真实姓名</td><td>沈辞</td></tr>
-      <tr><td style="color:#888;">账号</td><td>shenci（网名：地下三尺）</td></tr>
-      <tr><td style="color:#888;">年龄/身份</td><td>20岁（2006年生）· 大二学生 · 电子信息工程专业</td></tr>
-      <tr><td style="color:#888;">注册日期</td><td>2025-10-20</td></tr>
-      <tr><td style="color:#888;">弱点评分</td><td>独行9 · 偏远9 · 社交7 · 非本地8 · 专业威胁-6 · 媒体暴露2</td></tr>
-      <tr><td style="color:#888;">匹配诱饵</td><td>贺兰山未记录岩画群（偏远古迹类）</td></tr>
-      <tr><td style="color:#888;">伏击点位</td><td>SG-003 贺兰山 (38.78, 106.03)</td></tr>
-      <tr><td style="color:#888;">处理日期</td><td>2026-05-25</td></tr>
-      <tr><td style="color:#888;">当前状态</td><td><span style="color:#c0392b;">#SKU-2026-003 · 体检评估中（HLA分型预计6月8日完成）</span> · 直播频道B展示中</td></tr>
-      <tr><td style="color:#888;">遗留风险</td><td style="color:#e67e22;">⚠ 出发前留了加密信息给朋友signal_屿。已设仅自己可见帖文，内容待删除。密切关联者signal_屿正在调查。</td></tr>
+      <tr><td style="width:20%;color:#9b8c7a;">姓名</td><td>沈辞</td></tr>
+      <tr><td style="color:#9b8c7a;">代号/网名</td><td>三尺 / shenci（网名：地下三尺）</td></tr>
+      <tr><td style="color:#9b8c7a;">年龄/身份</td><td>20岁（2006年生）· 大二学生 · 电子信息工程</td></tr>
+      <tr><td style="color:#9b8c7a;">锁定日期</td><td>2025-10-20</td></tr>
+      <tr><td style="color:#9b8c7a;">评估数据</td><td>独行倾向9 · 偏远偏好9 · 社会关联7 · 非本地8 · 专业威胁-6 · 网络声量2</td></tr>
+      <tr><td style="color:#9b8c7a;">诱导线</td><td>贺兰山未录岩画群（偏远古迹类）</td></tr>
+      <tr><td style="color:#9b8c7a;">信号灯位</td><td>DL-003 贺兰山 (38.78, 106.03)</td></tr>
+      <tr><td style="color:#9b8c7a;">行动日期</td><td>2026-05-25</td></tr>
+      <tr><td style="color:#9b8c7a;">当前状态</td><td><span style="color:#5c2e2e;">编号甲辰003 · 体检评估中（配型预计6月8日完成）</span> · 直播频道乙展示中</td></tr>
+      <tr><td style="color:#9b8c7a;">遗留风险</td><td style="color:#a0702c;">⚠ 出行前留了加密证据给好友林屿。已设仅自己可见帖文，待删除。密切关联者林屿正在追查。</td></tr>
     </table>
   </div>
 
   <!-- 林屿档案 -->
-  <div class="card" style="border-left: 3px solid #e67e22; margin-bottom: 12px;">
-    <h4>📋 档案 #DL-2026-002：signal_屿（林屿）<span class="hidden-badge" style="margin-left:8px;background:#e67e22;">监控中</span></h4>
+  <div class="card" style="border-left: 3px solid #a0702c; margin-bottom: 12px;">
+    <h4>编号·甲辰002：signal_屿（林屿）<span class="hidden-badge amber" style="margin-left:8px;">监控中</span></h4>
     <table style="font-size: 0.8rem;">
-      <tr><td style="width:20%;color:#888;">真实姓名</td><td>林屿</td></tr>
-      <tr><td style="color:#888;">账号</td><td>lyu（网名：signal_屿）</td></tr>
-      <tr><td style="color:#888;">年龄/身份</td><td>20岁 · 大二学生 · 电子信息工程专业（与三尺同校同专业）</td></tr>
-      <tr><td style="color:#888;">注册日期</td><td>2025-04-15（比三尺早约半年）</td></tr>
-      <tr><td style="color:#888;">弱点评分</td><td>独行6 · 偏远5 · 社交5 · 非本地5 · <strong style="color:#c0392b;">专业威胁-8</strong> · 媒体暴露3</td></tr>
-      <tr><td style="color:#888;">风险评估</td><td style="color:#e67e22;">⚠ 专业威胁极高——有信号分析能力，可识别伪造的"外星信号"。偏向理论分析而非实地行动，目前独行偏好中等。但三尺失踪后他可能改变行为模式。</td></tr>
-      <tr><td style="color:#888;">监控状态</td><td>2026-06-02 起列为"重点观察"。已记录其搜索历史：沈辞、贺兰山、加密、信号。</td></tr>
-      <tr><td style="color:#888;">建议处理</td><td style="color:#c0392b;">如发现其计划实地探查 → 立即列为下一个目标。否则 → 持续监控，待冷却期结束后评估。</td></tr>
+      <tr><td style="width:20%;color:#9b8c7a;">姓名</td><td>林屿</td></tr>
+      <tr><td style="color:#9b8c7a;">代号/网名</td><td>signal_屿 / lyu</td></tr>
+      <tr><td style="color:#9b8c7a;">年龄/身份</td><td>20岁 · 大二学生 · 电子信息工程（与沈辞同校同专业）</td></tr>
+      <tr><td style="color:#9b8c7a;">锁定日期</td><td>2025-04-15（比沈辞早约半年）</td></tr>
+      <tr><td style="color:#9b8c7a;">评估数据</td><td>独行倾向6 · 偏远偏好5 · 社会关联5 · 非本地5 · <strong style="color:#5c2e2e;">专业威胁-8</strong> · 网络声量3</td></tr>
+      <tr><td style="color:#9b8c7a;">风险评估</td><td style="color:#a0702c;">⚠ 专业威胁极高——有信号分析能力，可识破我们的"异常信号"伪装。偏向理论分析而非实地探秘，目前独行倾向中等。但沈辞失踪后其行为模式可能改变。</td></tr>
+      <tr><td style="color:#9b8c7a;">监控状态</td><td>2026-06-02 起列为"重点监控"。已记录其搜索：沈辞、贺兰山、加密、信号。</td></tr>
+      <tr><td style="color:#9b8c7a;">建议措施</td><td style="color:#5c2e2e;">若发现其计划实地调查 → 立即列入目标名单。否则 → 持续监控，冷却期后再议。</td></tr>
     </table>
   </div>
 
-  <!-- 其他已筛选目标 -->
+  <!-- 其他已评估目标 -->
   <div class="card" style="margin-bottom: 12px;">
-    <h4>📋 其他已筛选潜在目标（部分）</h4>
+    <h4>其他已评估目标（部分）</h4>
     <table style="font-size: 0.78rem;">
-      <tr><th>代号</th><th>账号</th><th>类型</th><th>评分</th><th>状态</th></tr>
+      <tr><th>代号</th><th>网名</th><th>类型</th><th>评估</th><th>状态</th></tr>
       <tr>
-        <td>废弃中</td><td>urbexlf</td><td>城市废墟探险者</td><td>独行8·偏远4·社交6·专业威胁-2</td>
-        <td><span style="color:#888;">排除</span></td>
+        <td>废弃中</td><td>urbexlf</td><td>城市废墟探访者</td><td>独行倾向8·偏远偏好4·社会关联6·专业威胁-2</td>
+        <td><span style="color:#9b8c7a;">已排除</span></td>
       </tr>
       <tr>
-        <td>浪到没信号</td><td>driftlang</td><td>背包客</td><td>独行4·偏远7·社交4·专业威胁-1</td>
-        <td><span style="color:#888;">排除（常结伴）</span></td>
+        <td>浪到没信号</td><td>driftlang</td><td>背包旅行者</td><td>独行倾向4·偏远偏好7·社会关联4·专业威胁-1</td>
+        <td><span style="color:#9b8c7a;">已排除（常结伴）</span></td>
       </tr>
       <tr>
-        <td>nebu1a_x</td><td>nebulax</td><td>天文摄影爱好者</td><td>独行5·偏远4·社交7·专业威胁-3</td>
-        <td><span style="color:#888;">排除（社交圈大）</span></td>
+        <td>nebu1a_x</td><td>nebulax</td><td>天象摄影爱好者</td><td>独行倾向5·偏远偏好4·社会关联7·专业威胁-3</td>
+        <td><span style="color:#9b8c7a;">已排除（社会关联广）</span></td>
       </tr>
       <tr>
         <td>山野探秘人</td><td>mountainwolf</td><td>—</td><td>—</td>
-        <td><span style="color:#27ae60;">我方眼线</span></td>
+        <td><span style="color:#3d6b6b;">外联人员</span></td>
       </tr>
     </table>
   </div>
 
-  <div class="hidden-notice" style="margin-top: 16px;">
-    <p style="margin-bottom: 0; color: #88d;">
-      <strong>💡 注意：</strong>你的账号（signal_屿/lyu）已被标记为"重点观察"。团伙正在评估是否将你列为下一个目标。你在站内的搜索行为已被记录。
-    </p>
-  </div>
 </HiddenLayout>

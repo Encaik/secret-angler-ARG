@@ -38,7 +38,13 @@ import '../styles/global.css';
         <a href={`${BASE}deep-sea/`} target="_blank" class:list={["nav-deepsea", { active: currentNav === "deep-sea" }]}>深海探秘</a>
         <a href={`${BASE}hollow-earth/`} target="_blank" class:list={["nav-hollow", { active: currentNav === "hollow-earth" }]}>地心文明</a>
         <a href={`${BASE}community/`} target="_blank" class:list={["nav-community", { active: currentNav === "community" }]}>社区</a>
+        <a href={`${BASE}member/`} target="_blank" class:list={["nav-member", { active: currentNav === "member" }]}>会员专区</a>
         <a href={`${BASE}guide/`} target="_blank">指南</a>
+      </div>
+      <!-- 搜索栏 -->
+      <div class="nav-search">
+        <input type="text" id="search-input" placeholder="搜索帖文…" maxlength="80" />
+        <button id="search-btn">搜索</button>
       </div>
       <div id="nav-user-area">
         <span style="color:#b0aca5;font-size:0.82rem;padding:4px 10px;white-space:nowrap;cursor:pointer;" onclick={`window.open('${BASE}register/', '_blank')`}>注册</span>
@@ -65,6 +71,7 @@ import '../styles/global.css';
 
   <!-- 客户端脚本（相对路径让 Astro 自动编译打包，并自动添加 base 前缀） -->
   <script src="../scripts/console.ts"></script>
+  <script src="../scripts/progress.ts"></script>
   <script src="../scripts/search.ts"></script>
   <script>
     // BASE 路径前缀，从 window.__BASE__ 读取（由 head 中 define:vars 脚本注入）
@@ -166,8 +173,26 @@ import '../styles/global.css';
   .nav-hollow.active { color: #fff !important; background: rgba(123, 75, 58, 0.4) !important; }
   .nav-community.active { color: #fff !important; background: rgba(160, 82, 45, 0.4) !important; }
 
+  /* 导航搜索栏 */
+  .nav-search {
+    display: flex; align-items: center; gap: 0; margin-left: auto; margin-right: 8px;
+  }
+  .nav-search input {
+    width: 140px; max-width: 140px; padding: 5px 8px;
+    background: #2a2d35; border: 1px solid #444; border-right: none; border-radius: 2px 0 0 2px;
+    color: #ccc; font-size: 0.75rem; outline: none;
+  }
+  .nav-search input:focus { border-color: #666; }
+  .nav-search input::placeholder { color: #666; font-size: 0.7rem; }
+  .nav-search button {
+    padding: 5px 10px; background: #3a3d44; color: #b0aca5;
+    border: 1px solid #444; border-radius: 0 2px 2px 0;
+    font-size: 0.72rem; cursor: pointer; white-space: nowrap;
+  }
+  .nav-search button:hover { background: #4a4d54; color: #fff; }
+
   /* 导航用户区 */
-  #nav-user-area { margin-left: auto; position: relative; display: flex; align-items: center; gap: 0; }
+  #nav-user-area { position: relative; display: flex; align-items: center; gap: 0; }
   .nav-login-link {
     color: #b0aca5; font-size: 0.82rem;
     padding: 4px 10px; white-space: nowrap; cursor: pointer;

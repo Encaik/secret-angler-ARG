@@ -9,13 +9,6 @@ const BASE = __BASE_PATH__;
   title="首页"
   description="探秘者联盟 — 小众探秘爱好者社区。外星目击、古迹秘境、未解之谜、都市传说……"
 >
-  <!-- 搜索栏 -->
-  <div class="search-bar" style="margin-bottom: 20px;">
-    <input type="text" id="search-input" placeholder="搜索探秘点位、帖子、用户……" maxlength="100" />
-    <button id="search-btn" type="button">搜索</button>
-  </div>
-  <div id="search-hint" class="text-muted" style="margin-bottom: 16px; display: none;"></div>
-
   <!-- 欢迎横幅 -->
   <div class="card" style="margin-bottom: 20px; background: linear-gradient(135deg, #f8f6f0 0%, #ede8df 100%); border-left: 3px solid var(--color-accent);">
     <h2 style="margin-bottom: 6px;">🔭 欢迎来到探秘者联盟</h2>
@@ -59,7 +52,7 @@ const BASE = __BASE_PATH__;
 
     <div>
       <h3>📍 热门探秘点位</h3>
-      <div class="post-item"><span class="tag tag-alien">外星</span> <a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山外星信号异常区</a><div class="post-meta">黑龙江·五常</div></div>
+      <div class="post-item"><span class="tag tag-alien">外星</span> <a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山1420MHz异常信号分析</a><div class="post-meta">黑龙江·五常</div></div>
       <div class="post-item"><span class="tag tag-ruins">古迹</span> <a href={`${BASE}ruins/ruins-001/`} target="_blank">贺兰山岩画未记录区</a><div class="post-meta">宁夏·银川</div></div>
       <div class="post-item"><span class="tag tag-alien">外星</span> <a href={`${BASE}alien/alien-003/`} target="_blank">神农架不明飞行物走廊</a><div class="post-meta">湖北·神农架</div></div>
       <div class="post-item"><span class="tag tag-ruins">古迹</span> <a href={`${BASE}ruins/ruins-003/`} target="_blank">神农架远古石阵</a><div class="post-meta">湖北·神农架</div></div>
@@ -86,7 +79,7 @@ const BASE = __BASE_PATH__;
     </div>
   </div>
 
-  <!-- 站点公告 —— 普通社区维护通知，不包含任何加粗关键词 -->
+  <!-- 站点公告 -->
   <div class="card" style="margin-top: 20px; background: var(--color-bg-secondary); font-size: 0.85rem;">
     <p style="margin-bottom: 6px;"><strong>📢 站点公告</strong></p>
     <p style="margin-bottom: 4px; color: var(--color-text-muted);">

@@ -9,14 +9,21 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:smoke": "vitest run src/__tests__/smoke/",
+    "test:unit": "vitest run src/__tests__/unit/",
+    "test:integration": "vitest run src/__tests__/integration/",
+    "test:integrity": "vitest run src/__tests__/integrity/",
+    "test:ci": "astro check && vitest run && astro build"
   },
   "dependencies": {
     "astro": "^4.16.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@types/node": "^20.14.0",
-    "typescript": "^5.5.0",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.9.3",
     "vitest": "^1.6.0"
   }
 }

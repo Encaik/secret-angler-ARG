@@ -22,7 +22,7 @@ const BASE = __BASE_PATH__;
   <h3 style="margin-top: 28px;">🙋 加入我们</h3>
   <p>本站由一群业余探秘爱好者共同维护。我们没有固定的办公室，有人用周末维护服务器，有人用探秘途中的空闲时间审稿。如果你也热爱探秘，欢迎加入我们的团队。</p>
 
-  <!-- 招募岗位列表——表面是社区招募，隐藏层为暗网入口线索 -->
+  <!-- 招募岗位列表 -->
   <div class="card" style="margin-bottom: 16px;">
     <h4 style="margin-bottom: 8px;">📋 当前招募岗位</h4>
 
@@ -51,7 +51,7 @@ const BASE = __BASE_PATH__;
     </div>
   </div>
 
-  <!-- 申请表单——表面是志愿者申请表，"联系电话"栏实为暗网邀请码入口 -->
+  <!-- 申请表单 -->
   <div class="card" style="margin-bottom: 16px; background: var(--color-bg-secondary);" id="apply-form-card">
     <h4 style="margin-bottom: 8px;">📝 申请加入</h4>
     <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 12px;">
@@ -99,48 +99,8 @@ const BASE = __BASE_PATH__;
     </div>
   </div>
 
-  <!-- 暗网账号弹窗（初始隐藏） -->
-  <div id="account-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
-    <div style="background: #1a1a1a; border: 2px solid #4a8c6a; border-radius: 8px; padding: 28px; max-width: 420px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.6);">
-      <div style="text-align: center; margin-bottom: 16px;">
-        <span style="font-size: 2rem;">🔻</span>
-      </div>
-      <h3 style="color: #4a8c6a; text-align: center; margin-bottom: 4px; font-size: 1.1rem;">申请已受理</h3>
-      <p style="color: #888; text-align: center; font-size: 0.82rem; margin-bottom: 20px;">
-        您的<strong style="color:#7aac8a;">深度探秘</strong>级别权限已开通。
-      </p>
+  <!-- 暗网弹窗已移除。暗网入口现在通过管理员后台 → 功德流通处访问。 -->
 
-      <div style="background: #0d0d0d; border: 1px solid #333; border-radius: 4px; padding: 16px; margin-bottom: 16px;">
-        <p style="color: #aaa; font-size: 0.78rem; margin-bottom: 10px; text-align: center;">
-          以下为您的<strong>专属访问凭证</strong>，请妥善保管：
-        </p>
-        <div style="margin-bottom: 8px;">
-          <span style="color: #666; font-size: 0.75rem;">账号</span><br/>
-          <code style="color: #4a8c6a; font-size: 1rem; font-weight: bold; background: #111; padding: 4px 8px; border-radius: 3px;" id="darknet-account">---</code>
-        </div>
-        <div>
-          <span style="color: #666; font-size: 0.75rem;">密码</span><br/>
-          <code style="color: #4a8c6a; font-size: 1rem; font-weight: bold; background: #111; padding: 4px 8px; border-radius: 3px;" id="darknet-password">---</code>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-bottom: 8px;">
-        <a id="darknet-link" href={`${BASE}hidden/darknet/`} target="_blank"
-           style="display: inline-block; padding: 10px 32px; background: #1a3a2a; color: #7aac8a; border: 1px solid #2a5a3a; border-radius: 4px; text-decoration: none; font-size: 0.9rem;">
-          🔻 进入秘境
-        </a>
-      </div>
-      <p style="color: #555; font-size: 0.7rem; text-align: center; margin-bottom: 16px;">
-        请使用上述凭证登录。秘境之中，安全第一。
-      </p>
-
-      <div style="text-align: center;">
-        <button id="modal-close" style="padding: 6px 20px; background: none; color: #666; border: none; cursor: pointer; font-size: 0.8rem;">
-          关闭
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- 联系方式 -->
   <div class="card" style="margin-bottom: 16px; background: var(--color-bg-secondary);">
@@ -166,8 +126,6 @@ const BASE = __BASE_PATH__;
     本站所有内容仅供探秘爱好者交流，不构成出行建议。
   </p>
 
-  <!-- ⭐ 隐写图片位置 — 后期在此处嵌入含LSB隐写的"团队合影"图片 -->
-  <!-- <img src="/assets/images/clues/team-photo.png" alt="探秘者联盟导航站团队合影" /> -->
 </Layout>
 
 <style>
@@ -178,18 +136,11 @@ const BASE = __BASE_PATH__;
 <script>
   const BASE = (window as any).__BASE__ || '/';
 
-  // 暗网账号映射——虚拟手机号 → 专属账号（一对一绑定，首次使用后激活）
-  // 手机号 17093280045 为团伙预分配给新客户的虚商号码，尚未激活
-  const INVITE_CODES: Record<string, { account: string; password: string }> = {
-    '17093280045': { account: 'DR-2026-03', password: 'rift0603' },
-  };
-
   // 自动填入当前登录用户名
   function initForm() {
     const stored = localStorage.getItem('arg_progress');
     if (stored) {
       const p = JSON.parse(stored);
-      // 从localStorage推断当前登录用户
       const loggedInUser = localStorage.getItem('arg_current_user');
       const usernameInput = document.getElementById('apply-username') as HTMLInputElement;
       if (usernameInput) {
@@ -202,80 +153,15 @@ const BASE = __BASE_PATH__;
     }
   }
 
-  // 弹窗控制
-  function showModal(account: string, password: string) {
-    const modal = document.getElementById('account-modal');
-    const accountEl = document.getElementById('darknet-account');
-    const passwordEl = document.getElementById('darknet-password');
-    if (modal && accountEl && passwordEl) {
-      accountEl.textContent = account;
-      passwordEl.textContent = password;
-      modal.style.display = 'flex';
-
-      // 保存暗网账号到进度
-      const stored = localStorage.getItem('arg_progress');
-      if (stored) {
-        const p = JSON.parse(stored);
-        if (!p.solvedPuzzles) p.solvedPuzzles = {};
-        p.solvedPuzzles['stage4_darknet_invite'] = true;
-        if (!p.discoveredClues) p.discoveredClues = [];
-        if (!p.discoveredClues.includes('darknet_account')) {
-          p.discoveredClues.push('darknet_account');
-          p.explorationProgress = (p.explorationProgress || 0) + 10;
-        }
-        // 存储暗网账号
-        p.darknetAccount = { account, password };
-        localStorage.setItem('arg_progress', JSON.stringify(p));
-      }
-    }
-  }
-
-  function hideModal() {
-    const modal = document.getElementById('account-modal');
-    if (modal) modal.style.display = 'none';
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     initForm();
 
-    // 提交按钮
+    // 提交按钮 — 始终显示正常回复
     document.getElementById('apply-submit')?.addEventListener('click', () => {
-      const phoneInput = document.getElementById('apply-phone') as HTMLInputElement;
       const msgEl = document.getElementById('apply-msg');
-      const phone = phoneInput?.value.trim() || '';
-
-      if (!phone) {
-        if (msgEl) {
-          msgEl.textContent = '✅ 申请已提交，我们会尽快审核。';
-          msgEl.style.color = '#27ae60';
-        }
-        return;
-      }
-
-      // 检查是否为邀请码
-      const match = INVITE_CODES[phone];
-      if (match) {
-        // 邀请码匹配 → 弹窗显示暗网账号
-        if (msgEl) {
-          msgEl.textContent = '';
-        }
-        showModal(match.account, match.password);
-      } else {
-        // 普通手机号 → 常规回复
-        if (msgEl) {
-          msgEl.textContent = '✅ 申请已提交，我们会通过站内私信联系你。';
-          msgEl.style.color = '#27ae60';
-        }
-      }
-    });
-
-    // 关闭弹窗
-    document.getElementById('modal-close')?.addEventListener('click', hideModal);
-
-    // 点击遮罩关闭
-    document.getElementById('account-modal')?.addEventListener('click', (e) => {
-      if ((e.target as HTMLElement).id === 'account-modal') {
-        hideModal();
+      if (msgEl) {
+        msgEl.textContent = '✅ 申请已提交，我们会尽快审核。';
+        msgEl.style.color = '#27ae60';
       }
     });
 

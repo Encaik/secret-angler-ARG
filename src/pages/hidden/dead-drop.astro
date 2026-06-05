@@ -1,130 +1,203 @@
 ---
-// /hidden/dead-drop — 叛变成员"深海猎手"的遗留信息
-// 揭示前成员整理的举报证据，为结局做准备
+// /hidden/dead-drop — 人员处置记录（叛变成员郑义/深观 的遗留信息）
+// 核心：揭示前成员从共犯到举报者的完整轨迹，自动举报脚本已触发
 import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<HiddenLayout title="叛变成员信息">
+<HiddenLayout title="退转弟子录">
   <div class="breadcrumb">
-    <a href={`${BASE}hidden/admin/`} target="_blank">后台管理</a><span>›</span>
-    叛变成员信息
+    <a href={`${BASE}hidden/admin/`} target="_blank">管理后台</a><span>›</span>
+    人员处置记录
   </div>
 
-  <h2 style="color: #c0392b; margin-bottom: 4px;">⚠️ 叛变成员："深海猎手"</h2>
-  <p class="text-muted" style="margin-bottom: 16px;">注册于 2024-11-30 · 清除于 2026-03-12 · 此档案仅作警示记录</p>
+  <h2 style="color: #2c1810; margin-bottom: 4px;">人员处置记录：深观（郑义）</h2>
+  <p class="text-muted" style="margin-bottom: 16px;">入职：2024-11-30 · 处置日期：2026-03-12 · 此记录仅供内部警示</p>
 
   <div class="hidden-warning">
-    ⚠ 以下为此人最后的数字足迹。我们拦截了大部分外传数据，但无法100%确认没有遗漏。如果你正在阅读此页面——说明他设置的某个自动发送机制可能已经触发了。
+    ⚠ 此人为本组织最严重的内部安全事件。以下为其最后数字足迹——我们截获了大部分外传数据，但无法确保全部拦截。如果你正在阅读此记录——说明他的自动举报脚本可能已触发了。
   </div>
 
-  <!-- 个人信息 -->
+  <!-- 个人档案 -->
   <div class="card" style="margin-bottom: 12px;">
-    <h4>👤 个人信息</h4>
+    <h4>个人档案</h4>
     <table style="font-size: 0.82rem;">
-      <tr><td style="width:25%;color:#888;">账号</td><td>深海猎手</td></tr>
-      <tr><td style="color:#888;">注册日期</td><td>2024-11-30</td></tr>
-      <tr><td style="color:#888;">角色</td><td>前核心成员 · 外勤行动组</td></tr>
-      <tr><td style="color:#888;">参与行动</td><td>"秘境徒步联盟"项目（2024年）· 参与捕获2人</td></tr>
-      <tr><td style="color:#888;">叛变时间</td><td>2026年2月底</td></tr>
-      <tr><td style="color:#888;">叛变原因</td><td>自称"良心发现"。实际接触了受害者的家属后产生动摇。</td></tr>
-      <tr><td style="color:#888;">处理方式</td><td style="color:#c0392b;">2026年3月12日清除。伪装为户外失联事故。</td></tr>
+      <tr><td style="width:25%;color:#9b8c7a;">代号</td><td>深观（网名：深海猎手）</td></tr>
+      <tr><td style="color:#9b8c7a;">姓名</td><td>郑义</td></tr>
+      <tr><td style="color:#9b8c7a;">年龄</td><td>38岁（1988年生）</td></tr>
+      <tr><td style="color:#9b8c7a;">社会身份</td><td>前IT工程师 · 网络运维 · 2024年春裁员失业</td></tr>
+      <tr><td style="color:#9b8c7a;">入职日期</td><td>2024-11-30</td></tr>
+      <tr><td style="color:#9b8c7a;">招募背景</td><td>失业半年，房贷压身。在网上接灰色技术外包时被组织招募。初始被告知"就是运营几个流量站，内容引流、挂广告赚钱"。月薪是前职的两倍。没有多问。</td></tr>
+      <tr><td style="color:#9b8c7a;">职务</td><td>前核心成员 · 行动组（外勤）· 兼任技术运营（服务器/域名/数据库运维）</td></tr>
+      <tr><td style="color:#9b8c7a;">参与行动</td><td>"秘境徒步"论坛站点（2024-2025年）· 参与行动2人。初次以"现场IT支持"名义被派往外勤——目睹行动全程后被告知：<strong>"你现在也在里面了。"</strong></td></tr>
     </table>
   </div>
 
-  <!-- 他整理的证据清单 -->
-  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #e74c3c;">
-    <h4 style="color: #e74c3c;">📦 已拦截：证据包内容清单</h4>
-    <p style="font-size: 0.82rem; color: #888; margin-bottom: 8px;">
-      以下是"深海猎手"试图发送给警方的证据包内容。大部分已拦截。但以下项目<strong>无法确认是否全部拦截成功</strong>：
+  <!-- 叛变过程——详细时间线 -->
+  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #5c2e2e;">
+    <h4 style="color: #5c2e2e;">叛变过程</h4>
+    <p style="font-size: 0.78rem; color: #6b5d4a; margin-bottom: 10px;">以下为事后复盘。此人转变并非一朝觉悟——乃是<strong>逐层崩溃</strong>。</p>
+
+    <div style="font-size: 0.83rem; color: #4a3728; line-height: 1.9;">
+
+      <p><strong style="color: #2c1810;">第一层：自我合理化（2024.11 — 2025.06）</strong><br />
+      此人加入组织之初，将自身角色框定为"技术外包"。即便察觉论坛站点的推荐内容存在系统性造假（虚假古迹描述、伪造信号报告），也自圆为"营销手段"——"哪个网站不编内容？反正也没人真会去。"<strong>他刻意不去想那些去了的人的下场。</strong>每当疑虑浮现，他便用"我还有房贷、有孩子要养"来压下去。</p>
+
+      <p><strong style="color: #2c1810;">第二层：被迫目击（2025年夏·第一次外勤）</strong><br />
+      组织以"现场设备调试"为由将其派往外勤。他被告知"只是去架信号设备和通讯"。在伏击点目睹了行动的全程——目标被从背后按住、麻醉、拖上车。<strong>事后领队告诉他："你的手也在上面了。这些设备是你架的。通讯是你调的。你觉得自己能撇清吗？"</strong>他没有回答。回程的车上他一直看着窗外。</p>
+
+      <p>此后他开始有意识地回避关于"目标去向"的信息。他负责维护服务器、清理日志、管理域名——但他<strong>刻意不去看</strong>"在押人员区"和"商品列表"的数据表。这是一种精心维护的自我欺骗："我不看，就不知道。不知道，就不是共犯。"</p>
+
+      <p><strong style="color: #2c1810;">第三层：镜像崩溃（2026年1月·第二次外勤）</strong><br />
+      第二次行动。目标是一名年轻女性。在按住她的过程中，她的手机从口袋滑出，屏幕朝上落在泥土里。屏保照片是——她和一位老妇人的合影，两人都笑得很灿烂。</p>
+
+      <p>那老妇人的长相——瘦削的脸、花白的短发、笑起来眼角向下弯——<strong>和他两年前死于癌症的母亲一模一样。</strong></p>
+
+      <p>他说他当时手开始抖。他说那个女孩被拖上车的时候，他听到她在叫"奶奶"。</p>
+
+      <p>那晚回到住处后，他第一次翻看了那些他一直逃避的数据表。他看到了"库存"栏、"品级"栏、"估价"栏。他看到了自己第一次参与接引的两个人的最终去向——一个"已化"，一个"已渡"。他盯着屏幕上的字看了很久，然后吐了。</p>
+
+      <p><strong style="color:#2c1810;">他终于让自己理解了：之前那两个人不是被"转移"了。是被拆开卖了。</strong></p>
+
+      <p><strong style="color: #2c1810;">第四层：暗中反击（2026年2月）</strong><br />
+      他没有选择报警。他说他查过了——他自己也是共犯，刑期不会短。而且组织知道他妻子和孩子的地址。</p>
+
+      <p>他选择了一条更慢、更稳妥的路：利用自己的技术权限，在两个月内<strong>秘密收集了所有能接触到的证据数据</strong>——服务器日志、基地坐标、暗网数据截图、直播频道地址、加密货币流水——然后写了那个自动举报脚本。30天不登录系统，自动发送。多收件人部署，无法全部拦截。</p>
+
+      <p>他在他的日记里写了一段话（后被组织从云端删除，但部分缓存恢复了）：</p>
+
+      <blockquote style="font-size: 0.8rem; margin: 10px 0;">
+        "我知道我做了什么事。我也知道即使把这些东西发出去，那些人也活不过来。我做这些不是因为我觉得自己可以被原谅——我没什么可被原谅的。<br /><br />
+        我只是不想在死的时候，脑子里还是那个老妇人的脸。<br /><br />
+        那不是我妈。但可以是任何人的妈。"
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- 处置记录 -->
+  <div class="card" style="margin-bottom: 12px;">
+    <h4>处置记录</h4>
+    <p style="font-size: 0.84rem; color: #4a3728; line-height: 1.8;">
+      组织于2026年3月初察觉其异常数据访问模式。技术人员在审查服务器访问日志时发现其对"在押人员"和"商品列表"数据表的大量非授权查询。<strong>但彼时他已收集完大部分证据数据，并完成了自动举报脚本的设置。</strong>
+    </p>
+    <p style="font-size: 0.84rem; color: #4a3728; line-height: 1.8;">
+      2026年3月12日，他被首座和两名行动组成员约至一处偏远地点"单独谈话"。<strong>已处决。</strong>对外伪装为户外失联事故。其家属（妻、子）至今未知其真实死因，亦不知其参与的组织行动。
+    </p>
+  </div>
+
+  <!-- 举报材料清单 -->
+  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #5c2e2e;">
+    <h4 style="color: #5c2e2e;">已封存：举报材料清单</h4>
+    <p style="font-size: 0.82rem; color: #6b5d4a; margin-bottom: 8px;">
+      以下为郑义试图发送给执法部门的数据清单。大部分已拦截。然以下项目<strong>无法确认是否全部拦截成功</strong>：
     </p>
     <table style="font-size: 0.8rem;">
-      <tr><th>证据编号</th><th>内容</th><th>拦截状态</th></tr>
+      <tr><th>编号</th><th>内容</th><th>拦截状态</th></tr>
       <tr>
-        <td>EV-001</td>
-        <td style="font-size:0.78rem;">布景基地精确坐标（主基地 + 备用基地）</td>
-        <td><span style="color:#27ae60;">已拦截</span></td>
+        <td>材料·001</td>
+        <td style="font-size:0.78rem;">基地精确坐标（中央基地 + 备用基地）——含详细卫星路线图与周边地形</td>
+        <td><span style="color:#3d6b6b;">已拦截</span></td>
       </tr>
       <tr>
-        <td>EV-002</td>
-        <td style="font-size:0.78rem;">47个信号发射器部署点位完整列表</td>
-        <td><span style="color:#27ae60;">已拦截</span></td>
+        <td>材料·002</td>
+        <td style="font-size:0.78rem;">47处信号灯完整部署记录——含灯型、频段参数、设灯日期、维护记录</td>
+        <td><span style="color:#3d6b6b;">已拦截</span></td>
       </tr>
       <tr>
-        <td>EV-003</td>
-        <td style="font-size:0.78rem;">暗网直播频道地址与访问方式</td>
-        <td><span style="color:#e67e22;">部分拦截</span></td>
+        <td>材料·003</td>
+        <td style="font-size:0.78rem;">因缘海直播频道路径与访问方式——含三个频道的实时推流地址</td>
+        <td><span style="color:#a0702c;">部分拦截</span></td>
       </tr>
       <tr>
-        <td>EV-004</td>
-        <td style="font-size:0.78rem;">加密货币钱包地址与资金流向记录</td>
-        <td><span style="color:#e67e22;">部分拦截</span></td>
+        <td>材料·004</td>
+        <td style="font-size:0.78rem;">钱包地址与资金流转记录——近一年加密货币收支明细</td>
+        <td><span style="color:#a0702c;">部分拦截</span></td>
       </tr>
       <tr>
-        <td>EV-005</td>
-        <td style="font-size:0.78rem;">三名已确认受害者的身份信息</td>
-        <td><span style="color:#27ae60;">已拦截</span></td>
+        <td>材料·005</td>
+        <td style="font-size:0.78rem;">三名已确认受害者之社会身份——含姓名、户籍地、失踪时间、对应编号与去向</td>
+        <td><span style="color:#3d6b6b;">已拦截</span></td>
       </tr>
       <tr>
-        <td>EV-006</td>
-        <td style="font-size:0.78rem;">"深空古迹探秘导航站"为钓鱼站点的完整证据链</td>
-        <td><span style="color:#27ae60;">已拦截</span></td>
+        <td>材料·006</td>
+        <td style="font-size:0.78rem;">"深空古迹探秘导航站"为本组织伪装站点之完整证据链——含域名注册信息、服务器部署时间线、论坛与管理后台之间的数据流转记录</td>
+        <td><span style="color:#3d6b6b;">已拦截</span></td>
       </tr>
-      <tr style="background: #1a0a0a;">
-        <td><strong style="color:#e74c3c;">EV-007</strong></td>
-        <td style="font-size:0.78rem;"><strong style="color:#e74c3c;">自动发送脚本</strong>——设定条件：如果他的账号连续30天未登录，自动向省公安厅网安总队、国家文物局、以及三名独立记者的邮箱发送全部证据。</td>
-        <td><strong style="color:#e74c3c;">⚠ 拦截失败</strong></td>
+      <tr style="background: #faf6ee;">
+        <td><strong style="color:#5c2e2e;">材料·007</strong></td>
+        <td style="font-size:0.78rem;"><strong style="color:#5c2e2e;">自动举报脚本</strong>——设定若郑义账号连续30日未登录系统，自动将全部材料发送至：省厅网安总队、国家文物局、三位独立调查记者邮箱。脚本部署于多个境外服务器，互相监控存活状态。</td>
+        <td><strong style="color:#5c2e2e;">⚠ 拦截失败·已触发</strong></td>
       </tr>
     </table>
   </div>
 
-  <!-- 自动发送脚本 -->
-  <div class="card" style="border-left: 3px solid #e74c3c; margin-bottom: 12px;">
-    <h4 style="color: #e74c3c;">⏰ EV-007：自动发送脚本详情</h4>
-    <div style="font-size: 0.84rem; color: #d88; line-height: 1.8;">
-      <p>脚本逻辑：检测到"深海猎手"账号连续<strong>30天</strong>无登录活动 → 自动发送加密邮件。</p>
-      <p><strong>收件人列表：</strong></p>
+  <!-- 举报脚本详情 -->
+  <div class="card" style="border-left: 3px solid #5c2e2e; margin-bottom: 12px;">
+    <h4 style="color: #5c2e2e;">材料·007：自动举报脚本详情</h4>
+    <div style="font-size: 0.84rem; color: #4a3728; line-height: 1.8;">
+      <p>逻辑：检测郑义账号连续<strong>30日</strong>无登录活动 → 材料自动发送至预设收件地址。此脚本部署于<strong>境外多个服务器节点</strong>，互相监控存活状态——任一节点被关闭，其余节点将继续发送。具备自动重发机制：每14日补发一轮，直至手动撤销（撤销密钥已随郑义被处决而亡佚）。</p>
+      <p><strong>收件方：</strong></p>
       <ul style="margin-bottom: 8px;">
         <li>省公安厅网络安全保卫总队（举报邮箱）</li>
-        <li>国家文物局（涉及古迹伪造）</li>
-        <li>三名独立调查记者（姓名已从缓存中移除）</li>
+        <li>国家文物局（涉古迹伪造与破坏）</li>
+        <li>三位独立调查记者（郑义通过其旧同事关系选定的记者，姓名已被他从数据中删除——这是他为保护收件人做的最后一件事）</li>
       </ul>
       <p><strong>发送状态：</strong></p>
-      <p style="color: #e74c3c; margin-bottom: 8px;">
-        账号最后登录日期：2026-02-28<br />
-        30天期限到期日：<strong>2026-03-30</strong><br />
-        当前日期：2026-06-04<br />
-        自触发日起已过去：<strong>66天</strong><br />
-        <strong style="font-size: 1rem;">状态：已发送 ✅（不可撤销）</strong>
+      <p style="color: #5c2e2e; margin-bottom: 8px;">
+        账号最后登录：2026-02-28<br />
+        30日期限届满日：<strong>2026-03-30</strong><br />
+        本日：2026-06-04<br />
+        自触发日起已历：<strong>66天</strong><br />
+        已重发轮次：<strong>5轮</strong><br />
+        <strong style="font-size: 1rem;">状态：已触发（不可逆转）· 持续重发中</strong>
       </p>
-      <p style="color: #d88;">
-        证据包已送达上述收件人。目前尚未观察到公开的执法行动——可能是警方仍在秘密调查阶段，或证据在传输过程中被过滤。但无法排除警方已立案的可能性。<strong>建议所有核心成员准备紧急撤离预案。</strong>
+      <p style="color: #4a3728;">
+        材料已送达上述收件方。目前未见公开的执法行动——推测警方正在秘密调查阶段（此类案件通常需数月的暗访取证），或材料在途中有部分丢失。但无法排除警方即将收网的可能。<strong>建议全体核心人员准备紧急撤离方案。</strong>
       </p>
     </div>
   </div>
 
-  <!-- 他的最后留言 -->
-  <div class="card" style="border-left: 3px solid #e74c3c;">
-    <h4 style="color: #e74c3c;">📝 最后留言（发送给未知收件人，拦截失败）</h4>
-    <div style="font-size: 0.84rem; color: #d88; line-height: 1.8;">
-      <p>如果你收到这封邮件——说明我已经不在了。</p>
-      <p>附件里是我在过去三个月收集的所有证据。够立案了。如果你想核实这些信息的真实性——找"深空古迹探秘导航站"这个网站。搜索关键词：<strong>深海裂隙</strong>、<strong>星门坐标</strong>、<strong>布景基地</strong>。</p>
-      <p>受害者被关在鄂西一个废弃萤石矿里。坐标在附件里。他们还活着。</p>
-      <p>另外注意——这个组织有一个网站叫"深空古迹探秘导航站"。看起来是个普通的爱好者社区。实际上那是他们筛选目标的钓鱼站点。如果你在上面看到什么"秘境推荐"——<strong>不要去</strong>。那不是探险指南，是陷阱。</p>
-      <p>做这些事不是因为我是好人。我帮他们抓过人。那些人的脸我到现在还记得。做这些是因为——我不想到死都记得。</p>
+  <!-- 郑义绝笔信 -->
+  <div class="card" style="border-left: 3px solid #5c2e2e;">
+    <h4 style="color: #5c2e2e;">郑义绝笔信（发往未知收件人，拦截失败）</h4>
+    <div style="font-size: 0.84rem; color: #4a3728; line-height: 1.9;">
+      <p>若你得此信——说明我已经不在了。这个脚本按我设定的方式触发了。挺好。至少有一件事按计划走了。</p>
+
+      <p>附件中是我在过去三个月里收集的所有我能拿到的东西。服务器日志、坐标数据、交易记录。够立案了。也许够定罪了。我不懂法律，但我知道这些是真的。</p>
+
+      <p>如果你需要核实——找"深空古迹探秘导航站"这个论坛。搜索：<strong>深海裂隙</strong>、<strong>星门坐标</strong>、<strong>布景基地</strong>。你会找到他们没来得及清理干净的东西。</p>
+
+      <p>受害者被关在鄂西一个废弃萤石矿里。坐标在附件中——<strong>31.12, 111.45</strong>。还有人活着。至少发信这一刻还有人活着。</p>
+
+      <p>另外注意——这个组织有一个伪装成爱好者论坛的网站叫"深空古迹探秘导航站"。看起来是个寻常的探秘爱好者社区。实际上那是他们筛选目标的陷阱。如果你在上面看到什么"秘境推荐"——<strong>不要去。那不是旅行指南。那是伏击点。</strong></p>
+
+      <p>我知道你收到这封信之后可能会想查我是谁。我叫郑义。今年三十八岁。以前是做IT的。失业之后被人拉进了这个组织。</p>
+
+      <p><strong>我不是好人。我帮他们抓过人。两个。</strong></p>
+
+      <p>第一次的时候他们跟我说——"只是去架设备"。我去了。我架了。人被抓的时候我站在旁边看。后来领队跟我说——"你的手也在上面了。"他说的是实话。我的确在。</p>
+
+      <p>第二次的时候我已经知道了会发生什么。我还是去了。因为我怕如果我说不去——他们会对我家人做什么。也因为我一直在骗自己：<strong>只要我不去看那些人的下场，我就不算真正的共犯。</strong>这是谎话。我知道。</p>
+
+      <p>让我停下来的是第二次接引的那个女孩。她手机掉出来的时候——屏幕亮着。屏保是她和她奶奶的照片。那位老太太长得很像我妈。</p>
+
+      <p>我妈是两年前癌症走的。走的那天我在医院陪她。她最后跟我说的是——"别太累。早点睡。"</p>
+
+      <p>那个女孩被拖上车的时候，我听到她在叫"奶奶"。</p>
+
+      <p>那晚我翻了那些我一直没敢看的文件。我看到了前两个被抓的人后来怎么样了。我对着屏幕吐了好久。然后我就知道——我骗不下去了。</p>
+
+      <p>所以这些证据不是我"良心发现"送出来的。<strong>是我的呕吐物。</strong>是我终于没办法再咽下去的那些东西。</p>
+
+      <p>我不求你原谅我。我不需要原谅。我做这些也不是为了赎罪——赎不了。</p>
+
+      <p>我只是想在我死的时候，脑子里不要再是那个老妇人的脸。</p>
+
+      <p>那不是我妈。但可以是任何人的妈。</p>
+
       <br />
-      <p style="color: #888;">—— 深海猎手，2026年2月28日</p>
+      <p style="color: #9b8c7a;">—— 郑义（代号：深观），2026年2月28日绝笔</p>
+      <p style="font-size: 0.72rem; color: #b0a090;">他最后登录系统的时间是写完这封信的五分钟后。他应该是发完信就关掉了电脑——然后等了他们三天。</p>
     </div>
-  </div>
-
-  <div class="hidden-notice" style="margin-top: 16px;">
-    <p style="margin-bottom: 4px;"><strong>💡 重要发现：</strong></p>
-    <ul style="margin-bottom: 0; padding-left: 1.5em; color: #88d;">
-      <li>前成员"深海猎手"的<strong>自动举报脚本已触发</strong>——证据已发送至警方和记者。</li>
-      <li>警方可能已在秘密调查中。这将影响后续结局走向。</li>
-      <li>他的最后留言中提到了<strong>同样的搜索关键词</strong>——证明你的发现路径是正确的。</li>
-      <li>鄂西废弃萤石矿的坐标在 locations 页面中：<strong>31.12, 111.45</strong>。</li>
-      <li>这份信息是<strong>结局触发条件</strong>的关键证据之一。</li>
-    </ul>
   </div>
 </HiddenLayout>

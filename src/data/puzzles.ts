@@ -117,54 +117,102 @@ export const PUZZLES: Puzzle[] = [
     clueTags: ['keyword_assembly', 'cross_page'],
   },
 
-  // ===== 阶段四：暗网邀请凭证三源交叉验证 =====
+  // ===== 阶段四：发现香火站 =====
   {
-    id: 'stage4_darknet_invite',
+    id: 'stage4_temple_discovery',
     stage: 4,
-    difficulty: 'hard',
-    type: 'cross_reference',
-    name: '暗网邀请凭证 · 三源交叉验证',
-    answerHash: 'd7c5e3a1f2b4d6e8c0a2f4b6d8e0a2c4e6f8a0b2c4d6e8f0a2b4c6d8e0',
+    difficulty: 'easy',
+    type: 'search',
+    name: '发现归源宗功德流通处',
+    answerHash: 'f0e1d2c3b4a5968778695a4b3c2d1e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5',
     clueLocations: [
-      '/member/ → SDR扫频拦截记录：完整号码 17093280045 + "新客待激活"',
-      '/trigger/rift → 缓存2：6/1内部通讯"新客户未激活……号码已从缓存中清除"',
-      '/inbox → 沈辞5/21私信"招募页你去看了没……联系电话那一栏"',
-      '/about/ → 联系电话栏：填入17093280045 → 弹窗暗网账号',
+      '/trigger/rift → 站点快照中提到"香火站：归源宗功德流通处"',
+      '/share/ → 沈辞云盘坐标数据中出现"归源宗"相关地名标注',
+      '搜索"归源宗" → 找到功德流通处公开页面',
     ],
     hintTexts: [
-      '线索A（会员区）：林屿SDR拦截到17093280045——完整的11位号码',
-      '线索B（触发页）：确认"新客户未激活"——但号码被搜索引擎清除',
-      '线索C（私信箱）：沈辞暗示操作位置——"加入我们"的"联系电话"栏',
-      '三条线索交叉：A给号码 + B确认可用 + C给位置 → 填入号码即可获取暗网账号',
+      '触发页缓存中提到了一个叫"归源宗功德流通处"的香火站',
+      '沈辞的坐标交叉比对数据中，多个点位附近标注了"归源"相关字眼',
+      '搜索"归源宗"可以发现这个寺院供养平台',
     ],
-    requiresClue: ['darknet_invite_obtained'],
-    unlocksPages: ['/hidden/darknet/ (需先通过弹窗获取账号)'],
-    progressWeight: 20,
-    clueTags: ['cross_reference', 'deduction', 'invite_code'],
+    requiresClue: ['deep_rift_discovered'],
+    unlocksPages: ['/hidden/darknet/ (公开寺庙视图)'],
+    progressWeight: 8,
+    clueTags: ['search', 'discovery'],
   },
 
-  // ===== 阶段五：后台管理密码 =====
+  // ===== 阶段五：浅层后台（客堂运营） =====
   {
-    id: 'stage3_hidden_admin_password',
+    id: 'stage5_staff_access',
     stage: 5,
     difficulty: 'medium',
     type: 'password',
-    name: '后台管理系统认证',
-    // echo -n "deeprift323" | openssl dgst -sha256
-    answerHash: 'e7c5a3f1d2b4e6a8c0f2d4b6e8a0c2f4d6e8b0a2c4f6d8e0b2a4c6d8f0a2',
+    name: '寺院管理系统 · 客堂登录',
+    // echo -n "portal2026" | openssl dgst -sha256
+    answerHash: 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0',
     clueLocations: [
-      '/about/ → 联系邮箱 admin@deeprift323.onion',
-      '/trigger/rift → 内部域名 deeprift323.onion',
+      '/trigger/rift → 站点快照：客堂管理账号 staff，密码 portal2026',
+      '/hidden/darknet → 香火站底部小字"寺院管理系统"链接',
+      '搜索"后台管理" → 找到寺院管理系统登录页',
     ],
     hintTexts: [
-      '"加入我们"页面的联系邮箱域名是 deeprift323.onion',
-      '触发页中出现的内部域名也包含 "deeprift323"',
-      '去掉.onion后缀：deeprift323 即为管理后台认证密钥',
+      '触发页缓存中明文记录了客堂管理账号和密码',
+      '香火站（功德流通处）页面底部有"寺院管理系统"的小字链接',
+      '账号 staff，密码 portal2026。登录后可以看到寺院运营数据',
     ],
-    requiresClue: ['stage1_page_header_password'],
-    unlocksPages: ['/hidden/admin/', '/hidden/board/', '/hidden/operation/', '/hidden/locations/', '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/'],
-    progressWeight: 15,
-    clueTags: ['password', 'domain_hint'],
+    requiresClue: ['staff_credentials_obtained'],
+    unlocksPages: ['/hidden/admin/ (staff视图)'],
+    progressWeight: 12,
+    clueTags: ['password', 'staff_access'],
+  },
+
+  // ===== 阶段六：沈辞破解管理员密码 =====
+  {
+    id: 'stage6_shenci_admin_discovery',
+    stage: 6,
+    difficulty: 'hard',
+    type: 'cross_reference',
+    name: '沈辞的调查发现 · 管理员密钥',
+    answerHash: 'e7c5a3f1d2b4e6a8c0f2d4b6e8a0c2f4d6e8b0a2c4f6d8e0b2a4c6d8f0a2',
+    clueLocations: [
+      '/share/ → 沈辞云盘文件：坐标交叉比对 + SDR拦截记录 + 信号频谱分析',
+      '/hidden/admin/ (staff视图) → 信众名录中"三尺"的备注"需冷链" + 供养收入异常高',
+      '/hidden/darknet → 客服消息中提及"系统管理员密钥 deeprift323"',
+      '/about/ → 联系邮箱 admin@deeprift323.onion',
+    ],
+    hintTexts: [
+      '沈辞的云盘资料中已经记录了归源宗与论坛推荐点位的关联',
+      'staff后台的信众名录和供养记录明显不对劲——对正常寺庙来说数额太大了',
+      '客服消息中明确写明了管理员密钥——但这个"客服"显然不是普通的寺院工作人员',
+      '"加入我们"页面的联系邮箱域名 deeprift323.onion 与管理员密钥一致',
+      '综合线索：deeprift323 就是管理员密码。使用 admin 账号登录。',
+    ],
+    requiresClue: ['staff_access', 'darknet_explored'],
+    unlocksPages: ['/hidden/admin/ (admin全权限视图)', '/hidden/board/', '/hidden/operation/', '/hidden/locations/', '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/'],
+    progressWeight: 18,
+    clueTags: ['cross_reference', 'password', 'deduction'],
+  },
+
+  // ===== 阶段七：手机举报（动态结局） =====
+  {
+    id: 'stage7_phone_report',
+    stage: 7,
+    difficulty: 'easy',
+    type: 'keyword',
+    name: '证据收集与举报',
+    answerHash: '0000000000000000000000000000000000000000000000000000000000000000',
+    clueLocations: [
+      '/hidden/evidence-locker → 手机举报界面，根据证据完整度动态显示不同结果',
+    ],
+    hintTexts: [
+      '证据管理页面底部有一部模拟手机。收集的证据越多，举报越有力。',
+      '证据不足时拨打举报电话 → 12306买车票（自己去）',
+      '证据充分时拨打举报电话 → 警方立案（结局取决于证据完整度）',
+    ],
+    requiresClue: ['admin_access'],
+    unlocksPages: ['/ending/1/', '/ending/2/', '/ending/3/', '/ending/4/'],
+    progressWeight: 12,
+    clueTags: ['ending', 'evidence', 'report'],
   },
 ];
 

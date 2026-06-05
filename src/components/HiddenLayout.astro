@@ -1,6 +1,7 @@
 ---
 // HiddenLayout — 隐藏/触发页面专用布局
-// 暗色主题，无导航栏，无页脚，营造"闯入后台"的氛围
+// 架空佛教宗派"归源宗"内部法务系统——表面是寺院管理后台
+// 暖色调寺庙风格，无导航栏，无页脚
 // 所有隐藏页面添加 noindex,nofollow
 export interface Props {
   title: string;
@@ -30,6 +31,7 @@ import '../styles/global.css';
   </main>
 
   <script src="../scripts/console.ts"></script>
+  <script src="../scripts/progress.ts"></script>
   <script src="../scripts/search.ts"></script>
   <script>
     const BASE = window.__BASE__ || '/';
@@ -48,110 +50,165 @@ import '../styles/global.css';
 </html>
 
 <style>
-  /* HiddenLayout 覆盖：暗色主题 */
+  /* HiddenLayout — 隐藏页面通用暖色调主题 */
   .hidden-page {
-    background: #0d0d0d;
-    color: #ccc;
+    background: #faf6ee;
+    color: #4a3728;
     min-height: 100vh;
   }
   .hidden-page a {
-    color: #6cb4d9;
+    color: #8b6914;
   }
   .hidden-page a:hover {
-    color: #8cc4e0;
+    color: #a0782c;
   }
   .hidden-page h1, .hidden-page h2, .hidden-page h3, .hidden-page h4 {
-    color: #e0dcd5;
+    color: #2c1810;
   }
   .hidden-page .card {
-    background: #1a1d23;
-    border-color: #2a2d33;
-    color: #bbb;
+    background: #fefcf7;
+    border-color: #e0d5c0;
+    color: #4a3728;
   }
   .hidden-page p {
-    color: #aaa;
+    color: #4a3728;
   }
   .hidden-page .text-muted {
-    color: #666;
+    color: #9b8c7a;
   }
   .hidden-page hr {
-    border-color: #2a2d33;
+    border-color: #e0d5c0;
   }
   .hidden-page .breadcrumb {
-    border-bottom-color: #2a2d33;
-    color: #666;
+    border-bottom-color: #e0d5c0;
+    color: #9b8c7a;
   }
   .hidden-page .breadcrumb a {
-    color: #555;
+    color: #8b6914;
   }
   .hidden-page .breadcrumb a:hover {
-    color: #8cc4e0;
+    color: #a0782c;
   }
   .hidden-page input, .hidden-page textarea {
-    background: #111;
-    border-color: #333;
-    color: #ccc;
+    background: #fdfaf4;
+    border-color: #d5c8b0;
+    color: #4a3728;
   }
   .hidden-page code {
-    background: #111;
-    color: #c7254e;
+    background: #f5eedf;
+    color: #8b6914;
+    border: 1px solid #e0d5c0;
   }
   .hidden-page pre {
-    background: #111;
-    color: #aaa;
+    background: #f5eedf;
+    color: #4a3728;
+    border: 1px solid #e0d5c0;
   }
   .hidden-page blockquote {
-    background: #15171b;
-    border-left-color: #444;
-    color: #999;
+    background: #fdfaf4;
+    border-left-color: #c0b090;
+    color: #6b5d4a;
   }
   .hidden-page .tag {
     opacity: 0.85;
   }
   .hidden-page .post-item {
-    border-bottom-color: #222;
+    border-bottom-color: #e0d5c0;
   }
   .hidden-page .post-item .post-meta {
-    color: #555;
+    color: #9b8c7a;
   }
   .hidden-page table th {
-    background: #15171b;
-    color: #ccc;
+    background: #f5eedf;
+    color: #2c1810;
+    border-bottom: 2px solid #d5c8b0;
   }
   .hidden-page table td {
-    border-color: #2a2d33;
-    color: #aaa;
+    border-color: #e0d5c0;
+    color: #4a3728;
   }
   .hidden-page strong {
-    color: #e0dcd5;
+    color: #2c1810;
   }
 
-  /* 隐藏页面特有元素 */
+  /* 隐藏页面特有元素——寺庙风格 */
   .hidden-badge {
     display: inline-block;
-    background: #c0392b;
-    color: #fff;
+    background: #8b6914;
+    color: #fefcf7;
     font-size: 0.7rem;
     padding: 2px 8px;
     border-radius: 2px;
     letter-spacing: 0.5px;
   }
+  .hidden-badge.amber {
+    background: #a0782c;
+  }
+  .hidden-badge.maroon {
+    background: #5c2e2e;
+  }
+  .hidden-badge.teal {
+    background: #3d6b6b;
+  }
+  .hidden-badge.muted {
+    background: #9b8c7a;
+  }
   .hidden-warning {
-    background: #1a0a0a;
-    border: 1px solid #5a1a1a;
-    color: #d88;
+    background: #fdf6ed;
+    border: 1px solid #d5c8b0;
+    color: #6b4a2a;
     padding: 10px 14px;
     border-radius: 2px;
     font-size: 0.82rem;
     margin: 12px 0;
   }
   .hidden-notice {
-    background: #0a0a1a;
-    border: 1px solid #1a1a5a;
-    color: #88d;
+    background: #f4f6f8;
+    border: 1px solid #c0c8d0;
+    color: #4a5a6a;
     padding: 10px 14px;
     border-radius: 2px;
     font-size: 0.82rem;
     margin: 12px 0;
+  }
+
+  /* 寺庙风格装饰元素 */
+  .temple-header {
+    text-align: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0d5c0;
+    margin-bottom: 20px;
+  }
+  .temple-header .sect-name {
+    font-size: 1.1rem;
+    color: #2c1810;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+  .temple-header .sect-subtitle {
+    font-size: 0.72rem;
+    color: #9b8c7a;
+    margin-top: 2px;
+  }
+  .temple-divider {
+    text-align: center;
+    color: #c0b090;
+    font-size: 0.8rem;
+    padding: 8px 0;
+    letter-spacing: 2px;
+  }
+  .incense-block {
+    background: #fefcf7;
+    border: 1px solid #e0d5c0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.82rem;
+    color: #6b5d4a;
+    line-height: 1.8;
+  }
+  .incense-block .verse {
+    text-align: center;
+    color: #8b6914;
+    letter-spacing: 1px;
   }
 </style>

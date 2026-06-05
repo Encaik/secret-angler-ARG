@@ -1,134 +1,153 @@
 ---
-// /hidden/evidence-locker — 证据缓存区
-// 团伙用于反侦察的证据销毁缓存。包含即将被清理的关键数据。
+// /hidden/evidence-locker — 证据管理（待删除数据队列 + 手机举报界面）
 import HiddenLayout from '../../components/HiddenLayout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<HiddenLayout title="证据缓存">
+<HiddenLayout title="证据管理">
   <div class="breadcrumb">
-    <a href={`${BASE}hidden/admin/`} target="_blank">后台管理</a><span>›</span>
-    证据缓存
+    <a href={`${BASE}hidden/admin/`} target="_blank">管理后台</a><span>›</span>
+    证据管理
   </div>
 
-  <h2 style="color: #c0392b; margin-bottom: 4px;">🔒 证据缓存区</h2>
-  <p class="text-muted" style="margin-bottom: 16px;">用于集中存放待销毁的敏感数据 · 定时清理：每48小时 · 下次清理：2026-06-06 00:00</p>
+  <h2 style="color: #2c1810; margin-bottom: 4px;">证据管理 · 待删除队列</h2>
+  <p class="text-muted" style="margin-bottom: 16px;">待清理证据 · 自动删除：每48小时 · 下次清理：2026-06-06 00:00</p>
 
   <div class="hidden-warning">
-    ⚠ 此缓存区包含即将被永久删除的数据。如果你看到这些内容——说明你赶在了清理程序之前。请尽快保存。
+    ⚠ 以下证据即将被系统自动删除。如果你能看到这个页面——说明你赶在了自动清理之前。请立即保存。
   </div>
 
-  <!-- 缓存项列表 -->
-  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #e67e22;">
+  <!-- 待删除证据列表 -->
+  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #a0702c;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <h4 style="margin-bottom: 0;">📦 缓存项 #DEL-2026-0604-001</h4>
-      <span class="hidden-badge" style="background:#e67e22;">待删除</span>
+      <h4 style="margin-bottom: 0;">待删除·甲辰004-001</h4>
+      <span class="hidden-badge amber">待删除</span>
     </div>
-    <p style="font-size: 0.78rem; color: #888; margin-bottom: 6px;">来源：会员区 · 创建者：地下三尺 · 标记时间：2026-06-04 00:05</p>
-    <p style="font-size: 0.84rem; color: #aaa;">
-      <strong>内容：</strong>坐标交叉比对完整数据集（含8个重合点位的GPS坐标、现场照片GPS水印数据、时间窗口分析）。
+    <p style="font-size: 0.78rem; color: #9b8c7a; margin-bottom: 6px;">来源：用户区 · 作者：地下三尺 · 标记时间：2026-06-04 23:00</p>
+    <p style="font-size: 0.84rem; color: #4a3728;">
+      <strong>内容：</strong>坐标交叉比对完整数据集（含8处重合点GPS、现场照片水印、时间窗口分析）。
     </p>
-    <p style="font-size: 0.78rem; color: #c0392b;">
-      删除原因：包含可直接指证"深海裂隙"项目运作模式的证据。
+    <p style="font-size: 0.78rem; color: #5c2e2e;">
+      删除原因：含有可直接指证组织运作模式的证据材料。
     </p>
   </div>
 
-  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #e67e22;">
+  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #a0702c;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <h4 style="margin-bottom: 0;">📦 缓存项 #DEL-2026-0604-002</h4>
-      <span class="hidden-badge" style="background:#e67e22;">待删除</span>
+      <h4 style="margin-bottom: 0;">待删除·甲辰004-002</h4>
+      <span class="hidden-badge amber">待删除</span>
     </div>
-    <p style="font-size: 0.78rem; color: #888; margin-bottom: 6px;">来源：会员区 · 创建者：signal_屿 · 标记时间：2026-06-04 00:05</p>
-    <p style="font-size: 0.84rem; color: #aaa;">
-      <strong>内容：</strong>凤凰山1420MHz信号频谱分析原始数据 + 设备推测报告 + 47个点位的热力图分布分析。
+    <p style="font-size: 0.78rem; color: #9b8c7a; margin-bottom: 6px;">来源：用户区 · 作者：signal_屿 · 标记时间：2026-06-04 23:00</p>
+    <p style="font-size: 0.84rem; color: #4a3728;">
+      <strong>内容：</strong>凤凰山1420MHz信号频谱分析原始数据 + 设备推测记录 + 47处灯位热力图分布分析。
     </p>
-    <p style="font-size: 0.78rem; color: #c0392b;">
-      删除原因：技术分析精确到了可定位发射设备的程度。如被执法部门获取可逆向追踪信号源。
+    <p style="font-size: 0.78rem; color: #5c2e2e;">
+      删除原因：技术分析已精确到可定位信号灯的程度。若被执法部门获取可逆向追踪信号源。
     </p>
   </div>
 
-  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #e67e22;">
+  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #a0702c;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <h4 style="margin-bottom: 0;">📦 缓存项 #DEL-2026-0604-003</h4>
-      <span class="hidden-badge" style="background:#e67e22;">待删除</span>
+      <h4 style="margin-bottom: 0;">待删除·甲辰004-003</h4>
+      <span class="hidden-badge amber">待删除</span>
     </div>
-    <p style="font-size: 0.78rem; color: #888; margin-bottom: 6px;">来源：三尺私信记录 · 标记时间：2026-06-04 00:08</p>
-    <p style="font-size: 0.84rem; color: #aaa;">
-      <strong>内容：</strong>沈辞与林屿2026年5月全部私信记录（含坐标比对讨论、秦岭假点位验证、教务系统密码传递、仅自己可见帖文的提示）。
+    <p style="font-size: 0.78rem; color: #9b8c7a; margin-bottom: 6px;">来源：沈辞私信 · 标记时间：2026-06-04 23:45</p>
+    <p style="font-size: 0.84rem; color: #4a3728;">
+      <strong>内容：</strong>沈辞与林屿2026年5月全部私信记录（含坐标比对讨论、秦岭布景验证、教务系统密码传递、仅自己可见帖文的提示）。
     </p>
-    <p style="font-size: 0.78rem; color: #c0392b;">
-      删除原因：私信记录显示两人已确认导航站的系统性造假。如被signal_屿截图保存将无法挽回。
+    <p style="font-size: 0.78rem; color: #5c2e2e;">
+      删除原因：私信记录显示二人已确认论坛的系统性造假。若被林屿截屏保存将不可挽回。
     </p>
   </div>
 
-  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #c0392b;">
+  <div class="card" style="margin-bottom: 12px; border-left: 3px solid #5c2e2e;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <h4 style="margin-bottom: 0;">📦 缓存项 #DEL-2026-0604-004</h4>
-      <span class="hidden-badge">待删除</span>
+      <h4 style="margin-bottom: 0;">待删除·甲辰004-004</h4>
+      <span class="hidden-badge maroon">待删除</span>
     </div>
-    <p style="font-size: 0.78rem; color: #888; margin-bottom: 6px;">来源：三尺账号 · 标记时间：2026-06-04 00:12</p>
-    <p style="font-size: 0.84rem; color: #aaa;">
-      <strong>内容：</strong>沈辞仅自己可见帖文"关于贺兰山之行的一些补充笔记"（阅读权限255）。
+    <p style="font-size: 0.78rem; color: #9b8c7a; margin-bottom: 6px;">来源：沈辞账号 · 标记时间：2026-06-04 23:50</p>
+    <p style="font-size: 0.84rem; color: #4a3728;">
+      <strong>内容：</strong>沈辞仅自己可见帖文"关于贺兰山之行的一些补充笔记"（权限等级255）。
     </p>
-    <p style="font-size: 0.78rem; color: #c0392b;">
-      删除原因：技术_B 报告称"内容看起来是普通散文"，但运营_A 怀疑其中藏有加密信息。权限过高，需数据库root直接操作。<strong>删除操作已排程：2026-06-04 03:00 执行。</strong>
+    <p style="font-size: 0.78rem; color: #5c2e2e;">
+      删除原因：监院称"内容看起来是普通散记"，但首座怀疑其中藏有加密信息。权限过高，需数据库管理员直接操作。<strong>删除已排程：2026-06-04 01:00执行。</strong>
     </p>
   </div>
 
-  <!-- 已删除项 -->
+  <!-- 已删除记录 -->
   <div class="card" style="margin-bottom: 12px; opacity: 0.6;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <h4 style="margin-bottom: 0;">📦 缓存项 #DEL-2026-0526-001</h4>
-      <span class="hidden-badge" style="background:#888;">已删除</span>
+      <h4 style="margin-bottom: 0;">已删除·甲辰005-001</h4>
+      <span class="hidden-badge muted">已删除</span>
     </div>
-    <p style="font-size: 0.78rem; color: #666; margin-bottom: 6px;">删除时间：2026-05-26 14:30 · 操作员：运营_A</p>
-    <p style="font-size: 0.84rem; color: #666;">
-      <strong>内容：</strong>贺兰山相关推荐帖文3篇 + 引导性评论12条。已从站点前台完全移除。
+    <p style="font-size: 0.78rem; color: #9b8c7a; margin-bottom: 6px;">删除时间：2026-05-26 13:00 · 操作人：首座</p>
+    <p style="font-size: 0.84rem; color: #9b8c7a;">
+      <strong>内容：</strong>贺兰山引导帖3篇 + 引导评论12条。已从论坛完全清除。
     </p>
   </div>
 
   <div class="card" style="margin-bottom: 12px; opacity: 0.6;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <h4 style="margin-bottom: 0;">📦 缓存项 #DEL-2026-0528-001</h4>
-      <span class="hidden-badge" style="background:#888;">已删除</span>
+      <h4 style="margin-bottom: 0;">已删除·甲辰005-002</h4>
+      <span class="hidden-badge muted">已删除</span>
     </div>
-    <p style="font-size: 0.78rem; color: #666; margin-bottom: 6px;">删除时间：2026-05-28 09:15 · 操作员：运营_A</p>
-    <p style="font-size: 0.84rem; color: #666;">
-      <strong>内容：</strong>山野探秘人在247号帖下的原始引导评论（"有个冷门点位推荐给你"）。替换为正常关心评论。
+    <p style="font-size: 0.78rem; color: #9b8c7a; margin-bottom: 6px;">删除时间：2026-05-28 09:00 · 操作人：首座</p>
+    <p style="font-size: 0.84rem; color: #9b8c7a;">
+      <strong>内容：</strong>外联人员在第247号帖文下的原始引导评论（"有个冷门地方推荐给你"）。替换为普通关心评论。
     </p>
   </div>
 
-  <!-- 操作区 —— 导出证据并触发结局-->
-  <div style="margin-top:20px;padding:16px;background:#0d0d0d;border:1px solid #1a1a1a;text-align:center;">
-    <p style="font-size:0.78rem;color:#666;margin-bottom:10px;">
-      以上缓存项尚未被系统自动清理。导出全部数据并匿名提交至执法部门。
+  <!-- ========== 手机举报界面 ========== -->
+  <div id="phone-section" style="margin-top: 24px; padding: 20px; background: #fefcf7; border: 1px solid #e0d5c0; text-align: center;">
+    <p style="font-size:0.78rem;color:#6b5d4a;margin-bottom:12px;">
+      以上证据尚未被系统清理。你需要做一个决定。
     </p>
-    <button id="submit-evidence-btn" style="padding:10px 32px;background:#1a0a0a;color:#8b3a3a;border:1px solid #2a1a1a;cursor:pointer;font-size:0.85rem;">
-      导出全部证据 · 匿名提交
-    </button>
-    <p id="submit-status" style="font-size:0.7rem;color:#555;margin-top:8px;display:none;"></p>
+
+    <!-- 手机外观 -->
+    <div style="display: inline-block; background: #1a1a1a; border-radius: 16px; padding: 12px 8px 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-width: 280px;">
+      <!-- 屏幕 -->
+      <div id="phone-screen" style="background: #f5f5f5; border-radius: 4px; padding: 20px 16px; min-height: 300px; font-family: -apple-system, 'PingFang SC', sans-serif;">
+        <!-- 默认拨号界面 -->
+        <div id="phone-dialer">
+          <div id="phone-evidence-list" style="font-size:0.65rem;color:#666;text-align:left;margin-bottom:16px;line-height:1.8;">
+            <!-- JS 动态填充 -->
+          </div>
+          <div style="font-size:0.75rem;color:#999;margin-bottom:12px;">输入号码或选择操作：</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+            <button class="phone-action-btn" data-action="report" style="padding:10px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.75rem;">📞 报警举报</button>
+            <button class="phone-action-btn" data-action="ticket" style="padding:10px;background:#1677ff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.75rem;">🎫 购买车票</button>
+          </div>
+          <div style="font-size:0.6rem;color:#bbb;">你可以选择报警，或者买张车票自己去。</div>
+        </div>
+
+        <!-- 结果界面（JS注入） -->
+        <div id="phone-result" style="display:none;"></div>
+      </div>
+      <!-- 底部按钮 -->
+      <div style="width:32px;height:32px;border-radius:50%;border:2px solid #444;margin:8px auto 0;"></div>
+    </div>
   </div>
 </HiddenLayout>
 
 <script>
   const BASE = window.__BASE__ || '/';
 
-  // 证据评分映射
   const EVIDENCE = {
-    '/trigger/rift':      { weight: 2 },
-    '/trigger/stargate':  { weight: 2 },
-    '/trigger/base':      { weight: 3 },
-    '/hidden/darknet':    { weight: 3 },
-    '/hidden/board':      { weight: 2 },
-    '/hidden/operation':  { weight: 2 },
-    '/hidden/locations':  { weight: 3 },
-    '/hidden/dead-drop':  { weight: 4 },
+    '/trigger/rift':      { weight: 2, name: '内部系统操作日志' },
+    '/trigger/stargate':  { weight: 2, name: '信号灯阵列部署记录' },
+    '/trigger/base':      { weight: 3, name: '基地运营记录' },
+    '/hidden/darknet':    { weight: 3, name: '暗网交易市场记录' },
+    '/hidden/board':      { weight: 2, name: '内部通讯记录' },
+    '/hidden/operation':  { weight: 2, name: '标准操作流程' },
+    '/hidden/locations':  { weight: 3, name: '据点坐标数据' },
+    '/hidden/dead-drop':  { weight: 4, name: '举报人绝笔信及证据包' },
   };
 
-  document.getElementById('submit-evidence-btn').addEventListener('click', function() {
+  function calcScore() {
     const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
     const visited = progress.discoveredPages || [];
     let score = 0;
+    let collected: string[] = [];
     let hasDeadDrop = false;
 
     for (const [page, ev] of Object.entries(EVIDENCE)) {
@@ -137,26 +156,163 @@ const BASE = __BASE_PATH__;
       });
       if (found) {
         score += ev.weight;
+        collected.push(ev.name);
         if (page === '/hidden/dead-drop') hasDeadDrop = true;
       }
     }
 
-    // 判定结局
-    let ending;
+    if (hasDeadDrop && score >= 12) {
+      collected.push('举报脚本已触发（郑义·深观）');
+    }
+
+    return { score, collected, hasDeadDrop };
+  }
+
+  function getEnding(score: number, hasDeadDrop: boolean): number {
+    let ending: number;
     if (score >= 18) ending = 4;
     else if (score >= 12) ending = 3;
     else if (score >= 7) ending = 2;
     else ending = 1;
 
-    // 有举报脚本+分数≥12 → 升级结局4
     if (hasDeadDrop && score >= 12 && ending < 4) ending = 4;
+    return ending;
+  }
 
-    // 保存结局到进度
-    progress.ending = ending;
-    progress.evidenceScore = score;
-    localStorage.setItem('arg_progress', JSON.stringify(progress));
+  function renderPhoneResult(score: number, collected: string[], ending: number) {
+    const resultEl = document.getElementById('phone-result');
+    if (!resultEl) return;
 
-    // 跳转到对应结局
-    window.location.href = BASE + 'ending/' + ending + '/';
+    let html = '';
+    const lowScore = score < 7;
+    const mediumScore = score >= 7 && score < 12;
+    const highScore = score >= 12 && score < 18;
+    const fullScore = score >= 18;
+
+    if (lowScore) {
+      // 结局1：12306买票
+      html = `
+        <div style="text-align:center;">
+          <div style="font-size:0.8rem;color:#1677ff;font-weight:bold;margin-bottom:12px;">🚄 铁路12306</div>
+          <div style="font-size:0.7rem;color:#666;margin-bottom:8px;text-align:left;line-height:1.6;">
+            你凝视着屏幕上的证据碎片——坐标、代号、残缺的日志。<br/><br/>
+            你只知道这些事情不对劲，但不知道具体发生了什么、发生在哪里、谁该为此负责。<br/><br/>
+            你不知道该举报什么。你甚至不知道该给警察看什么。<br/><br/>
+            沉默了很久之后，你打开了12306。
+          </div>
+          <div style="background:#e6f4ff;padding:8px;border-radius:4px;font-size:0.68rem;color:#555;margin-bottom:8px;">
+            贺兰山 → 银川<br/>
+            2026年6月7日 · 硬座 · ¥112.00<br/>
+            <span style="color:#1677ff;">已出票</span>
+          </div>
+          <div style="font-size:0.65rem;color:#999;">沈辞的笔记里写过："只查外围，不深入深山禁区。" 你没听他的。</div>
+        </div>`;
+    } else if (mediumScore) {
+      // 结局2：拨打110但信息不足
+      html = `
+        <div style="text-align:center;">
+          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 110 报警电话</div>
+          <div style="background:#111;color:#4a4;padding:6px 10px;border-radius:4px;font-size:0.62rem;text-align:left;margin-bottom:10px;line-height:1.6;">
+            [通话录音 2026-06-05]<br/>
+            接警员：110，请问有什么需要帮助的？<br/>
+            你：我要举报……一个组织，他们可能跟失踪案有关。<br/>
+            接警员：请说明具体情况和地点。<br/>
+            你：地点我不太确定，在鄂西……一个废弃矿场。坐标大概是31.12，111.45。<br/>
+            接警员：你手上有哪些证据？<br/>
+            你：我有一些截图和内部文件……但不太完整。我还在收集。<br/>
+            接警员：好的，我们会记录在案。如果证据充分，会有专人与你联系。<br/>
+            <span style="color:#888;">[通话结束 · 时长 02:14]</span>
+          </div>
+          <div style="font-size:0.65rem;color:#999;">信息碎片不足以让警方立即行动。你决定自己去救人。</div>
+        </div>`;
+    } else if (highScore) {
+      // 结局3：省厅网安，部分证据
+      html = `
+        <div style="text-align:center;">
+          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 省公安厅网安总队</div>
+          <div style="background:#111;color:#4a4;padding:6px 10px;border-radius:4px;font-size:0.62rem;text-align:left;margin-bottom:10px;line-height:1.6;">
+            [举报平台 · 加密通道 · 2026-06-05]<br/>
+            举报编号：HB-2026-0605-0047<br/>
+            已提交证据：<br/>
+            ${collected.map(c => '✓ ' + c).join('<br/>')}<br/><br/>
+            状态：<span style="color:#f0a030;">已受理 · 调查中</span><br/>
+            备注：关键嫌疑人在逃。首座与监院身份尚未确认。建议继续收集证据。
+          </div>
+          <div style="font-size:0.65rem;color:#999;">警方突袭基地，救出部分受害者。但首座和监院逃脱了。</div>
+        </div>`;
+    } else {
+      // 结局4：完整举报
+      html = `
+        <div style="text-align:center;">
+          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 公安部专案组热线</div>
+          <div style="background:#111;color:#4a4;padding:6px 10px;border-radius:4px;font-size:0.62rem;text-align:left;margin-bottom:10px;line-height:1.6;">
+            [举报平台 · 加密通道 · 2026-06-05]<br/>
+            举报编号：GA-2026-0605-0012<br/>
+            已提交证据：<br/>
+            ${collected.map(c => '✓ ' + c).join('<br/>')}<br/><br/>
+            附加：郑义（深观）自动举报脚本完整证据包已同步接收。<br/>
+            状态：<span style="color:#4a4;">已立案 · 专案组成立</span><br/>
+            备注：证据链完整。坐标精确到十米级。受害者身份已核实。资金流已追踪。
+          </div>
+          <div style="font-size:0.65rem;color:#999;">警方精准突袭。七名受害者全部获救。团伙成员一网打尽。</div>
+        </div>`;
+    }
+
+    html += `
+      <div style="margin-top:16px;">
+        <button id="ending-proceed-btn" style="padding:8px 24px;background:#333;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.75rem;">
+          ${lowScore ? '出发' : '继续'}
+        </button>
+      </div>`;
+
+    resultEl.innerHTML = html;
+
+    // 绑定跳转按钮
+    document.getElementById('ending-proceed-btn')?.addEventListener('click', () => {
+      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+      progress.ending = ending;
+      progress.evidenceScore = score;
+      localStorage.setItem('arg_progress', JSON.stringify(progress));
+      window.location.href = BASE + 'ending/' + ending + '/';
+    });
+  }
+
+  function showResult(action: 'report' | 'ticket') {
+    const { score, collected, hasDeadDrop } = calcScore();
+    const ending = getEnding(score, hasDeadDrop);
+
+    // 如果是买票 → 强制结局1
+    const finalEnding = action === 'ticket' ? 1 : ending;
+
+    document.getElementById('phone-dialer')!.style.display = 'none';
+    document.getElementById('phone-result')!.style.display = 'block';
+
+    if (action === 'ticket') {
+      renderPhoneResult(1, collected, 1);
+    } else {
+      renderPhoneResult(score, collected, finalEnding);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 填充证据列表
+    const { collected } = calcScore();
+    const listEl = document.getElementById('phone-evidence-list');
+    if (listEl) {
+      if (collected.length === 0) {
+        listEl.innerHTML = '<span style="color:#999;">尚未收集到任何证据。</span>';
+      } else {
+        listEl.innerHTML = '<div style="font-weight:bold;margin-bottom:4px;">已收集的证据：</div>' +
+          collected.map(c => '📄 ' + c).join('<br/>');
+      }
+    }
+
+    // 绑定按钮
+    document.querySelectorAll('.phone-action-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = (btn as HTMLElement).dataset.action as 'report' | 'ticket';
+        showResult(action);
+      });
+    });
   });
 </script>
