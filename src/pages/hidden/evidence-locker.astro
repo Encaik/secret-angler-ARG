@@ -14,7 +14,7 @@ const BASE = __BASE_PATH__;
   <p class="text-muted" style="margin-bottom: 16px;">待清理证据 · 自动删除：每48小时 · 下次清理：2026-06-06 00:00</p>
 
   <div class="hidden-warning">
-    ⚠ 以下证据即将被系统自动删除。如果你能看到这个页面——说明你赶在了自动清理之前。请立即保存。
+    ⚠ 以下项目已排入自动删除队列。下次清理：2026-06-06 00:00。删除后数据不可恢复。
   </div>
 
   <!-- 待删除证据列表 -->
@@ -97,27 +97,30 @@ const BASE = __BASE_PATH__;
     </p>
   </div>
 
-  <!-- ========== 手机举报界面 ========== -->
-  <div id="phone-section" style="margin-top: 24px; padding: 20px; background: #fefcf7; border: 1px solid #e0d5c0; text-align: center;">
-    <p style="font-size:0.78rem;color:#6b5d4a;margin-bottom:12px;">
-      以上证据尚未被系统清理。你需要做一个决定。
+  <!-- ========== 操作区 ========== -->
+  <div style="margin-top: 24px; text-align: center;">
+    <button id="open-phone-btn" style="padding: 10px 28px; background: #c0392b; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 0.85rem; letter-spacing: 2px;">
+      📞 匿名举报
+    </button>
+    <p style="font-size: 0.68rem; color: #b0a090; margin-top: 8px;">
+      通过加密通道提交证据至公安机关。操作不可撤销。
     </p>
+  </div>
 
-    <!-- 手机外观 -->
-    <div style="display: inline-block; background: #1a1a1a; border-radius: 16px; padding: 12px 8px 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-width: 280px;">
+  <!-- ========== 手机弹窗 ========== -->
+  <div id="phone-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center;">
+    <div style="display:inline-block;background:#1a1a1a;border-radius:16px;padding:12px 8px 16px;box-shadow:0 4px 32px rgba(0,0,0,0.5);max-width:280px;">
       <!-- 屏幕 -->
-      <div id="phone-screen" style="background: #f5f5f5; border-radius: 4px; padding: 20px 16px; min-height: 300px; font-family: -apple-system, 'PingFang SC', sans-serif;">
+      <div id="phone-screen" style="background:#f5f5f5;border-radius:4px;padding:20px 16px;min-height:280px;font-family:-apple-system,'PingFang SC',sans-serif;">
         <!-- 默认拨号界面 -->
         <div id="phone-dialer">
-          <div id="phone-evidence-list" style="font-size:0.65rem;color:#666;text-align:left;margin-bottom:16px;line-height:1.8;">
-            <!-- JS 动态填充 -->
-          </div>
-          <div style="font-size:0.75rem;color:#999;margin-bottom:12px;">输入号码或选择操作：</div>
+          <div style="font-size:0.7rem;color:#999;margin-bottom:6px;text-align:center;">加密举报通道</div>
+          <div style="font-size:0.6rem;color:#bbb;margin-bottom:16px;text-align:center;">已收集的证据将随举报一并提交</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
             <button class="phone-action-btn" data-action="report" style="padding:10px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.75rem;">📞 报警举报</button>
             <button class="phone-action-btn" data-action="ticket" style="padding:10px;background:#1677ff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.75rem;">🎫 购买车票</button>
           </div>
-          <div style="font-size:0.6rem;color:#bbb;">你可以选择报警，或者买张车票自己去。</div>
+          <div style="font-size:0.6rem;color:#bbb;text-align:center;">匿名加密通道。公安机关无法追溯举报人身份。</div>
         </div>
 
         <!-- 结果界面（JS注入） -->
@@ -133,7 +136,6 @@ const BASE = __BASE_PATH__;
 <script>
   const BASE = window.__BASE__ || '/';
 
-  // 使用共享的结局判定引擎（ending.ts 挂载到 window.__endingEngine）
   function getEngine() {
     return (window as any).__endingEngine;
   }
@@ -142,28 +144,17 @@ const BASE = __BASE_PATH__;
     const engine = getEngine();
     if (engine) {
       const result = engine.evaluateEnding();
-      // 检查是否有 dead-drop
       const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
       const visited: string[] = progress.discoveredPages || [];
       const hasDeadDrop = visited.some((v: string) => v.includes('/hidden/dead-drop'));
-      // 如果有 dead-drop 且总分≥12，追加提示
-      const collected = [...result.collected];
-      if (hasDeadDrop && result.score >= 12) {
-        collected.push('举报脚本已触发（郑义·深观）');
-      }
-      return { score: result.score, collected, hasDeadDrop };
+      return { score: result.score, hasDeadDrop, shenciSaved: engine.isShenciSaved(result.score) };
     }
-    // 兜底：引擎未加载时返回空
-    return { score: 0, collected: [], hasDeadDrop: false };
+    return { score: 0, hasDeadDrop: false, shenciSaved: false };
   }
 
   function getEnding(score: number, hasDeadDrop: boolean): number {
     const engine = getEngine();
-    if (engine) {
-      const result = engine.evaluateEnding();
-      return result.ending;
-    }
-    // 兜底
+    if (engine) return engine.evaluateEnding().ending;
     let ending: number;
     if (score >= 18) ending = 4;
     else if (score >= 12) ending = 3;
@@ -173,95 +164,92 @@ const BASE = __BASE_PATH__;
     return ending;
   }
 
-  function renderPhoneResult(score: number, collected: string[], ending: number) {
+  function renderPhoneResult(score: number, shenciSaved: boolean, ending: number, action: string) {
     const resultEl = document.getElementById('phone-result');
     if (!resultEl) return;
 
-    let html = '';
     const lowScore = score < 7;
     const mediumScore = score >= 7 && score < 12;
-    const highScore = score >= 12 && score < 18;
-    const fullScore = score >= 18;
 
-    if (lowScore) {
-      // 结局1：12306买票
+    let html = '';
+
+    if (action === 'ticket') {
+      // 买票 → 自己去 → 结局1
       html = `
         <div style="text-align:center;">
           <div style="font-size:0.8rem;color:#1677ff;font-weight:bold;margin-bottom:12px;">🚄 铁路12306</div>
-          <div style="font-size:0.7rem;color:#666;margin-bottom:8px;text-align:left;line-height:1.6;">
-            你凝视着屏幕上的证据碎片——坐标、代号、残缺的日志。<br/><br/>
-            你只知道这些事情不对劲，但不知道具体发生了什么、发生在哪里、谁该为此负责。<br/><br/>
-            你不知道该举报什么。你甚至不知道该给警察看什么。<br/><br/>
-            沉默了很久之后，你打开了12306。
+          <div style="font-size:0.68rem;color:#666;margin-bottom:10px;text-align:left;line-height:1.7;">
+            你关掉了证据页面，打开了12306。<br/><br/>
+            贺兰山 → 银川。2026年6月7日。硬座。¥112.00。<br/><br/>
+            沈辞的笔记里写过"只查外围，不深入深山禁区"。你没听他的。
           </div>
-          <div style="background:#e6f4ff;padding:8px;border-radius:4px;font-size:0.68rem;color:#555;margin-bottom:8px;">
-            贺兰山 → 银川<br/>
-            2026年6月7日 · 硬座 · ¥112.00<br/>
-            <span style="color:#1677ff;">已出票</span>
+          <div style="background:#e6f4ff;padding:8px;border-radius:4px;font-size:0.65rem;color:#555;margin-bottom:8px;">
+            订单号：E84903216<br/>
+            状态：<span style="color:#1677ff;">已出票</span>
           </div>
-          <div style="font-size:0.65rem;color:#999;">沈辞的笔记里写过："只查外围，不深入深山禁区。" 你没听他的。</div>
         </div>`;
-    } else if (mediumScore) {
-      // 结局2：拨打110但信息不足
+    } else if (lowScore) {
+      // 证据严重不足 → 警方无法行动
       html = `
         <div style="text-align:center;">
           <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 110 报警电话</div>
           <div style="background:#111;color:#4a4;padding:6px 10px;border-radius:4px;font-size:0.62rem;text-align:left;margin-bottom:10px;line-height:1.6;">
             [通话录音 2026-06-05]<br/>
-            接警员：110，请问有什么需要帮助的？<br/>
-            你：我要举报……一个组织，他们可能跟失踪案有关。<br/>
-            接警员：请说明具体情况和地点。<br/>
-            你：地点我不太确定，在鄂西……一个废弃矿场。坐标大概是31.12，111.45。<br/>
-            接警员：你手上有哪些证据？<br/>
-            你：我有一些截图和内部文件……但不太完整。我还在收集。<br/>
-            接警员：好的，我们会记录在案。如果证据充分，会有专人与你联系。<br/>
-            <span style="color:#888;">[通话结束 · 时长 02:14]</span>
+            接警员：110，请讲。<br/>
+            你：我要举报一个犯罪组织……但我手头的证据不够完整。<br/>
+            接警员：请提供具体地点和证据材料。<br/>
+            你：……我只有一些零散的截图和代号。没有具体坐标。<br/>
+            接警员：没有具体地点和实质性证据，我们无法立案。建议你先收集更多材料。<br/>
+            <span style="color:#888;">[通话结束 · 时长 01:47]</span>
           </div>
-          <div style="font-size:0.65rem;color:#999;">信息碎片不足以让警方立即行动。你决定自己去救人。</div>
+          <div style="font-size:0.65rem;color:#999;">你手上的东西不足以让警方介入。你只能自己去——或者永远不去。</div>
         </div>`;
-    } else if (highScore) {
-      // 结局3：省厅网安，部分证据
+    } else if (mediumScore && !shenciSaved) {
+      // 证据部分但不充分 → 警方需要时间取证 → 沈辞没赶上
       html = `
         <div style="text-align:center;">
-          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 省公安厅网安总队</div>
+          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 110 报警电话</div>
           <div style="background:#111;color:#4a4;padding:6px 10px;border-radius:4px;font-size:0.62rem;text-align:left;margin-bottom:10px;line-height:1.6;">
-            [举报平台 · 加密通道 · 2026-06-05]<br/>
+            [通话录音 2026-06-05]<br/>
+            接警员：110，请讲。<br/>
+            你：我要举报鄂西一个废弃矿洞里关着人。坐标31.12，111.45。我手上有内部文件和通讯记录。<br/>
+            接警员：请保持电话通畅，我为你转接刑侦支队。<br/><br/>
+            [加密举报平台 · 2026-06-05]<br/>
             举报编号：HB-2026-0605-0047<br/>
-            已提交证据：<br/>
-            ${collected.map(c => '✓ ' + c).join('<br/>')}<br/><br/>
-            状态：<span style="color:#f0a030;">已受理 · 调查中</span><br/>
-            备注：关键嫌疑人在逃。首座与监院身份尚未确认。建议继续收集证据。
+            状态：<span style="color:#f0a030;">已受理 · 证据核查中</span><br/>
+            预计完成取证：6-10个工作日<br/><br/>
+            <span style="color:#c0392b;">6月8日，外院医生飞抵基地。甲辰003配型确认。</span>
           </div>
-          <div style="font-size:0.65rem;color:#999;">警方突袭基地，救出部分受害者。但首座和监院逃脱了。</div>
+          <div style="font-size:0.65rem;color:#999;">警方最终突袭了基地。另外三人获救。沈辞没赶上。</div>
         </div>`;
     } else {
-      // 结局4：完整举报
+      // 证据充分 → 警方立即行动 → 沈辞得救
+      const fullChain = score >= 18;
       html = `
         <div style="text-align:center;">
-          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 公安部专案组热线</div>
+          <div style="font-size:0.8rem;color:#c0392b;font-weight:bold;margin-bottom:12px;">📞 ${fullChain ? '公安部专案组热线' : '省公安厅网安总队'}</div>
           <div style="background:#111;color:#4a4;padding:6px 10px;border-radius:4px;font-size:0.62rem;text-align:left;margin-bottom:10px;line-height:1.6;">
             [举报平台 · 加密通道 · 2026-06-05]<br/>
-            举报编号：GA-2026-0605-0012<br/>
-            已提交证据：<br/>
-            ${collected.map(c => '✓ ' + c).join('<br/>')}<br/><br/>
-            附加：郑义（深观）自动举报脚本完整证据包已同步接收。<br/>
-            状态：<span style="color:#4a4;">已立案 · 专案组成立</span><br/>
-            备注：证据链完整。坐标精确到十米级。受害者身份已核实。资金流已追踪。
+            举报编号：${fullChain ? 'GA-2026-0605-0012' : 'HB-2026-0605-0047'}<br/>
+            提交材料：${fullChain ? '完整证据链（含资金流水、基地坐标、医疗合作名单、全部钓鱼站点数据）+ 郑义自动举报脚本已同步接收' : '暗网交易记录 + 基地坐标 + 作案流程文件'}<br/><br/>
+            ${fullChain
+              ? '状态：<span style="color:#4a4;">已立案 · 专案组成立 · 即刻出警</span><br/>证据链完整。坐标精确到十米级。受害者身份全部核实。6月5日当晚突袭。'
+              : '状态：<span style="color:#4a4;">已立案 · 即刻出警</span><br/>坐标明确，证据充分。6月5日当晚跨省联合行动。'}<br/><br/>
+            <span style="color:#4a4;">抵达时间：6月5日 23:40。甲辰003（沈辞）尚在体检区，未进入手术排程。</span>
           </div>
-          <div style="font-size:0.65rem;color:#999;">警方精准突袭。七名受害者全部获救。团伙成员一网打尽。</div>
+          <div style="font-size:0.65rem;color:#999;">${fullChain ? '全链覆灭。全部受害者获救。' : '基地被捣毁。全部受害者获救。部分涉案人员在逃。'}</div>
         </div>`;
     }
 
     html += `
-      <div style="margin-top:16px;">
+      <div style="margin-top:14px;">
         <button id="ending-proceed-btn" style="padding:8px 24px;background:#333;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.75rem;">
-          ${lowScore ? '出发' : '继续'}
+          继续
         </button>
       </div>`;
 
     resultEl.innerHTML = html;
 
-    // 绑定跳转按钮
     document.getElementById('ending-proceed-btn')?.addEventListener('click', () => {
       const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
       progress.ending = ending;
@@ -272,36 +260,32 @@ const BASE = __BASE_PATH__;
   }
 
   function showResult(action: 'report' | 'ticket') {
-    const { score, collected, hasDeadDrop } = calcScore();
+    const { score, hasDeadDrop, shenciSaved } = calcScore();
     const ending = getEnding(score, hasDeadDrop);
-
-    // 如果是买票 → 强制结局1
     const finalEnding = action === 'ticket' ? 1 : ending;
+    const finalSaved = action === 'ticket' ? false : shenciSaved;
 
     document.getElementById('phone-dialer')!.style.display = 'none';
     document.getElementById('phone-result')!.style.display = 'block';
 
-    if (action === 'ticket') {
-      renderPhoneResult(1, collected, 1);
-    } else {
-      renderPhoneResult(score, collected, finalEnding);
-    }
+    renderPhoneResult(action === 'ticket' ? 1 : score, finalSaved, finalEnding, action);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // 填充证据列表
-    const { collected } = calcScore();
-    const listEl = document.getElementById('phone-evidence-list');
-    if (listEl) {
-      if (collected.length === 0) {
-        listEl.innerHTML = '<span style="color:#999;">尚未收集到任何证据。</span>';
-      } else {
-        listEl.innerHTML = '<div style="font-weight:bold;margin-bottom:4px;">已收集的证据：</div>' +
-          collected.map(c => '📄 ' + c).join('<br/>');
-      }
-    }
+    const modal = document.getElementById('phone-modal');
+    const openBtn = document.getElementById('open-phone-btn');
 
-    // 绑定按钮
+    // 打开弹窗
+    openBtn?.addEventListener('click', () => {
+      if (modal) modal.style.display = 'flex';
+    });
+
+    // 点击遮罩关闭
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // 绑定手机按钮
     document.querySelectorAll('.phone-action-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const action = (btn as HTMLElement).dataset.action as 'report' | 'ticket';

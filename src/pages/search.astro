@@ -2,7 +2,7 @@
 // /search — 搜索结果页（独立页面，非弹窗）
 // 历史存档内容仅通过此页面可见
 import Layout from '../components/Layout.astro';
-import { ARCHIVED_CONTENT, MOCK_RESULTS, HIDDEN_PAGE_CACHE, PUZZLE_ANSWER, USER_SEARCH, SEARCH_ACCESS_CODE } from '../data/search-data';
+import { ARCHIVED_CONTENT, MOCK_RESULTS, HIDDEN_PAGE_CACHE, USER_SEARCH, SEARCH_TOKEN } from '../data/search-data';
 const BASE = __BASE_PATH__;
 ---
 
@@ -41,8 +41,7 @@ const BASE = __BASE_PATH__;
   mockResultsJson: JSON.stringify(MOCK_RESULTS),
   hiddenPageCacheJson: JSON.stringify(HIDDEN_PAGE_CACHE),
   userSearchJson: JSON.stringify(USER_SEARCH),
-  puzzleAnswer: PUZZLE_ANSWER,
-  searchAccessCode: SEARCH_ACCESS_CODE,
+  searchToken: SEARCH_TOKEN,
   basePath: BASE,
 }}>
   // BASE 路径前缀，通过 define:vars 传入（define:vars 脚本内 Vite define 不会被替换，必须通过 vars 传入）
@@ -52,10 +51,9 @@ const BASE = __BASE_PATH__;
   const MOCK_RESULTS = JSON.parse(mockResultsJson);
   const HIDDEN_PAGE_CACHE = JSON.parse(hiddenPageCacheJson);
   const USER_SEARCH = JSON.parse(userSearchJson);
-  const PUZZLE_ANSWER = puzzleAnswer;
-  const SEARCH_ACCESS_CODE = searchAccessCode;
+  const SEARCH_TOKEN = searchToken;
 
-  // 搜索权限：查询中包含访问码或已持久化提升权限时，显示隐藏页面缓存结果
+  // 搜索权限：访问码 + 方括号双重条件，或已持久化提权
   function hasElevatedSearchAccess() {
     return localStorage.getItem('search_access_elevated') === 'true';
   }
@@ -133,26 +131,14 @@ const BASE = __BASE_PATH__;
       return;
     }
 
-    // 1. 谜题答案检查（仅解锁进度，不直接跳转）
-    if (query === PUZZLE_ANSWER) {
-      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-      if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
-      progress.solvedPuzzles['stage1_page_header_password'] = true;
-      if (!progress.discoveredClues) progress.discoveredClues = [];
-      if (!progress.discoveredClues.includes('cloud_share_accessed')) {
-        progress.discoveredClues.push('cloud_share_accessed');
-        progress.explorationProgress = (progress.explorationProgress || 0) + 15;
-      }
-      localStorage.setItem('arg_progress', JSON.stringify(progress));
-    }
-
-    // 2. 历史存档检索
+    // 1. 历史存档检索
     const archived = findArchivedContent(query);
 
-    // 3. 隐藏页面缓存检索（需要搜索权限提升后才能看到）
-    // 查询中包含访问码"2026"或已持久化提升权限时，显示隐藏页面缓存结果
+    // 2. 隐藏页面缓存检索（双重条件：访问码 kd7f3g + 方括号[关键词]，或已持久化提权）
     var cachedPages = [];
-    var elevatedAccess = query.includes(SEARCH_ACCESS_CODE) || hasElevatedSearchAccess();
+    var hasToken = query.includes(SEARCH_TOKEN);
+    var bracketMatch = query.match(/\[(.+?)\]/);
+    var elevatedAccess = (hasToken && bracketMatch !== null) || hasElevatedSearchAccess();
 
     if (elevatedAccess) {
       var cacheEntries = Object.entries(HIDDEN_PAGE_CACHE);
@@ -164,13 +150,13 @@ const BASE = __BASE_PATH__;
         }
       }
 
-      // 首次通过访问码匹配到隐藏关键词时，持久化提升权限
-      if (query.includes(SEARCH_ACCESS_CODE) && cachedPages.length > 0 && !hasElevatedSearchAccess()) {
+      // 首次通过 访问码+方括号+匹配成功 时持久化提权
+      if (hasToken && bracketMatch && cachedPages.length > 0 && !hasElevatedSearchAccess()) {
         grantElevatedSearchAccess();
       }
     }
 
-    // 4. 页面导航
+    // 3. 页面导航
     var pageResults = [];
     var mockEntries = Object.entries(MOCK_RESULTS);
     for (var mi = 0; mi < mockEntries.length; mi++) {
@@ -185,7 +171,7 @@ const BASE = __BASE_PATH__;
       }
     }
 
-    // 5. 用户搜索
+    // 4. 用户搜索
     var userResults = findUserResults(query);
 
     // 无结果

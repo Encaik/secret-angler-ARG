@@ -2,6 +2,11 @@
 // 导航栏用户区渲染
 // 从 Layout.astro 内联 script 提取，所有公开页面共用
 // 使用 CSS 类名而非硬编码 style，与 Layout.astro <style> 块同步
+//
+// 注意：此文件不使用 export 关键词。
+// 原因同 progress.ts — Astro/Vite 将多个 script 标签分别处理，
+// 使用 export 会使函数成为 ES 模块导出而非全局变量，
+// 导致 Layout.astro 内联 <script> 中的 initNavUserArea() 调用抛出 ReferenceError。
 // ========================================
 
 const DISPLAY_NAMES: Record<string, string> = {
@@ -9,7 +14,7 @@ const DISPLAY_NAMES: Record<string, string> = {
   shenci: '地下三尺',
 };
 
-export function initNavUserArea(BASE: string): void {
+function initNavUserArea(BASE: string): void {
   const area = document.getElementById('nav-user-area');
   if (!area) return;
 
@@ -84,4 +89,9 @@ export function initNavUserArea(BASE: string): void {
       window.location.href = BASE + 'login/';
     });
   }
+}
+
+// 挂载到 window 供 Layout.astro 内联 <script> 调用
+if (typeof window !== 'undefined') {
+  (window as any).initNavUserArea = initNavUserArea;
 }

@@ -69,10 +69,10 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'easy',
     type: 'acrostic',
     name: '沈辞隐藏帖文 · 藏头文解密',
-    // echo -n "深海裂隙" | openssl dgst -sha256
-    answerHash: '76e2897cb6c02df6f8493fab92b9bad398a52a341d1269a34c3e9f69f3fcb165',
+    // echo -n "多站同源" | openssl dgst -sha256
+    answerHash: 'ad70ae6f43178dad684a42c4c2b1697d43fea284f4cfd815e876368b7b0c0d44',
     clueLocations: [
-      '/user/shenci (仅自己可见帖文 — 需登录shenci，四段文字首字组成"深海裂隙")',
+      '/user/shenci (仅自己可见帖文 — 需登录shenci，四段文字首字组成"多站同源")',
       '/inbox (shenci登录：林屿5/22私信"开头几个字连起来读")',
       '/inbox (shenci登录：林屿5/24私信"藏头藏尾那一套")',
       '搜索"加密" → 林屿帖文"藏头藏尾——把信息藏在每段开头或结尾"',
@@ -86,7 +86,7 @@ export const PUZZLES: Puzzle[] = [
       '首字不加粗——需要玩家自行观察发现（密室逃脱风格：观察力谜题）',
     ],
     requiresClue: ['shenci_credentials'],
-    unlocksPages: ['/trigger/rift (搜索"深海裂隙2026"触发)'],
+    unlocksPages: ['/trigger/rift (搜索"kd7f3g[多站同源]"触发)'],
     progressWeight: 20,
     clueTags: ['observation', 'acrostic', 'word_puzzle'],
   },
@@ -98,15 +98,15 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'medium',
     type: 'keyword',
     name: '会员区访问码拼合',
-    // echo -n "深海裂隙2026" | openssl dgst -sha256
-    answerHash: 'f8478fa4a00eeb705d0d91d08f1210cbb1e88e57566d7c8efe34e252fa6bc286',
+    // echo -n "多站同源2026" | openssl dgst -sha256
+    answerHash: '0a23022ec3a13677e1255d6d5c25fc81fb39c36748d1964769321439dac68a71',
     clueLocations: [
-      '/user/shenci (仅自己可见帖文：藏头文解密得"深海裂隙")',
+      '/user/shenci (仅自己可见帖文：藏头文解密得"多站同源")',
       '/trigger/rift (缓存3：访问码末尾4位"2026")',
       '/inbox (沈辞私信：暗示"加粗词"+"日期"组合)',
     ],
     hintTexts: [
-      '沈辞隐藏帖文的藏头文解密结果：深海裂隙',
+      '沈辞隐藏帖文的藏头文解密结果：多站同源',
       '触发页缓存中暗示访问码末尾是年份"2026"',
       '沈辞私信中提到"把年份和那个加粗的词拼在一起"',
       '组合：藏头文结果 + 年份 = 访问码',
@@ -175,21 +175,21 @@ export const PUZZLES: Puzzle[] = [
     stage: 6,
     difficulty: 'hard',
     type: 'cross_reference',
-    name: '沈辞的调查发现 · 管理员密钥',
-    // echo -n "deeprift323" | openssl dgst -sha256
-    answerHash: '8b0ba0a0d7f1c54ecd9559b857a4fefd37e5f25ec1664ad58bafe26f5961337d',
+    name: '管理员密码 · 人物深度拼合',
+    // echo -n "xiaoyu2021" | openssl dgst -sha256
+    answerHash: '5b87c47464f37942a0c181a9e498cab14bbffd8f7b79a3ac813f915bb556c202',
     clueLocations: [
-      '/share/ → 沈辞云盘文件：坐标交叉比对 + SDR拦截记录 + 信号频谱分析',
-      '/hidden/admin/ (staff视图) → 信众名录中"三尺"的备注"需冷链" + 供养收入异常高',
-      '/hidden/panlongxia → 景区页面底部有"景区管理系统"小字链接，点击即达后台登录页',
-      '/about/ → 联系邮箱 admin@deeprift323.onion · /trigger/rift → 后台域名 deeprift323.onion',
+      '/hidden/board/ → 内部闲聊中暴露"老周"的女儿叫"小雨"，妻子2021年去世',
+      '/hidden/dead-drop/ → 郑义档案中提及宗主的家庭背景和作案动机',
+      '/user/oldcat/ + 搜索"老猫" → 老猫是站点最早用户，其个人动态中暗藏女儿线索',
+      '/trigger/rift → 站点成立于2021年，与老猫妻子去世年份吻合',
     ],
     hintTexts: [
-      '沈辞的云盘资料中已经记录了归源宗与论坛推荐点位的关联',
-      'staff后台的信众名录和供养记录明显不对劲——对正常寺庙来说数额太大了',
-      '景区页面底部藏着一个不起眼的"景区管理系统"链接——那就是后台的入口',
-      '联系邮箱域名是 deeprift323.onion，触发页缓存也提到了同一个域名——密钥就藏在域名里',
-      '综合线索：deeprift323（去掉.onion后缀）就是管理员密码。使用 admin 账号登录。',
+      '内部通讯里有人在聊天——注意他们怎么称呼"老板"，以及提到了谁的名字',
+      '叛变者的档案里不止有他自己的故事——他也记录了掌控这个组织的人',
+      '站里有个退休地理教师叫"老猫"，他是最早注册的。翻翻他的动态',
+      '2021年是一个反复出现的年份——站点成立、归源法会启动、某个人的妻子去世……',
+      '综合线索：这个组织的幕后人物是老猫（老周），他心里最重要的人叫小雨，最重要的年份是2021。密码是 xiaoyu2021。',
     ],
     requiresClue: ['staff_access', 'darknet_explored'],
     unlocksPages: ['/hidden/admin/ (admin全权限视图)', '/hidden/board/', '/hidden/operation/', '/hidden/locations/', '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/'],

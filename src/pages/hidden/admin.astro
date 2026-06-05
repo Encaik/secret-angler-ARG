@@ -136,15 +136,6 @@ const BASE = __BASE_PATH__;
       <p style="font-size:0.65rem;color:#c0b090;margin-top:4px;">※ 完整功德簿含施主详情与去向，需方丈权限。</p>
     </div>
 
-    <!-- 功德流通入口 -->
-    <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
-      <div>
-        <span style="font-size:0.78rem;color:#6b5d4a;">功德流通处 · 演示账号</span>
-        <span style="font-size:0.7rem;color:#9b8c7a;margin-left:12px;">DR-2026-03 / rift0603</span>
-      </div>
-      <a href={`${BASE}hidden/panlongxia/`} target="_blank" style="padding:6px 16px;background:#3d6b6b;color:#fefcf7;text-decoration:none;font-size:0.72rem;border-radius:2px;">前往盘龙峡香火站 →</a>
-    </div>
-
     <!-- 操作日志（仅内容相关） -->
     <div style="margin-bottom:16px;">
       <div style="font-size:0.78rem;color:#6b5d4a;margin-bottom:6px;">操作日志</div>
@@ -167,7 +158,7 @@ const BASE = __BASE_PATH__;
 
     <!-- 提示横幅 -->
     <div style="background:#fdf6ed;border:1px solid #e0d0a0;padding:8px 14px;font-size:0.72rem;color:#6b4a2a;">
-      ⚠ 当前为客堂视图。完整管理功能（内部通讯、档案管理、坐标数据、人员处置记录、证据管理）需以方丈身份登录。如需获取方丈权限，请在功德流通系统中查找管理员密钥。
+      ⚠ 当前为客堂视图。完整管理功能（内部通讯、档案管理、坐标数据、人员处置记录、证据管理）需以方丈身份登录。
     </div>
   </div>
 
@@ -200,7 +191,7 @@ const BASE = __BASE_PATH__;
 
     <!-- 待办警示 -->
     <div style="background:#fdf6ed;border:1px solid #e0d0a0;padding:8px 14px;margin-bottom:16px;font-size:0.72rem;color:#6b4a2a;">
-      ⚠ 待处理：管理员密码逾期未更换（风险等级：中）· 甲辰003（沈辞）档案权限过高未清理 · 证据删除队列待确认（甲辰004号 排程：06-06 00:00）· <strong style="color:#5c2e2e;">郑义（深观）的自动举报脚本仍在重发中（第5轮）——不可逆。证据已送达66天。建议全员查阅人员处置记录。</strong>
+      ⚠ 待处理：管理员密码逾期未更换 · 甲辰003档案权限未清理 · 证据删除队列待确认（排程：06-06 00:00）· <strong style="color:#5c2e2e;">退转弟子深观·自动举报脚本第5轮重发——拦截失败。</strong>
     </div>
 
     <!-- 统计卡片 -->
@@ -279,10 +270,46 @@ const BASE = __BASE_PATH__;
       </div>
     </div>
 
-    <!-- 工作备注 -->
-    <div class="incense-block" style="margin-top: 16px;">
-      <div style="font-size: 0.72rem; color: #6b5d4a; line-height: 1.8;">
-        工作备注：甲辰年第三轮行动已完成。沈辞（三尺）体检结果良好，待外院医生确认配型后即可上架。各部门注意——<strong>管理员密码逾期未更换</strong>一事，首座已做记录。冷却期内禁止新行动。监院报告：监控目标一人（signal_屿/林屿）近日频繁搜索本组织旧帖，需密切关注。
+    <!-- 僧团编制：归源宗在册人员（仅限内部——勿外传） -->
+    <div style="margin-top: 20px;">
+      <div style="font-size: 0.78rem; color: #6b5d4a; margin-bottom: 8px; border-bottom: 1px solid #e0d5c0; padding-bottom: 4px;">僧团编制 · 在册人员</div>
+      <table style="font-size: 0.68rem; width: 100%;">
+        <tr style="color: #9b8c7a; font-size: 0.62rem;">
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">法号</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">职司</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">俗名/代号</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">层级</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">状态</th>
+        </tr>
+        <tr><td style="padding:3px 6px;">宗主</td><td style="padding:3px 6px;">统筹全局、最终决策</td><td style="padding:3px 6px;">老周（论坛：老猫）</td><td style="padding:3px 6px;">核心</td><td style="padding:3px 6px;color:#3d6b6b;">在寺</td></tr>
+        <tr><td style="padding:3px 6px;">首座</td><td style="padding:3px 6px;">行动指挥、人员管理</td><td style="padding:3px 6px;">老韩</td><td style="padding:3px 6px;">核心</td><td style="padding:3px 6px;color:#3d6b6b;">在寺</td></tr>
+        <tr><td style="padding:3px 6px;">监院</td><td style="padding:3px 6px;">技术运维、网络安全</td><td style="padding:3px 6px;">阿坤</td><td style="padding:3px 6px;">核心</td><td style="padding:3px 6px;color:#3d6b6b;">在寺</td></tr>
+        <tr><td style="padding:3px 6px;">知客</td><td style="padding:3px 6px;">目标筛选、论坛潜伏</td><td style="padding:3px 6px;">眼镜（论坛：山野探秘人）</td><td style="padding:3px 6px;">中层</td><td style="padding:3px 6px;color:#3d6b6b;">外勤中</td></tr>
+        <tr><td style="padding:3px 6px;">典座</td><td style="padding:3px 6px;">物流运输、路线规划</td><td style="padding:3px 6px;">马姐</td><td style="padding:3px 6px;">中层</td><td style="padding:3px 6px;color:#3d6b6b;">外勤中</td></tr>
+        <tr><td style="padding:3px 6px;">维那</td><td style="padding:3px 6px;">外勤执行、现场控制</td><td style="padding:3px 6px;">铁头</td><td style="padding:3px 6px;">中层</td><td style="padding:3px 6px;color:#3d6b6b;">在寺</td></tr>
+        <tr><td style="padding:3px 6px;">外护</td><td style="padding:3px 6px;">医疗对接、手术协调</td><td style="padding:3px 6px;">赵医生</td><td style="padding:3px 6px;">中层</td><td style="padding:3px 6px;color:#a0702c;">待命（6/8-6/10手术排期）</td></tr>
+        <tr><td style="padding:3px 6px;">香灯</td><td style="padding:3px 6px;">资金管理、账目结算</td><td style="padding:3px 6px;">老田</td><td style="padding:3px 6px;">中层</td><td style="padding:3px 6px;color:#3d6b6b;">在寺</td></tr>
+        <tr style="border-top:1px solid #e0d5c0;"><td style="padding:3px 6px;">行者甲</td><td style="padding:3px 6px;">外勤执行</td><td style="padding:3px 6px;">二虎</td><td style="padding:3px 6px;">执行</td><td style="padding:3px 6px;color:#a0702c;">事假（母病）</td></tr>
+        <tr><td style="padding:3px 6px;">行者乙</td><td style="padding:3px 6px;">外勤执行（司机）</td><td style="padding:3px 6px;">小周</td><td style="padding:3px 6px;">执行</td><td style="padding:3px 6px;color:#8b3a3a;">⚠ 观察中</td></tr>
+        <tr><td style="padding:3px 6px;">净人</td><td style="padding:3px 6px;">现场清理</td><td style="padding:3px 6px;">哑巴</td><td style="padding:3px 6px;">执行</td><td style="padding:3px 6px;color:#3d6b6b;">在寺</td></tr>
+        <tr style="opacity: 0.5;"><td style="padding:3px 6px;">退转弟子</td><td style="padding:3px 6px;">——已处置——</td><td style="padding:3px 6px;">郑义（深观）</td><td style="padding:3px 6px;">前中层</td><td style="padding:3px 6px;color:#5c2e2e;">2026-03-12 已舍报</td></tr>
+      </table>
+      <div style="font-size: 0.6rem; color: #b0a090; margin-top: 8px;">
+        行者乙（小周）：监院标注不稳定，缩短参与周期，不安排单独任务。
+      </div>
+    </div>
+
+    <!-- 内部纪律（节选——由首座制定，宗主批准） -->
+    <div style="margin-top: 20px;">
+      <div style="font-size: 0.78rem; color: #6b5d4a; margin-bottom: 8px; border-bottom: 1px solid #e0d5c0; padding-bottom: 4px;">归源宗 · 寺规（节选）</div>
+      <div style="font-size: 0.68rem; color: #6b5d4a; line-height: 2;">
+        <p>一、<strong>单次法会后冷却90日</strong>，同一站点不得连续猎取。违者逐出僧团。</p>
+        <p>二、<strong>不问来处，不究归处。</strong>执行层只负责接引与护送，不问供体去向。中层以上可查阅完整档案，但不得向执行层透露。</p>
+        <p>三、<strong>叛者必诛。</strong>凡泄露僧团信息或企图脱离者，由维那执行处置。家属不牵连——<strong>除非家属构成威胁</strong>。</p>
+        <p>四、<strong>禁私吞功德金。</strong>所有供养收入入供养库（老田），任何成员不得私下收取买家款项。</p>
+        <p>五、<strong>禁伤及无辜。</strong>外勤行动只针对目标本人。随行人员、路人、当地居民——不得碰。违者等同于叛。</p>
+        <p>六、<strong>遇险自决。</strong>若外勤行动暴露或被执法部门拦截——各自脱身，不得牵连寺院。被抓者<strong>自行承担</strong>，寺院概不承认关系。家属可由香灯酌情抚恤。</p>
+        <p style="color: #b0a090; margin-top: 4px;">※ 以上寺规由宗主（老周）于2021年制定，首座（老韩）修订。违者由维那（铁头）执行处置。</p>
       </div>
     </div>
 
@@ -292,7 +319,7 @@ const BASE = __BASE_PATH__;
 <script>
   const BASE = window.__BASE__ || '/';
 
-  const ADMIN_PASSWORD = 'deeprift323';
+  const ADMIN_PASSWORD = 'xiaoyu2021';
   const STAFF_PASSWORD = 'portal2026';
   const ADMIN_USERS = ['admin', '首座', '监院'];
   const STAFF_USERS = ['staff'];

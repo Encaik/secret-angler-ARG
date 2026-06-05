@@ -10,7 +10,7 @@ export const MAIN_CREDENTIALS: Record<string, { password: string; redirect: stri
 };
 
 /** 后台管理系统凭证（/hidden/admin/） */
-export const ADMIN_PASSWORD = 'deeprift323';
+export const ADMIN_PASSWORD = 'xiaoyu2021';
 export const STAFF_PASSWORD = 'portal2026';
 export const ADMIN_USERS = ['admin', '首座', '监院'];
 export const STAFF_USERS = ['staff'];
@@ -23,8 +23,8 @@ export const DARKNET_ACCOUNTS: Record<string, string> = {
 /** 暗网邀请凭证号码（/about/ "加入我们" 联系电话栏输入） */
 export const DARKNET_INVITE_PHONE = '17093280045';
 
-/** 会员区访问码（搜索"深海裂隙2026"解锁） */
-export const MEMBER_ACCESS_CODE = '深海裂隙2026';
+/** 会员区访问码（藏头文结果 + 年份拼合） */
+export const MEMBER_ACCESS_CODE = '多站同源2026';
 
 /** 沈辞密码组成的各部分（用于拼凑验证） */
 export const SHENCI_PASSWORD_PARTS = {

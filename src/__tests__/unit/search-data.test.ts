@@ -11,7 +11,7 @@ import {
   MOCK_RESULTS,
   PUZZLE_ANSWER,
   USER_SEARCH,
-  SEARCH_ACCESS_CODE,
+  SEARCH_TOKEN,
   findArchivedContent,
   findUserSearchResults,
   type ArchivedPost,
@@ -88,7 +88,7 @@ describe('ARCHIVED_CONTENT', () => {
 // ========================================
 describe('HIDDEN_PAGE_CACHE', () => {
   it('has entries for all trigger/search entry points', () => {
-    const expectedKeys = ['深海裂隙', '星门坐标', '布景基地', '深度探秘', '归源宗', '后台管理', '秘境之下', '轻舟云盘'];
+    const expectedKeys = ['多站同源', '星门坐标', '布景基地', '深度探秘', '归源宗', '后台管理', '秘境之下', '轻舟云盘'];
     for (const key of expectedKeys) {
       expect(HIDDEN_PAGE_CACHE[key], `Missing HIDDEN_PAGE_CACHE key: ${key}`).toBeDefined();
     }
@@ -105,7 +105,7 @@ describe('HIDDEN_PAGE_CACHE', () => {
   });
 
   it('trigger pages map to /trigger/ routes', () => {
-    expect(HIDDEN_PAGE_CACHE['深海裂隙'].pageUrl).toBe('/trigger/rift');
+    expect(HIDDEN_PAGE_CACHE['多站同源'].pageUrl).toBe('/trigger/rift');
     expect(HIDDEN_PAGE_CACHE['星门坐标'].pageUrl).toBe('/trigger/stargate');
     expect(HIDDEN_PAGE_CACHE['布景基地'].pageUrl).toBe('/trigger/base');
   });
@@ -261,21 +261,17 @@ describe('findUserSearchResults', () => {
 // PUZZLE_ANSWER
 // ========================================
 describe('PUZZLE_ANSWER', () => {
-  it('equals "深海裂隙2026"', () => {
-    expect(PUZZLE_ANSWER).toBe('深海裂隙2026');
+  it('equals "多站同源2026"', () => {
+    expect(PUZZLE_ANSWER).toBe('多站同源2026');
   });
 });
 
 // ========================================
-// SEARCH_ACCESS_CODE
+// SEARCH_TOKEN
 // ========================================
-describe('SEARCH_ACCESS_CODE', () => {
-  it('equals "2026"', () => {
-    expect(SEARCH_ACCESS_CODE).toBe('2026');
-  });
-
-  it('PUZZLE_ANSWER contains SEARCH_ACCESS_CODE', () => {
-    expect(PUZZLE_ANSWER).toContain(SEARCH_ACCESS_CODE);
+describe('SEARCH_TOKEN', () => {
+  it('equals "kd7f3g"', () => {
+    expect(SEARCH_TOKEN).toBe('kd7f3g');
   });
 });
 

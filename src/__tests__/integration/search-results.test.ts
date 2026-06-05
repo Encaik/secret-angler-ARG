@@ -8,7 +8,7 @@ import {
   findArchivedContent,
   HIDDEN_PAGE_CACHE,
   PUZZLE_ANSWER,
-  SEARCH_ACCESS_CODE,
+  SEARCH_TOKEN,
   type ArchivedPost,
 } from '../../data/search-data';
 
@@ -79,8 +79,8 @@ describe('Search result mappings', () => {
   // 隐藏页面缓存关键词 → 正确 pageUrl
   // ========================================
   describe('Hidden page cache keyword → pageUrl mapping', () => {
-    it('"深海裂隙" maps to /trigger/rift', () => {
-      expect(HIDDEN_PAGE_CACHE['深海裂隙'].pageUrl).toBe('/trigger/rift');
+    it('"多站同源" maps to /trigger/rift', () => {
+      expect(HIDDEN_PAGE_CACHE['多站同源'].pageUrl).toBe('/trigger/rift');
     });
 
     it('"星门坐标" maps to /trigger/stargate', () => {
@@ -116,16 +116,12 @@ describe('Search result mappings', () => {
   // PUZZLE_ANSWER 处理
   // ========================================
   describe('PUZZLE_ANSWER handling', () => {
-    it('"深海裂隙2026" is the stage 3 puzzle answer', () => {
-      expect(PUZZLE_ANSWER).toBe('深海裂隙2026');
+    it('"多站同源2026" is the stage 3 puzzle answer', () => {
+      expect(PUZZLE_ANSWER).toBe('多站同源2026');
     });
 
     it('PUZZLE_ANSWER is not a key in HIDDEN_PAGE_CACHE', () => {
       expect(HIDDEN_PAGE_CACHE[PUZZLE_ANSWER]).toBeUndefined();
-    });
-
-    it('PUZZLE_ANSWER contains SEARCH_ACCESS_CODE for elevated search permission', () => {
-      expect(PUZZLE_ANSWER).toContain(SEARCH_ACCESS_CODE);
     });
   });
 
@@ -187,32 +183,33 @@ describe('Search result mappings', () => {
   // ========================================
   // 搜索权限模型：普通搜索 vs 提权搜索
   // ========================================
-  describe('Search permission: elevated access via SEARCH_ACCESS_CODE', () => {
-    it('SEARCH_ACCESS_CODE is "2026"', () => {
-      expect(SEARCH_ACCESS_CODE).toBe('2026');
+  describe('Search permission: elevated access via SEARCH_TOKEN + brackets', () => {
+    it('SEARCH_TOKEN is "kd7f3g"', () => {
+      expect(SEARCH_TOKEN).toBe('kd7f3g');
     });
 
-    it('"深海裂隙" alone matches HIDDEN_PAGE_CACHE key but requires elevated access at runtime', () => {
-      // Data layer: key exists (verified by other tests)
-      expect(HIDDEN_PAGE_CACHE['深海裂隙']).toBeDefined();
-      expect(HIDDEN_PAGE_CACHE['深海裂隙'].pageUrl).toBe('/trigger/rift');
-      // Runtime: query "深海裂隙" (without code) should NOT show hidden cache
-      // This is enforced by renderResults() in search.astro, not testable at data layer
-      const queryWithoutCode = '深海裂隙';
-      expect(queryWithoutCode.includes(SEARCH_ACCESS_CODE)).toBe(false);
+    it('"多站同源" alone matches HIDDEN_PAGE_CACHE key but requires elevated access at runtime', () => {
+      expect(HIDDEN_PAGE_CACHE['多站同源']).toBeDefined();
+      expect(HIDDEN_PAGE_CACHE['多站同源'].pageUrl).toBe('/trigger/rift');
+      // Bare keyword without token+brackets should NOT show hidden cache at runtime
+      const bareQuery = '多站同源';
+      expect(bareQuery.includes(SEARCH_TOKEN)).toBe(false);
+      expect(bareQuery.match(/\[(.+?)\]/)).toBeNull();
     });
 
-    it('"深海裂隙2026" contains both hidden keyword and access code', () => {
-      const elevatedQuery = '深海裂隙2026';
-      expect(elevatedQuery.includes('深海裂隙')).toBe(true);
-      expect(elevatedQuery.includes(SEARCH_ACCESS_CODE)).toBe(true);
-      expect(elevatedQuery).toBe(PUZZLE_ANSWER);
+    it('kd7f3g[多站同源] contains token, brackets, and matches cache key', () => {
+      const elevatedQuery = 'kd7f3g[多站同源]';
+      expect(elevatedQuery.includes(SEARCH_TOKEN)).toBe(true);
+      expect(elevatedQuery.includes('多站同源')).toBe(true);
+      const match = elevatedQuery.match(/\[(.+?)\]/);
+      expect(match).not.toBeNull();
+      expect(match[1]).toBe('多站同源');
     });
 
-    it('"深海裂隙 2026" (with space) also contains both keyword and code', () => {
-      const spacedQuery = '深海裂隙 2026';
-      expect(spacedQuery.includes('深海裂隙')).toBe(true);
-      expect(spacedQuery.includes(SEARCH_ACCESS_CODE)).toBe(true);
+    it('[多站同源] alone without token does NOT trigger elevation', () => {
+      const bracketOnly = '[多站同源]';
+      expect(bracketOnly.includes(SEARCH_TOKEN)).toBe(false);
+      // Has brackets but no token → should not elevate
     });
   });
 });

@@ -1,0 +1,21 @@
+---
+// /user/nightowl — 夜不收（氛围路人）
+import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
+---
+<Layout title="夜不收的个人主页">
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>夜不收</div>
+  <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#2c1810;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">📷</div>
+    <div style="flex:1;">
+      <h2 style="margin-bottom:2px;">夜不收</h2>
+      <p class="text-muted" style="margin-bottom:6px;">账号：nightowl · 注册于 2025-08-22</p>
+      <p style="font-size:0.9rem;">白天睡觉，晚上拍照。专攻夜景废墟和光绘摄影。佳能6D天文改机，主力镜头是三阳14mm f/2.8。去过不少废弃工厂和医院——晚上比白天好看一百倍。有时候长曝光能拍到一些意想不到的东西，但我一般都当噪点处理。</p>
+      <span class="tag tag-legend">夜景摄影</span> <span class="tag tag-ruins">废墟探险</span>
+    </div>
+  </div>
+  <h3>📝 最近动态</h3>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">昨晚去了城郊那个废弃纺织厂。保安睡得跟死了一样——轻松翻进去。车间里全是蜘蛛网和锈掉的机器，月光从天窗照进来刚好打在一条旧传送带上。ISO3200，30秒，f/2.8。出来效果绝了。</p><div class="post-meta">2026-05-18</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">有没有想一起拍银河的？下个月新月，天气好的话打算去川西。有车的优先，油费AA。</p><div class="post-meta">2026-04-25</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">修图修到凌晨四点。三组光绘+废弃建筑，一组银河拱桥。眼睛快瞎了但就是停不下来。白天交片给客户，晚上搞自己的东西——两个完全不同的世界。</p><div class="post-meta">2026-03-30</div></div>
+</Layout>

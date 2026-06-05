@@ -1,0 +1,21 @@
+---
+// /user/hyacinth — 风信子（氛围路人）
+import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
+---
+<Layout title="风信子的个人主页">
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>风信子</div>
+  <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#6b8e6b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">🌸</div>
+    <div style="flex:1;">
+      <h2 style="margin-bottom:2px;">风信子</h2>
+      <p class="text-muted" style="margin-bottom:6px;">账号：hyacinth · 注册于 2025-05-20</p>
+      <p style="font-size:0.9rem;">喜欢在山里走来走去，顺便认认花花草草。能认出大概三百种野生植物，但每次进山还是能发现没见过的。花粉过敏，不严重——打几个喷嚏的事，比起错过花期这不算什么。</p>
+      <span class="tag tag-nature">植物观察</span> <span class="tag tag-nature">野外徒步</span>
+    </div>
+  </div>
+  <h3>📝 最近动态</h3>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">五月的山里到处都是金银花。采了一些，晒干了泡茶。小时候外婆家院子里就有一大丛，闻到这个味道就像回到了七岁。</p><div class="post-meta">2026-05-15</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">前两天去了一趟金佛山，拍到了绶草——盘旋的。不太常见，尤其在海拔这么低的地方。可能跟今年雨水多有关系。</p><div class="post-meta">2026-04-20</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">有人知道四川境内哪里能看到野生杓兰吗？翻了几本植物志都说有分布，但坐标都不太准。想趁花期去一次。</p><div class="post-meta">2026-03-08</div></div>
+</Layout>

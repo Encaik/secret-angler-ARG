@@ -1,0 +1,21 @@
+---
+// /user/stonebook — 石头记（氛围路人）
+import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
+---
+<Layout title="石头记的个人主页">
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>石头记</div>
+  <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#8b7355;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">🪨</div>
+    <div style="flex:1;">
+      <h2 style="margin-bottom:2px;">石头记</h2>
+      <p class="text-muted" style="margin-bottom:6px;">账号：stonebook · 注册于 2025-07-08</p>
+      <p style="font-size:0.9rem;">地质系研二，变质岩方向。导师说我是"走到哪敲到哪"——确实，包里永远有一把地质锤和一瓶稀盐酸。论文写的是大别山超高压变质带，但周末喜欢到处跑，看各种剖面和露头。有时候发一些岩石薄片显微照片，不务正业但快乐。</p>
+      <span class="tag tag-ruins">地质</span> <span class="tag tag-nature">矿物</span>
+    </div>
+  </div>
+  <h3>📝 最近动态</h3>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">导师让我暑假去大别山补充采样。太好了——终于不用整天坐在实验室看薄片了。虽然野外蚊子多、蛇多、路难走，但比对着电脑写论文强一万倍。</p><div class="post-meta">2026-05-25</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">分享一下上周拍的薄片：石榴石+蓝晶石+多硅白云母的组合。典型的超高压变质矿物组合。偏光镜下颜色太漂亮了，像教堂的彩色玻璃窗。</p><div class="post-meta">2026-04-15</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">秦岭造山带的构造演化比大别山复杂多了。去年跟师兄去了一趟，南北对比太明显了。等论文写完了一定要专门去跑一趟。</p><div class="post-meta">2026-02-28</div></div>
+</Layout>

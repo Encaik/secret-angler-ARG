@@ -63,7 +63,8 @@
       "Read(//c/Users/encai/.agents/skills/astro/**)",
       "Read(//c/Users/encai/.agents/skills/level-design/**)",
       "Read(//c/Users/encai/.agents/skills/puzzle-design/**)",
-      "Read(//c/Users/encai/.agents/skills/qa-testing-playwright/**)"
+      "Read(//c/Users/encai/.agents/skills/qa-testing-playwright/**)",
+      "Bash(pnpm test *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",

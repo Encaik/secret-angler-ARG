@@ -40,8 +40,8 @@ describe('MAIN_CREDENTIALS (主站登录)', () => {
 });
 
 describe('ADMIN credentials (后台管理)', () => {
-  it('admin password is deeprift323', () => {
-    expect(ADMIN_PASSWORD).toBe('deeprift323');
+  it('admin password is xiaoyu2021 (daughter name + wife death year)', () => {
+    expect(ADMIN_PASSWORD).toBe('xiaoyu2021');
   });
 
   it('staff password is portal2026', () => {
@@ -89,8 +89,8 @@ describe('DARKNET_INVITE_PHONE', () => {
 });
 
 describe('MEMBER_ACCESS_CODE', () => {
-  it('equals 深海裂隙2026', () => {
-    expect(MEMBER_ACCESS_CODE).toBe('深海裂隙2026');
+  it('equals 多站同源2026', () => {
+    expect(MEMBER_ACCESS_CODE).toBe('多站同源2026');
   });
 });
 

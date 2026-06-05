@@ -6,7 +6,7 @@
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { evaluateEnding } from '../../scripts/ending';
-import { findArchivedContent, HIDDEN_PAGE_CACHE, PUZZLE_ANSWER as PUZZLE_ANSWER_CONST, SEARCH_ACCESS_CODE } from '../../data/search-data';
+import { findArchivedContent, HIDDEN_PAGE_CACHE, PUZZLE_ANSWER as PUZZLE_ANSWER_CONST, SEARCH_TOKEN } from '../../data/search-data';
 import { MAIN_CREDENTIALS, ADMIN_PASSWORD, STAFF_PASSWORD, DARKNET_ACCOUNTS, MEMBER_ACCESS_CODE, SHENCI_PASSWORD_PARTS } from '../../data/credentials';
 import '../../scripts/progress'; // 副作用导入，函数挂载到 window
 import { createEmptyProgress, seedProgress, readProgress } from '../helpers';
@@ -144,47 +144,54 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       expect(hintPost!.content).toMatch(/藏头|藏尾|开头|结尾/);
     });
 
-    it('acrostic "深海裂隙" can be assembled from four paragraph first chars', () => {
-      // 深-海-裂-隙 from paragraphs: 深秋, 海上, 裂口, 隙缝
-      const firstChars = ['深', '海', '裂', '隙'];
+    it('acrostic "多站同源" can be assembled from four paragraph first chars', () => {
+      // 多-站-同-源 from paragraphs: 多次, 站与站, 同一个, 源头
+      const firstChars = ['多', '站', '同', '源'];
       const acrostic = firstChars.join('');
-      expect(acrostic).toBe('深海裂隙');
+      expect(acrostic).toBe('多站同源');
     });
 
-    it('HIDDEN_PAGE_CACHE maps "深海裂隙" → /trigger/rift', () => {
-      expect(HIDDEN_PAGE_CACHE['深海裂隙']).toBeDefined();
-      expect(HIDDEN_PAGE_CACHE['深海裂隙'].pageUrl).toBe('/trigger/rift');
+    it('HIDDEN_PAGE_CACHE maps "多站同源" → /trigger/rift', () => {
+      expect(HIDDEN_PAGE_CACHE['多站同源']).toBeDefined();
+      expect(HIDDEN_PAGE_CACHE['多站同源'].pageUrl).toBe('/trigger/rift');
     });
 
-    it('searching "深海裂隙" returns the rift cache entry in search results', () => {
-      const cacheEntry = HIDDEN_PAGE_CACHE['深海裂隙'];
+    it('searching "多站同源" returns the rift cache entry in search results', () => {
+      const cacheEntry = HIDDEN_PAGE_CACHE['多站同源'];
       expect(cacheEntry).toBeDefined();
       expect(cacheEntry.isClue).toBe(true);
       expect(cacheEntry.title).toContain('内部系统操作日志');
     });
 
-    it('PUZZLE_ANSWER "深海裂隙2026" combines acrostic + year', () => {
-      const acrostic = '深海裂隙';
+    it('PUZZLE_ANSWER "多站同源2026" combines acrostic + year', () => {
+      const acrostic = '多站同源';
       const year = '2026';
       const combined = acrostic + year;
       expect(combined).toBe(PUZZLE_ANSWER_CONST);
       expect(combined).toBe(MEMBER_ACCESS_CODE);
     });
 
-    it('elevated search is granted when query contains SEARCH_ACCESS_CODE and matches hidden keyword', () => {
-      // The acrostic + year combination triggers elevated search
-      const elevatedQuery = '深海裂隙' + SEARCH_ACCESS_CODE;
-      expect(elevatedQuery).toBe('深海裂隙2026');
+    it('elevated search requires token + bracket format: kd7f3g[多站同源]', () => {
+      // The correct elevated search format: token + bracketed keyword
+      const elevatedQuery = SEARCH_TOKEN + '[多站同源]';
+      expect(elevatedQuery).toBe('kd7f3g[多站同源]');
 
-      // Verify this query would match the hidden cache keyword
-      expect(elevatedQuery.includes('深海裂隙')).toBe(true);
+      // Verify the token is present
+      expect(elevatedQuery.includes(SEARCH_TOKEN)).toBe(true);
 
-      // Verify the access code is present
-      expect(elevatedQuery.includes(SEARCH_ACCESS_CODE)).toBe(true);
+      // Verify the keyword is inside brackets
+      const bracketMatch = elevatedQuery.match(/\[(.+?)\]/);
+      expect(bracketMatch).not.toBeNull();
+      expect(bracketMatch![1]).toBe('多站同源');
 
-      // Without the code: no elevated access
-      const normalQuery = '深海裂隙';
-      expect(normalQuery.includes(SEARCH_ACCESS_CODE)).toBe(false);
+      // Bare keyword without token+brackets → no elevated access
+      const normalQuery = '多站同源';
+      expect(normalQuery.includes(SEARCH_TOKEN)).toBe(false);
+      expect(normalQuery.match(/\[(.+?)\]/)).toBeNull();
+
+      // Brackets without token → no elevated access
+      const bracketOnly = '[多站同源]';
+      expect(bracketOnly.includes(SEARCH_TOKEN)).toBe(false);
     });
 
     it('solving puzzle records stage1_page_header_password in progress', () => {
@@ -220,9 +227,9 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/panlongxia');
     });
 
-    it('rift page reveals admin domain: deeprift323.onion', () => {
-      // The domain deeprift323.onion is mentioned in /trigger/rift, and the admin key is deeprift323
-      expect(ADMIN_PASSWORD).toBe('deeprift323');
+    it('admin password xiaoyu2021 is assembled from personal details of the cult leader', () => {
+      // xiaoyu (daughter's name from internal chat) + 2021 (wife's death year from board + site founding year)
+      expect(ADMIN_PASSWORD).toBe('xiaoyu2021');
     });
 
     it('searching "星门坐标" → HIDDEN_PAGE_CACHE maps to /trigger/stargate', () => {
@@ -271,8 +278,8 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       expect(STAFF_PASSWORD).toBe('portal2026');
     });
 
-    it('admin full access requires deeprift323', () => {
-      expect(ADMIN_PASSWORD).toBe('deeprift323');
+    it('admin full access requires xiaoyu2021', () => {
+      expect(ADMIN_PASSWORD).toBe('xiaoyu2021');
     });
   });
 
@@ -280,7 +287,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   // STAGE 6: Admin Login → Hidden Pages Evidence
   // ==========================================
   describe('Stage 6: Admin Access and Evidence Collection', () => {
-    it('admin login with deeprift323 records admin_access', () => {
+    it('admin login with xiaoyu2021 records admin_access', () => {
       seedProgress(createEmptyProgress({
         discoveredPages: ['/hidden/admin/'],
       }));
@@ -449,17 +456,17 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       progress.solvedPuzzles['shenci_password'] = true;
       saveProgress(progress);
 
-      // ---- Stage 3: Discover acrostic "深海裂隙" ----
+      // ---- Stage 3: Discover acrostic "多站同源" ----
       // Verify "加密" hint exists
       const encryptHint = findArchivedContent('加密');
       expect(encryptHint.length).toBeGreaterThan(0);
 
-      // Acrostic: 深-海-裂-隙
-      const acrosticChars = ['深', '海', '裂', '隙'];
-      expect(acrosticChars.join('')).toBe('深海裂隙');
+      // Acrostic: 多-站-同-源
+      const acrosticChars = ['多', '站', '同', '源'];
+      expect(acrosticChars.join('')).toBe('多站同源');
 
-      // HIDDEN_PAGE_CACHE entry for "深海裂隙"
-      expect(HIDDEN_PAGE_CACHE['深海裂隙'].pageUrl).toBe('/trigger/rift');
+      // HIDDEN_PAGE_CACHE entry for "多站同源"
+      expect(HIDDEN_PAGE_CACHE['多站同源'].pageUrl).toBe('/trigger/rift');
 
       // Record trigger discovery
       recordPageVisit('/trigger/rift/');
@@ -468,8 +475,8 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       saveProgress(progress);
 
       // ---- Stage 4: Member access + trigger exploration ----
-      // Combine "深海裂隙" + "2026" → member access
-      expect(MEMBER_ACCESS_CODE).toBe('深海裂隙2026');
+      // Combine "多站同源" + "2026" → member access
+      expect(MEMBER_ACCESS_CODE).toBe('多站同源2026');
 
       progress = readProgress();
       progress.solvedPuzzles['stage1_page_header_password'] = true;
@@ -492,7 +499,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       saveProgress(progress);
 
       // ---- Stage 6: Admin access + evidence collection ----
-      expect(ADMIN_PASSWORD).toBe('deeprift323');
+      expect(ADMIN_PASSWORD).toBe('xiaoyu2021');
 
       recordPageVisit('/hidden/admin/');
       progress = readProgress();
@@ -535,10 +542,10 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
       // Stage 3: search keywords work
       expect(findArchivedContent('沈辞').length).toBeGreaterThan(0);
-      expect(HIDDEN_PAGE_CACHE['深海裂隙']).toBeDefined();
+      expect(HIDDEN_PAGE_CACHE['多站同源']).toBeDefined();
 
       // Stage 4: puzzle answer works
-      expect(PUZZLE_ANSWER_CONST).toBe('深海裂隙2026');
+      expect(PUZZLE_ANSWER_CONST).toBe('多站同源2026');
 
       // Stage 5: darknet credentials work
       expect(DARKNET_ACCOUNTS['DR-2026-03']).toBeDefined();

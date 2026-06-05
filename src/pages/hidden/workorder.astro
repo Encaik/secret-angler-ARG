@@ -1,0 +1,74 @@
+---
+// /hidden/workorder — 景区管理系统 · 工单提交
+// 从盘龙峡"景区管理系统"链接进入，需登录后才能提交工单
+import HiddenLayout from '../../components/HiddenLayout.astro';
+const BASE = __BASE_PATH__;
+---
+
+<HiddenLayout title="景区管理系统 · 工单">
+  <div style="max-width: 580px; margin: 0 auto;">
+
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h2 style="color: #2c1810; font-size: 1rem; margin-bottom: 4px;">景区管理系统</h2>
+      <p style="color: #9b8c7a; font-size: 0.72rem;">盘龙峡风景区 · 内部工单平台</p>
+    </div>
+
+    <!-- 未登录提示 -->
+    <div id="workorder-guest" style="background: #fefcf7; border: 1px solid #e0d5c0; padding: 32px 24px; text-align: center;">
+      <div style="font-size: 2rem; margin-bottom: 12px;">🔐</div>
+      <p style="color: #6b5d4a; font-size: 0.85rem; margin-bottom: 8px;">
+        工单系统仅对景区工作人员开放。
+      </p>
+      <p style="color: #9b8c7a; font-size: 0.75rem; margin-bottom: 20px;">
+        请使用您的景区管理系统账号登录后提交工单。
+      </p>
+      <a href={`${BASE}hidden/admin/`} target="_blank" style="display: inline-block; padding: 8px 28px; background: #8b6914; color: #fefcf7; text-decoration: none; font-size: 0.82rem; border-radius: 2px;">
+        管理员登录
+      </a>
+      <p style="color: #c0b090; font-size: 0.65rem; margin-top: 14px;">
+        如遗忘登录凭据，请内部渠道联系系统管理员重置。
+      </p>
+    </div>
+
+    <!-- 历史工单（静态展示，不可操作） -->
+    <div style="margin-top: 24px; background: #fefcf7; border: 1px solid #e0d5c0; padding: 16px;">
+      <h4 style="color: #6b5d4a; font-size: 0.78rem; margin-bottom: 10px;">📋 近期工单</h4>
+      <table style="font-size: 0.72rem; width: 100%; color: #9b8c7a;">
+        <tr style="color: #b0a090;">
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">工单号</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">提交时间</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">类型</th>
+          <th style="text-align: left; padding: 4px 6px; border-bottom: 1px solid #e0d5c0;">状态</th>
+        </tr>
+        <tr>
+          <td style="padding: 4px 6px;">WO-2026-0042</td>
+          <td style="padding: 4px 6px;">2026-06-01</td>
+          <td style="padding: 4px 6px;">香火套餐上架</td>
+          <td style="padding: 4px 6px; color: #3d6b6b;">已完成</td>
+        </tr>
+        <tr>
+          <td style="padding: 4px 6px;">WO-2026-0041</td>
+          <td style="padding: 4px 6px;">2026-05-29</td>
+          <td style="padding: 4px 6px;">直播频道维护</td>
+          <td style="padding: 4px 6px; color: #3d6b6b;">已完成</td>
+        </tr>
+        <tr>
+          <td style="padding: 4px 6px;">WO-2026-0040</td>
+          <td style="padding: 4px 6px;">2026-05-26</td>
+          <td style="padding: 4px 6px;">新供奉编号录入</td>
+          <td style="padding: 4px 6px; color: #3d6b6b;">已完成</td>
+        </tr>
+        <tr>
+          <td style="padding: 4px 6px;">WO-2026-0039</td>
+          <td style="padding: 4px 6px;">2026-05-20</td>
+          <td style="padding: 4px 6px;">贵宾账号开通</td>
+          <td style="padding: 4px 6px; color: #3d6b6b;">已完成</td>
+        </tr>
+      </table>
+      <p style="font-size: 0.63rem; color: #c0b090; margin-top: 8px;">
+        仅显示最近30天工单。登录后可查看全部记录与提交新工单。
+      </p>
+    </div>
+
+  </div>
+</HiddenLayout>

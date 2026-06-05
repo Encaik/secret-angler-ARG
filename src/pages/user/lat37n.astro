@@ -1,0 +1,21 @@
+---
+// /user/lat37n — 北纬37（氛围路人）
+import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
+---
+<Layout title="北纬37的个人主页">
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>北纬37</div>
+  <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#2c3e6b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">🔭</div>
+    <div style="flex:1;">
+      <h2 style="margin-bottom:2px;">北纬37</h2>
+      <p class="text-muted" style="margin-bottom:6px;">账号：lat37n · 注册于 2025-03-15</p>
+      <p style="font-size:0.9rem;">观星十年。从80EQ入门到现在的16寸道布森，设备换了好几茬，热情没变过。北纬37度这条线上的暗夜区基本都踩过点了——从胶东半岛到帕米尔高原，哪里的银河最亮心里有数。也在关注SETI，但说实话不太信短期内能有结果。先把太阳系看明白再说。</p>
+      <span class="tag tag-alien">天文观测</span> <span class="tag tag-nature">暗夜保护</span>
+    </div>
+  </div>
+  <h3>📝 最近动态</h3>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">上周末去了趟冷湖。那边新划了暗夜保护区，光害地图上是全黑的。实际体验比预想的还好——银河亮得能照出影子。M31肉眼直接可见。</p><div class="post-meta">2026-05-22</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">最近太阳活动有点频繁。上个月拍到三次明显的耀斑，有一次大到连我的日珥镜都过曝了。玩深空的注意最近可能受空间天气影响。</p><div class="post-meta">2026-04-10</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">有没有人关注詹姆斯·韦伯最近那组系外行星大气光谱？K2-18b的二甲基硫醚信号……虽然还没确认，但如果是真的就太炸了。</p><div class="post-meta">2026-03-15</div></div>
+</Layout>

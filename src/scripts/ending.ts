@@ -87,11 +87,21 @@ export function getEndingUrl(ending: number): string {
   return `${BASE}ending/${ending}/`;
 }
 
+/**
+ * 判定沈辞是否生还
+ * 逻辑：证据充分（≥12分）→ 警方立即行动 → 赶在6/8配型完成前 → 沈辞得救
+ *       证据不足（<12分）→ 警方需要更长取证时间 → 错过窗口 → 沈辞遇害
+ */
+export function isShenciSaved(score: number): boolean {
+  return score >= 12;
+}
+
 // 挂载到 window 以便内联脚本调用（解决 Astro .astro 中内联 <script> 无法 import 的问题）
 if (typeof window !== 'undefined') {
   (window as any).__endingEngine = {
     EVIDENCE_MAP,
     evaluateEnding,
     getEndingUrl,
+    isShenciSaved,
   };
 }

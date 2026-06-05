@@ -1,0 +1,21 @@
+---
+// /user/slowpost — 慢邮差（氛围路人）
+import Layout from '../../components/Layout.astro';
+const BASE = __BASE_PATH__;
+---
+<Layout title="慢邮差的个人主页">
+  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>慢邮差</div>
+  <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#b8860b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">📮</div>
+    <div style="flex:1;">
+      <h2 style="margin-bottom:2px;">慢邮差</h2>
+      <p class="text-muted" style="margin-bottom:6px;">账号：slowpost · 注册于 2024-08-15</p>
+      <p style="font-size:0.9rem;">干了快二十年乡镇邮递员。每天骑摩托跑三四个村子，最远的那个来回要四个小时。路上看到有意思的老房子、老桥、老庙就拍一张。手机相册里大概存了上千张了——不是什么专业照片，就是觉得有些东西不拍下来，过两年可能就没了。修路拆了不少老宅，有些村子整村搬迁之后连门牌号都找不到了。</p>
+      <span class="tag tag-ruins">老建筑</span> <span class="tag tag-nature">乡村</span>
+    </div>
+  </div>
+  <h3>📝 最近动态</h3>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">白果村那座清代的石拱桥上周被拆了。说是危桥，其实也就是侧面裂了一道缝。拆完之后原地修了一座水泥平桥。跑了十五年这条线的邮路，以后过这里就看不到那个桥了。还好前年拍过一张——下雪天拍的，桥洞下面挂了冰凌。</p><div class="post-meta">2026-05-12</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">跑马岭那个村现在只剩三户人了。上次去送一封挂号信，收件人是个七十多岁的老太太——她儿子从广东寄回来的。老太太不识字，让我念给她听。念完之后她从屋里端了一碗醪糟给我喝。这种人情味城里是感受不到的。</p><div class="post-meta">2026-04-08</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">摩托车的里程表今天过十万公里了。算了一下如果把这些年跑的路程拉直，差不多能绕地球两圈半。两圈半的山路——想想还挺壮观的。不过轮胎又该换了，这已经是今年的第二条了。</p><div class="post-meta">2026-02-22</div></div>
+</Layout>

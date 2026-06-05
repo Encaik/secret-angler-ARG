@@ -26,11 +26,11 @@ const EVIDENCE_PAGES = [
 // ========================================
 describe('Cross-reference: EVIDENCE_MAP vs HIDDEN_PAGE_CACHE', () => {
   it('every trigger evidence page has a discovery path via HIDDEN_PAGE_CACHE', () => {
-    // /trigger/rift → "深海裂隙"
+    // /trigger/rift → "多站同源"
     // /trigger/stargate → "星门坐标"
     // /trigger/base → "布景基地"
     const triggerMappings: Record<string, string> = {
-      '/trigger/rift': '深海裂隙',
+      '/trigger/rift': '多站同源',
       '/trigger/stargate': '星门坐标',
       '/trigger/base': '布景基地',
     };
