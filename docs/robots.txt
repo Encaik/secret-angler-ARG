@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /hidden/
-Disallow: /trigger/
-Disallow: /member/
-Disallow: /ending/
-Disallow: /src/
-Sitemap: https://explorers-alliance.cn/sitemap.xml
