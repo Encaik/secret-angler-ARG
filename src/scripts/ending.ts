@@ -1,6 +1,7 @@
 // ========================================
 // 结局判定引擎
 // 根据玩家收集的证据完整度，判定四个结局之一
+// 同时挂载到 window 以便内联脚本调用
 // ========================================
 
 // 证据页面对照表：访问过的关键页面 → 证据项
@@ -8,7 +9,7 @@ const EVIDENCE_MAP: Record<string, { id: string; weight: number; name: string }>
   '/trigger/rift':      { id: 'E1', weight: 2, name: '多站钓鱼方案矩阵' },
   '/trigger/stargate':  { id: 'E2', weight: 2, name: '信号伪造技术方案' },
   '/trigger/base':      { id: 'E3', weight: 3, name: '基地设施蓝图' },
-  '/hidden/darknet':    { id: 'E4', weight: 3, name: '暗网交易市场记录' },
+  '/hidden/panlongxia': { id: 'E4', weight: 3, name: '暗网交易市场记录' },
   '/hidden/board':      { id: 'E5', weight: 2, name: '内部通讯记录' },
   '/hidden/operation':  { id: 'E6', weight: 2, name: '作案流程手册' },
   '/hidden/locations':  { id: 'E7', weight: 3, name: '基地精确坐标' },
@@ -84,4 +85,13 @@ export function evaluateEnding(): EndingResult {
 export function getEndingUrl(ending: number): string {
   const BASE = (window as any).__BASE__ || '/';
   return `${BASE}ending/${ending}/`;
+}
+
+// 挂载到 window 以便内联脚本调用（解决 Astro .astro 中内联 <script> 无法 import 的问题）
+if (typeof window !== 'undefined') {
+  (window as any).__endingEngine = {
+    EVIDENCE_MAP,
+    evaluateEnding,
+    getEndingUrl,
+  };
 }

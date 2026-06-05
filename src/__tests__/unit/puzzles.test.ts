@@ -162,8 +162,9 @@ describe('getPuzzlesByStage', () => {
 describe('getPuzzlesByDifficulty', () => {
   it('returns puzzles for easy difficulty', () => {
     const puzzles = getPuzzlesByDifficulty('easy');
-    // Stage 1 (shenci_password), 2 (stage2_acrostic_journal), 4 (stage4_temple_discovery), 7 (stage7_phone_report)
-    expect(puzzles.length).toBeGreaterThanOrEqual(2);
+    // Stage 1 (shenci_password), 2 (stage2_acrostic_journal), 7 (stage7_phone_report)
+    // Stage 4 was changed to medium
+    expect(puzzles.length).toBeGreaterThanOrEqual(3);
     for (const p of puzzles) {
       expect(p.difficulty).toBe('easy');
     }
@@ -171,8 +172,8 @@ describe('getPuzzlesByDifficulty', () => {
 
   it('returns puzzles for medium difficulty', () => {
     const puzzles = getPuzzlesByDifficulty('medium');
-    // Stage 3 (stage1_page_header_password), 5 (stage5_staff_access)
-    expect(puzzles.length).toBeGreaterThanOrEqual(1);
+    // Stage 3 (stage1_page_header_password), 4 (stage4_temple_discovery), 5 (stage5_staff_access)
+    expect(puzzles.length).toBeGreaterThanOrEqual(3);
     for (const p of puzzles) {
       expect(p.difficulty).toBe('medium');
     }
@@ -189,9 +190,9 @@ describe('getPuzzlesByDifficulty', () => {
 });
 
 describe('getTotalPuzzleWeight', () => {
-  it('returns sum of all puzzle weights (should be 95)', () => {
-    // 10+20+15+8+12+18+12 = 95
-    expect(getTotalPuzzleWeight()).toBe(95);
+  it('returns sum of all puzzle weights (should be 97)', () => {
+    // 10+20+15+10+12+18+12 = 97
+    expect(getTotalPuzzleWeight()).toBe(97);
   });
 
   it('equals sum of individual weights', () => {

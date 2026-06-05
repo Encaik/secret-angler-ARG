@@ -4,13 +4,10 @@
 // ========================================
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import {
-  getProgress,
-  saveProgress,
-  recordPageVisit,
-  updateExplorationProgress,
-} from '../../scripts/progress';
+import '../../scripts/progress'; // 副作用导入，函数挂载到 window
 import { createEmptyProgress, seedProgress, readProgress } from '../helpers';
+
+const { getProgress, saveProgress, recordPageVisit, updateExplorationProgress } = window as any;
 
 describe('getProgress', () => {
   beforeEach(() => {

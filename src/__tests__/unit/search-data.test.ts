@@ -10,7 +10,10 @@ import {
   HIDDEN_PAGE_CACHE,
   MOCK_RESULTS,
   PUZZLE_ANSWER,
+  USER_SEARCH,
+  SEARCH_ACCESS_CODE,
   findArchivedContent,
+  findUserSearchResults,
   type ArchivedPost,
 } from '../../data/search-data';
 
@@ -26,7 +29,7 @@ describe('ARCHIVED_CONTENT', () => {
   }
 
   it('has keywords for all major game search terms', () => {
-    const expectedKeys = ['shenci', '沈辞', '贺兰山', '地下三尺', '06', '林屿', '信号', '加密', 'GPS', '蛇药'];
+    const expectedKeys = ['shenci', '沈辞', '贺兰山', '地下三尺', '06', '林屿', 'lyu', 'signal_屿', '信号', '加密', 'GPS', '蛇药'];
     for (const key of expectedKeys) {
       expect(ARCHIVED_CONTENT[key], `Missing keyword: ${key}`).toBeDefined();
     }
@@ -108,7 +111,7 @@ describe('HIDDEN_PAGE_CACHE', () => {
   });
 
   it('hidden pages map to /hidden/ routes', () => {
-    expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/darknet');
+    expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/panlongxia');
     expect(HIDDEN_PAGE_CACHE['后台管理'].pageUrl).toBe('/hidden/admin');
   });
 
@@ -147,6 +150,111 @@ describe('MOCK_RESULTS', () => {
       expect(MOCK_RESULTS[key], `Missing MOCK_RESULTS key: ${key}`).toBeDefined();
     }
   });
+
+  it('includes user-related keywords for profile search', () => {
+    const userKeys = ['沈辞', 'shenci', '地下三尺', '林屿', 'lyu', 'signal_屿'];
+    for (const key of userKeys) {
+      expect(MOCK_RESULTS[key], `Missing user MOCK_RESULTS key: ${key}`).toBeDefined();
+      expect(MOCK_RESULTS[key].some(u => u.includes('/user/')), `${key}: should contain user profile URL`).toBe(true);
+    }
+  });
+});
+
+// ========================================
+// USER_SEARCH 结构完整性
+// ========================================
+describe('USER_SEARCH', () => {
+  it('has entries for key character names and account names', () => {
+    const expectedKeys = ['沈辞', 'shenci', '地下三尺', '林屿', 'lyu', 'signal_屿'];
+    for (const key of expectedKeys) {
+      expect(USER_SEARCH[key], `Missing USER_SEARCH key: ${key}`).toBeDefined();
+    }
+  });
+
+  it('"地下三尺" maps to account "shenci"', () => {
+    expect(USER_SEARCH['地下三尺'].account).toBe('shenci');
+    expect(USER_SEARCH['地下三尺'].displayName).toBe('地下三尺');
+    expect(USER_SEARCH['地下三尺'].pageUrl).toBe('/user/shenci/');
+  });
+
+  it('"shenci" maps to displayName "地下三尺"', () => {
+    expect(USER_SEARCH['shenci'].displayName).toBe('地下三尺');
+    expect(USER_SEARCH['shenci'].account).toBe('shenci');
+    expect(USER_SEARCH['shenci'].pageUrl).toBe('/user/shenci/');
+  });
+
+  it('"signal_屿" maps to account "lyu"', () => {
+    expect(USER_SEARCH['signal_屿'].account).toBe('lyu');
+    expect(USER_SEARCH['signal_屿'].displayName).toBe('signal_屿');
+    expect(USER_SEARCH['signal_屿'].pageUrl).toBe('/user/lyu/');
+  });
+
+  it('"lyu" maps to displayName "signal_屿"', () => {
+    expect(USER_SEARCH['lyu'].displayName).toBe('signal_屿');
+    expect(USER_SEARCH['lyu'].account).toBe('lyu');
+    expect(USER_SEARCH['lyu'].pageUrl).toBe('/user/lyu/');
+  });
+
+  it('every entry has required fields', () => {
+    for (const [key, user] of Object.entries(USER_SEARCH)) {
+      expect(user.displayName, `${key}: missing displayName`).toBeTruthy();
+      expect(user.account, `${key}: missing account`).toBeTruthy();
+      expect(user.pageUrl, `${key}: missing pageUrl`).toBeTruthy();
+      expect(user.pageUrl, `${key}: pageUrl should start with /`).toMatch(/^\//);
+      expect(user.bio, `${key}: missing bio`).toBeTruthy();
+    }
+  });
+});
+
+describe('findUserSearchResults', () => {
+  it('searching "沈辞" returns shenci user', () => {
+    const results = findUserSearchResults('沈辞');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('shenci');
+  });
+
+  it('searching "地下三尺" returns shenci user', () => {
+    const results = findUserSearchResults('地下三尺');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('shenci');
+    expect(results[0].displayName).toBe('地下三尺');
+  });
+
+  it('searching "shenci" returns shenci user', () => {
+    const results = findUserSearchResults('shenci');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('shenci');
+  });
+
+  it('searching "林屿" returns lyu user', () => {
+    const results = findUserSearchResults('林屿');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('lyu');
+  });
+
+  it('searching "lyu" returns lyu user', () => {
+    const results = findUserSearchResults('lyu');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('lyu');
+  });
+
+  it('searching "signal_屿" returns lyu user', () => {
+    const results = findUserSearchResults('signal_屿');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('lyu');
+  });
+
+  it('deduplicates users that match multiple keywords', () => {
+    // "沈辞shenci" matches both "沈辞" and "shenci" keywords → one result
+    const results = findUserSearchResults('沈辞shenci');
+    expect(results.length).toBe(1);
+    expect(results[0].account).toBe('shenci');
+  });
+
+  it('returns empty array for non-user query', () => {
+    const results = findUserSearchResults('完全不存在的用户名xyz');
+    expect(results).toEqual([]);
+  });
 });
 
 // ========================================
@@ -155,6 +263,19 @@ describe('MOCK_RESULTS', () => {
 describe('PUZZLE_ANSWER', () => {
   it('equals "深海裂隙2026"', () => {
     expect(PUZZLE_ANSWER).toBe('深海裂隙2026');
+  });
+});
+
+// ========================================
+// SEARCH_ACCESS_CODE
+// ========================================
+describe('SEARCH_ACCESS_CODE', () => {
+  it('equals "2026"', () => {
+    expect(SEARCH_ACCESS_CODE).toBe('2026');
+  });
+
+  it('PUZZLE_ANSWER contains SEARCH_ACCESS_CODE', () => {
+    expect(PUZZLE_ANSWER).toContain(SEARCH_ACCESS_CODE);
   });
 });
 

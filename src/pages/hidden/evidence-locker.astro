@@ -129,52 +129,46 @@ const BASE = __BASE_PATH__;
   </div>
 </HiddenLayout>
 
+<script src="../../scripts/ending.ts"></script>
 <script>
   const BASE = window.__BASE__ || '/';
 
-  const EVIDENCE = {
-    '/trigger/rift':      { weight: 2, name: '内部系统操作日志' },
-    '/trigger/stargate':  { weight: 2, name: '信号灯阵列部署记录' },
-    '/trigger/base':      { weight: 3, name: '基地运营记录' },
-    '/hidden/darknet':    { weight: 3, name: '暗网交易市场记录' },
-    '/hidden/board':      { weight: 2, name: '内部通讯记录' },
-    '/hidden/operation':  { weight: 2, name: '标准操作流程' },
-    '/hidden/locations':  { weight: 3, name: '据点坐标数据' },
-    '/hidden/dead-drop':  { weight: 4, name: '举报人绝笔信及证据包' },
-  };
+  // 使用共享的结局判定引擎（ending.ts 挂载到 window.__endingEngine）
+  function getEngine() {
+    return (window as any).__endingEngine;
+  }
 
   function calcScore() {
-    const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-    const visited = progress.discoveredPages || [];
-    let score = 0;
-    let collected: string[] = [];
-    let hasDeadDrop = false;
-
-    for (const [page, ev] of Object.entries(EVIDENCE)) {
-      const found = visited.some(function(v) {
-        return v === page || v === page + '/' || v.replace(/\/$/, '') === page;
-      });
-      if (found) {
-        score += ev.weight;
-        collected.push(ev.name);
-        if (page === '/hidden/dead-drop') hasDeadDrop = true;
+    const engine = getEngine();
+    if (engine) {
+      const result = engine.evaluateEnding();
+      // 检查是否有 dead-drop
+      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+      const visited: string[] = progress.discoveredPages || [];
+      const hasDeadDrop = visited.some((v: string) => v.includes('/hidden/dead-drop'));
+      // 如果有 dead-drop 且总分≥12，追加提示
+      const collected = [...result.collected];
+      if (hasDeadDrop && result.score >= 12) {
+        collected.push('举报脚本已触发（郑义·深观）');
       }
+      return { score: result.score, collected, hasDeadDrop };
     }
-
-    if (hasDeadDrop && score >= 12) {
-      collected.push('举报脚本已触发（郑义·深观）');
-    }
-
-    return { score, collected, hasDeadDrop };
+    // 兜底：引擎未加载时返回空
+    return { score: 0, collected: [], hasDeadDrop: false };
   }
 
   function getEnding(score: number, hasDeadDrop: boolean): number {
+    const engine = getEngine();
+    if (engine) {
+      const result = engine.evaluateEnding();
+      return result.ending;
+    }
+    // 兜底
     let ending: number;
     if (score >= 18) ending = 4;
     else if (score >= 12) ending = 3;
     else if (score >= 7) ending = 2;
     else ending = 1;
-
     if (hasDeadDrop && score >= 12 && ending < 4) ending = 4;
     return ending;
   }

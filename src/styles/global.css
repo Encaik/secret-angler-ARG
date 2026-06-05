@@ -46,7 +46,7 @@
 
   /* 尺寸 */
   --max-width: 1020px;
-  --nav-height: 48px;
+  --nav-height: 76px;
   --footer-height: 80px;
 
   /* 圆角 — minimal，老站点不用大圆角 */
@@ -307,8 +307,8 @@ input:focus, textarea:focus, select:focus {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  height: var(--nav-height);
-  padding: 0 16px;
+  min-height: var(--nav-height);
+  padding: 4px 16px;
   gap: 0;
 }
 
@@ -320,6 +320,8 @@ input:focus, textarea:focus, select:focus {
   font-weight: bold;
   margin-right: 20px;
   white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .site-nav .nav-brand:hover {
@@ -330,6 +332,9 @@ input:focus, textarea:focus, select:focus {
   display: flex;
   gap: 2px;
   flex-wrap: wrap;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .site-nav .nav-links a {

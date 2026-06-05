@@ -16,6 +16,9 @@ const BASE_PATH = process.env.BASE_URL
 
 // https://astro.build/config
 export default defineConfig({
+  // 虚构站点域名——用于增强沉浸感（sitemap 手动维护在 public/ 目录）
+  site: 'https://tanmizhe.org',
+
   output: 'static',
 
   base: BASE_PATH,

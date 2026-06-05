@@ -110,6 +110,26 @@ export const ARCHIVED_CONTENT: Record<string, ArchivedPost[]> = {
       isClue: true,
     },
   ],
+  'lyu': [
+    {
+      title: '新人报到',
+      author: 'signal_屿',
+      authorUrl: '/user/lyu/',
+      date: '2025-04-15',
+      content: '电子信息工程专业。课余研究方向是射电信号处理，对SETI和异常信号分析特别感兴趣。有同好吗？另外我也会做一些基础的<strong>信号编码与解码</strong>分析，如果有人对这方面感兴趣的可以一起讨论。',
+      isClue: false,
+    },
+  ],
+  'signal_屿': [
+    {
+      title: '新人报到',
+      author: 'signal_屿',
+      authorUrl: '/user/lyu/',
+      date: '2025-04-15',
+      content: '电子信息工程专业。课余研究方向是射电信号处理，对SETI和异常信号分析特别感兴趣。有同好吗？另外我也会做一些基础的<strong>信号编码与解码</strong>分析，如果有人对这方面感兴趣的可以一起讨论。',
+      isClue: false,
+    },
+  ],
   '林屿': [
     {
       title: '新人报到',
@@ -200,6 +220,49 @@ export const ARCHIVED_CONTENT: Record<string, ArchivedPost[]> = {
       isClue: true,
     },
   ],
+  // ---- 阶段四线索分化：玩家需从缩写+截断名称推断"归源宗" ----
+  '功德流通处': [
+    {
+      title: '寺院在线供养平台 · 站点介绍',
+      author: '[搜索引擎缓存]',
+      authorUrl: '',
+      date: '快照于 2026-06-01',
+      content: '……一个名为"<strong>盘龙峡</strong>风景区"的旅游景区官网。提供龙头香、天目香、龙骨香等多种香火供奉项目。网站设计简单，门票套餐、功德榜、景区直播等功能齐全。页面底部有一行<strong>小字</strong>链接。',
+      isClue: true,
+      pageUrl: '/hidden/panlongxia',
+    },
+  ],
+  'GY': [
+    {
+      title: '沈辞云盘 · 坐标交叉比对 · 缩写对照',
+      author: '[共享文件夹]',
+      authorUrl: '',
+      date: '最后更新 2026-05-23',
+      content: '……全国47个信号灯部署点坐标。多条记录附近标注了"<strong>GY</strong>"缩写——经核实，全称为"<strong>归源</strong>宗"（寺院名）。注意：缩写在坐标数据中反复出现，不是巧合。',
+      isClue: true,
+    },
+  ],
+  '标签': [
+    {
+      title: '关于论坛标签颜色的一点观察',
+      author: 'signal_屿',
+      authorUrl: '/user/lyu/',
+      date: '2026-03-12',
+      content: '最近整理板块归类时注意到，站里用了<strong>7种</strong>颜色标签对应不同探秘领域。有时候看看热门帖文的标签顺序挺有意思的——<strong>颜色也是个信号</strong>，就看你怎么解读了。不过可能只是我想多了。',
+      isClue: false,
+    },
+  ],
+  '归源': [
+    {
+      title: '塔克拉玛干沙漠 · 废弃信号接收点',
+      author: '地下三尺',
+      authorUrl: '/user/shenci/',
+      date: '2026-04-05',
+      content: '在沙漠深处发现几个废弃的信号接收器，生锈的铭牌上隐约可以辨认出"<strong>归源</strong>"字样。不确定是品牌名还是单位名。配套的SDR设备被人拆走了，只剩底座。位置已经记在GPS里。',
+      isClue: true,
+    },
+  ],
+
   '轻舟云盘': [
     {
       title: '推荐一个探秘资料备份工具——轻舟云盘',
@@ -224,6 +287,9 @@ export const ARCHIVED_CONTENT: Record<string, ArchivedPost[]> = {
 
 // 搜索"深海裂隙2026"触发谜题解锁（唯一的特殊逻辑，不直接跳转）
 export const PUZZLE_ANSWER = '深海裂隙2026';
+
+/** 搜索权限提升码 — 查询中包含此码时显示隐藏页面缓存结果，模拟高级搜索权限 */
+export const SEARCH_ACCESS_CODE = '2026';
 
 // ========================================
 // 隐藏页面缓存结果（搜索关键词 → 出现在搜索结果中，用户点击链接访问）
@@ -267,13 +333,13 @@ export const HIDDEN_PAGE_CACHE: Record<string, ArchivedPost> = {
     pageUrl: '/about',
   },
   '归源宗': {
-    title: '归源宗 · 功德流通处',
+    title: '盘龙峡风景区 · 香火供奉处',
     author: '[独立站点]',
     authorUrl: '',
     date: '',
-    content: '……一个独立的佛教寺院在线供养平台。提供金刚舍利供养、甘露供养、金身渡化等功德项目。网站设计古朴，法会日程、施主芳名墙、法会直播等功能齐全。看起来是一个正常运营的宗教网站。',
+    content: '……一个独立的旅游景区官网。提供龙头香、天目香、龙骨香等多种香火供奉项目。网站设计简洁，门票套餐、功德榜、景区直播等功能齐全。看起来是一个正常运营的景区网站。',
     isClue: true,
-    pageUrl: '/hidden/darknet',
+    pageUrl: '/hidden/panlongxia',
   },
   '后台管理': {
     title: '归源宗 · 内部管理系统',
@@ -285,11 +351,11 @@ export const HIDDEN_PAGE_CACHE: Record<string, ArchivedPost> = {
     pageUrl: '/hidden/admin',
   },
   '秘境之下': {
-    title: '善信认证 · 会员专区',
+    title: '加密共享 · 文件暂存',
     author: '[受限页面]',
     authorUrl: '',
     date: '',
-    content: '……此区域为探秘者联盟的高级善信专区，仅对已认证探秘者开放。需会员权限方可入内。',
+    content: '……此共享文件夹已加密。输入提取码后可查看文件内容。文件夹创建者为 shenci933，最后更新于 5月23日。',
     isClue: false,
     pageUrl: '/member/login',
   },
@@ -318,7 +384,101 @@ export const MOCK_RESULTS: Record<string, string[]> = {
   '贺兰山': ['/ruins/ruins-001/', '/user/shenci/', '/community/post/247/'],
   '深空': ['/alien/', '/ruins/', '/hollow-earth/'],
   '探秘': ['/community/', '/user/shenci/', '/alien/', '/ruins/'],
+  // 用户搜索
+  '沈辞': ['/user/shenci/'],
+  'shenci': ['/user/shenci/'],
+  '地下三尺': ['/user/shenci/'],
+  '林屿': ['/user/lyu/'],
+  'lyu': ['/user/lyu/'],
+  'signal_屿': ['/user/lyu/'],
 };
+
+// ========================================
+// 用户搜索映射（搜索词 → 用户信息）
+// 用于在搜索结果中显示"用户"类别结果
+// ========================================
+export interface UserSearchResult {
+  displayName: string;   // 网名（如"地下三尺"）
+  account: string;        // 账号（如"shenci"）
+  realName: string;       // 真名（如"沈辞"）
+  pageUrl: string;        // 用户主页 URL
+  bio: string;            // 简介
+  joinedDate: string;     // 注册日期
+}
+
+export const USER_SEARCH: Record<string, UserSearchResult> = {
+  '沈辞': {
+    displayName: '地下三尺',
+    account: 'shenci',
+    realName: '沈辞',
+    pageUrl: '/user/shenci/',
+    bio: '往下挖。每一层土都有一句话要说。不追热点，只找没人去过的地方。',
+    joinedDate: '2025-10-20',
+  },
+  'shenci': {
+    displayName: '地下三尺',
+    account: 'shenci',
+    realName: '沈辞',
+    pageUrl: '/user/shenci/',
+    bio: '往下挖。每一层土都有一句话要说。不追热点，只找没人去过的地方。',
+    joinedDate: '2025-10-20',
+  },
+  '地下三尺': {
+    displayName: '地下三尺',
+    account: 'shenci',
+    realName: '沈辞',
+    pageUrl: '/user/shenci/',
+    bio: '往下挖。每一层土都有一句话要说。不追热点，只找没人去过的地方。',
+    joinedDate: '2025-10-20',
+  },
+  '林屿': {
+    displayName: 'signal_屿',
+    account: 'lyu',
+    realName: '林屿',
+    pageUrl: '/user/lyu/',
+    bio: '深空信号分析。相信数据不相信故事。1420MHz是唯一的母语。',
+    joinedDate: '2025-04-15',
+  },
+  'lyu': {
+    displayName: 'signal_屿',
+    account: 'lyu',
+    realName: '林屿',
+    pageUrl: '/user/lyu/',
+    bio: '深空信号分析。相信数据不相信故事。1420MHz是唯一的母语。',
+    joinedDate: '2025-04-15',
+  },
+  'signal_屿': {
+    displayName: 'signal_屿',
+    account: 'lyu',
+    realName: '林屿',
+    pageUrl: '/user/lyu/',
+    bio: '深空信号分析。相信数据不相信故事。1420MHz是唯一的母语。',
+    joinedDate: '2025-04-15',
+  },
+  '山野探秘人': {
+    displayName: '山野探秘人',
+    account: 'mountainwolf',
+    realName: '',
+    pageUrl: '/user/mountainwolf/',
+    bio: '走过二十三个省。最美的风景永远不在攻略上。',
+    joinedDate: '2025-03-08',
+  },
+};
+
+/** 根据查询词查找用户 */
+export function findUserSearchResults(query: string): UserSearchResult[] {
+  const results: UserSearchResult[] = [];
+  const seen = new Set<string>();
+
+  for (const [keyword, user] of Object.entries(USER_SEARCH)) {
+    if (query.toLowerCase().includes(keyword.toLowerCase()) && !seen.has(user.account)) {
+      seen.add(user.account);
+      results.push(user);
+    }
+  }
+
+  return results;
+}
 
 /** 根据查询词查找历史存档 */
 export function findArchivedContent(query: string): ArchivedPost[] {

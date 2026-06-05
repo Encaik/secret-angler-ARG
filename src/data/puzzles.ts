@@ -44,7 +44,7 @@ export const PUZZLES: Puzzle[] = [
     type: 'search',
     name: '沈辞账号密码拼凑',
     // echo -n "helanshan06" | openssl dgst -sha256
-    answerHash: 'e5b0f28e7a4c8d2f1e3a5b7c9d0f2e4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d',
+    answerHash: '869fed306cc3c9af014019f1a32fad3f43ab4855f4d23df44cbd509391024905',
     clueLocations: [
       '/inbox (林屿私信箱：沈辞5/21私信"第一个探访遗址全拼小写+出生年份后两位")',
       '搜索"沈辞" → 新人报到帖（2025-10-20）："06年的……第一个探访是贺兰山"',
@@ -70,7 +70,7 @@ export const PUZZLES: Puzzle[] = [
     type: 'acrostic',
     name: '沈辞隐藏帖文 · 藏头文解密',
     // echo -n "深海裂隙" | openssl dgst -sha256
-    answerHash: 'b5a3c1d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4',
+    answerHash: '76e2897cb6c02df6f8493fab92b9bad398a52a341d1269a34c3e9f69f3fcb165',
     clueLocations: [
       '/user/shenci (仅自己可见帖文 — 需登录shenci，四段文字首字组成"深海裂隙")',
       '/inbox (shenci登录：林屿5/22私信"开头几个字连起来读")',
@@ -80,13 +80,13 @@ export const PUZZLES: Puzzle[] = [
     ],
     hintTexts: [
       '沈辞主页上有一篇标记"仅自己可见"的帖文，分为四个带分隔线的段落',
-      '林屿在私信中暗示沈辞"藏头藏尾"的文字游戏习惯',
-      '帖文最后一句："林屿总说我写东西喜欢在段落开头藏东西"',
+      '林屿在私信中暗示沈辞"藏头藏尾"的文字游戏习惯——"开头几个字连起来读"',
+      '搜索"加密"可找到林屿关于"藏头藏尾——把信息藏在每段开头或结尾"的帖文',
       '四个段落的首字恰好可以组成一个有意义的词',
       '首字不加粗——需要玩家自行观察发现（密室逃脱风格：观察力谜题）',
     ],
     requiresClue: ['shenci_credentials'],
-    unlocksPages: ['/trigger/rift (搜索"深海裂隙"触发)'],
+    unlocksPages: ['/trigger/rift (搜索"深海裂隙2026"触发)'],
     progressWeight: 20,
     clueTags: ['observation', 'acrostic', 'word_puzzle'],
   },
@@ -99,7 +99,7 @@ export const PUZZLES: Puzzle[] = [
     type: 'keyword',
     name: '会员区访问码拼合',
     // echo -n "深海裂隙2026" | openssl dgst -sha256
-    answerHash: 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0',
+    answerHash: 'f8478fa4a00eeb705d0d91d08f1210cbb1e88e57566d7c8efe34e252fa6bc286',
     clueLocations: [
       '/user/shenci (仅自己可见帖文：藏头文解密得"深海裂隙")',
       '/trigger/rift (缓存3：访问码末尾4位"2026")',
@@ -117,28 +117,31 @@ export const PUZZLES: Puzzle[] = [
     clueTags: ['keyword_assembly', 'cross_page'],
   },
 
-  // ===== 阶段四：发现香火站 =====
+  // ===== 阶段四：发现香火站（难度提升至 medium——需跨页面线索拼合）=====
   {
     id: 'stage4_temple_discovery',
     stage: 4,
-    difficulty: 'easy',
-    type: 'search',
+    difficulty: 'medium',
+    type: 'cross_reference',
     name: '发现归源宗功德流通处',
     answerHash: 'f0e1d2c3b4a5968778695a4b3c2d1e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5',
     clueLocations: [
-      '/trigger/rift → 站点快照中提到"香火站：归源宗功德流通处"',
-      '/share/ → 沈辞云盘坐标数据中出现"归源宗"相关地名标注',
-      '搜索"归源宗" → 找到功德流通处公开页面',
+      '/trigger/rift → 站点快照中提到"功德流通处"，但未写明全名',
+      '/share/ → 沈辞云盘坐标数据中多处标注"GY"缩写',
+      '搜索"功德流通处" → 找到归源宗寺院供养平台公开页面（部分匹配）',
+      '搜索"归源" → 找到站内帖文提及"归源"相关讨论',
     ],
     hintTexts: [
-      '触发页缓存中提到了一个叫"归源宗功德流通处"的香火站',
-      '沈辞的坐标交叉比对数据中，多个点位附近标注了"归源"相关字眼',
-      '搜索"归源宗"可以发现这个寺院供养平台',
+      '触发页缓存中提到了一个叫"功德流通处"的寺院供养平台，但全文名字被截断了',
+      '沈辞的坐标交叉比对数据中，多个点位附近标注了缩写——注意字母出现的规律',
+      '搜索"功德流通处"可以找到寺院公开页面，注意查看底部链接',
+      'GY = 归源，玩家需要从缩写推断全称后搜索',
+      '线索拆分在两个信息源中——需要交叉验证才能拼出完整名称',
     ],
     requiresClue: ['deep_rift_discovered'],
-    unlocksPages: ['/hidden/darknet/ (公开寺庙视图)'],
-    progressWeight: 8,
-    clueTags: ['search', 'discovery'],
+    unlocksPages: ['/hidden/panlongxia/ (公开景区视图)'],
+    progressWeight: 10,
+    clueTags: ['cross_reference', 'abbreviation', 'search', 'medium'],
   },
 
   // ===== 阶段五：浅层后台（客堂运营） =====
@@ -149,10 +152,10 @@ export const PUZZLES: Puzzle[] = [
     type: 'password',
     name: '寺院管理系统 · 客堂登录',
     // echo -n "portal2026" | openssl dgst -sha256
-    answerHash: 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0',
+    answerHash: '09ddc5ca1d9317a325857b8bcd44cee9ea23fadb939801e64cda7dd32887ee0a',
     clueLocations: [
       '/trigger/rift → 站点快照：客堂管理账号 staff，密码 portal2026',
-      '/hidden/darknet → 香火站底部小字"寺院管理系统"链接',
+      '/hidden/panlongxia → 香火站底部小字"景区管理系统"链接',
       '搜索"后台管理" → 找到寺院管理系统登录页',
     ],
     hintTexts: [
@@ -173,19 +176,20 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'hard',
     type: 'cross_reference',
     name: '沈辞的调查发现 · 管理员密钥',
-    answerHash: 'e7c5a3f1d2b4e6a8c0f2d4b6e8a0c2f4d6e8b0a2c4f6d8e0b2a4c6d8f0a2',
+    // echo -n "deeprift323" | openssl dgst -sha256
+    answerHash: '8b0ba0a0d7f1c54ecd9559b857a4fefd37e5f25ec1664ad58bafe26f5961337d',
     clueLocations: [
       '/share/ → 沈辞云盘文件：坐标交叉比对 + SDR拦截记录 + 信号频谱分析',
       '/hidden/admin/ (staff视图) → 信众名录中"三尺"的备注"需冷链" + 供养收入异常高',
-      '/hidden/darknet → 客服消息中提及"系统管理员密钥 deeprift323"',
-      '/about/ → 联系邮箱 admin@deeprift323.onion',
+      '/hidden/panlongxia → 景区页面底部有"景区管理系统"小字链接，点击即达后台登录页',
+      '/about/ → 联系邮箱 admin@deeprift323.onion · /trigger/rift → 后台域名 deeprift323.onion',
     ],
     hintTexts: [
       '沈辞的云盘资料中已经记录了归源宗与论坛推荐点位的关联',
       'staff后台的信众名录和供养记录明显不对劲——对正常寺庙来说数额太大了',
-      '客服消息中明确写明了管理员密钥——但这个"客服"显然不是普通的寺院工作人员',
-      '"加入我们"页面的联系邮箱域名 deeprift323.onion 与管理员密钥一致',
-      '综合线索：deeprift323 就是管理员密码。使用 admin 账号登录。',
+      '景区页面底部藏着一个不起眼的"景区管理系统"链接——那就是后台的入口',
+      '联系邮箱域名是 deeprift323.onion，触发页缓存也提到了同一个域名——密钥就藏在域名里',
+      '综合线索：deeprift323（去掉.onion后缀）就是管理员密码。使用 admin 账号登录。',
     ],
     requiresClue: ['staff_access', 'darknet_explored'],
     unlocksPages: ['/hidden/admin/ (admin全权限视图)', '/hidden/board/', '/hidden/operation/', '/hidden/locations/', '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/'],
@@ -200,6 +204,7 @@ export const PUZZLES: Puzzle[] = [
     difficulty: 'easy',
     type: 'keyword',
     name: '证据收集与举报',
+    // 结局阶段无单一正确答案——由 evaluateEnding() 根据证据完整度判定
     answerHash: '0000000000000000000000000000000000000000000000000000000000000000',
     clueLocations: [
       '/hidden/evidence-locker → 手机举报界面，根据证据完整度动态显示不同结果',

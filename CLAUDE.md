@@ -128,7 +128,7 @@ BASE_URL=secret-angler-ARG pnpm build
 **正例（推荐）：**
 - ✅ 沈辞隐藏帖文：非本人看到"权限不足"，沈辞本人看到正文——同一页面，两个 HTML 区块，JS 切换
 - ✅ 评论区登录态切换：登录前后看到不同评论——同一页面，`display:none/block` 切换
-- ✅ 暗网交易市场：需要账号密码才能进入——独立页面 `/hidden/darknet/`，JS 验证 localStorage 中的暗网账号
+- ✅ 暗网交易市场：需要账号密码才能进入——独立页面 `/hidden/panlongxia/`（伪装为盘龙峡风景区），JS 验证 localStorage 中的暗网账号
 - ✅ 会员专区：需要解锁码——独立页面 `/member/` + `/member/login/`，JS 验证进度标记
 
 **URL 命名原则：** URL 模拟真实网站的路径结构即可，不需要刻意追求"RESTful"或简短。多几个路径片段（如 `/community/post/247/`）比 `/post-247` 更像真实网站。

@@ -57,7 +57,13 @@
       "Bash(echo \"count: $?\")",
       "Bash(pnpm build *)",
       "Bash(pnpm --version)",
-      "Bash(grep -v '//')"
+      "Bash(grep -v '//')",
+      "Bash(pnpm astro *)",
+      "Bash(npx skills *)",
+      "Read(//c/Users/encai/.agents/skills/astro/**)",
+      "Read(//c/Users/encai/.agents/skills/level-design/**)",
+      "Read(//c/Users/encai/.agents/skills/puzzle-design/**)",
+      "Read(//c/Users/encai/.agents/skills/qa-testing-playwright/**)"
     ],
     "additionalDirectories": [
       "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",

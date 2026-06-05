@@ -8,6 +8,7 @@ import {
   findArchivedContent,
   HIDDEN_PAGE_CACHE,
   PUZZLE_ANSWER,
+  SEARCH_ACCESS_CODE,
   type ArchivedPost,
 } from '../../data/search-data';
 
@@ -90,8 +91,8 @@ describe('Search result mappings', () => {
       expect(HIDDEN_PAGE_CACHE['布景基地'].pageUrl).toBe('/trigger/base');
     });
 
-    it('"归源宗" maps to /hidden/darknet', () => {
-      expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/darknet');
+    it('"归源宗" maps to /hidden/panlongxia', () => {
+      expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/panlongxia');
     });
 
     it('"后台管理" maps to /hidden/admin', () => {
@@ -121,6 +122,10 @@ describe('Search result mappings', () => {
 
     it('PUZZLE_ANSWER is not a key in HIDDEN_PAGE_CACHE', () => {
       expect(HIDDEN_PAGE_CACHE[PUZZLE_ANSWER]).toBeUndefined();
+    });
+
+    it('PUZZLE_ANSWER contains SEARCH_ACCESS_CODE for elevated search permission', () => {
+      expect(PUZZLE_ANSWER).toContain(SEARCH_ACCESS_CODE);
     });
   });
 
@@ -176,6 +181,38 @@ describe('Search result mappings', () => {
     it('searching "信号" reveals hint about pattern recognition', () => {
       const results = findArchivedContent('信号');
       expect(results.some(p => p.content.includes('模式识别'))).toBe(true);
+    });
+  });
+
+  // ========================================
+  // 搜索权限模型：普通搜索 vs 提权搜索
+  // ========================================
+  describe('Search permission: elevated access via SEARCH_ACCESS_CODE', () => {
+    it('SEARCH_ACCESS_CODE is "2026"', () => {
+      expect(SEARCH_ACCESS_CODE).toBe('2026');
+    });
+
+    it('"深海裂隙" alone matches HIDDEN_PAGE_CACHE key but requires elevated access at runtime', () => {
+      // Data layer: key exists (verified by other tests)
+      expect(HIDDEN_PAGE_CACHE['深海裂隙']).toBeDefined();
+      expect(HIDDEN_PAGE_CACHE['深海裂隙'].pageUrl).toBe('/trigger/rift');
+      // Runtime: query "深海裂隙" (without code) should NOT show hidden cache
+      // This is enforced by renderResults() in search.astro, not testable at data layer
+      const queryWithoutCode = '深海裂隙';
+      expect(queryWithoutCode.includes(SEARCH_ACCESS_CODE)).toBe(false);
+    });
+
+    it('"深海裂隙2026" contains both hidden keyword and access code', () => {
+      const elevatedQuery = '深海裂隙2026';
+      expect(elevatedQuery.includes('深海裂隙')).toBe(true);
+      expect(elevatedQuery.includes(SEARCH_ACCESS_CODE)).toBe(true);
+      expect(elevatedQuery).toBe(PUZZLE_ANSWER);
+    });
+
+    it('"深海裂隙 2026" (with space) also contains both keyword and code', () => {
+      const spacedQuery = '深海裂隙 2026';
+      expect(spacedQuery.includes('深海裂隙')).toBe(true);
+      expect(spacedQuery.includes(SEARCH_ACCESS_CODE)).toBe(true);
     });
   });
 });

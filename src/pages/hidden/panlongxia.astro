@@ -1,0 +1,519 @@
+---
+// /hidden/panlongxia — 盘龙峡风景区·香火供奉处（景区伪装 / 暗网交易市场）
+// 公开视图：俗气土味的旅游景区官网，香火供奉明码标价
+// 登录后：器官交易市场，香火种类对应不同身体部位
+import HiddenLayout from '../../components/HiddenLayout.astro';
+const BASE = __BASE_PATH__;
+---
+
+<HiddenLayout title="盘龙峡风景区 · 香火供奉处">
+  <div style="max-width: 100%; margin: 0 auto;">
+
+    <!-- ========== 公开视图：旅游景区官网（无需登录） ========== -->
+    <div id="public-view">
+
+      <!-- 景区头部 —— 土味设计 -->
+      <div style="text-align: center; margin-bottom: 20px; padding: 16px 0; border-bottom: 2px solid #c41230;">
+        <div style="font-size: 0.65rem; color: #999; letter-spacing: 2px; margin-bottom: 4px;">国家AAAA级风景区 · 省级地质公园</div>
+        <h1 style="font-size: 1.8rem; color: #c41230; font-weight: bold; margin: 4px 0; letter-spacing: 4px;">盘 龙 峡 风 景 区</h1>
+        <div style="font-size: 0.78rem; color: #8b6914; margin-top: 4px;">🏔 香火供奉处 · 心诚则灵，有求必应 🏔</div>
+      </div>
+
+      <!-- 景区滚动公告 -->
+      <div style="background: #fff8e7; border: 1px solid #e8d5a0; padding: 8px 14px; margin-bottom: 16px; font-size: 0.72rem; color: #c41230; overflow: hidden;">
+        <marquee behavior="scroll" direction="left" scrollamount="3">
+          📢 盘龙峡夏季旅游旺季已至！每日限流3000人，请提前预约购票！&nbsp;&nbsp;&nbsp;&nbsp;
+          龙首峰栈道维修完成，已重新开放！&nbsp;&nbsp;&nbsp;&nbsp;
+          九龙泉水质检测合格，可直接饮用！&nbsp;&nbsp;&nbsp;&nbsp;
+          景区禁止携带明火上山，香火请在指定供奉点购买！
+        </marquee>
+      </div>
+
+      <!-- 景区简介 -->
+      <div style="background: #f5f5f0; border: 1px solid #ddd; padding: 16px; margin-bottom: 16px;">
+        <h3 style="font-size: 0.9rem; color: #c41230; margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 6px;">🏞 景区简介</h3>
+        <p style="font-size: 0.78rem; color: #555; line-height: 1.8; text-indent: 2em;">
+          盘龙峡位于贺兰山脉南麓，距市区约80公里，是国家<strong>AAAA级风景区</strong>、省级地质公园。景区以"一峡、两峰、三洞、四潭"闻名，主峰龙首峰海拔2180米，终年云雾缭绕，形如巨龙盘踞，故得名"盘龙峡"。相传古时有九条神龙在此修炼飞升，留下多处龙迹仙踪。景区内现存<strong>七处天然香火供奉点</strong>，分别对应龙的不同部位，信众可依次供奉，祈求健康平安。历代香火不绝，有求必应，远近闻名。
+        </p>
+        <p style="font-size: 0.72rem; color: #999; margin-top: 8px;">
+          ※ 以上内容摘自景区官方介绍。盘龙峡风景区管理处对本页内容拥有最终解释权。
+        </p>
+      </div>
+
+      <!-- 门票价格 -->
+      <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 16px;">
+        <h3 style="font-size: 0.85rem; color: #c41230; margin-bottom: 10px;">🎫 门票与香火套餐</h3>
+        <table style="font-size: 0.78rem; width: 100%; border-collapse: collapse;">
+          <tr style="background: #faf6ee;">
+            <th style="padding: 6px 8px; text-align: left; border-bottom: 1px solid #e0d5c0;">套餐类型</th>
+            <th style="padding: 6px 8px; text-align: right; border-bottom: 1px solid #e0d5c0;">价格</th>
+            <th style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #e0d5c0;">香火数量</th>
+          </tr>
+          <tr>
+            <td style="padding: 6px 8px;">普通游览票</td>
+            <td style="padding: 6px 8px; text-align: right;">¥80</td>
+            <td style="padding: 6px 8px; text-align: center;">无</td>
+          </tr>
+          <tr style="background: #fefcf7;">
+            <td style="padding: 6px 8px;">祈福套餐 A <span style="background:#c41230;color:#fff;font-size:0.6rem;padding:1px 4px;border-radius:2px;">热卖</span></td>
+            <td style="padding: 6px 8px; text-align: right;">¥188</td>
+            <td style="padding: 6px 8px; text-align: center;">任选一柱</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 8px;">祈福套餐 B <span style="background:#ff6600;color:#fff;font-size:0.6rem;padding:1px 4px;border-radius:2px;">推荐</span></td>
+            <td style="padding: 6px 8px; text-align: right;">¥388</td>
+            <td style="padding: 6px 8px; text-align: center;">任选三柱</td>
+          </tr>
+          <tr style="background: #fefcf7;">
+            <td style="padding: 6px 8px;">贵宾祈福套餐 <span style="background:#ffcc00;color:#333;font-size:0.6rem;padding:1px 4px;border-radius:2px;">VIP</span></td>
+            <td style="padding: 6px 8px; text-align: right;">¥888</td>
+            <td style="padding: 6px 8px; text-align: center;">七柱全套</td>
+          </tr>
+        </table>
+        <p style="font-size:0.68rem;color:#999;margin-top:6px;">※ 60岁以上老人及1.2米以下儿童半价。香火套餐含景区门票，无需重复购买。</p>
+      </div>
+
+      <!-- 七大香火供奉点 -->
+      <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 16px;">
+        <h3 style="font-size: 0.85rem; color: #c41230; margin-bottom: 10px;">🙏 七处香火供奉点</h3>
+        <p style="font-size:0.72rem;color:#999;margin-bottom:10px;">以下为盘龙峡七大天然香火供奉点。信众可依自身需求选择对应的供奉。心诚则灵。</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <!-- 龙头香 -->
+          <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+            <div style="font-size:0.85rem;color:#c41230;font-weight:bold;margin-bottom:4px;">🐲 龙头香 · 龙首峰</div>
+            <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">海拔2180米 · 供奉处编号 LS-001</div>
+            <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">主智慧、清醒、决断。求事业顺利、头脑清明者宜供奉。</div>
+            <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥5800起）</div>
+          </div>
+          <!-- 天目香 -->
+          <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+            <div style="font-size:0.85rem;color:#c41230;font-weight:bold;margin-bottom:4px;">👁 天目香 · 天目洞</div>
+            <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">溶洞深处 · 供奉处编号 TM-002</div>
+            <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">主明目、洞见。眼疾康复、求视野开阔者宜供奉。</div>
+            <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥3200起）</div>
+          </div>
+          <!-- 龙骨香 -->
+          <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+            <div style="font-size:0.85rem;color:#c41230;font-weight:bold;margin-bottom:4px;">🦴 龙骨香 · 龙骨崖</div>
+            <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">悬崖栈道 · 供奉处编号 LG-003</div>
+            <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">主筋骨、支撑。骨质疏松、关节疼痛、术后恢复者宜供奉。</div>
+            <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥4800起）</div>
+          </div>
+          <!-- 心莲香 -->
+          <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+            <div style="font-size:0.85rem;color:#c41230;font-weight:bold;margin-bottom:4px;">💖 心莲香 · 心莲潭</div>
+            <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">潭畔石台 · 供奉处编号 XL-004</div>
+            <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">主心血、活力。心脏不适、体虚气短者宜供奉。</div>
+            <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥8500起）</div>
+          </div>
+          <!-- 肾水香 -->
+          <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+            <div style="font-size:0.85rem;color:#c41230;font-weight:bold;margin-bottom:4px;">💧 肾水香 · 九龙泉</div>
+            <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">泉水源头 · 供奉处编号 SS-005</div>
+            <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">主肾气、排毒。肾炎、透析患者、求元气充沛者宜供奉。</div>
+            <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥6200起）</div>
+          </div>
+          <!-- 肝木香 -->
+          <div style="background:#fefcf7;border:1px solid #e0d5c0;padding:12px;">
+            <div style="font-size:0.85rem;color:#c41230;font-weight:bold;margin-bottom:4px;">🌿 肝木香 · 青龙台</div>
+            <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">山腰平台 · 供奉处编号 GM-006</div>
+            <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">主肝脏、代谢。肝功能不佳、需排毒养肝者宜供奉。</div>
+            <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥5500起）</div>
+          </div>
+        </div>
+
+        <!-- 金身大香 —— 跨列 -->
+        <div style="background:#fff8ee;border:2px solid #c41230;padding:14px;margin-top:10px;text-align:center;">
+          <div style="font-size:0.9rem;color:#c41230;font-weight:bold;margin-bottom:4px;">✨ 金身大香 · 盘龙殿（主殿）</div>
+          <div style="font-size:0.68rem;color:#888;margin-bottom:6px;">景区入口主殿 · 供奉处编号 JS-007</div>
+          <div style="font-size:0.72rem;color:#555;margin-bottom:4px;">涵盖以上全部七处供奉之功德。为至亲祈福、消灾延寿之最高规格。供此一香，等同遍供七处。</div>
+          <div style="font-size:0.7rem;color:#c41230;">供奉金：随喜（建议¥38000起）· 需提前七天预约 · 由住持亲自主香</div>
+        </div>
+
+        <p style="font-size:0.68rem;color:#ccc;margin-top:10px;text-align:center;">
+          ※ 以上供奉金仅为建议，实际金额随个人发心。供奉金用于景区维护与公益慈善。<br/>
+          ※ 所有香火均为景区统一制作，请勿自带香火进入供奉点。
+        </p>
+      </div>
+
+      <!-- 近期功德榜 -->
+      <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 16px;">
+        <h3 style="font-size: 0.85rem; color: #c41230; margin-bottom: 10px;">📜 近期功德榜</h3>
+        <p style="font-size:0.68rem;color:#999;margin-bottom:8px;">以下为近半年部分功德主供奉记录。随喜赞叹！</p>
+        <table style="font-size: 0.75rem; width: 100%;">
+          <tr style="color:#888;font-size:0.7rem;">
+            <th style="text-align:left;padding:4px 6px;border-bottom:1px solid #e0d5c0;">日期</th>
+            <th style="text-align:left;padding:4px 6px;border-bottom:1px solid #e0d5c0;">功德主</th>
+            <th style="text-align:left;padding:4px 6px;border-bottom:1px solid #e0d5c0;">供奉项目</th>
+            <th style="text-align:right;padding:4px 6px;border-bottom:1px solid #e0d5c0;">功德金</th>
+            <th style="text-align:right;padding:4px 6px;border-bottom:1px solid #e0d5c0;">去向</th>
+          </tr>
+          <tr><td style="padding:4px 6px;">2026-05-20</td><td>陈功德主</td><td>龙头香 + 龙骨香</td><td style="text-align:right;">随喜</td><td style="text-align:right;">南洋</td></tr>
+          <tr><td style="padding:4px 6px;">2026-04-15</td><td>王功德主</td><td>金身大香</td><td style="text-align:right;">随喜</td><td style="text-align:right;">西域</td></tr>
+          <tr><td style="padding:4px 6px;">2026-03-08</td><td>—</td><td>肾水香</td><td style="text-align:right;">随喜</td><td style="text-align:right;">北疆</td></tr>
+          <tr><td style="padding:4px 6px;">2026-02-21</td><td>—</td><td>金身大香</td><td style="text-align:right;">随喜</td><td style="text-align:right;">南溟</td></tr>
+          <tr><td style="padding:4px 6px;">2026-01-14</td><td>—</td><td>龙骨香</td><td style="text-align:right;">随喜</td><td style="text-align:right;">西域</td></tr>
+        </table>
+        <p style="font-size:0.66rem;color:#ccc;margin-top:6px;">※ 为保护功德主隐私，部分姓名隐去。完整功德簿需贵宾登录后查阅。</p>
+      </div>
+
+      <!-- 景区直播 -->
+      <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 16px;">
+        <h3 style="font-size: 0.85rem; color: #c41230; margin-bottom: 10px;">📡 景区实况直播</h3>
+        <p style="font-size:0.72rem;color:#999;margin-bottom:10px;">盘龙峡各景点实时画面，方便游客合理安排行程。</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+          <div style="background:#f9f9f5;border:1px solid #e0d5c0;padding:10px;text-align:center;">
+            <div style="font-size:0.8rem;color:#333;">龙首峰云海</div>
+            <div style="font-size:0.68rem;color:#c41230;">● 直播中 · 340 在线</div>
+          </div>
+          <div style="background:#f9f9f5;border:1px solid #e0d5c0;padding:10px;text-align:center;">
+            <div style="font-size:0.8rem;color:#333;">天目洞探幽</div>
+            <div style="font-size:0.68rem;color:#c41230;">● 直播中 · 280 在线</div>
+          </div>
+          <div style="background:#f9f9f5;border:1px solid #e0d5c0;padding:10px;text-align:center;">
+            <div style="font-size:0.8rem;color:#888;">九龙泉品茗</div>
+            <div style="font-size:0.68rem;color:#999;">○ 暂停</div>
+          </div>
+        </div>
+        <p style="font-size:0.66rem;color:#ccc;margin-top:8px;">※ 直播画面仅供参考。贵宾用户可观看高清专线。</p>
+      </div>
+
+      <!-- 会员/贵宾登录入口 -->
+      <div style="text-align:center;margin:20px 0;">
+        <button id="show-login-btn" style="padding:8px 32px;background:#c41230;color:#fff;border:none;cursor:pointer;font-size:0.88rem;border-radius:2px;letter-spacing:2px;">
+          贵宾登录
+        </button>
+        <p style="font-size:0.66rem;color:#999;margin-top:6px;">
+          已有贵宾账号？登录查看个人供奉记录与专属直播频道。
+        </p>
+      </div>
+
+      <!-- 景区管理系统入口（小字，不明显） -->
+      <div style="text-align:center;margin-top:32px;padding-top:16px;border-top:1px solid #e0d5c0;">
+        <a href={`${BASE}hidden/admin/`} target="_blank" style="font-size:0.6rem;color:#ccc;text-decoration:none;">景区管理系统</a>
+      </div>
+    </div>
+
+    <!-- ========== 登录区域（点击贵宾登录后显示） ========== -->
+    <div id="login-section" style="display: none;">
+      <div style="max-width: 380px; margin: 60px auto;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <h2 style="color: #c41230; font-size: 1.1rem; letter-spacing: 2px;">贵宾登录</h2>
+          <p style="color: #999; font-size: 0.72rem;">盘龙峡风景区 · 香火供奉处</p>
+        </div>
+        <div style="background: #fff; border: 1px solid #e0d5c0; padding: 24px;">
+          <div style="margin-bottom: 14px;">
+            <label style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 4px;">贵宾账号</label>
+            <input type="text" id="panlongxia-username" placeholder="" style="width: 100%; max-width: 100%; padding: 8px 10px; background: #fafafa; border: 1px solid #ddd; color: #333; font-size: 0.88rem;" />
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 4px;">贵宾密码</label>
+            <input type="password" id="panlongxia-password" placeholder="" style="width: 100%; max-width: 100%; padding: 8px 10px; background: #fafafa; border: 1px solid #ddd; color: #333; font-size: 0.88rem;" />
+          </div>
+          <button id="panlongxia-login-btn" style="width: 100%; padding: 9px; background: #c41230; color: #fff; border: none; cursor: pointer; font-size: 0.85rem; letter-spacing: 2px;">登录</button>
+          <p id="login-error" style="color: #c41230; font-size: 0.72rem; margin-top: 8px; display: none;"></p>
+        </div>
+        <p style="text-align: center; color: #999; font-size: 0.66rem; margin-top: 10px;">
+          贵宾账号需由推荐人邀请方可获取。详情咨询景区管理处。
+        </p>
+        <div style="text-align: center; margin-top: 12px;">
+          <button id="back-to-public" style="background:none;border:none;color:#c41230;cursor:pointer;font-size:0.72rem;">← 返回景区首页</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 登录后内容（贵宾专区） ========== -->
+    <div id="vip-content" style="display: none;">
+
+      <!-- 顶栏 -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #c41230;">
+        <div>
+          <span style="font-size: 1rem; font-weight: bold; color: #333;">盘龙峡 · 贵宾专区</span>
+        </div>
+        <div style="font-size: 0.72rem; color: #999;">
+          贵宾 <span id="header-user" style="color: #c41230;">—</span> ·
+          <button id="vip-logout-btn" style="background:none;border:none;color:#999;cursor:pointer;font-size:0.72rem;">退出</button>
+        </div>
+      </div>
+
+      <!-- 客服消息（优先展示） -->
+      <div style="background:#fff;border:1px solid #e0d5c0;padding:16px;margin-bottom:16px;">
+        <h4 style="margin-bottom: 10px; color: #c41230; font-size: 0.88rem;">📋 贵宾专属通知</h4>
+        <div style="font-size:0.76rem;color:#555;line-height:1.9;">
+          <p style="margin-bottom:8px;"><strong>景区管理处 小赵</strong> · 2026-01-10 15:30</p>
+          <p>尊敬的贵宾，欢迎入驻盘龙峡风景区香火供奉系统。以下为供奉术语说明，请勿外传——</p>
+          <p style="margin:8px 0;padding:8px 12px;background:#fefcf7;border-left:3px solid #c41230;">
+            · <strong>龙头香</strong>：头部及脑部组织，完整度以"首"计<br/>
+            · <strong>天目香</strong>：眼角膜及眼部组织，以"对"计，需冷链保存<br/>
+            · <strong>龙骨香</strong>：骨骼及骨髓，完整度以"具"计<br/>
+            · <strong>心莲香</strong>：心脏及大血管，需活体转运，以"颗"计<br/>
+            · <strong>肾水香</strong>：肾脏及泌尿系统器官，以"枚"计<br/>
+            · <strong>肝木香</strong>：肝脏及消化系统器官，以"副"计<br/>
+            · <strong>金身大香</strong>：整体移交——不拆分，保持完整身体<br/>
+            · <strong>分身供奉</strong>：拆分为多份器官/骨骼分别流通<br/>
+            · <strong>供奉编号</strong>：商品追踪编号，用于全程溯源<br/>
+            · <strong>调养中</strong>：正在体检或术后恢复，暂不可选<br/>
+            · <strong>展示中</strong>：可在景区直播频道查看实时状态与生理数据
+          </p>
+          <p style="margin-bottom:8px;">首笔供奉完成后，管理处将为您对接专属运输方案与结算方式。系统技术问题请通过页面底部的「<strong>景区管理系统</strong>」提交工单，技术值班人员会跟进处理。</p>
+          <p style="color:#999;font-size:0.68rem;">—— 以上信息请勿外传。管理处在线时间：每日 20:00 - 02:00 ——</p>
+        </div>
+      </div>
+
+      <!-- 导航标签 -->
+      <div style="display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid #e0d5c0;">
+        <span class="vip-tab active" data-tab="market" style="padding: 8px 16px; font-size: 0.8rem; color: #c41230; border-bottom: 2px solid #c41230; cursor: pointer;">当前供奉</span>
+        <span class="vip-tab" data-tab="live" style="padding: 8px 16px; font-size: 0.8rem; color: #888; cursor: pointer;">景区直播</span>
+        <span class="vip-tab" data-tab="history" style="padding: 8px 16px; font-size: 0.8rem; color: #888; cursor: pointer;">供奉记录</span>
+        <span class="vip-tab" data-tab="wallet" style="padding: 8px 16px; font-size: 0.8rem; color: #888; cursor: pointer;">功德金</span>
+      </div>
+
+      <!-- ============ 当前供奉（商品列表） ============ -->
+      <div id="tab-market">
+        <div style="display: flex; gap: 12px; margin-bottom: 16px; font-size: 0.76rem; color: #999;">
+          <span style="color: #c41230;">全部</span>
+          <span style="cursor: pointer;">龙头香</span>
+          <span style="cursor: pointer;">天目香</span>
+          <span style="cursor: pointer;">龙骨香</span>
+          <span style="cursor: pointer;">心莲香</span>
+          <span style="cursor: pointer;">肾水香</span>
+          <span style="cursor: pointer;">肝木香</span>
+          <span style="cursor: pointer;">金身大香</span>
+          <span style="margin-left: auto; font-size: 0.7rem;">共 4 项可供奉</span>
+        </div>
+
+        <!-- 供奉项 003（沈辞） -->
+        <div style="background: #fff; border: 1px solid #e0d5c0; padding: 16px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <div>
+              <span style="color: #333; font-size: 0.88rem; font-weight: bold;">供奉编号·甲辰003</span>
+              <span style="color: #c41230; font-size: 0.72rem; margin-left: 6px;">行者</span>
+              <span style="background: #fff8e7; color: #8b6914; font-size: 0.62rem; padding: 1px 6px; margin-left: 6px;">调养中</span>
+            </div>
+            <span style="color: #999; font-size: 0.68rem;">入仓 05-26</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 0.76rem; margin-bottom: 8px;">
+            <div><span style="color: #999;">来源</span><br/><span style="color: #555;">贺兰灵墟</span></div>
+            <div><span style="color: #999;">品级</span><br/><span style="color: #555;">甲下</span></div>
+            <div><span style="color: #999;">配型</span><br/><span style="color: #8b6914;">鉴定中</span></div>
+            <div><span style="color: #999;">身体状况</span><br/><span style="color: #8b6914;">调养中</span></div>
+            <div><span style="color: #999;">完整度</span><br/><span style="color: #555;">完整·无损</span></div>
+            <div><span style="color: #999;">供奉金</span><br/><span style="color: #999;">待公示</span></div>
+          </div>
+          <div style="font-size: 0.7rem; color: #888; padding: 6px 8px; background: #fefcf7;">
+            可拆分：龙骨香（双组） · 肾水香（双枚） · 肝木香 · 金身大香
+            &nbsp;|&nbsp; 展示：景区直播乙「天目洞探幽」
+          </div>
+        </div>
+
+        <!-- 已售项 001 -->
+        <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 10px; opacity: 0.7;">
+          <span style="color: #888; font-size: 0.83rem;">供奉编号·甲辰001</span>
+          <span style="color: #999; font-size: 0.7rem; margin-left: 6px;">旅人</span>
+          <span style="background: #e8e8e8; color: #888; font-size: 0.62rem; padding: 1px 6px; margin-left: 6px;">已供奉</span>
+          <span style="color: #999; font-size: 0.7rem; float: right;">金身大香 · 功德金 48000</span>
+        </div>
+
+        <!-- 已售项 002 -->
+        <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 10px; opacity: 0.7;">
+          <span style="color: #888; font-size: 0.83rem;">供奉编号·甲辰002</span>
+          <span style="color: #999; font-size: 0.7rem; margin-left: 6px;">观星者</span>
+          <span style="background: #fff8e7; color: #8b6914; font-size: 0.62rem; padding: 1px 6px; margin-left: 6px;">已处理</span>
+          <span style="color: #999; font-size: 0.7rem; float: right;">龙骨香一具 · 肾水香双枚 · 功德金 135000</span>
+        </div>
+
+        <!-- 004 -->
+        <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px; margin-bottom: 10px;">
+          <span style="color: #333; font-size: 0.83rem;">供奉编号·甲辰004</span>
+          <span style="color: #888; font-size: 0.7rem; margin-left: 6px;">登山客</span>
+          <span style="background: #f0f8f0; color: #3d6b3d; font-size: 0.62rem; padding: 1px 6px; margin-left: 6px;">展示中</span>
+          <span style="color: #999; font-size: 0.7rem; float: right;">景区直播甲「龙首峰云海」</span>
+        </div>
+      </div>
+
+      <!-- ============ 景区直播 ============ -->
+      <div id="tab-live" style="display: none;">
+        <div style="font-size: 0.8rem; color: #888; margin-bottom: 16px;">景区直播频道 · 实时生理监测数据</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px;">
+            <div style="color: #333; font-size: 0.85rem; margin-bottom: 6px;">龙首峰云海</div>
+            <div style="font-size: 0.7rem; color: #999;">频道甲 · 340 订阅</div>
+            <div style="font-size: 0.7rem; color: #c41230; margin-top: 4px;">● 直播中</div>
+            <div style="font-size: 0.66rem; color: #999; margin-top: 6px;">月费 29 · 展示：登山客</div>
+            <div style="font-size: 0.62rem; color: #ccc; margin-top: 4px;">监测：心率·血氧·步数</div>
+          </div>
+          <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px;">
+            <div style="color: #333; font-size: 0.85rem; margin-bottom: 6px;">天目洞探幽</div>
+            <div style="font-size: 0.7rem; color: #999;">频道乙 · 280 订阅</div>
+            <div style="font-size: 0.7rem; color: #c41230; margin-top: 4px;">● 直播中</div>
+            <div style="font-size: 0.66rem; color: #999; margin-top: 6px;">月费 29 · 展示：行者</div>
+            <div style="font-size: 0.62rem; color: #ccc; margin-top: 4px;">监测：心率·血氧·步数</div>
+          </div>
+          <div style="background: #fff; border: 1px solid #e0d5c0; padding: 14px;">
+            <div style="color: #888; font-size: 0.85rem; margin-bottom: 6px;">九龙泉品茗</div>
+            <div style="font-size: 0.7rem; color: #999;">频道丙 · 210 订阅</div>
+            <div style="font-size: 0.7rem; color: #999; margin-top: 4px;">○ 暂停</div>
+            <div style="font-size: 0.66rem; color: #999; margin-top: 6px;">月费 19</div>
+          </div>
+        </div>
+        <div style="font-size: 0.66rem; color: #ccc; margin-top: 12px;">
+          各频道均附带实时生理监测数据。频道甲/乙可申请详细评估报告（月费39）。
+        </div>
+      </div>
+
+      <!-- ============ 供奉记录 ============ -->
+      <div id="tab-history" style="display: none;">
+        <table style="font-size: 0.76rem; width: 100%;">
+          <tr style="color: #888; font-size: 0.72rem;">
+            <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid #e0d5c0;">日期</th>
+            <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid #e0d5c0;">品类</th>
+            <th style="text-align: left; padding: 6px 8px; border-bottom: 1px solid #e0d5c0;">来源</th>
+            <th style="text-align: right; padding: 6px 8px; border-bottom: 1px solid #e0d5c0;">功德金</th>
+            <th style="text-align: right; padding: 6px 8px; border-bottom: 1px solid #e0d5c0;">去向</th>
+          </tr>
+          <tr><td style="padding: 6px 8px;">2026-05-20</td><td>龙骨香一具 + 肾水香双枚</td><td>观星者</td><td style="text-align: right;">135000</td><td style="text-align: right;">南洋</td></tr>
+          <tr><td style="padding: 6px 8px;">2026-04-15</td><td>金身大香</td><td>旅人</td><td style="text-align: right;">48000</td><td style="text-align: right;">西域</td></tr>
+          <tr><td style="padding: 6px 8px;">2026-03-08</td><td>肾水香</td><td>—</td><td style="text-align: right;">82000</td><td style="text-align: right;">北疆</td></tr>
+          <tr><td style="padding: 6px 8px;">2026-02-21</td><td>金身大香</td><td>—</td><td style="text-align: right;">35000</td><td style="text-align: right;">南溟</td></tr>
+          <tr><td style="padding: 6px 8px;">2026-01-14</td><td>龙骨香一具</td><td>—</td><td style="text-align: right;">58000</td><td style="text-align: right;">西域</td></tr>
+        </table>
+        <div style="font-size: 0.66rem; color: #ccc; margin-top: 10px;">仅显示近半年供奉记录。完整账目需高级权限。</div>
+      </div>
+
+      <!-- ============ 功德金（钱包） ============ -->
+      <div id="tab-wallet" style="display: none;">
+        <div style="background: #fff; border: 1px solid #e0d5c0; padding: 16px; max-width: 400px;">
+          <div style="font-size: 0.78rem; color: #999; margin-bottom: 4px;">账户余额</div>
+          <div style="font-size: 1.3rem; color: #333; margin-bottom: 12px;">¥0.00</div>
+          <div style="font-size: 0.7rem; color: #999; margin-bottom: 4px;">充值地址（BTC）</div>
+          <code style="font-size: 0.66rem; color: #888; background: #fafafa; padding: 4px 8px; display: block; word-break: break-all;">bc1qly0w63v0s0dujf0ly5kz5v0cw0kq0d5s0x0r0y</code>
+          <div style="font-size: 0.7rem; color: #999; margin-top: 10px; margin-bottom: 4px;">充值地址（XMR）</div>
+          <code style="font-size: 0.66rem; color: #888; background: #fafafa; padding: 4px 8px; display: block; word-break: break-all;">48x0v0d0u0j0f0l0y0k0z0v0c0w0k0q0d0s0x0r0y0a0b0c0d0e0f0123456789ab</code>
+        </div>
+        <div style="margin-top:12px;font-size:0.7rem;color:#999;">入金后自动确认。大额请分批。</div>
+      </div>
+
+      <!-- 页脚 -->
+      <div style="margin-top: 28px; padding-top: 12px; border-top: 1px solid #e0d5c0; font-size: 0.63rem; color: #ccc; text-align: center;">
+        盘龙峡风景区 · 香火供奉处 · 仅限贵宾访问
+      </div>
+    </div>
+
+  </div>
+</HiddenLayout>
+
+<style>
+  .vip-tab:hover { color: #555; }
+</style>
+
+<script>
+
+  const VALID_ACCOUNTS: Record<string, string> = {
+    'DR-2026-03': 'rift0603',
+  };
+
+  function doLogin() {
+    const username = (document.getElementById('panlongxia-username') as HTMLInputElement).value.trim();
+    const password = (document.getElementById('panlongxia-password') as HTMLInputElement).value;
+    const errorEl = document.getElementById('login-error');
+    const publicView = document.getElementById('public-view');
+    const loginSection = document.getElementById('login-section');
+    const content = document.getElementById('vip-content');
+    const headerUser = document.getElementById('header-user');
+
+    if (VALID_ACCOUNTS[username] && VALID_ACCOUNTS[username] === password) {
+      if (errorEl) errorEl.style.display = 'none';
+      if (publicView) publicView.style.display = 'none';
+      if (loginSection) loginSection.style.display = 'none';
+      if (content) content.style.display = 'block';
+      if (headerUser) headerUser.textContent = username;
+
+      const stored = localStorage.getItem('arg_progress');
+      if (stored) {
+        const p = JSON.parse(stored);
+        if (!p.solvedPuzzles) p.solvedPuzzles = {};
+        p.solvedPuzzles['stage4_darknet_access'] = true;
+        if (!p.discoveredClues) p.discoveredClues = [];
+        if (!p.discoveredClues.includes('darknet_marketplace')) {
+          p.discoveredClues.push('darknet_marketplace');
+          p.explorationProgress = (p.explorationProgress || 0) + 20;
+        }
+        if (!p.discoveredPages) p.discoveredPages = [];
+        if (!p.discoveredPages.includes('/hidden/panlongxia')) {
+          p.discoveredPages.push('/hidden/panlongxia');
+        }
+        localStorage.setItem('arg_progress', JSON.stringify(p));
+      }
+    } else {
+      if (errorEl) {
+        errorEl.textContent = '账号或密码错误。';
+        errorEl.style.display = 'block';
+      }
+    }
+  }
+
+  function tryAutoFill() {
+    const stored = localStorage.getItem('arg_progress');
+    if (stored) {
+      const p = JSON.parse(stored);
+      if (p.darknetAccount) {
+        const u = document.getElementById('panlongxia-username') as HTMLInputElement;
+        const pw = document.getElementById('panlongxia-password') as HTMLInputElement;
+        if (u) u.value = p.darknetAccount.account || '';
+        if (pw) pw.value = p.darknetAccount.password || '';
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    tryAutoFill();
+
+    // 显示登录区域
+    document.getElementById('show-login-btn')?.addEventListener('click', () => {
+      const publicView = document.getElementById('public-view');
+      const loginSection = document.getElementById('login-section');
+      if (publicView) publicView.style.display = 'none';
+      if (loginSection) loginSection.style.display = 'block';
+    });
+
+    // 返回公开视图
+    document.getElementById('back-to-public')?.addEventListener('click', () => {
+      const publicView = document.getElementById('public-view');
+      const loginSection = document.getElementById('login-section');
+      if (publicView) publicView.style.display = 'block';
+      if (loginSection) loginSection.style.display = 'none';
+    });
+
+    // 退出登录
+    document.getElementById('vip-logout-btn')?.addEventListener('click', () => {
+      const publicView = document.getElementById('public-view');
+      const content = document.getElementById('vip-content');
+      if (publicView) publicView.style.display = 'block';
+      if (content) content.style.display = 'none';
+    });
+
+    document.getElementById('panlongxia-login-btn')?.addEventListener('click', doLogin);
+    document.getElementById('panlongxia-password')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+    document.getElementById('panlongxia-username')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') (document.getElementById('panlongxia-password') as HTMLInputElement)?.focus();
+    });
+
+    // 标签切换
+    document.querySelectorAll('.vip-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = (tab as HTMLElement).dataset.tab;
+        document.querySelectorAll('.vip-tab').forEach(t => {
+          (t as HTMLElement).style.color = '#888';
+          (t as HTMLElement).style.borderBottom = 'none';
+        });
+        (tab as HTMLElement).style.color = '#c41230';
+        (tab as HTMLElement).style.borderBottom = '2px solid #c41230';
+        ['market','live','history','wallet'].forEach(id => {
+          const el = document.getElementById('tab-' + id);
+          if (el) el.style.display = id === tabName ? 'block' : 'none';
+        });
+      });
+    });
+  });
+</script>

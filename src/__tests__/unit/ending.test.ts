@@ -57,7 +57,7 @@ describe('evaluateEnding', () => {
     it('returns ending 3 when score is 12 (lower bound of ending 3)', () => {
       // E1(2) + E2(2) + E3(3) + E4(3) + E5(2) = 12
       seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base', '/hidden/darknet', '/hidden/board'],
+        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base', '/hidden/panlongxia', '/hidden/board'],
       }));
       const result = evaluateEnding();
       expect(result.ending).toBe(3);
@@ -69,7 +69,7 @@ describe('evaluateEnding', () => {
       seedProgress(createEmptyProgress({
         discoveredPages: [
           '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/darknet', '/hidden/board', '/hidden/operation', '/hidden/locations',
+          '/hidden/panlongxia', '/hidden/board', '/hidden/operation', '/hidden/locations',
         ],
       }));
       const result = evaluateEnding();
@@ -82,7 +82,7 @@ describe('evaluateEnding', () => {
       seedProgress(createEmptyProgress({
         discoveredPages: [
           '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/darknet', '/hidden/board', '/hidden/operation', '/hidden/dead-drop',
+          '/hidden/panlongxia', '/hidden/board', '/hidden/operation', '/hidden/dead-drop',
         ],
       }));
       const result = evaluateEnding();
@@ -94,7 +94,7 @@ describe('evaluateEnding', () => {
       seedProgress(createEmptyProgress({
         discoveredPages: [
           '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/darknet', '/hidden/board', '/hidden/operation',
+          '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
           '/hidden/locations', '/hidden/dead-drop',
         ],
       }));

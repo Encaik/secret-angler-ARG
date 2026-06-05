@@ -17,7 +17,7 @@ import {
 // EVIDENCE_MAP 来自 ending.ts（内联验证）
 const EVIDENCE_PAGES = [
   '/trigger/rift', '/trigger/stargate', '/trigger/base',
-  '/hidden/darknet', '/hidden/board', '/hidden/operation',
+  '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
   '/hidden/locations', '/hidden/dead-drop',
 ];
 
@@ -42,10 +42,10 @@ describe('Cross-reference: EVIDENCE_MAP vs HIDDEN_PAGE_CACHE', () => {
   });
 
   it('every hidden evidence page has a discovery path via HIDDEN_PAGE_CACHE', () => {
-    // /hidden/darknet → "归源宗"
+    // /hidden/panlongxia → "归源宗"
     // /hidden/admin → "后台管理"
     const hiddenMappings: Record<string, string> = {
-      '/hidden/darknet': '归源宗',
+      '/hidden/panlongxia': '归源宗',
       '/hidden/admin': '后台管理',
     };
 

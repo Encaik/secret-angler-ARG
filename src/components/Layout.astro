@@ -38,7 +38,6 @@ import '../styles/global.css';
         <a href={`${BASE}deep-sea/`} target="_blank" class:list={["nav-deepsea", { active: currentNav === "deep-sea" }]}>深海探秘</a>
         <a href={`${BASE}hollow-earth/`} target="_blank" class:list={["nav-hollow", { active: currentNav === "hollow-earth" }]}>地心文明</a>
         <a href={`${BASE}community/`} target="_blank" class:list={["nav-community", { active: currentNav === "community" }]}>社区</a>
-        <a href={`${BASE}member/`} target="_blank" class:list={["nav-member", { active: currentNav === "member" }]}>会员专区</a>
         <a href={`${BASE}guide/`} target="_blank">指南</a>
       </div>
       <!-- 搜索栏 -->
@@ -69,95 +68,13 @@ import '../styles/global.css';
     <p class="text-muted">本站为爱好者公益站点，所有内容由社区成员贡献。如有侵权请联系删除。</p>
   </footer>
 
-  <!-- 客户端脚本（相对路径让 Astro 自动编译打包，并自动添加 base 前缀） -->
+  <!-- 客户端脚本 -->
   <script src="../scripts/console.ts"></script>
   <script src="../scripts/progress.ts"></script>
   <script src="../scripts/search.ts"></script>
+  <script src="../scripts/nav-user-area.ts"></script>
   <script>
-    // BASE 路径前缀，从 window.__BASE__ 读取（由 head 中 define:vars 脚本注入）
-    const BASE = window.__BASE__ || '/';
-    // 导航栏用户区渲染
-    (function() {
-      const area = document.getElementById('nav-user-area');
-      if (!area) return;
-      const loggedIn = localStorage.getItem('arg_logged_in') === 'true';
-      const username = localStorage.getItem('arg_username');
-      // 根据登录用户映射显示名
-      const displayNames: Record<string, string> = { lyu: 'signal_屿', shenci: '地下三尺' };
-      const displayName = (username && displayNames[username]) || username || '';
-
-      if (!loggedIn || !username) {
-        // L0: 未登录 — 保持静态HTML中的登录链接，无需修改
-        return;
-      }
-
-      // L1+: 已登录，显示用户名 + 下拉
-      let menuItems = [
-        { label: '个人中心', href: BASE + 'user/center/' + (username || '') + '/' },
-        { label: '私信箱', href: BASE + 'inbox/' + (username || '') + '/' },
-      ];
-      menuItems.push({ label: '退出登录', href: '#', action: 'logout' });
-
-      const itemStyle = 'display:block;padding:8px 14px;color:#ccc;font-size:0.82rem;border-bottom:1px solid #3a3d44;cursor:pointer;';
-      const menuHTML = menuItems.map(item => {
-        if (item.action === 'logout') {
-          return `<span style="${itemStyle}color:#c0392b;" data-action="logout">退出登录</span>`;
-        }
-        return `<span style="${itemStyle}" data-href="${item.href}">${item.label}</span>`;
-      }).join('');
-
-      area.innerHTML = `
-        <span id="nav-user-name" style="color:#e0dcd5;font-size:0.82rem;padding:4px 2px 4px 10px;border-radius:2px 0 0 2px;white-space:nowrap;cursor:pointer;">${displayName}</span>
-        <span id="nav-user-arrow" style="color:#b0aca5;font-size:0.65rem;cursor:pointer;padding:4px 8px 4px 2px;user-select:none;">▾</span>
-        <div id="nav-dropdown" style="display:none;position:absolute;right:0;top:100%;margin-top:4px;background:#2a2d35;border:1px solid #444;border-radius:2px;min-width:120px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-          ${menuHTML}
-        </div>
-      `;
-
-      const userName = document.getElementById('nav-user-name')!;
-      const arrowEl = document.getElementById('nav-user-arrow')!;
-      const dropdown = document.getElementById('nav-dropdown')!;
-
-      // 用户名点击 → 个人中心
-      userName.addEventListener('click', () => { window.open(BASE + 'user/center/', '_blank'); });
-      userName.addEventListener('mouseenter', () => { userName.style.color = '#fff'; userName.style.background = 'rgba(255,255,255,0.08)'; });
-      userName.addEventListener('mouseleave', () => { userName.style.color = '#e0dcd5'; userName.style.background = ''; });
-
-      // 箭头 hover
-      arrowEl.addEventListener('mouseenter', () => { arrowEl.style.color = '#fff'; });
-      arrowEl.addEventListener('mouseleave', () => { arrowEl.style.color = '#b0aca5'; });
-
-      // 箭头点击 → 切换下拉
-      arrowEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-      });
-      document.addEventListener('click', () => { dropdown.style.display = 'none'; });
-
-      // 下拉菜单项点击 → 跳转
-      dropdown.querySelectorAll('[data-href]').forEach(item => {
-        const el = item as HTMLElement;
-        el.addEventListener('mouseenter', () => { el.style.background = '#3a3d44'; el.style.color = '#fff'; });
-        el.addEventListener('mouseleave', () => { el.style.background = ''; el.style.color = '#ccc'; });
-        el.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const href = el.dataset.href;
-          if (href) window.open(href, '_blank');
-        });
-      });
-
-      // 退出登录
-      const logoutItem = dropdown.querySelector('[data-action="logout"]') as HTMLElement;
-      if (logoutItem) {
-        logoutItem.addEventListener('click', () => {
-          localStorage.removeItem('arg_logged_in');
-          localStorage.removeItem('arg_username');
-          window.location.href = BASE + 'login/';
-        });
-        logoutItem.addEventListener('mouseenter', () => { logoutItem.style.background = '#3a3d44'; logoutItem.style.color = '#e74c3c'; });
-        logoutItem.addEventListener('mouseleave', () => { logoutItem.style.background = ''; logoutItem.style.color = '#c0392b'; });
-      }
-    })();
+    initNavUserArea(window.__BASE__ || '/');
   </script>
 </body>
 </html>
@@ -175,10 +92,10 @@ import '../styles/global.css';
 
   /* 导航搜索栏 */
   .nav-search {
-    display: flex; align-items: center; gap: 0; margin-left: auto; margin-right: 8px;
+    display: flex; align-items: center; gap: 0; margin-left: auto; margin-right: 8px; flex-shrink: 0;
   }
   .nav-search input {
-    width: 140px; max-width: 140px; padding: 5px 8px;
+    width: 150px; max-width: 150px; padding: 5px 8px;
     background: #2a2d35; border: 1px solid #444; border-right: none; border-radius: 2px 0 0 2px;
     color: #ccc; font-size: 0.75rem; outline: none;
   }

@@ -215,7 +215,7 @@ describe('Immersion Regression Tests', () => {
         'trigger/rift/index.html',
         'trigger/stargate/index.html',
         'trigger/base/index.html',
-        'hidden/darknet/index.html',
+        'hidden/panlongxia/index.html',
         'hidden/admin/index.html',
         'hidden/board/index.html',
         'hidden/operation/index.html',

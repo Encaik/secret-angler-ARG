@@ -15,7 +15,7 @@ export const STAFF_PASSWORD = 'portal2026';
 export const ADMIN_USERS = ['admin', '首座', '监院'];
 export const STAFF_USERS = ['staff'];
 
-/** 暗网交易市场凭证（/hidden/darknet/） */
+/** 暗网交易市场凭证（/hidden/panlongxia/） */
 export const DARKNET_ACCOUNTS: Record<string, string> = {
   'DR-2026-03': 'rift0603',
 };

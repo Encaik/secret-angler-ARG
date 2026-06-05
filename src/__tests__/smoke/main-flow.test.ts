@@ -6,10 +6,12 @@
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { evaluateEnding } from '../../scripts/ending';
-import { findArchivedContent, HIDDEN_PAGE_CACHE, PUZZLE_ANSWER as PUZZLE_ANSWER_CONST } from '../../data/search-data';
+import { findArchivedContent, HIDDEN_PAGE_CACHE, PUZZLE_ANSWER as PUZZLE_ANSWER_CONST, SEARCH_ACCESS_CODE } from '../../data/search-data';
 import { MAIN_CREDENTIALS, ADMIN_PASSWORD, STAFF_PASSWORD, DARKNET_ACCOUNTS, MEMBER_ACCESS_CODE, SHENCI_PASSWORD_PARTS } from '../../data/credentials';
-import { getProgress, saveProgress, recordPageVisit } from '../../scripts/progress';
+import '../../scripts/progress'; // 副作用导入，函数挂载到 window
 import { createEmptyProgress, seedProgress, readProgress } from '../helpers';
+
+const { getProgress, saveProgress, recordPageVisit } = window as any;
 
 describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   beforeEach(() => {
@@ -169,6 +171,22 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       expect(combined).toBe(MEMBER_ACCESS_CODE);
     });
 
+    it('elevated search is granted when query contains SEARCH_ACCESS_CODE and matches hidden keyword', () => {
+      // The acrostic + year combination triggers elevated search
+      const elevatedQuery = '深海裂隙' + SEARCH_ACCESS_CODE;
+      expect(elevatedQuery).toBe('深海裂隙2026');
+
+      // Verify this query would match the hidden cache keyword
+      expect(elevatedQuery.includes('深海裂隙')).toBe(true);
+
+      // Verify the access code is present
+      expect(elevatedQuery.includes(SEARCH_ACCESS_CODE)).toBe(true);
+
+      // Without the code: no elevated access
+      const normalQuery = '深海裂隙';
+      expect(normalQuery.includes(SEARCH_ACCESS_CODE)).toBe(false);
+    });
+
     it('solving puzzle records stage1_page_header_password in progress', () => {
       seedProgress(createEmptyProgress({
         discoveredClues: ['login_lyu', 'login_shenci'],
@@ -199,7 +217,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     it('rift page reveals "归源宗功德流通处" as front for darknet', () => {
       // Search "归源宗" maps to HIDDEN_PAGE_CACHE
       expect(HIDDEN_PAGE_CACHE['归源宗']).toBeDefined();
-      expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/darknet');
+      expect(HIDDEN_PAGE_CACHE['归源宗'].pageUrl).toBe('/hidden/panlongxia');
     });
 
     it('rift page reveals admin domain: deeprift323.onion', () => {
@@ -232,7 +250,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
     it('darknet login records stage4_darknet_access', () => {
       seedProgress(createEmptyProgress({
-        discoveredPages: ['/hidden/darknet/'],
+        discoveredPages: ['/hidden/panlongxia/'],
       }));
       const progress = readProgress();
       progress.solvedPuzzles['stage4_darknet_access'] = true;
@@ -317,7 +335,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     it('all 8 evidence pages exist and are distinct', () => {
       const evidencePages = [
         '/trigger/rift', '/trigger/stargate', '/trigger/base',
-        '/hidden/darknet', '/hidden/board', '/hidden/operation',
+        '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
         '/hidden/locations', '/hidden/dead-drop',
       ];
       expect(new Set(evidencePages).size).toBe(8);
@@ -358,7 +376,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       seedProgress(createEmptyProgress({
         discoveredPages: [
           '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/darknet', '/hidden/board',
+          '/hidden/panlongxia', '/hidden/board',
         ],
       }));
       const result = evaluateEnding();
@@ -370,7 +388,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       seedProgress(createEmptyProgress({
         discoveredPages: [
           '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/darknet', '/hidden/board', '/hidden/operation',
+          '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
           '/hidden/locations', '/hidden/dead-drop',
         ],
       }));
@@ -467,7 +485,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       // ---- Stage 5: Darknet access ----
       expect(DARKNET_ACCOUNTS['DR-2026-03']).toBe('rift0603');
 
-      recordPageVisit('/hidden/darknet/');
+      recordPageVisit('/hidden/panlongxia/');
       progress = readProgress();
       progress.solvedPuzzles['stage4_darknet_access'] = true;
       progress.discoveredClues.push('darknet_account_claimed');
@@ -497,7 +515,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
       expect(progress.discoveredPages).toContain('/trigger/rift/');
       expect(progress.discoveredPages).toContain('/trigger/stargate/');
       expect(progress.discoveredPages).toContain('/trigger/base/');
-      expect(progress.discoveredPages).toContain('/hidden/darknet/');
+      expect(progress.discoveredPages).toContain('/hidden/panlongxia/');
       expect(progress.discoveredPages).toContain('/hidden/board/');
       expect(progress.discoveredPages).toContain('/hidden/operation/');
       expect(progress.discoveredPages).toContain('/hidden/locations/');

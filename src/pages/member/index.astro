@@ -1,21 +1,21 @@
 ---
-// /member/ — 会员专区入口
+// /member/ — 加密共享入口（沈辞云盘）
 // 如果已通过"深海裂隙2026"解锁，直接跳转到云盘共享页
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<Layout title="会员专区">
+<Layout title="加密共享">
   <div class="breadcrumb">
     <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>
     <a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>
-    会员专区
+    加密共享
   </div>
 
   <div class="card" style="text-align: center; padding: 40px; max-width: 500px; margin: 40px auto;">
-    <h2>🔒 会员专区</h2>
+    <h2>🔒 加密共享</h2>
     <hr />
-    <p class="text-muted">此板块需要会员权限。请确认你的账号已通过探秘者认证。</p>
+    <p class="text-muted">此文件已加密。请输入提取码后访问。</p>
     <div style="margin-top: 20px;">
       <a href={`${BASE}community/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
         返回社区 →

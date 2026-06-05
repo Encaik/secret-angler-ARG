@@ -131,7 +131,7 @@ export function makeStage5Progress(): GameProgress {
       '/', '/community/post/247/', '/login/', '/user/center/lyu/',
       '/inbox/lyu/', '/user/center/shenci/', '/user/shenci/',
       '/trigger/rift/', '/trigger/stargate/', '/trigger/base/', '/member/',
-      '/hidden/darknet/', '/about/',
+      '/hidden/panlongxia/', '/about/',
     ],
     discoveredClues: ['login_lyu', 'login_shenci', 'shenci_credentials', 'darknet_account_claimed'],
     solvedPuzzles: {
@@ -152,7 +152,7 @@ export function makeStage6Progress(): GameProgress {
       '/', '/community/post/247/', '/login/', '/user/center/lyu/',
       '/inbox/lyu/', '/user/center/shenci/', '/user/shenci/',
       '/trigger/rift/', '/trigger/stargate/', '/trigger/base/', '/member/',
-      '/hidden/darknet/', '/about/', '/hidden/admin/',
+      '/hidden/panlongxia/', '/about/', '/hidden/admin/',
       '/hidden/board/', '/hidden/operation/', '/hidden/locations/',
       '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/',
     ],

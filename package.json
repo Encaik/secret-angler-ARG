@@ -14,13 +14,16 @@
     "test:unit": "vitest run src/__tests__/unit/",
     "test:integration": "vitest run src/__tests__/integration/",
     "test:integrity": "vitest run src/__tests__/integrity/",
-    "test:ci": "astro check && vitest run && astro build"
+    "test:ci": "astro check && vitest run && astro build",
+    "test:e2e": "npx playwright test",
+    "test:e2e:smoke": "npx playwright test --grep smoke"
   },
   "dependencies": {
     "astro": "^4.16.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^20.14.0",
     "jsdom": "^29.1.1",
     "typescript": "^5.9.3",
