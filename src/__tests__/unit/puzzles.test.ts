@@ -24,20 +24,29 @@ describe('PUZZLES array', () => {
   });
 
   it('has stages 1 through 7', () => {
-    const stages = PUZZLES.map(p => p.stage).sort();
+    const stages = PUZZLES.map((p) => p.stage).sort();
     expect(stages).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
 
   it('has no duplicate puzzle IDs', () => {
-    const ids = PUZZLES.map(p => p.id);
+    const ids = PUZZLES.map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
   it('each puzzle has all required fields', () => {
     const requiredFields: (keyof Puzzle)[] = [
-      'id', 'stage', 'difficulty', 'type', 'name',
-      'answerHash', 'clueLocations', 'hintTexts',
-      'requiresClue', 'unlocksPages', 'progressWeight', 'clueTags',
+      'id',
+      'stage',
+      'difficulty',
+      'type',
+      'name',
+      'answerHash',
+      'clueLocations',
+      'hintTexts',
+      'requiresClue',
+      'unlocksPages',
+      'progressWeight',
+      'clueTags',
     ];
 
     for (const puzzle of PUZZLES) {
@@ -51,7 +60,7 @@ describe('PUZZLES array', () => {
     for (const puzzle of PUZZLES) {
       expect(
         puzzle.clueLocations.length,
-        `${puzzle.id} should have >= 1 clueLocations, got ${puzzle.clueLocations.length}`
+        `${puzzle.id} should have >= 1 clueLocations, got ${puzzle.clueLocations.length}`,
       ).toBeGreaterThanOrEqual(1);
     }
   });
@@ -60,7 +69,7 @@ describe('PUZZLES array', () => {
     for (const puzzle of PUZZLES) {
       expect(
         puzzle.hintTexts.length,
-        `${puzzle.id} should have >= 2 hintTexts, got ${puzzle.hintTexts.length}`
+        `${puzzle.id} should have >= 2 hintTexts, got ${puzzle.hintTexts.length}`,
       ).toBeGreaterThanOrEqual(2);
     }
   });
@@ -68,10 +77,9 @@ describe('PUZZLES array', () => {
   it('all answerHashes are non-empty hex strings (actual SHA-256 = 64 chars, placeholders may differ)', () => {
     for (const puzzle of PUZZLES) {
       expect(puzzle.answerHash, `${puzzle.id} answerHash is empty`).toBeTruthy();
-      expect(
-        /^[0-9a-f]+$/i.test(puzzle.answerHash),
-        `${puzzle.id} answerHash "${puzzle.answerHash}" is not hex`
-      ).toBe(true);
+      expect(/^[0-9a-f]+$/i.test(puzzle.answerHash), `${puzzle.id} answerHash "${puzzle.answerHash}" is not hex`).toBe(
+        true,
+      );
     }
   });
 
@@ -103,35 +111,26 @@ describe('PUZZLES array', () => {
     for (const puzzle of PUZZLES) {
       expect(
         VALID_DIFFICULTIES.includes(puzzle.difficulty),
-        `${puzzle.id} has invalid difficulty: ${puzzle.difficulty}`
+        `${puzzle.id} has invalid difficulty: ${puzzle.difficulty}`,
       ).toBe(true);
     }
   });
 
   it('all types are valid', () => {
     for (const puzzle of PUZZLES) {
-      expect(
-        VALID_TYPES.includes(puzzle.type),
-        `${puzzle.id} has invalid type: ${puzzle.type}`
-      ).toBe(true);
+      expect(VALID_TYPES.includes(puzzle.type), `${puzzle.id} has invalid type: ${puzzle.type}`).toBe(true);
     }
   });
 
   it('all progressWeights are positive', () => {
     for (const puzzle of PUZZLES) {
-      expect(
-        puzzle.progressWeight,
-        `${puzzle.id} progressWeight should be > 0`
-      ).toBeGreaterThan(0);
+      expect(puzzle.progressWeight, `${puzzle.id} progressWeight should be > 0`).toBeGreaterThan(0);
     }
   });
 
   it('each puzzle has at least 1 clueTag', () => {
     for (const puzzle of PUZZLES) {
-      expect(
-        puzzle.clueTags.length,
-        `${puzzle.id} should have >= 1 clueTags`
-      ).toBeGreaterThanOrEqual(1);
+      expect(puzzle.clueTags.length, `${puzzle.id} should have >= 1 clueTags`).toBeGreaterThanOrEqual(1);
     }
   });
 });

@@ -1,0 +1,269 @@
+/* ========================================
+   探秘者联盟 — 可复用组件样式
+   卡片、标签、按钮、表单、搜索框、帖文列表、分页、装饰元素
+   ======================================== */
+
+/* --- 卡片 --- */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 12px;
+}
+
+/* --- 标签 --- */
+.tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 1px 8px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  text-decoration: none;
+  margin-right: 4px;
+}
+
+.tag-alien {
+  background: var(--color-tag-alien);
+}
+.tag-ruins {
+  background: var(--color-tag-ruins);
+}
+.tag-mystery {
+  background: var(--color-tag-mystery);
+}
+.tag-legend {
+  background: var(--color-tag-legend);
+}
+.tag-nature {
+  background: var(--color-tag-nature);
+}
+.tag-deepsea {
+  background: var(--color-tag-deepsea);
+}
+.tag-hollow {
+  background: var(--color-tag-hollow);
+}
+
+/* --- 按钮 --- */
+button,
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 5px 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+button:hover,
+.btn:hover {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-accent-light);
+}
+
+/* --- 代码块 --- */
+code {
+  font-family: var(--font-code);
+  font-size: 0.88em;
+  background: var(--color-bg-secondary);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  background: var(--color-bg-dark);
+  color: #d4d4d4;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* --- 搜索框 --- */
+.search-bar {
+  display: flex;
+  gap: 0;
+  margin: 10px 0;
+}
+
+.search-bar input {
+  max-width: 280px;
+  border-right: none;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.search-bar button {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-left: none;
+}
+
+/* --- 点位景观头图（CSS渐变模拟真实风景照） --- */
+.location-hero {
+  width: 100%;
+  height: 180px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.location-hero.mountains {
+  background: linear-gradient(
+    180deg,
+    #87ceeb 0%,
+    #b0c4de 30%,
+    #8b9dc3 45%,
+    #6b7b8d 55%,
+    #4a6741 65%,
+    #3d5c30 80%,
+    #5c7a4a 100%
+  );
+}
+.location-hero.mountains::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background:
+    /* 山峦剪影 */
+    linear-gradient(175deg, transparent 30%, #5c7a4a 30.5%, #4a5e3a 50%, transparent 50.5%),
+    linear-gradient(185deg, transparent 40%, #6b8b5a 40.5%, #556b3a 55%, #3d4e2a 60%, transparent 60.5%),
+    linear-gradient(170deg, transparent 45%, #7a9a6a 45.5%, #6a8a5a 65%, transparent 65.5%);
+}
+.location-hero.desert {
+  background: linear-gradient(180deg, #f4a460 0%, #deb887 35%, #d2a679 50%, #c4956a 65%, #d2b48c 80%, #c4a882 100%);
+}
+.location-hero.desert::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(175deg, transparent 60%, #b8956a 60.5%, #a08060 75%, transparent 75.5%);
+}
+.location-hero.forest {
+  background: linear-gradient(180deg, #87ceeb 0%, #90b4a0 25%, #4a7c59 45%, #2d5a3d 60%, #1e3d28 80%, #0f1f14 100%);
+}
+.location-hero.forest::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background:
+    linear-gradient(170deg, transparent 40%, #3d6b4a 40.5%, #2d4a35 55%, transparent 55.5%),
+    linear-gradient(190deg, transparent 35%, #4d7b5a 35.5%, #3d6b4a 55%, #1d2d25 70%, transparent 70.5%);
+}
+.location-hero.plateau {
+  background: linear-gradient(180deg, #87ceeb 0%, #b0c4de 20%, #8b9d8b 50%, #6b7b5d 65%, #4a5a3d 100%);
+}
+.location-hero.plateau::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background:
+    linear-gradient(180deg, transparent 30%, #7a9a6a 30.5%, #5a7a4a 50%, #3a5a2a 70%, transparent 70.5%),
+    /* 雪山 */ linear-gradient(160deg, transparent 55%, #f0f0f0 55.5%, #e0e0e0 60%, #d0d0d0 65%, transparent 65.5%);
+}
+
+/* --- 帖文配图占位（模拟真实论坛的低清照片） --- */
+.post-photo {
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--color-border-light);
+  background: #d5cdc0;
+}
+.post-photo::after {
+  content: '📷';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  opacity: 0.4;
+}
+.post-photo.landscape {
+  background: linear-gradient(180deg, #b0c4de 0%, #9ab0c4 30%, #7a9a6a 50%, #5a7a4a 75%, #3a4a2a 100%);
+}
+.post-photo.ruins {
+  background: linear-gradient(180deg, #c4b896 0%, #a89878 40%, #8b7d6b 60%, #6b5d4b 100%);
+}
+.post-photo.night-sky {
+  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3a 60%, #2a2a4a 80%, #3a3a4a 100%);
+}
+.post-photo.night-sky::after {
+  content: '✨';
+}
+
+/* --- 文章列表项 --- */
+.post-item,
+.location-item {
+  border-bottom: 1px dotted var(--color-border-light);
+  padding: 10px 0;
+}
+
+.post-item:last-child,
+.location-item:last-child {
+  border-bottom: none;
+}
+
+.post-item .post-title {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.post-item .post-title a {
+  text-decoration: none;
+}
+
+.post-item .post-meta {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* --- 分页 --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+
+.pagination a,
+.pagination span {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+}
+
+.pagination span.current {
+  background: var(--color-bg-secondary);
+  font-weight: bold;
+}

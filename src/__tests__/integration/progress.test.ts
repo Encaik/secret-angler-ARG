@@ -106,15 +106,17 @@ describe('recordPageVisit', () => {
     recordPageVisit('/a/');
 
     const progress = readProgress();
-    const count = progress.discoveredPages.filter(p => p === '/a/').length;
+    const count = progress.discoveredPages.filter((p) => p === '/a/').length;
     expect(count).toBe(1);
   });
 
   it('sets playerTargeted after 4 hidden/trigger pages visited', () => {
-    seedProgress(createEmptyProgress({
-      discoveredPages: ['/hidden/a/', '/hidden/b/', '/trigger/a/'],
-      playerTargeted: false,
-    }));
+    seedProgress(
+      createEmptyProgress({
+        discoveredPages: ['/hidden/a/', '/hidden/b/', '/trigger/a/'],
+        playerTargeted: false,
+      }),
+    );
 
     // 4th hidden/trigger page
     recordPageVisit('/hidden/c/');
@@ -124,10 +126,12 @@ describe('recordPageVisit', () => {
   });
 
   it('does not set playerTargeted with only 3 hidden/trigger pages', () => {
-    seedProgress(createEmptyProgress({
-      discoveredPages: ['/hidden/a/', '/hidden/b/'],
-      playerTargeted: false,
-    }));
+    seedProgress(
+      createEmptyProgress({
+        discoveredPages: ['/hidden/a/', '/hidden/b/'],
+        playerTargeted: false,
+      }),
+    );
 
     recordPageVisit('/trigger/a/');
 
@@ -136,10 +140,12 @@ describe('recordPageVisit', () => {
   });
 
   it('does not set playerTargeted for non-hidden pages', () => {
-    seedProgress(createEmptyProgress({
-      discoveredPages: ['/home/', '/about/', '/community/'],
-      playerTargeted: false,
-    }));
+    seedProgress(
+      createEmptyProgress({
+        discoveredPages: ['/home/', '/about/', '/community/'],
+        playerTargeted: false,
+      }),
+    );
 
     recordPageVisit('/links/');
 

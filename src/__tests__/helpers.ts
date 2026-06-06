@@ -78,7 +78,14 @@ export function makeLyuLoggedInProgress(): GameProgress {
 /** 阶段2：已登录 shenci — 可看隐藏帖文 */
 export function makeShenciLoggedInProgress(): GameProgress {
   return createEmptyProgress({
-    discoveredPages: ['/', '/community/post/247/', '/login/', '/user/center/lyu/', '/inbox/lyu/', '/user/center/shenci/'],
+    discoveredPages: [
+      '/',
+      '/community/post/247/',
+      '/login/',
+      '/user/center/lyu/',
+      '/inbox/lyu/',
+      '/user/center/shenci/',
+    ],
     discoveredClues: ['login_lyu', 'login_shenci', 'shenci_credentials'],
     solvedPuzzles: {
       shenci_password: true,
@@ -92,8 +99,14 @@ export function makeShenciLoggedInProgress(): GameProgress {
 export function makeStage3Progress(): GameProgress {
   return createEmptyProgress({
     discoveredPages: [
-      '/', '/community/post/247/', '/login/', '/user/center/lyu/',
-      '/inbox/lyu/', '/user/center/shenci/', '/user/shenci/', '/trigger/rift/',
+      '/',
+      '/community/post/247/',
+      '/login/',
+      '/user/center/lyu/',
+      '/inbox/lyu/',
+      '/user/center/shenci/',
+      '/user/shenci/',
+      '/trigger/rift/',
     ],
     discoveredClues: ['login_lyu', 'login_shenci', 'shenci_credentials'],
     solvedPuzzles: {
@@ -109,9 +122,17 @@ export function makeStage3Progress(): GameProgress {
 export function makeStage4Progress(): GameProgress {
   return createEmptyProgress({
     discoveredPages: [
-      '/', '/community/post/247/', '/login/', '/user/center/lyu/',
-      '/inbox/lyu/', '/user/center/shenci/', '/user/shenci/',
-      '/trigger/rift/', '/trigger/stargate/', '/trigger/base/', '/member/',
+      '/',
+      '/community/post/247/',
+      '/login/',
+      '/user/center/lyu/',
+      '/inbox/lyu/',
+      '/user/center/shenci/',
+      '/user/shenci/',
+      '/trigger/rift/',
+      '/trigger/stargate/',
+      '/trigger/base/',
+      '/member/',
     ],
     discoveredClues: ['login_lyu', 'login_shenci', 'shenci_credentials'],
     solvedPuzzles: {
@@ -128,10 +149,19 @@ export function makeStage4Progress(): GameProgress {
 export function makeStage5Progress(): GameProgress {
   return createEmptyProgress({
     discoveredPages: [
-      '/', '/community/post/247/', '/login/', '/user/center/lyu/',
-      '/inbox/lyu/', '/user/center/shenci/', '/user/shenci/',
-      '/trigger/rift/', '/trigger/stargate/', '/trigger/base/', '/member/',
-      '/hidden/panlongxia/', '/about/',
+      '/',
+      '/community/post/247/',
+      '/login/',
+      '/user/center/lyu/',
+      '/inbox/lyu/',
+      '/user/center/shenci/',
+      '/user/shenci/',
+      '/trigger/rift/',
+      '/trigger/stargate/',
+      '/trigger/base/',
+      '/member/',
+      '/hidden/panlongxia/',
+      '/about/',
     ],
     discoveredClues: ['login_lyu', 'login_shenci', 'shenci_credentials', 'darknet_account_claimed'],
     solvedPuzzles: {
@@ -149,17 +179,28 @@ export function makeStage5Progress(): GameProgress {
 export function makeStage6Progress(): GameProgress {
   return createEmptyProgress({
     discoveredPages: [
-      '/', '/community/post/247/', '/login/', '/user/center/lyu/',
-      '/inbox/lyu/', '/user/center/shenci/', '/user/shenci/',
-      '/trigger/rift/', '/trigger/stargate/', '/trigger/base/', '/member/',
-      '/hidden/panlongxia/', '/about/', '/hidden/admin/',
-      '/hidden/board/', '/hidden/operation/', '/hidden/locations/',
-      '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/',
+      '/',
+      '/community/post/247/',
+      '/login/',
+      '/user/center/lyu/',
+      '/inbox/lyu/',
+      '/user/center/shenci/',
+      '/user/shenci/',
+      '/trigger/rift/',
+      '/trigger/stargate/',
+      '/trigger/base/',
+      '/member/',
+      '/hidden/panlongxia/',
+      '/about/',
+      '/hidden/admin/',
+      '/hidden/board/',
+      '/hidden/operation/',
+      '/hidden/locations/',
+      '/hidden/dead-drop/',
+      '/hidden/targets/',
+      '/hidden/evidence-locker/',
     ],
-    discoveredClues: [
-      'login_lyu', 'login_shenci', 'shenci_credentials',
-      'darknet_account_claimed', 'admin_access',
-    ],
+    discoveredClues: ['login_lyu', 'login_shenci', 'shenci_credentials', 'darknet_account_claimed', 'admin_access'],
     solvedPuzzles: {
       shenci_password: true,
       stage2_acrostic_journal: true,

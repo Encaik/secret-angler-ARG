@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "description": "ARG游戏《秘境垂钓者》- 深空古迹探秘导航站",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -16,7 +19,13 @@
     "test:integrity": "vitest run src/__tests__/integrity/",
     "test:ci": "astro check && vitest run && astro build",
     "test:e2e": "npx playwright test",
-    "test:e2e:smoke": "npx playwright test --grep smoke"
+    "test:e2e:smoke": "npx playwright test --grep smoke",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.{astro,ts,css,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,css,json,md}\"",
+    "check": "astro check && eslint src/ && vitest run && astro build",
+    "prepare": "husky"
   },
   "dependencies": {
     "astro": "^4.16.0"
@@ -25,7 +34,16 @@
     "@astrojs/check": "^0.9.9",
     "@playwright/test": "^1.60.0",
     "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "eslint": "^10.4.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.7.0",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.7",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
     "vitest": "^1.6.0"
   }

@@ -3,19 +3,43 @@
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="大江的个人主页">
-  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>大江</div>
+  <div class="breadcrumb">
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank"
+      >探秘者社区</a
+    ><span>›</span>大江
+  </div>
   <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="width:56px;height:56px;border-radius:50%;background:#4a7c5a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">🎣</div>
+    <div
+      style="width:56px;height:56px;border-radius:50%;background:#4a7c5a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;"
+    >
+      🎣
+    </div>
     <div style="flex:1;">
       <h2 style="margin-bottom:2px;">大江</h2>
       <p class="text-muted" style="margin-bottom:6px;">账号：bigriver · 注册于 2025-02-10</p>
-      <p style="font-size:0.9rem;">钓鱼二十多年了。不玩竞技，不搞装备，就是喜欢坐在水边发呆。长江从源头到入海口断断续续跑了大半，每个江段的水色、流速、鱼情都不一样。最近几年鱼明显少了——不是钓鱼的人多了，是水变了。有些钓点已经不在了，淹的淹、干的干。趁还记得，记下来。</p>
-      <span class="tag tag-nature">钓鱼</span> <span class="tag tag-nature">江河</span>
+      <p style="font-size:0.9rem;">
+        钓鱼二十多年了。不玩竞技，不搞装备，就是喜欢坐在水边发呆。长江从源头到入海口断断续续跑了大半，每个江段的水色、流速、鱼情都不一样。最近几年鱼明显少了——不是钓鱼的人多了，是水变了。有些钓点已经不在了，淹的淹、干的干。趁还记得，记下来。
+      </p>
+      <span class="tag tag-nature">钓鱼</span>
+      <span class="tag tag-nature">江河</span>
     </div>
   </div>
   <h3>📝 最近动态</h3>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">金沙江这段水又浑了。上游肯定在施工。蹲了三个小时就上了两条白条，都不够猫吃的。以前这里一个下午能拉十几条。变化太快了，再过五年可能连水都没了。</p><div class="post-meta">2026-05-10</div></div>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">在乌江支流发现一个老钓位——石头垒的台子，长了青苔。应该是多年前的钓友留下的。试了一下，水深两米出头，底是沙质的。上了两条鲫鱼，品相不错。</p><div class="post-meta">2026-04-02</div></div>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">提醒一下钓友们：最近长江禁渔期，主河道不能下竿。可以玩支流和水库。别存侥幸心理——被逮到罚款够买一年鱼竿的。</p><div class="post-meta">2026-03-15</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      金沙江这段水又浑了。上游肯定在施工。蹲了三个小时就上了两条白条，都不够猫吃的。以前这里一个下午能拉十几条。变化太快了，再过五年可能连水都没了。
+    </p><div class="post-meta">2026-05-10</div>
+  </div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      在乌江支流发现一个老钓位——石头垒的台子，长了青苔。应该是多年前的钓友留下的。试了一下，水深两米出头，底是沙质的。上了两条鲫鱼，品相不错。
+    </p><div class="post-meta">2026-04-02</div>
+  </div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      提醒一下钓友们：最近长江禁渔期，主河道不能下竿。可以玩支流和水库。别存侥幸心理——被逮到罚款够买一年鱼竿的。
+    </p><div class="post-meta">2026-03-15</div>
+  </div>
 </Layout>

@@ -3,8 +3,12 @@
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="神农架远古石阵">
-  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}ruins/`} target="_blank">古迹秘境</a><span>›</span>神农架远古石阵</div>
+  <div class="breadcrumb">
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}ruins/`} target="_blank">古迹秘境</a
+    ><span>›</span>神农架远古石阵
+  </div>
   <div class="location-hero forest"></div>
   <h2>🗿 神农架远古石阵</h2>
   <table style="margin-top:12px;">
@@ -16,8 +20,15 @@ const BASE = __BASE_PATH__;
   </table>
   <hr />
   <h3>遗迹描述</h3>
-  <p>位于神农架核心区的一处疑似史前天文观测台。巨石环绕排列，直径约18米，共11块立石（现存9块完整，2块倾倒）。排列方向精确指向冬至日出方位，误差不超过0.5度。</p>
-  <p>石阵中央有一块直径约2米的扁平"祭坛石"。沈辞在<a href={`${BASE}user/shenci/`} target="_blank">探访笔记</a>中记录：该石表面有明显的熔化痕迹——类似高温烧灼后冷却形成的玻璃质表面。需要极高温度（1500°C以上）才能造成。但该区域没有任何火山活动的地质记录。</p>
+  <p>
+    位于神农架核心区的一处疑似史前天文观测台。巨石环绕排列，直径约18米，共11块立石（现存9块完整，2块倾倒）。排列方向精确指向冬至日出方位，误差不超过0.5度。
+  </p>
+  <p>
+    石阵中央有一块直径约2米的扁平"祭坛石"。沈辞在<a href={`${BASE}user/shenci/`} target="_blank">探访笔记</a
+    >中记录：该石表面有明显的熔化痕迹——类似高温烧灼后冷却形成的玻璃质表面。需要极高温度（1500°C以上）才能造成。但该区域没有任何火山活动的地质记录。
+  </p>
   <h3>探秘建议</h3>
-  <p>石阵位于神农架核心保护区边缘，进入需向当地林业部门报备。建议携带拓印工具记录石面纹理。注意：该区域近期有人为活动的痕迹——新鲜篝火、包装垃圾等。来源不明。</p>
+  <p>
+    石阵位于神农架核心保护区边缘，进入需向当地林业部门报备。建议携带拓印工具记录石面纹理。注意：该区域近期有人为活动的痕迹——新鲜篝火、包装垃圾等。来源不明。
+  </p>
 </Layout>

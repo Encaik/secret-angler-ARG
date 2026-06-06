@@ -1,0 +1,136 @@
+/* ========================================
+   探秘者联盟 — 布局样式
+   导航栏、页脚、主内容区、容器、栅格系统
+   ======================================== */
+
+/* --- 容器 --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --- 全局导航 --- */
+.site-header {
+  background: var(--color-bg-dark);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.site-nav {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  min-height: var(--nav-height);
+  padding: 4px 16px;
+  gap: 0;
+}
+
+.site-nav .nav-brand {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: #e0dcd5;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.site-nav .nav-brand:hover {
+  color: #fff;
+}
+
+.site-nav .nav-links {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.site-nav .nav-links a {
+  color: #b0aca5;
+  text-decoration: none;
+  font-size: 0.82rem;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.site-nav .nav-links a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- 页脚 --- */
+.site-footer {
+  margin-top: auto;
+  background: var(--color-bg-dark);
+  color: #888;
+  text-align: center;
+  padding: 16px;
+  font-size: 0.78rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer a {
+  color: #999;
+}
+
+/* --- 页面主内容区 --- */
+.main-content {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 20px 16px;
+  flex: 1;
+}
+
+/* --- 面包屑导航 --- */
+.breadcrumb {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted var(--color-border-light);
+}
+
+.breadcrumb a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  margin: 0 4px;
+  color: var(--color-border);
+}
+
+/* --- 两栏布局 --- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- 隐藏页面通用样式 --- */
+.hidden-page {
+  background: #0d0d0d;
+  color: #ccc;
+  min-height: 100vh;
+}

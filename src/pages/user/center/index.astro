@@ -20,7 +20,7 @@ const BASE = __BASE_PATH__;
 
 <script is:inline>
   // 已登录用户自动跳转到对应静态中心页，无需 JS 切换内容
-  (function() {
+  (function () {
     var loggedIn = localStorage.getItem('arg_logged_in');
     var username = localStorage.getItem('arg_username');
     if (loggedIn === 'true' && username) {

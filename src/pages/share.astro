@@ -3,351 +3,527 @@
 // 独立页面，不使用Layout/HiddenLayout，营造"另一个网站"的感觉
 // 沈辞将调查资料上传到云盘，用"多站同源2026"加密分享给林屿
 ---
+
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex,nofollow" />
-  <title>加密共享 — 轻舟云盘</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #f0f2f5;
-      color: #333;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .container {
-      max-width: 680px; width: 92%;
-      background: #fff; border-radius: 12px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-    .header {
-      background: linear-gradient(135deg, #1677ff, #0958d9);
-      color: #fff; padding: 28px 32px;
-    }
-    .header .brand {
-      font-size: 0.8rem; opacity: 0.8; margin-bottom: 6px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .header .brand svg { width: 18px; height: 18px; opacity: 0.8; }
-    .header h1 { font-size: 1.2rem; font-weight: 500; margin-bottom: 4px; }
-    .header .meta { font-size: 0.78rem; opacity: 0.7; }
-    .header .meta span { margin-right: 16px; }
-
-    .body { padding: 0; }
-
-    /* 文件行 */
-    .file-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 32px; border-bottom: 1px solid #f0f0f0;
-      cursor: pointer; transition: background 0.15s;
-    }
-    .file-item:hover { background: #fafbfc; }
-    .file-item:last-of-type { border-bottom: none; }
-    .file-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
-    }
-    .file-icon.csv { background: #e6f7e6; }
-    .file-icon.txt { background: #f5f5f5; }
-    .file-icon.md { background: #e6f4ff; }
-    .file-info { flex: 1; min-width: 0; }
-    .file-info .name { font-size: 0.9rem; font-weight: 500; margin-bottom: 2px; }
-    .file-info .detail { font-size: 0.72rem; color: #999; }
-    .file-size { font-size: 0.78rem; color: #999; white-space: nowrap; }
-    .file-arrow { color: #ccc; font-size: 0.8rem; }
-
-    /* 文件预览展开 */
-    .file-preview {
-      display: none; padding: 20px 32px 24px;
-      background: #fafbfc; border-bottom: 1px solid #f0f0f0;
-      font-size: 0.84rem; line-height: 1.8;
-    }
-    .file-preview .preview-title {
-      font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; color: #333;
-    }
-    .file-preview .preview-meta {
-      font-size: 0.72rem; color: #999; margin-bottom: 12px;
-    }
-    .file-preview hr { border: none; border-top: 1px solid #e8e8e8; margin-bottom: 12px; }
-    .file-preview table { font-size: 0.76rem; border-collapse: collapse; width: 100%; }
-    .file-preview th { text-align: left; padding: 4px 8px; border-bottom: 1px solid #e0e0e0; color: #666; }
-    .file-preview td { padding: 4px 8px; border-bottom: 1px solid #f0f0f0; font-size: 0.74rem; }
-    .file-preview .highlight { background: #fff7e6; }
-    .file-preview code {
-      background: #1a1a1a; color: #4a8c4a; padding: 8px 12px;
-      border-radius: 4px; font-size: 0.74rem; display: block;
-      white-space: pre-wrap; word-break: break-all; line-height: 1.6;
-    }
-
-    .footer {
-      padding: 16px 32px; background: #fafbfc;
-      border-top: 1px solid #f0f0f0;
-      text-align: center; font-size: 0.72rem; color: #bbb;
-    }
-  </style>
-</head>
-<body>
-
-<div class="container">
-
-  <div class="header">
-    <div class="brand">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-      轻舟云盘 · 加密共享
-    </div>
-    <h1>🔒 调查资料</h1>
-    <div class="meta">
-      <span>创建者：shenci933</span>
-      <span>创建于 2026年4月</span>
-      <span>5个文件</span>
-      <span>提取码：多站同源2026</span>
-    </div>
-  </div>
-
-  <!-- 新上传提示 -->
-  <div style="background: #e6f4ff; border-left: 3px solid #1677ff; padding: 8px 32px; font-size: 0.78rem; color: #555;">
-    最近更新：<strong>2026年5月23日 23:52</strong> — 创建者上传了 1 个新文件
-  </div>
-
-  <!-- 加密门控：需输入提取码才能查看文件内容 -->
-  <div id="lock-prompt" style="padding: 20px 32px; background: #fffbe6; border-bottom: 1px solid #f0e0a0; display: none;">
-    <div style="display: flex; gap: 8px; align-items: center;">
-      <span style="font-size: 1.1rem;">🔐</span>
-      <span style="font-size: 0.82rem; color: #8b6914;">此共享文件夹已加密。请输入提取码查看文件内容：</span>
-    </div>
-    <div style="display: flex; gap: 8px; margin-top: 8px;">
-      <input type="text" id="lock-input" placeholder="提取码" maxlength="30" style="flex: 1; padding: 7px 10px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 0.85rem;" />
-      <button id="lock-submit" style="padding: 7px 18px; background: #1677ff; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">解锁</button>
-    </div>
-    <p id="lock-error" style="font-size: 0.72rem; color: #c0392b; margin-top: 4px; display: none;">提取码不正确</p>
-  </div>
-
-  <div class="body">
-
-    <!-- 文件1 -->
-    <div class="file-item" data-file="coord">
-      <div class="file-icon csv">📊</div>
-      <div class="file-info">
-        <div class="name">坐标交叉比对数据.csv</div>
-        <div class="detail">上传于 2026-04-28 · 47条记录 · 已更新3次</div>
-      </div>
-      <div class="file-size">12.4 KB</div>
-      <div class="file-arrow">▸</div>
-    </div>
-    <div class="file-preview" id="preview-coord">
-      <div class="preview-title">📄 坐标交叉比对数据.csv</div>
-      <div class="preview-meta">上传于 2026-05-20 · 地下三尺</div>
-      <hr />
-      <p style="margin-bottom: 10px;">导航站"外星目击"板块47个推荐点位与实地探访的23处古迹坐标的交叉比对。同一批经纬度被<strong>同时标记为"外星信号热点"和"古迹秘境"</strong>。</p>
-      <table>
-        <tr><th>点位</th><th>坐标</th><th>外星标签</th><th>古迹标签</th><th>距最近村落</th></tr>
-        <tr class="highlight"><td>凤凰山</td><td>44.52, 127.83</td><td>信号异常区</td><td>古祭祀遗址</td><td>8.1 km</td></tr>
-        <tr class="highlight"><td>神农架</td><td>31.58, 110.42</td><td>UFO走廊</td><td>远古石阵</td><td>7.5 km</td></tr>
-        <tr class="highlight"><td>秦岭</td><td>33.25, 107.15</td><td>—</td><td>古栈道石刻</td><td>9.3 km</td></tr>
-        <tr class="highlight"><td>昆仑山</td><td>36.12, 94.55</td><td>脉冲星信号带</td><td>古道石刻群</td><td>11.2 km</td></tr>
-        <tr class="highlight"><td>罗布泊</td><td>40.39, 90.22</td><td>外星残骸目击地</td><td>古城残垣</td><td>15.0 km</td></tr>
-        <tr class="highlight"><td>哀牢山</td><td>24.05, 101.67</td><td>—</td><td>古滇祭祀台</td><td>7.8 km</td></tr>
-      </table>
-      <p style="font-size:0.76rem;color:#999;margin-top:8px;">注：以上6个重合点位的距最近村落距离全部落在5-15km区间——刚好是"徒步可达但足够偏"的窗口。自然遗址分布不可能如此均匀。</p>
-    </div>
-
-    <!-- 文件2 -->
-    <div class="file-item" data-file="sdr">
-      <div class="file-icon txt">📡</div>
-      <div class="file-info">
-        <div class="name">SDR拦截记录存档.txt</div>
-        <div class="detail">上传于 2026-05-20 · 原始数据来自signal_屿5/19拦截</div>
-      </div>
-      <div class="file-size">2.3 KB</div>
-      <div class="file-arrow">▸</div>
-    </div>
-    <div class="file-preview" id="preview-sdr">
-      <div class="preview-title">📄 SDR拦截记录存档.txt</div>
-      <div class="preview-meta">原始数据来源：signal_屿 · 2026-05-19 · 由地下三尺存档</div>
-      <hr />
-      <p style="margin-bottom: 8px;">signal_屿在935-960MHz GSM下行频段拦截到的未加密短信原文：</p>
-      <code>SMS-DOWNLINK | 2026-05-19 23:12:44 | A5/0
-FROM: [未知短码]
-TO: [未注册临时号码]
-CONTENT(hex): ...6B6253 65B05E 706C28 <strong style="color:#7acc7a;">31 37 30 39 33 32 38 30 30 34 35</strong> 209D 6E3A...
-
-ASCII解码片段:
-"...<strong style="color:#7acc7a;">17093280045</strong> 新客待激活 下批出 勿复 龙骨尾款未结..."</code>
-      <p style="font-size:0.8rem;color:#999;margin-top:8px;">170号段为虚拟运营商。措辞"新客待激活""龙骨尾款"不像正常商业短信。</p>
-    </div>
-
-    <!-- 文件3 -->
-    <div class="file-item" data-file="spectrum">
-      <div class="file-icon md">📶</div>
-      <div class="file-info">
-        <div class="name">信号频谱分析笔记.md</div>
-        <div class="detail">上传于 2026-05-15 · 提取自signal_屿的分析帖</div>
-      </div>
-      <div class="file-size">8.7 KB</div>
-      <div class="file-arrow">▸</div>
-    </div>
-    <div class="file-preview" id="preview-spectrum">
-      <div class="preview-title">📄 信号频谱分析笔记.md</div>
-      <div class="preview-meta">提取自signal_屿的会员区发文 · 2026-05-15 · 由地下三尺整理</div>
-      <hr />
-      <p style="margin-bottom: 8px;">凤凰山点位(44.52, 127.83) 48小时连续扫频：</p>
-      <ul style="font-size:0.82rem;margin-left:16px;color:#555;">
-        <li>载波：1420.405 MHz——紧贴氢线1420.406</li>
-        <li>调制：不规则脉冲，占空比~12%。自然天体不会有这种随机性</li>
-        <li>强度：-42 dBm——典型的近距离低功率发射器</li>
-        <li>活跃窗口：每日18:00-06:00——夜间避开普通游客</li>
-        <li>设备：调制特征匹配民用HackRF One+功放，成本约$300</li>
-      </ul>
-      <p style="font-size:0.8rem;margin-top:6px;">结论：信号是人造的。发射者的无线电水平不算差但不专业——专业的会用更复杂的调制来避免被识别。</p>
-    </div>
-
-    <!-- 文件4 -->
-    <div class="file-item" data-file="suspect">
-      <div class="file-icon csv">⚠️</div>
-      <div class="file-info">
-        <div class="name">可疑点位汇总表.csv</div>
-        <div class="detail">上传于 2026-05-22 · 联合整理</div>
-      </div>
-      <div class="file-size">5.1 KB</div>
-      <div class="file-arrow">▸</div>
-    </div>
-    <div class="file-preview" id="preview-suspect">
-      <div class="preview-title">📄 可疑点位汇总表.csv</div>
-      <div class="preview-meta">地下三尺 & signal_屿 联合整理 · 最后更新 2026-05-22</div>
-      <hr />
-      <table>
-        <tr><th>点位</th><th>类型</th><th>实地核验结果</th><th>验证人</th></tr>
-        <tr><td>秦岭"唐代摩崖石刻"</td><td>古迹</td><td style="font-size:0.72rem;">坐标处无石刻。站内描述存在明清/唐代术语混用</td><td>三尺+屿</td></tr>
-        <tr><td>凤凰山"信号塔"</td><td>外星</td><td style="font-size:0.72rem;">实为80年代废弃微波中继站，设备铭牌清晰可见</td><td>signal_屿</td></tr>
-        <tr><td>神农架"远古石阵"</td><td>古迹</td><td style="font-size:0.72rem;">石头为自然风化形成。中心巨石有1500°C高温熔化痕</td><td>三尺</td></tr>
-        <tr><td>哀牢山"古滇祭祀台"</td><td>古迹</td><td style="font-size:0.72rem;">石刻符号风格与滇文化出土文物不符</td><td>三尺</td></tr>
-        <tr><td>"明代烽燧遗址"</td><td>古迹</td><td style="font-size:0.72rem;">砖砌方式为清代做法。明代烽燧不用此叠砌法</td><td>三尺</td></tr>
-      </table>
-    </div>
-
-    <!-- 文件5：README — 沈辞出发前最后上传 -->
-    <div class="file-item" data-file="readme" style="border-left: 3px solid #1677ff;">
-      <div class="file-icon txt" style="background:#e6f4ff;">📝</div>
-      <div class="file-info">
-        <div class="name" style="color:#1677ff;">README.txt <span style="background:#1677ff;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:2px;vertical-align:middle;margin-left:4px;">NEW</span></div>
-        <div class="detail">上传于 2026-05-23 23:52 · 出发前往贺兰山前一刻</div>
-      </div>
-      <div class="file-size">3.8 KB</div>
-      <div class="file-arrow">▸</div>
-    </div>
-    <div class="file-preview" id="preview-readme">
-      <div class="preview-title">📝 README.txt</div>
-      <div class="preview-meta">地下三尺 · 2026-05-23 23:52 · 出发前往贺兰山前一小时</div>
-      <hr />
-      <div style="line-height:2;">
-        <p>屿——如果你看到这个共享文件夹，说明你找到了提取码。</p>
-        <p>我把我们这段时间整理的所有数据都备份到这里了。下面几件事：</p>
-        <p>1. 这个文件夹的<strong>提取码和密码都是同一个</strong>——你从我的帖子里找到的那四个字，加上今年的年份。访问码规则：项目代号+年份。</p>
-        <p>2. SDR拦截记录里那条短信——我出发前没来得及仔细想。现在看来，那个<strong>170开头的号码</strong>和招募页面可能有关系。招募页的"联系电话"栏可以填"邀请凭证"——如果你有一个11位的凭证号码，去那里试试。</p>
-        <p>3. 站里首页的公告我反复看了。"深度探秘"这个词在公告和招募页同时出现——而且都是加粗的。我比对过废弃站"秘境徒步联盟"的快照，<strong>措辞模板一模一样</strong>。同一批人运营的。公告不只是公告。</p>
-        <p>4. 基地位置——我查到的信息指向<strong>湖北西部某废弃萤石矿</strong>。精确坐标我附在坐标比对文件最后的备注栏里。</p>
-        <p>5. 我明天只去贺兰山外围浅区，预计当天往返。<strong>如果我没回来——不要自己去找我。</strong>把这里的全部资料整理好，直接报警。你一个人去会正中他们的埋伏圈。</p>
-        <p>这几天一直在想一件事：我们到底捅了多大的马蜂窝。老废的帖文被删，阿浪被限流，山野探秘人每次都在关键帖下面出现——这个站的眼线比我们想象的多。你继续查的话，注意安全。</p>
-        <p style="color: #999;">——三尺，5月23日深夜</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    轻舟云盘 · 加密共享 · 5个文件 · 创建者最后访问：2026-05-24 02:40
-  </div>
-
-</div>
-
-<script is:inline>
-  (function() {
-    // 检查是否已通过搜索触发解锁
-    var progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-    var isUnlocked = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
-    var lockPrompt = document.getElementById('lock-prompt');
-    var lockInput = document.getElementById('lock-input');
-    var lockSubmit = document.getElementById('lock-submit');
-    var lockError = document.getElementById('lock-error');
-
-    function unlock() {
-      if (lockPrompt) lockPrompt.style.display = 'none';
-      isUnlocked = true;
-      // 记录解锁状态
-      if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
-      progress.solvedPuzzles['stage1_page_header_password'] = true;
-      if (!progress.discoveredClues) progress.discoveredClues = [];
-      if (!progress.discoveredClues.includes('cloud_share_accessed')) {
-        progress.discoveredClues.push('cloud_share_accessed');
-        progress.explorationProgress = (progress.explorationProgress || 0) + 15;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>加密共享 — 轻舟云盘</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      localStorage.setItem('arg_progress', JSON.stringify(progress));
-    }
-
-    function tryUnlock(code) {
-      if (code.trim() === '多站同源2026') {
-        unlock();
-      } else if (lockError) {
-        lockError.style.display = 'block';
+      body {
+        background: #f0f2f5;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    }
+      .container {
+        max-width: 680px;
+        width: 92%;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+      .header {
+        background: linear-gradient(135deg, #1677ff, #0958d9);
+        color: #fff;
+        padding: 28px 32px;
+      }
+      .header .brand {
+        font-size: 0.8rem;
+        opacity: 0.8;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .header .brand svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.8;
+      }
+      .header h1 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+      .header .meta {
+        font-size: 0.78rem;
+        opacity: 0.7;
+      }
+      .header .meta span {
+        margin-right: 16px;
+      }
 
-    // 初始状态
-    if (isUnlocked) {
-      if (lockPrompt) lockPrompt.style.display = 'none';
-    } else {
-      if (lockPrompt) lockPrompt.style.display = 'block';
-    }
+      .body {
+        padding: 0;
+      }
 
-    // 解锁按钮
-    if (lockSubmit && lockInput) {
-      lockSubmit.addEventListener('click', function() {
-        tryUnlock(lockInput.value);
-      });
-      lockInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') tryUnlock(lockInput.value);
-      });
-    }
+      /* 文件行 */
+      .file-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 32px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .file-item:hover {
+        background: #fafbfc;
+      }
+      .file-item:last-of-type {
+        border-bottom: none;
+      }
+      .file-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+      .file-icon.csv {
+        background: #e6f7e6;
+      }
+      .file-icon.txt {
+        background: #f5f5f5;
+      }
+      .file-icon.md {
+        background: #e6f4ff;
+      }
+      .file-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .file-info .name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+      .file-info .detail {
+        font-size: 0.72rem;
+        color: #999;
+      }
+      .file-size {
+        font-size: 0.78rem;
+        color: #999;
+        white-space: nowrap;
+      }
+      .file-arrow {
+        color: #ccc;
+        font-size: 0.8rem;
+      }
 
-    // 文件点击：如果未解锁，提示需要密码
-    var items = document.querySelectorAll('.file-item');
-    items.forEach(function(item) {
-      item.addEventListener('click', function() {
-        if (!isUnlocked) {
-          if (lockPrompt) {
-            lockPrompt.style.display = 'block';
-            lockPrompt.style.background = '#fff2f0';
-            lockPrompt.style.borderColor = '#ffccc7';
-            setTimeout(function() {
-              if (lockPrompt) {
-                lockPrompt.style.background = '#fffbe6';
-                lockPrompt.style.borderColor = '#f0e0a0';
-              }
-            }, 1500);
+      /* 文件预览展开 */
+      .file-preview {
+        display: none;
+        padding: 20px 32px 24px;
+        background: #fafbfc;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.84rem;
+        line-height: 1.8;
+      }
+      .file-preview .preview-title {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        color: #333;
+      }
+      .file-preview .preview-meta {
+        font-size: 0.72rem;
+        color: #999;
+        margin-bottom: 12px;
+      }
+      .file-preview hr {
+        border: none;
+        border-top: 1px solid #e8e8e8;
+        margin-bottom: 12px;
+      }
+      .file-preview table {
+        font-size: 0.76rem;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .file-preview th {
+        text-align: left;
+        padding: 4px 8px;
+        border-bottom: 1px solid #e0e0e0;
+        color: #666;
+      }
+      .file-preview td {
+        padding: 4px 8px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.74rem;
+      }
+      .file-preview .highlight {
+        background: #fff7e6;
+      }
+      .file-preview code {
+        background: #1a1a1a;
+        color: #4a8c4a;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.74rem;
+        display: block;
+        white-space: pre-wrap;
+        word-break: break-all;
+        line-height: 1.6;
+      }
+
+      .footer {
+        padding: 16px 32px;
+        background: #fafbfc;
+        border-top: 1px solid #f0f0f0;
+        text-align: center;
+        font-size: 0.72rem;
+        color: #bbb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24" fill="currentColor"
+            ><path
+              d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"
+            ></path></svg
+          >
+          轻舟云盘 · 加密共享
+        </div>
+        <h1>🔒 调查资料</h1>
+        <div class="meta">
+          <span>创建者：shenci933</span>
+          <span>创建于 2026年4月</span>
+          <span>5个文件</span>
+          <span>提取码：多站同源2026</span>
+        </div>
+      </div>
+
+      <!-- 新上传提示 -->
+      <div
+        style="background: #e6f4ff; border-left: 3px solid #1677ff; padding: 8px 32px; font-size: 0.78rem; color: #555;"
+      >
+        最近更新：<strong>2026年5月23日 23:52</strong> — 创建者上传了 1 个新文件
+      </div>
+
+      <!-- 加密门控：需输入提取码才能查看文件内容 -->
+      <div
+        id="lock-prompt"
+        style="padding: 20px 32px; background: #fffbe6; border-bottom: 1px solid #f0e0a0; display: none;"
+      >
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span style="font-size: 1.1rem;">🔐</span>
+          <span style="font-size: 0.82rem; color: #8b6914;">此共享文件夹已加密。请输入提取码查看文件内容：</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <input
+            type="text"
+            id="lock-input"
+            placeholder="提取码"
+            maxlength="30"
+            style="flex: 1; padding: 7px 10px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 0.85rem;"
+          />
+          <button
+            id="lock-submit"
+            style="padding: 7px 18px; background: #1677ff; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;"
+            >解锁</button
+          >
+        </div>
+        <p id="lock-error" style="font-size: 0.72rem; color: #c0392b; margin-top: 4px; display: none;">提取码不正确</p>
+      </div>
+
+      <div class="body">
+        <!-- 文件1 -->
+        <div class="file-item" data-file="coord">
+          <div class="file-icon csv">📊</div>
+          <div class="file-info">
+            <div class="name">坐标交叉比对数据.csv</div>
+            <div class="detail">上传于 2026-04-28 · 47条记录 · 已更新3次</div>
+          </div>
+          <div class="file-size">12.4 KB</div>
+          <div class="file-arrow">▸</div>
+        </div>
+        <div class="file-preview" id="preview-coord">
+          <div class="preview-title">📄 坐标交叉比对数据.csv</div>
+          <div class="preview-meta">上传于 2026-05-20 · 地下三尺</div>
+          <hr />
+          <p style="margin-bottom: 10px;">
+            导航站"外星目击"板块47个推荐点位与实地探访的23处古迹坐标的交叉比对。同一批经纬度被<strong
+              >同时标记为"外星信号热点"和"古迹秘境"</strong
+            >。
+          </p>
+          <table>
+            <tr><th>点位</th><th>坐标</th><th>外星标签</th><th>古迹标签</th><th>距最近村落</th></tr>
+            <tr class="highlight"
+              ><td>凤凰山</td><td>44.52, 127.83</td><td>信号异常区</td><td>古祭祀遗址</td><td>8.1 km</td></tr
+            >
+            <tr class="highlight"
+              ><td>神农架</td><td>31.58, 110.42</td><td>UFO走廊</td><td>远古石阵</td><td>7.5 km</td></tr
+            >
+            <tr class="highlight"><td>秦岭</td><td>33.25, 107.15</td><td>—</td><td>古栈道石刻</td><td>9.3 km</td></tr>
+            <tr class="highlight"
+              ><td>昆仑山</td><td>36.12, 94.55</td><td>脉冲星信号带</td><td>古道石刻群</td><td>11.2 km</td></tr
+            >
+            <tr class="highlight"
+              ><td>罗布泊</td><td>40.39, 90.22</td><td>外星残骸目击地</td><td>古城残垣</td><td>15.0 km</td></tr
+            >
+            <tr class="highlight"><td>哀牢山</td><td>24.05, 101.67</td><td>—</td><td>古滇祭祀台</td><td>7.8 km</td></tr>
+          </table>
+          <p style="font-size:0.76rem;color:#999;margin-top:8px;">
+            注：以上6个重合点位的距最近村落距离全部落在5-15km区间——刚好是"徒步可达但足够偏"的窗口。自然遗址分布不可能如此均匀。
+          </p>
+        </div>
+
+        <!-- 文件2 -->
+        <div class="file-item" data-file="sdr">
+          <div class="file-icon txt">📡</div>
+          <div class="file-info">
+            <div class="name">SDR拦截记录存档.txt</div>
+            <div class="detail">上传于 2026-05-20 · 原始数据来自signal_屿5/19拦截</div>
+          </div>
+          <div class="file-size">2.3 KB</div>
+          <div class="file-arrow">▸</div>
+        </div>
+        <div class="file-preview" id="preview-sdr">
+          <div class="preview-title">📄 SDR拦截记录存档.txt</div>
+          <div class="preview-meta">原始数据来源：signal_屿 · 2026-05-19 · 由地下三尺存档</div>
+          <hr />
+          <p style="margin-bottom: 8px;">signal_屿在935-960MHz GSM下行频段拦截到的未加密短信原文：</p>
+          <code
+            >SMS-DOWNLINK | 2026-05-19 23:12:44 | A5/0 FROM: [未知短码] TO: [未注册临时号码] CONTENT(hex): ...6B6253
+            65B05E 706C28 <strong style="color:#7acc7a;">31 37 30 39 33 32 38 30 30 34 35</strong> 209D 6E3A... ASCII解码片段:
+            "...<strong style="color:#7acc7a;">17093280045</strong> 新客待激活 下批出 勿复 龙骨尾款未结..."</code
+          >
+          <p style="font-size:0.8rem;color:#999;margin-top:8px;">
+            170号段为虚拟运营商。措辞"新客待激活""龙骨尾款"不像正常商业短信。
+          </p>
+        </div>
+
+        <!-- 文件3 -->
+        <div class="file-item" data-file="spectrum">
+          <div class="file-icon md">📶</div>
+          <div class="file-info">
+            <div class="name">信号频谱分析笔记.md</div>
+            <div class="detail">上传于 2026-05-15 · 提取自signal_屿的分析帖</div>
+          </div>
+          <div class="file-size">8.7 KB</div>
+          <div class="file-arrow">▸</div>
+        </div>
+        <div class="file-preview" id="preview-spectrum">
+          <div class="preview-title">📄 信号频谱分析笔记.md</div>
+          <div class="preview-meta">提取自signal_屿的会员区发文 · 2026-05-15 · 由地下三尺整理</div>
+          <hr />
+          <p style="margin-bottom: 8px;">凤凰山点位(44.52, 127.83) 48小时连续扫频：</p>
+          <ul style="font-size:0.82rem;margin-left:16px;color:#555;">
+            <li>载波：1420.405 MHz——紧贴氢线1420.406</li>
+            <li>调制：不规则脉冲，占空比~12%。自然天体不会有这种随机性</li>
+            <li>强度：-42 dBm——典型的近距离低功率发射器</li>
+            <li>活跃窗口：每日18:00-06:00——夜间避开普通游客</li>
+            <li>设备：调制特征匹配民用HackRF One+功放，成本约$300</li>
+          </ul>
+          <p style="font-size:0.8rem;margin-top:6px;">
+            结论：信号是人造的。发射者的无线电水平不算差但不专业——专业的会用更复杂的调制来避免被识别。
+          </p>
+        </div>
+
+        <!-- 文件4 -->
+        <div class="file-item" data-file="suspect">
+          <div class="file-icon csv">⚠️</div>
+          <div class="file-info">
+            <div class="name">可疑点位汇总表.csv</div>
+            <div class="detail">上传于 2026-05-22 · 联合整理</div>
+          </div>
+          <div class="file-size">5.1 KB</div>
+          <div class="file-arrow">▸</div>
+        </div>
+        <div class="file-preview" id="preview-suspect">
+          <div class="preview-title">📄 可疑点位汇总表.csv</div>
+          <div class="preview-meta">地下三尺 & signal_屿 联合整理 · 最后更新 2026-05-22</div>
+          <hr />
+          <table>
+            <tr><th>点位</th><th>类型</th><th>实地核验结果</th><th>验证人</th></tr>
+            <tr
+              ><td>秦岭"唐代摩崖石刻"</td><td>古迹</td><td style="font-size:0.72rem;"
+                >坐标处无石刻。站内描述存在明清/唐代术语混用</td
+              ><td>三尺+屿</td></tr
+            >
+            <tr
+              ><td>凤凰山"信号塔"</td><td>外星</td><td style="font-size:0.72rem;"
+                >实为80年代废弃微波中继站，设备铭牌清晰可见</td
+              ><td>signal_屿</td></tr
+            >
+            <tr
+              ><td>神农架"远古石阵"</td><td>古迹</td><td style="font-size:0.72rem;"
+                >石头为自然风化形成。中心巨石有1500°C高温熔化痕</td
+              ><td>三尺</td></tr
+            >
+            <tr
+              ><td>哀牢山"古滇祭祀台"</td><td>古迹</td><td style="font-size:0.72rem;"
+                >石刻符号风格与滇文化出土文物不符</td
+              ><td>三尺</td></tr
+            >
+            <tr
+              ><td>"明代烽燧遗址"</td><td>古迹</td><td style="font-size:0.72rem;"
+                >砖砌方式为清代做法。明代烽燧不用此叠砌法</td
+              ><td>三尺</td></tr
+            >
+          </table>
+        </div>
+
+        <!-- 文件5：README — 沈辞出发前最后上传 -->
+        <div class="file-item" data-file="readme" style="border-left: 3px solid #1677ff;">
+          <div class="file-icon txt" style="background:#e6f4ff;">📝</div>
+          <div class="file-info">
+            <div class="name" style="color:#1677ff;">
+              README.txt <span
+                style="background:#1677ff;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:2px;vertical-align:middle;margin-left:4px;"
+                >NEW</span
+              >
+            </div>
+            <div class="detail">上传于 2026-05-23 23:52 · 出发前往贺兰山前一刻</div>
+          </div>
+          <div class="file-size">3.8 KB</div>
+          <div class="file-arrow">▸</div>
+        </div>
+        <div class="file-preview" id="preview-readme">
+          <div class="preview-title">📝 README.txt</div>
+          <div class="preview-meta">地下三尺 · 2026-05-23 23:52 · 出发前往贺兰山前一小时</div>
+          <hr />
+          <div style="line-height:2;">
+            <p>屿——如果你看到这个共享文件夹，说明你找到了提取码。</p>
+            <p>我把我们这段时间整理的所有数据都备份到这里了。下面几件事：</p>
+            <p>
+              1. 这个文件夹的<strong>提取码和密码都是同一个</strong
+              >——你从我的帖子里找到的那四个字，加上今年的年份。访问码规则：项目代号+年份。
+            </p>
+            <p>
+              2. SDR拦截记录里那条短信——我出发前没来得及仔细想。现在看来，那个<strong>170开头的号码</strong
+              >和招募页面可能有关系。招募页的"联系电话"栏可以填"邀请凭证"——如果你有一个11位的凭证号码，去那里试试。
+            </p>
+            <p>
+              3.
+              站里首页的公告我反复看了。"深度探秘"这个词在公告和招募页同时出现——而且都是加粗的。我比对过废弃站"秘境徒步联盟"的快照，<strong
+                >措辞模板一模一样</strong
+              >。同一批人运营的。公告不只是公告。
+            </p>
+            <p>
+              4. 基地位置——我查到的信息指向<strong>湖北西部某废弃萤石矿</strong
+              >。精确坐标我附在坐标比对文件最后的备注栏里。
+            </p>
+            <p>
+              5. 我明天只去贺兰山外围浅区，预计当天往返。<strong>如果我没回来——不要自己去找我。</strong
+              >把这里的全部资料整理好，直接报警。你一个人去会正中他们的埋伏圈。
+            </p>
+            <p>
+              这几天一直在想一件事：我们到底捅了多大的马蜂窝。老废的帖文被删，阿浪被限流，山野探秘人每次都在关键帖下面出现——这个站的眼线比我们想象的多。你继续查的话，注意安全。
+            </p>
+            <p style="color: #999;">——三尺，5月23日深夜</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">轻舟云盘 · 加密共享 · 5个文件 · 创建者最后访问：2026-05-24 02:40</div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        // 检查是否已通过搜索触发解锁
+        var progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+        var isUnlocked = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
+        var lockPrompt = document.getElementById('lock-prompt');
+        var lockInput = document.getElementById('lock-input');
+        var lockSubmit = document.getElementById('lock-submit');
+        var lockError = document.getElementById('lock-error');
+
+        function unlock() {
+          if (lockPrompt) lockPrompt.style.display = 'none';
+          isUnlocked = true;
+          // 记录解锁状态
+          if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
+          progress.solvedPuzzles['stage1_page_header_password'] = true;
+          if (!progress.discoveredClues) progress.discoveredClues = [];
+          if (!progress.discoveredClues.includes('cloud_share_accessed')) {
+            progress.discoveredClues.push('cloud_share_accessed');
+            progress.explorationProgress = (progress.explorationProgress || 0) + 15;
           }
-          return;
+          localStorage.setItem('arg_progress', JSON.stringify(progress));
         }
 
-        var fileId = this.dataset.file;
-        var preview = document.getElementById('preview-' + fileId);
-        if (!preview) return;
-        var isOpen = preview.style.display === 'block';
-        document.querySelectorAll('.file-preview').forEach(function(p) { p.style.display = 'none'; });
-        document.querySelectorAll('.file-arrow').forEach(function(a) { a.textContent = '▸'; });
-        if (!isOpen) {
-          preview.style.display = 'block';
-          this.querySelector('.file-arrow').textContent = '▾';
+        function tryUnlock(code) {
+          if (code.trim() === '多站同源2026') {
+            unlock();
+          } else if (lockError) {
+            lockError.style.display = 'block';
+          }
         }
-      });
-    });
-  })();
-</script>
 
-</body>
+        // 初始状态
+        if (isUnlocked) {
+          if (lockPrompt) lockPrompt.style.display = 'none';
+        } else {
+          if (lockPrompt) lockPrompt.style.display = 'block';
+        }
+
+        // 解锁按钮
+        if (lockSubmit && lockInput) {
+          lockSubmit.addEventListener('click', function () {
+            tryUnlock(lockInput.value);
+          });
+          lockInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') tryUnlock(lockInput.value);
+          });
+        }
+
+        // 文件点击：如果未解锁，提示需要密码
+        var items = document.querySelectorAll('.file-item');
+        items.forEach(function (item) {
+          item.addEventListener('click', function () {
+            if (!isUnlocked) {
+              if (lockPrompt) {
+                lockPrompt.style.display = 'block';
+                lockPrompt.style.background = '#fff2f0';
+                lockPrompt.style.borderColor = '#ffccc7';
+                setTimeout(function () {
+                  if (lockPrompt) {
+                    lockPrompt.style.background = '#fffbe6';
+                    lockPrompt.style.borderColor = '#f0e0a0';
+                  }
+                }, 1500);
+              }
+              return;
+            }
+
+            var fileId = this.dataset.file;
+            var preview = document.getElementById('preview-' + fileId);
+            if (!preview) return;
+            var isOpen = preview.style.display === 'block';
+            document.querySelectorAll('.file-preview').forEach(function (p) {
+              p.style.display = 'none';
+            });
+            document.querySelectorAll('.file-arrow').forEach(function (a) {
+              a.textContent = '▸';
+            });
+            if (!isOpen) {
+              preview.style.display = 'block';
+              this.querySelector('.file-arrow').textContent = '▾';
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
 </html>

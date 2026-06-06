@@ -33,9 +33,7 @@ function initNavUserArea(BASE: string): void {
   const menuHTML = menuItems
     .map((item) => {
       const cls = item.action === 'logout' ? 'nu-item nu-logout' : 'nu-item';
-      const dataAttr = item.action === 'logout'
-        ? 'data-action="logout"'
-        : `data-href="${item.href}"`;
+      const dataAttr = item.action === 'logout' ? 'data-action="logout"' : `data-href="${item.href}"`;
       return `<span class="${cls}" ${dataAttr}>${item.label}</span>`;
     })
     .join('');
@@ -60,8 +58,7 @@ function initNavUserArea(BASE: string): void {
   // 箭头点击 → 切换下拉
   arrowEl.addEventListener('click', (e) => {
     e.stopPropagation();
-    dropdown.style.display =
-      dropdown.style.display === 'none' ? 'block' : 'none';
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
   });
 
   document.addEventListener('click', () => {
@@ -79,9 +76,7 @@ function initNavUserArea(BASE: string): void {
   });
 
   // 退出登录
-  const logoutItem = dropdown.querySelector(
-    '[data-action="logout"]'
-  ) as HTMLElement;
+  const logoutItem = dropdown.querySelector('[data-action="logout"]') as HTMLElement;
   if (logoutItem) {
     logoutItem.addEventListener('click', () => {
       localStorage.removeItem('arg_logged_in');

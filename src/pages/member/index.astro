@@ -17,7 +17,11 @@ const BASE = __BASE_PATH__;
     <hr />
     <p class="text-muted">此文件已加密。请输入提取码后访问。</p>
     <div style="margin-top: 20px;">
-      <a href={`${BASE}community/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a
+        href={`${BASE}community/`}
+        target="_blank"
+        style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);"
+      >
         返回社区 →
       </a>
     </div>
@@ -25,7 +29,7 @@ const BASE = __BASE_PATH__;
 </Layout>
 
 <script is:inline>
-  (function() {
+  (function () {
     var progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
     var hasAccess = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);
     if (hasAccess) {

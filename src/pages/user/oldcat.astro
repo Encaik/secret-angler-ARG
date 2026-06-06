@@ -3,21 +3,53 @@
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="老猫的个人主页">
-  <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank">探秘者社区</a><span>›</span>老猫</div>
+  <div class="breadcrumb">
+    <a href={`${BASE}home/`} target="_blank">首页</a><span>›</span><a href={`${BASE}community/`} target="_blank"
+      >探秘者社区</a
+    ><span>›</span>老猫
+  </div>
   <div class="card" style="margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="width:56px;height:56px;border-radius:50%;background:#6b8e6b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;">🗺️</div>
+    <div
+      style="width:56px;height:56px;border-radius:50%;background:#6b8e6b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;"
+    >
+      🗺️
+    </div>
     <div style="flex:1;">
       <h2 style="margin-bottom:2px;">老猫</h2>
       <p class="text-muted" style="margin-bottom:6px;">账号：oldcat · 注册于 2024-06-12 · 退休地理教师</p>
-      <p style="font-size:0.9rem;">走了大半辈子野路。教了四十年地理，退休后终于有时间把年轻时标记在地图上的那些地方都走一遍。主要在西南山区活动，偶尔写写地方志和民俗考据。</p>
-      <span class="tag tag-ruins">地质地貌</span> <span class="tag tag-nature">民俗考据</span>
+      <p style="font-size:0.9rem;">
+        走了大半辈子野路。教了四十年地理，退休后终于有时间把年轻时标记在地图上的那些地方都走一遍。主要在西南山区活动，偶尔写写地方志和民俗考据。
+      </p>
+      <span class="tag tag-ruins">地质地貌</span>
+      <span class="tag tag-nature">民俗考据</span>
     </div>
   </div>
   <h3>📝 最近动态</h3>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">脚踝还是不太行。闺女不让我一个人出远门了，说再摔一跤她就不去上学了在家看着我。这孩子，也不知道像谁，倔得很。</p><div class="post-meta">2026-04-05</div></div>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">春节后脚踝一直不太好，今年春天估计走不了远路了。在家翻翻老照片，整理一下之前的地质笔记。翻到一些旧照，有些地方已经变了，有些人也不在了。</p><div class="post-meta">2026-03-12</div></div>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">有人问川西那条线——甘孜到色达的县道去年塌方过，今年还没完全修好。要走的话建议绕道炉霍，多花半天但安全得多。</p><div class="post-meta">2026-01-08</div></div>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">这个站现在人少了很多。前年还挺热闹的。不过我这种老头子也不在乎热闹，清静也好。反正也不是为了热闹才建这个站的。</p><div class="post-meta">2025-12-20</div></div>
-  <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:0.85rem;">十二月了。每年到了这个月就想起很多事。四年了，时间过得真快。有些东西钱能解决，有些东西钱也解决不了——但没钱什么都解决不了。这是我这辈子学到的唯一道理。</p><div class="post-meta">2025-12-01</div></div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      脚踝还是不太行。闺女不让我一个人出远门了，说再摔一跤她就不去上学了在家看着我。这孩子，也不知道像谁，倔得很。
+    </p><div class="post-meta">2026-04-05</div>
+  </div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      春节后脚踝一直不太好，今年春天估计走不了远路了。在家翻翻老照片，整理一下之前的地质笔记。翻到一些旧照，有些地方已经变了，有些人也不在了。
+    </p><div class="post-meta">2026-03-12</div>
+  </div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      有人问川西那条线——甘孜到色达的县道去年塌方过，今年还没完全修好。要走的话建议绕道炉霍，多花半天但安全得多。
+    </p><div class="post-meta">2026-01-08</div>
+  </div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      这个站现在人少了很多。前年还挺热闹的。不过我这种老头子也不在乎热闹，清静也好。反正也不是为了热闹才建这个站的。
+    </p><div class="post-meta">2025-12-20</div>
+  </div>
+  <div class="card" style="padding:10px;margin-bottom:8px;">
+    <p style="font-size:0.85rem;">
+      十二月了。每年到了这个月就想起很多事。四年了，时间过得真快。有些东西钱能解决，有些东西钱也解决不了——但没钱什么都解决不了。这是我这辈子学到的唯一道理。
+    </p><div class="post-meta">2025-12-01</div>
+  </div>
 </Layout>

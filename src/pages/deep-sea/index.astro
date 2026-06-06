@@ -2,12 +2,23 @@
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="深海探秘" currentNav="deep-sea">
   <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>深海探秘</div>
   <h2>🌊 深海探秘</h2>
-  <p class="text-muted">海洋覆盖了地球70%的表面，但人类对深海的了解还不及对月球表面的了解。本板块关注深海未知生物、水下遗迹和海洋异常现象。</p>
+  <p class="text-muted">
+    海洋覆盖了地球70%的表面，但人类对深海的了解还不及对月球表面的了解。本板块关注深海未知生物、水下遗迹和海洋异常现象。
+  </p>
   <hr />
-  <div class="post-item"><span class="tag tag-deepsea">生物</span> <span style="color: var(--color-text-secondary);"><strong>马里亚纳海沟未知生物目击记录</strong></span> <span class="text-muted">西太平洋 | 征稿中</span></div>
-  <div class="post-item"><span class="tag tag-deepsea">遗迹</span> <span style="color: var(--color-text-secondary);"><strong>与那国岛海底遗迹：天然还是人工？</strong></span> <span class="text-muted">日本·琉球 | 征稿中</span></div>
+  <div class="post-item">
+    <span class="tag tag-deepsea">生物</span>
+    <span style="color: var(--color-text-secondary);"><strong>马里亚纳海沟未知生物目击记录</strong></span>
+    <span class="text-muted">西太平洋 | 征稿中</span>
+  </div>
+  <div class="post-item">
+    <span class="tag tag-deepsea">遗迹</span>
+    <span style="color: var(--color-text-secondary);"><strong>与那国岛海底遗迹：天然还是人工？</strong></span>
+    <span class="text-muted">日本·琉球 | 征稿中</span>
+  </div>
   <p class="text-muted mt-2">本板块刚刚上线，内容持续补充中。欢迎海洋相关探秘者投稿。</p>
 </Layout>

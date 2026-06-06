@@ -192,7 +192,15 @@ export const PUZZLES: Puzzle[] = [
       '综合线索：这个组织的幕后人物是老猫（老周），他心里最重要的人叫小雨，最重要的年份是2021。密码是 xiaoyu2021。',
     ],
     requiresClue: ['staff_access', 'darknet_explored'],
-    unlocksPages: ['/hidden/admin/ (admin全权限视图)', '/hidden/board/', '/hidden/operation/', '/hidden/locations/', '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/'],
+    unlocksPages: [
+      '/hidden/admin/ (admin全权限视图)',
+      '/hidden/board/',
+      '/hidden/operation/',
+      '/hidden/locations/',
+      '/hidden/dead-drop/',
+      '/hidden/targets/',
+      '/hidden/evidence-locker/',
+    ],
     progressWeight: 18,
     clueTags: ['cross_reference', 'password', 'deduction'],
   },
@@ -206,9 +214,7 @@ export const PUZZLES: Puzzle[] = [
     name: '证据收集与举报',
     // 结局阶段无单一正确答案——由 evaluateEnding() 根据证据完整度判定
     answerHash: '0000000000000000000000000000000000000000000000000000000000000000',
-    clueLocations: [
-      '/hidden/evidence-locker → 手机举报界面，根据证据完整度动态显示不同结果',
-    ],
+    clueLocations: ['/hidden/evidence-locker → 手机举报界面，根据证据完整度动态显示不同结果'],
     hintTexts: [
       '证据管理页面底部有一部模拟手机。收集的证据越多，举报越有力。',
       '证据不足时拨打举报电话 → 12306买车票（自己去）',
@@ -227,12 +233,12 @@ export const PUZZLES: Puzzle[] = [
 
 /** 获取指定阶段的所有谜题 */
 export function getPuzzlesByStage(stage: number): Puzzle[] {
-  return PUZZLES.filter(p => p.stage === stage);
+  return PUZZLES.filter((p) => p.stage === stage);
 }
 
 /** 获取指定难度范围的所有谜题 */
 export function getPuzzlesByDifficulty(difficulty: PuzzleDifficulty): Puzzle[] {
-  return PUZZLES.filter(p => p.difficulty === difficulty);
+  return PUZZLES.filter((p) => p.difficulty === difficulty);
 }
 
 /** 计算谜题总权重 */
@@ -242,5 +248,5 @@ export function getTotalPuzzleWeight(): number {
 
 /** 根据谜题 ID 查找谜题 */
 export function getPuzzleById(id: string): Puzzle | undefined {
-  return PUZZLES.find(p => p.id === id);
+  return PUZZLES.find((p) => p.id === id);
 }

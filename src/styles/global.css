@@ -1,8 +1,10 @@
 /* ========================================
-   探秘者联盟 — 全局样式
+   探秘者联盟 — 全局样式（核心层）
    设计定位：国内小众探秘爱好者社区
    风格参考：早期户外论坛 / 天文爱好者站点
    美学原则：实用、怀旧、去商业化
+
+   加载顺序：global.css → layout.css → components.css → utilities.css
    ======================================== */
 
 /* --- CSS 变量：复古社区站点设计令牌 --- */
@@ -39,10 +41,10 @@
   --color-tag-hollow: #7b4b3a;
 
   /* 字体 */
-  --font-body: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
-  --font-heading: "SimHei", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "SimSun", "FangSong", "KaiTi", "STSong", serif;
-  --font-code: "Courier New", "Consolas", "Source Code Pro", monospace;
+  --font-body: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+  --font-heading: 'SimHei', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'SimSun', 'FangSong', 'KaiTi', 'STSong', serif;
+  --font-code: 'Courier New', 'Consolas', 'Source Code Pro', monospace;
 
   /* 尺寸 */
   --max-width: 1020px;
@@ -85,24 +87,23 @@ body {
       0deg,
       transparent,
       transparent 2px,
-      rgba(180,160,140,0.03) 2px,
-      rgba(180,160,140,0.03) 4px
+      rgba(180, 160, 140, 0.03) 2px,
+      rgba(180, 160, 140, 0.03) 4px
     ),
-    linear-gradient(
-      180deg,
-      #f5f0e8 0%,
-      #f2ede4 30%,
-      #f0ebe1 60%,
-      #ede6db 100%
-    );
+    linear-gradient(180deg, #f5f0e8 0%, #f2ede4 30%, #f0ebe1 60%, #ede6db 100%);
   background-attachment: fixed;
 }
 
 /* 纸张纹理叠加（通过伪元素，不影响内容） */
 body::before {
   content: '';
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none; z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
   opacity: 0.25;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
   background-size: 128px 128px;
@@ -126,17 +127,30 @@ a:hover {
 }
 
 /* --- 标题 --- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   line-height: 1.3;
   color: var(--color-text);
   margin-bottom: 0.5em;
 }
 
-h1 { font-size: 1.6rem; }
-h2 { font-size: 1.35rem; }
-h3 { font-size: 1.15rem; }
-h4 { font-size: 1.05rem; }
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.35rem;
+}
+h3 {
+  font-size: 1.15rem;
+}
+h4 {
+  font-size: 1.05rem;
+}
 
 /* --- 段落 --- */
 p {
@@ -150,45 +164,9 @@ img {
   height: auto;
 }
 
-/* --- 容器 --- */
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* --- 卡片 --- */
-.card {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  box-shadow: var(--shadow-card);
-  margin-bottom: 12px;
-}
-
-/* --- 标签 --- */
-.tag {
-  display: inline-block;
-  font-size: 0.78rem;
-  padding: 1px 8px;
-  border-radius: var(--radius-sm);
-  color: #fff;
-  text-decoration: none;
-  margin-right: 4px;
-}
-
-.tag-alien { background: var(--color-tag-alien); }
-.tag-ruins { background: var(--color-tag-ruins); }
-.tag-mystery { background: var(--color-tag-mystery); }
-.tag-legend { background: var(--color-tag-legend); }
-.tag-nature { background: var(--color-tag-nature); }
-.tag-deepsea { background: var(--color-tag-deepsea); }
-.tag-hollow { background: var(--color-tag-hollow); }
-
 /* --- 列表 --- */
-ul, ol {
+ul,
+ol {
   padding-left: 1.5em;
   margin-bottom: 0.8em;
 }
@@ -206,7 +184,8 @@ table {
   font-size: 0.9rem;
 }
 
-th, td {
+th,
+td {
   border: 1px solid var(--color-border);
   padding: 6px 10px;
   text-align: left;
@@ -234,50 +213,10 @@ blockquote {
   font-style: italic;
 }
 
-/* --- 代码块 --- */
-code {
-  font-family: var(--font-code);
-  font-size: 0.88em;
-  background: var(--color-bg-secondary);
-  padding: 1px 5px;
-  border-radius: var(--radius-sm);
-}
-
-pre {
-  background: var(--color-bg-dark);
-  color: #d4d4d4;
-  padding: 14px;
-  border-radius: var(--radius-md);
-  overflow-x: auto;
-  margin-bottom: 1em;
-}
-
-pre code {
-  background: none;
-  padding: 0;
-  color: inherit;
-}
-
-/* --- 按钮 --- */
-button, .btn {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  padding: 5px 14px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-card);
-  color: var(--color-text);
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-  transition: background 0.15s, border-color 0.15s;
-}
-
-button:hover, .btn:hover {
-  background: var(--color-bg-secondary);
-  border-color: var(--color-accent-light);
-}
-
-/* --- 表单 --- */
-input, textarea, select {
+/* --- 表单基础元素 --- */
+input,
+textarea,
+select {
   font-family: var(--font-body);
   font-size: 0.9rem;
   padding: 5px 10px;
@@ -289,271 +228,10 @@ input, textarea, select {
   max-width: 400px;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: var(--color-accent-light);
   box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
-}
-
-/* --- 全局导航 --- */
-.site-header {
-  background: var(--color-bg-dark);
-  border-bottom: 3px solid var(--color-accent);
-}
-
-.site-nav {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  min-height: var(--nav-height);
-  padding: 4px 16px;
-  gap: 0;
-}
-
-.site-nav .nav-brand {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  color: #e0dcd5;
-  text-decoration: none;
-  font-weight: bold;
-  margin-right: 20px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.site-nav .nav-brand:hover {
-  color: #fff;
-}
-
-.site-nav .nav-links {
-  display: flex;
-  gap: 2px;
-  flex-wrap: wrap;
-  align-items: center;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.site-nav .nav-links a {
-  color: #b0aca5;
-  text-decoration: none;
-  font-size: 0.82rem;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
-}
-
-.site-nav .nav-links a:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* --- 搜索框 --- */
-.search-bar {
-  display: flex;
-  gap: 0;
-  margin: 10px 0;
-}
-
-.search-bar input {
-  max-width: 280px;
-  border-right: none;
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-}
-
-.search-bar button {
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  border-left: none;
-}
-
-/* --- 页脚 --- */
-.site-footer {
-  margin-top: auto;
-  background: var(--color-bg-dark);
-  color: #888;
-  text-align: center;
-  padding: 16px;
-  font-size: 0.78rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.site-footer a {
-  color: #999;
-}
-
-/* --- 页面主内容区 --- */
-.main-content {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 20px 16px;
-  flex: 1;
-}
-
-/* --- 面包屑导航 --- */
-.breadcrumb {
-  font-size: 0.82rem;
-  color: var(--color-text-muted);
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px dotted var(--color-border-light);
-}
-
-.breadcrumb a {
-  color: var(--color-text-muted);
-  text-decoration: none;
-}
-
-.breadcrumb a:hover {
-  color: var(--color-text-link-hover);
-  text-decoration: underline;
-}
-
-.breadcrumb span {
-  margin: 0 4px;
-  color: var(--color-border);
-}
-
-/* --- 两栏布局 --- */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-@media (max-width: 700px) {
-  .two-col {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --- 点位景观头图（CSS渐变模拟真实风景照） --- */
-.location-hero {
-  width: 100%; height: 180px; border-radius: var(--radius-sm);
-  margin-bottom: 16px; overflow: hidden; position: relative;
-}
-.location-hero.mountains {
-  background: linear-gradient(180deg, #87CEEB 0%, #B0C4DE 30%, #8B9DC3 45%, #6B7B8D 55%, #4A6741 65%, #3D5C30 80%, #5C7A4A 100%);
-}
-.location-hero.mountains::before {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 55%;
-  background:
-    /* 山峦剪影 */
-    linear-gradient(175deg, transparent 30%, #5C7A4A 30.5%, #4A5E3A 50%, transparent 50.5%),
-    linear-gradient(185deg, transparent 40%, #6B8B5A 40.5%, #556B3A 55%, #3D4E2A 60%, transparent 60.5%),
-    linear-gradient(170deg, transparent 45%, #7A9A6A 45.5%, #6A8A5A 65%, transparent 65.5%);
-}
-.location-hero.desert {
-  background: linear-gradient(180deg, #F4A460 0%, #DEB887 35%, #D2A679 50%, #C4956A 65%, #D2B48C 80%, #C4A882 100%);
-}
-.location-hero.desert::before {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
-  background:
-    linear-gradient(175deg, transparent 60%, #B8956A 60.5%, #A08060 75%, transparent 75.5%);
-}
-.location-hero.forest {
-  background: linear-gradient(180deg, #87CEEB 0%, #90B4A0 25%, #4A7C59 45%, #2D5A3D 60%, #1E3D28 80%, #0F1F14 100%);
-}
-.location-hero.forest::before {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
-  background:
-    linear-gradient(170deg, transparent 40%, #3D6B4A 40.5%, #2D4A35 55%, transparent 55.5%),
-    linear-gradient(190deg, transparent 35%, #4D7B5A 35.5%, #3D6B4A 55%, #1D2D25 70%, transparent 70.5%);
-}
-.location-hero.plateau {
-  background: linear-gradient(180deg, #87CEEB 0%, #B0C4DE 20%, #8B9D8B 50%, #6B7B5D 65%, #4A5A3D 100%);
-}
-.location-hero.plateau::before {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 45%;
-  background:
-    linear-gradient(180deg, transparent 30%, #7A9A6A 30.5%, #5A7A4A 50%, #3A5A2A 70%, transparent 70.5%),
-    /* 雪山 */
-    linear-gradient(160deg, transparent 55%, #F0F0F0 55.5%, #E0E0E0 60%, #D0D0D0 65%, transparent 65.5%);
-}
-
-/* --- 帖文配图占位（模拟真实论坛的低清照片） --- */
-.post-photo {
-  width: 100%; max-width: 500px; height: 200px; border-radius: var(--radius-sm);
-  margin: 12px 0; overflow: hidden; position: relative;
-  border: 1px solid var(--color-border-light);
-  background: #d5cdc0;
-}
-.post-photo::after {
-  content: '📷';
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  font-size: 2rem; opacity: 0.4;
-}
-.post-photo.landscape {
-  background: linear-gradient(180deg, #B0C4DE 0%, #9AB0C4 30%, #7A9A6A 50%, #5A7A4A 75%, #3A4A2A 100%);
-}
-.post-photo.ruins {
-  background: linear-gradient(180deg, #C4B896 0%, #A89878 40%, #8B7D6B 60%, #6B5D4B 100%);
-}
-.post-photo.night-sky {
-  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3a 60%, #2a2a4a 80%, #3a3a4a 100%);
-}
-.post-photo.night-sky::after { content: '✨'; }
-
-/* --- 文章列表项 --- */
-.post-item, .location-item {
-  border-bottom: 1px dotted var(--color-border-light);
-  padding: 10px 0;
-}
-
-.post-item:last-child, .location-item:last-child {
-  border-bottom: none;
-}
-
-.post-item .post-title {
-  font-size: 1rem;
-  margin-bottom: 2px;
-}
-
-.post-item .post-title a {
-  text-decoration: none;
-}
-
-.post-item .post-meta {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-}
-
-/* --- 分页 --- */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-  font-size: 0.85rem;
-}
-
-.pagination a, .pagination span {
-  padding: 4px 10px;
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  color: var(--color-text-secondary);
-}
-
-.pagination span.current {
-  background: var(--color-bg-secondary);
-  font-weight: bold;
-}
-
-/* --- 辅助类 --- */
-.text-muted { color: var(--color-text-muted); font-size: 0.85rem; }
-.text-small { font-size: 0.82rem; }
-.mt-1 { margin-top: 8px; }
-.mt-2 { margin-top: 16px; }
-.mb-1 { margin-bottom: 8px; }
-.mb-2 { margin-bottom: 16px; }
-
-/* --- 隐藏页面通用样式 --- */
-.hidden-page {
-  background: #0d0d0d;
-  color: #ccc;
-  min-height: 100vh;
 }

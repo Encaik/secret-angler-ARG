@@ -18,7 +18,11 @@ const BASE = __BASE_PATH__;
     <p>此共享文件夹已<strong>加密</strong>，仅对授权访问者开放。</p>
     <p class="text-muted">请先登录你的探秘者联盟账号。</p>
     <div style="margin-top: 24px;">
-      <a href={`${BASE}login/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a
+        href={`${BASE}login/`}
+        target="_blank"
+        style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);"
+      >
         前往登录 →
       </a>
     </div>
@@ -36,7 +40,11 @@ const BASE = __BASE_PATH__;
     <p>你尚未获得此加密共享的访问权限。</p>
     <p class="text-muted">请输入正确的提取码以解锁文件内容。</p>
     <div style="margin-top: 24px;">
-      <a href={`${BASE}community/`} target="_blank" style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);">
+      <a
+        href={`${BASE}community/`}
+        target="_blank"
+        style="display: inline-block; padding: 10px 32px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm);"
+      >
         返回社区 →
       </a>
     </div>
@@ -44,7 +52,7 @@ const BASE = __BASE_PATH__;
 </Layout>
 
 <script is:inline>
-  (function() {
+  (function () {
     var loggedIn = localStorage.getItem('arg_logged_in') === 'true';
     var progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
     var isMember = !!(progress.solvedPuzzles && progress.solvedPuzzles['stage1_page_header_password']);

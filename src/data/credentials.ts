@@ -5,8 +5,8 @@
 
 /** 主站登录凭证（/login/） */
 export const MAIN_CREDENTIALS: Record<string, { password: string; redirect: string }> = {
-  'lyu': { password: 'starchaser24', redirect: '/user/center/lyu/' },
-  'shenci': { password: 'helanshan06', redirect: '/user/center/shenci/' },
+  lyu: { password: 'starchaser24', redirect: '/user/center/lyu/' },
+  shenci: { password: 'helanshan06', redirect: '/user/center/shenci/' },
 };
 
 /** 后台管理系统凭证（/hidden/admin/） */
@@ -28,9 +28,9 @@ export const MEMBER_ACCESS_CODE = '多站同源2026';
 
 /** 沈辞密码组成的各部分（用于拼凑验证） */
 export const SHENCI_PASSWORD_PARTS = {
-  site: 'helanshan',    // 贺兰山拼音全小写
-  birthYear: '06',      // 出生年份后两位
-  full: 'helanshan06',  // 完整密码
+  site: 'helanshan', // 贺兰山拼音全小写
+  birthYear: '06', // 出生年份后两位
+  full: 'helanshan06', // 完整密码
 };
 
 /** 林屿密码 */

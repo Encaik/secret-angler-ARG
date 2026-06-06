@@ -7,22 +7,24 @@ const BASE = __BASE_PATH__;
 
 <HiddenLayout title="景区管理系统 · 工单">
   <div style="max-width: 580px; margin: 0 auto;">
-
     <div style="text-align: center; margin-bottom: 20px;">
       <h2 style="color: #2c1810; font-size: 1rem; margin-bottom: 4px;">景区管理系统</h2>
       <p style="color: #9b8c7a; font-size: 0.72rem;">盘龙峡风景区 · 内部工单平台</p>
     </div>
 
     <!-- 未登录提示 -->
-    <div id="workorder-guest" style="background: #fefcf7; border: 1px solid #e0d5c0; padding: 32px 24px; text-align: center;">
+    <div
+      id="workorder-guest"
+      style="background: #fefcf7; border: 1px solid #e0d5c0; padding: 32px 24px; text-align: center;"
+    >
       <div style="font-size: 2rem; margin-bottom: 12px;">🔐</div>
-      <p style="color: #6b5d4a; font-size: 0.85rem; margin-bottom: 8px;">
-        工单系统仅对景区工作人员开放。
-      </p>
-      <p style="color: #9b8c7a; font-size: 0.75rem; margin-bottom: 20px;">
-        请使用您的景区管理系统账号登录后提交工单。
-      </p>
-      <a href={`${BASE}hidden/admin/`} target="_blank" style="display: inline-block; padding: 8px 28px; background: #8b6914; color: #fefcf7; text-decoration: none; font-size: 0.82rem; border-radius: 2px;">
+      <p style="color: #6b5d4a; font-size: 0.85rem; margin-bottom: 8px;">工单系统仅对景区工作人员开放。</p>
+      <p style="color: #9b8c7a; font-size: 0.75rem; margin-bottom: 20px;">请使用您的景区管理系统账号登录后提交工单。</p>
+      <a
+        href={`${BASE}hidden/admin/`}
+        target="_blank"
+        style="display: inline-block; padding: 8px 28px; background: #8b6914; color: #fefcf7; text-decoration: none; font-size: 0.82rem; border-radius: 2px;"
+      >
         管理员登录
       </a>
       <p style="color: #c0b090; font-size: 0.65rem; margin-top: 14px;">
@@ -69,6 +71,5 @@ const BASE = __BASE_PATH__;
         仅显示最近30天工单。登录后可查看全部记录与提交新工单。
       </p>
     </div>
-
   </div>
 </HiddenLayout>

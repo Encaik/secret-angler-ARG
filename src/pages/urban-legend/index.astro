@@ -2,13 +2,28 @@
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="都市传说" currentNav="urban-legend">
   <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>都市传说</div>
   <h2>🌃 都市传说</h2>
-  <p class="text-muted">每个城市都有它的秘密。本板块收集全国各地的都市传说、民间怪谈和街头流言。注意：内容未经核实，仅供娱乐。</p>
+  <p class="text-muted">
+    每个城市都有它的秘密。本板块收集全国各地的都市传说、民间怪谈和街头流言。注意：内容未经核实，仅供娱乐。
+  </p>
   <hr />
-  <div class="post-item"><span class="tag tag-legend">北京</span> <span style="color: var(--color-text-secondary);"><strong>朝内81号：京城第一凶宅</strong></span> <span class="text-muted">征稿中</span></div>
-  <div class="post-item"><span class="tag tag-legend">上海</span> <span style="color: var(--color-text-secondary);"><strong>延安路高架龙柱传说</strong></span> <span class="text-muted">征稿中</span></div>
-  <div class="post-item"><span class="tag tag-legend">重庆</span> <span style="color: var(--color-text-secondary);"><strong>红旗河沟地下迷宫传闻</strong></span> <span class="text-muted">征稿中</span></div>
+  <div class="post-item">
+    <span class="tag tag-legend">北京</span>
+    <span style="color: var(--color-text-secondary);"><strong>朝内81号：京城第一凶宅</strong></span>
+    <span class="text-muted">征稿中</span>
+  </div>
+  <div class="post-item">
+    <span class="tag tag-legend">上海</span>
+    <span style="color: var(--color-text-secondary);"><strong>延安路高架龙柱传说</strong></span>
+    <span class="text-muted">征稿中</span>
+  </div>
+  <div class="post-item">
+    <span class="tag tag-legend">重庆</span>
+    <span style="color: var(--color-text-secondary);"><strong>红旗河沟地下迷宫传闻</strong></span>
+    <span class="text-muted">征稿中</span>
+  </div>
   <p class="text-muted mt-2">有新的都市传说线索？欢迎<a href={`${BASE}submit/`} target="_blank">投稿</a>。</p>
 </Layout>

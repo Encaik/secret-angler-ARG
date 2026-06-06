@@ -25,9 +25,11 @@ describe('evaluateEnding', () => {
 
     it('returns ending 1 when score is 6 (upper bound of ending 1)', () => {
       // E1(2) + E2(2) + E5(2) = 6
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/hidden/board'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate', '/hidden/board'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(1);
       expect(result.score).toBe(6);
@@ -35,9 +37,11 @@ describe('evaluateEnding', () => {
 
     it('returns ending 2 when score is 7 (lower bound of ending 2)', () => {
       // E1(2) + E2(2) + E3(3) = 7
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(2);
       expect(result.score).toBe(7);
@@ -46,9 +50,17 @@ describe('evaluateEnding', () => {
     it('returns ending 2 when score is 11 (upper bound of ending 2)', () => {
       // E1(2) + E2(2) + E3(3) + E4(3) + E5(2) = 12 → ending 3
       // E1(2) + E2(2) + E3(3) + E5(2) + E6(2) = 11
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base', '/hidden/board', '/hidden/operation'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/board',
+            '/hidden/operation',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(2);
       expect(result.score).toBe(11);
@@ -56,9 +68,17 @@ describe('evaluateEnding', () => {
 
     it('returns ending 3 when score is 12 (lower bound of ending 3)', () => {
       // E1(2) + E2(2) + E3(3) + E4(3) + E5(2) = 12
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base', '/hidden/panlongxia', '/hidden/board'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/panlongxia',
+            '/hidden/board',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(3);
       expect(result.score).toBe(12);
@@ -66,12 +86,19 @@ describe('evaluateEnding', () => {
 
     it('returns ending 3 when score is 17 (upper bound of ending 3)', () => {
       // E1(2)+E2(2)+E3(3)+E4(3)+E5(2)+E6(2)+E7(3) = 17
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/panlongxia', '/hidden/board', '/hidden/operation', '/hidden/locations',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/panlongxia',
+            '/hidden/board',
+            '/hidden/operation',
+            '/hidden/locations',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(3);
       expect(result.score).toBe(17);
@@ -79,25 +106,39 @@ describe('evaluateEnding', () => {
 
     it('returns ending 4 when score is 18 (lower bound of ending 4)', () => {
       // All except E8: 2+2+3+3+2+2+3+4=21. Without E7(3): 2+2+3+3+2+2+0+4=18
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/panlongxia', '/hidden/board', '/hidden/operation', '/hidden/dead-drop',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/panlongxia',
+            '/hidden/board',
+            '/hidden/operation',
+            '/hidden/dead-drop',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(4);
       expect(result.score).toBe(18);
     });
 
     it('returns ending 4 when score is 21 (max score)', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
-          '/hidden/locations', '/hidden/dead-drop',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/panlongxia',
+            '/hidden/board',
+            '/hidden/operation',
+            '/hidden/locations',
+            '/hidden/dead-drop',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(4);
       expect(result.score).toBe(21);
@@ -111,21 +152,28 @@ describe('evaluateEnding', () => {
     it('auto-upgrades to ending 4 when dead-drop collected and score >= 12', () => {
       // E1(2)+E2(2)+E3(3)+E7(3)+E8(4) = 14, without E8 it's 10 (ending 2)
       // With E8 upgrade: should be ending 4
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/locations', '/hidden/dead-drop',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/locations',
+            '/hidden/dead-drop',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(4);
     });
 
     it('does NOT auto-upgrade when dead-drop collected but score < 12', () => {
       // E1(2)+E2(2)+E8(4) = 8, score < 12, should be ending 2 not 4
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/hidden/dead-drop'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate', '/hidden/dead-drop'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(2);
     });
@@ -136,19 +184,23 @@ describe('evaluateEnding', () => {
   // ========================================
   describe('playerTargeted forced ending 1 rule', () => {
     it('forces ending 1 when score < 7 and playerTargeted is true', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate'],
-        playerTargeted: true,
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate'],
+          playerTargeted: true,
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(1);
     });
 
     it('does NOT force ending 1 when score < 7 but playerTargeted is false', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate'],
-        playerTargeted: false,
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate'],
+          playerTargeted: false,
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(1); // Already ending 1 due to low score
     });
@@ -159,9 +211,11 @@ describe('evaluateEnding', () => {
   // ========================================
   describe('page path matching', () => {
     it('matches pages with trailing slash', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift/', '/trigger/stargate/'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift/', '/trigger/stargate/'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.score).toBe(4);
       expect(result.collected).toContain('多站钓鱼方案矩阵');
@@ -169,17 +223,21 @@ describe('evaluateEnding', () => {
     });
 
     it('matches pages without trailing slash', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.score).toBe(4);
     });
 
     it('matches mixed slash formats', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift/', '/trigger/stargate'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift/', '/trigger/stargate'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.score).toBe(4);
     });
@@ -190,17 +248,21 @@ describe('evaluateEnding', () => {
   // ========================================
   describe('collected and missing evidence', () => {
     it('lists collected evidence correctly', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.collected).toEqual(['多站钓鱼方案矩阵', '信号伪造技术方案']);
     });
 
     it('lists missing evidence correctly', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.missing).toContain('信号伪造技术方案');
       expect(result.missing).toContain('基地设施蓝图');

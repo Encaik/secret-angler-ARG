@@ -6,8 +6,20 @@
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { evaluateEnding } from '../../scripts/ending';
-import { findArchivedContent, HIDDEN_PAGE_CACHE, PUZZLE_ANSWER as PUZZLE_ANSWER_CONST, SEARCH_TOKEN } from '../../data/search-data';
-import { MAIN_CREDENTIALS, ADMIN_PASSWORD, STAFF_PASSWORD, DARKNET_ACCOUNTS, MEMBER_ACCESS_CODE, SHENCI_PASSWORD_PARTS } from '../../data/credentials';
+import {
+  findArchivedContent,
+  HIDDEN_PAGE_CACHE,
+  PUZZLE_ANSWER as PUZZLE_ANSWER_CONST,
+  SEARCH_TOKEN,
+} from '../../data/search-data';
+import {
+  MAIN_CREDENTIALS,
+  ADMIN_PASSWORD,
+  STAFF_PASSWORD,
+  DARKNET_ACCOUNTS,
+  MEMBER_ACCESS_CODE,
+  SHENCI_PASSWORD_PARTS,
+} from '../../data/credentials';
 import '../../scripts/progress'; // 副作用导入，函数挂载到 window
 import { createEmptyProgress, seedProgress, readProgress } from '../helpers';
 
@@ -41,9 +53,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     it('identifies anomalies in post 247 via cross-reference search', () => {
       // Anomaly: Old GPS device — search "GPS" reveals new device purchased 2025-12-15
       const gpsResults = findArchivedContent('GPS');
-      const newGpsPost = gpsResults.find(p =>
-        p.content.includes('新的GPS') || p.content.includes('新')
-      );
+      const newGpsPost = gpsResults.find((p) => p.content.includes('新的GPS') || p.content.includes('新'));
       expect(newGpsPost).toBeDefined();
       expect(newGpsPost!.content).toMatch(/GPS/);
       expect(newGpsPost!.date).toContain('2025-12');
@@ -76,7 +86,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   describe('Stage 2: Shen Ci Password Assembly and Login', () => {
     it('Path A: search "沈辞" → new-member post reveals "贺兰山" + "06年"', () => {
       const results = findArchivedContent('沈辞');
-      const newMember = results.find(p => p.title === '新人报到帖');
+      const newMember = results.find((p) => p.title === '新人报到帖');
 
       expect(newMember).toBeDefined();
       expect(newMember!.content).toMatch(/贺兰山/);
@@ -85,7 +95,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
     it('Path B: search "贺兰山" → recall post confirms first site', () => {
       const results = findArchivedContent('贺兰山');
-      const recall = results.find(p => p.title.includes('回忆帖'));
+      const recall = results.find((p) => p.title.includes('回忆帖'));
 
       expect(recall).toBeDefined();
       expect(recall!.content).toMatch(/贺兰山是我探秘的起点/);
@@ -93,7 +103,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
     it('Path C: search "06" → new-member post confirms birth year', () => {
       const results = findArchivedContent('06');
-      const newMember = results.find(p => p.title === '新人报到帖');
+      const newMember = results.find((p) => p.title === '新人报到帖');
 
       expect(newMember).toBeDefined();
       expect(newMember!.content).toMatch(/贺兰山/);
@@ -117,10 +127,12 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     });
 
     it('shenci login records login_shenci clue', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/', '/community/post/247/', '/login/'],
-        discoveredClues: ['login_lyu'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/', '/community/post/247/', '/login/'],
+          discoveredClues: ['login_lyu'],
+        }),
+      );
       const progress = readProgress();
       progress.discoveredClues.push('login_shenci');
       progress.solvedPuzzles['shenci_password'] = true;
@@ -138,7 +150,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   describe('Stage 3: Acrostic Discovery and Rift Trigger', () => {
     it('searching "加密" reveals hint about cangtou/cangwei technique', () => {
       const results = findArchivedContent('加密');
-      const hintPost = results.find(p => p.author === 'signal_屿');
+      const hintPost = results.find((p) => p.author === 'signal_屿');
 
       expect(hintPost).toBeDefined();
       expect(hintPost!.content).toMatch(/藏头|藏尾|开头|结尾/);
@@ -195,9 +207,11 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     });
 
     it('solving puzzle records stage1_page_header_password in progress', () => {
-      seedProgress(createEmptyProgress({
-        discoveredClues: ['login_lyu', 'login_shenci'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredClues: ['login_lyu', 'login_shenci'],
+        }),
+      );
       const progress = readProgress();
       progress.solvedPuzzles['stage2_acrostic_journal'] = true;
       progress.solvedPuzzles['stage1_page_header_password'] = true;
@@ -214,9 +228,11 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   // ==========================================
   describe('Stage 4: Member Area and Signal Tracking', () => {
     it('with puzzle solved, member area can be accessed', () => {
-      seedProgress(createEmptyProgress({
-        solvedPuzzles: { stage1_page_header_password: true },
-      }));
+      seedProgress(
+        createEmptyProgress({
+          solvedPuzzles: { stage1_page_header_password: true },
+        }),
+      );
       const progress = readProgress();
       expect(progress.solvedPuzzles['stage1_page_header_password']).toBe(true);
     });
@@ -256,9 +272,11 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     });
 
     it('darknet login records stage4_darknet_access', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/hidden/panlongxia/'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/hidden/panlongxia/'],
+        }),
+      );
       const progress = readProgress();
       progress.solvedPuzzles['stage4_darknet_access'] = true;
       progress.discoveredClues.push('darknet_marketplace');
@@ -288,9 +306,11 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   // ==========================================
   describe('Stage 6: Admin Access and Evidence Collection', () => {
     it('admin login with xiaoyu2021 records admin_access', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/hidden/admin/'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/hidden/admin/'],
+        }),
+      );
       const progress = readProgress();
       progress.solvedPuzzles['stage3_hidden_admin_password'] = true;
       progress.discoveredClues.push('admin_access');
@@ -323,10 +343,12 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     });
 
     it('recording all hidden pages sets playerTargeted', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift/', '/trigger/stargate/', '/trigger/base/'],
-        playerTargeted: false,
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift/', '/trigger/stargate/', '/trigger/base/'],
+          playerTargeted: false,
+        }),
+      );
 
       recordPageVisit('/hidden/admin/'); // 4th hidden/trigger page
 
@@ -341,9 +363,14 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
   describe('Stage 7: Evidence Scoring and Ending Evaluation', () => {
     it('all 8 evidence pages exist and are distinct', () => {
       const evidencePages = [
-        '/trigger/rift', '/trigger/stargate', '/trigger/base',
-        '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
-        '/hidden/locations', '/hidden/dead-drop',
+        '/trigger/rift',
+        '/trigger/stargate',
+        '/trigger/base',
+        '/hidden/panlongxia',
+        '/hidden/board',
+        '/hidden/operation',
+        '/hidden/locations',
+        '/hidden/dead-drop',
       ];
       expect(new Set(evidencePages).size).toBe(8);
       expect(evidencePages).toHaveLength(8);
@@ -361,18 +388,22 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     });
 
     it('ENDING 1 (0-6): with only E1+E2 → score 4 → ending 1', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(1);
       expect(result.score).toBe(4);
     });
 
     it('ENDING 2 (7-11): with trigger pages only (E1+E2+E3) → score 7 → ending 2 (孤军救人)', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base'],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate', '/trigger/base'],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(2);
       expect(result.score).toBe(7);
@@ -380,37 +411,54 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
     it('ENDING 3 (12-17): with trigger+darknet+board → score 12 → ending 3 (局部破获)', () => {
       // E1(2)+E2(2)+E3(3)+E4(3)+E5(2) = 12
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/panlongxia', '/hidden/board',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/panlongxia',
+            '/hidden/board',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(3);
       expect(result.score).toBe(12);
     });
 
     it('ENDING 4 (18-21): with all evidence → score 21 → ending 4 (全链覆灭)', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
-          '/hidden/locations', '/hidden/dead-drop',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/panlongxia',
+            '/hidden/board',
+            '/hidden/operation',
+            '/hidden/locations',
+            '/hidden/dead-drop',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(4);
       expect(result.score).toBe(21);
     });
 
     it('E8 dead-drop auto-upgrade: score 12 + E8 → ending 4', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: [
-          '/trigger/rift', '/trigger/stargate', '/trigger/base',
-          '/hidden/locations', '/hidden/dead-drop',
-        ],
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: [
+            '/trigger/rift',
+            '/trigger/stargate',
+            '/trigger/base',
+            '/hidden/locations',
+            '/hidden/dead-drop',
+          ],
+        }),
+      );
       const result = evaluateEnding();
       // Without E8: score = 2+2+3+3+4 = 14
       // With E8 special rule: >= 12 + E8 → ending 4
@@ -418,10 +466,12 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
     });
 
     it('buying ticket path (playerTargeted + low score) forces ending 1', () => {
-      seedProgress(createEmptyProgress({
-        discoveredPages: ['/trigger/rift', '/trigger/stargate'],
-        playerTargeted: true,
-      }));
+      seedProgress(
+        createEmptyProgress({
+          discoveredPages: ['/trigger/rift', '/trigger/stargate'],
+          playerTargeted: true,
+        }),
+      );
       const result = evaluateEnding();
       expect(result.ending).toBe(1);
     });
@@ -445,7 +495,7 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
       // Search "沈辞" → find new-member post
       const searchResults1 = findArchivedContent('沈辞');
-      const newMemberPost = searchResults1.find(p => p.title === '新人报到帖');
+      const newMemberPost = searchResults1.find((p) => p.title === '新人报到帖');
       expect(newMemberPost).toBeDefined();
       expect(newMemberPost!.content).toMatch(/贺兰山/);
       expect(newMemberPost!.content).toMatch(/06/);
@@ -509,8 +559,12 @@ describe('Main Flow Smoke Test: Complete 7-Stage Walkthrough', () => {
 
       // Visit all hidden evidence pages
       const hiddenPages = [
-        '/hidden/board/', '/hidden/operation/', '/hidden/locations/',
-        '/hidden/dead-drop/', '/hidden/targets/', '/hidden/evidence-locker/',
+        '/hidden/board/',
+        '/hidden/operation/',
+        '/hidden/locations/',
+        '/hidden/dead-drop/',
+        '/hidden/targets/',
+        '/hidden/evidence-locker/',
       ];
       for (const page of hiddenPages) {
         recordPageVisit(page);

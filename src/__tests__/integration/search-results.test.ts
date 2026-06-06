@@ -20,15 +20,14 @@ describe('Search result mappings', () => {
     it('searching "沈辞" returns shenci posts', () => {
       const results = findArchivedContent('沈辞');
       expect(results.length).toBeGreaterThan(0);
-      expect(results.some(p => p.author === '地下三尺')).toBe(true);
+      expect(results.some((p) => p.author === '地下三尺')).toBe(true);
     });
 
     it('searching "shenci" returns the same posts as "沈辞"', () => {
       const shenciResults = findArchivedContent('shenci');
       const 沈辞Results = findArchivedContent('沈辞');
       // Both should return the new-member post
-      const bothHaveNewMember = (posts: ArchivedPost[]) =>
-        posts.some(p => p.title === '新人报到帖');
+      const bothHaveNewMember = (posts: ArchivedPost[]) => posts.some((p) => p.title === '新人报到帖');
       expect(bothHaveNewMember(shenciResults)).toBe(true);
       expect(bothHaveNewMember(沈辞Results)).toBe(true);
     });
@@ -36,42 +35,42 @@ describe('Search result mappings', () => {
     it('searching "贺兰山" returns Helan Mountain posts', () => {
       const results = findArchivedContent('贺兰山');
       expect(results.length).toBeGreaterThan(0);
-      expect(results.some(p => p.content.includes('贺兰山'))).toBe(true);
+      expect(results.some((p) => p.content.includes('贺兰山'))).toBe(true);
     });
 
     it('searching "加密" returns the acrostic hint post by signal_屿', () => {
       const results = findArchivedContent('加密');
-      expect(results.some(p => p.author === 'signal_屿')).toBe(true);
-      expect(results.some(p => p.title.includes('信息隐藏'))).toBe(true);
+      expect(results.some((p) => p.author === 'signal_屿')).toBe(true);
+      expect(results.some((p) => p.title.includes('信息隐藏'))).toBe(true);
     });
 
     it('searching "轻舟云盘" returns the cloud drive recommendation', () => {
       const results = findArchivedContent('轻舟云盘');
       expect(results.length).toBeGreaterThan(0);
-      expect(results.some(p => p.author === '星海漫步')).toBe(true);
+      expect(results.some((p) => p.author === '星海漫步')).toBe(true);
     });
 
     it('searching "凤凰山" returns the signal analysis post', () => {
       const results = findArchivedContent('凤凰山');
-      expect(results.some(p => p.author === 'signal_屿')).toBe(true);
+      expect(results.some((p) => p.author === 'signal_屿')).toBe(true);
     });
 
     it('searching "龙骨" returns the SDR intercept record', () => {
       const results = findArchivedContent('龙骨');
       expect(results.length).toBeGreaterThan(0);
-      expect(results.some(p => p.content.includes('SDR'))).toBe(true);
+      expect(results.some((p) => p.content.includes('SDR'))).toBe(true);
     });
 
     it('searching "永无止境" returns the site doubt post', () => {
       const results = findArchivedContent('永无止境');
       expect(results.length).toBeGreaterThan(0);
-      expect(results.some(p => p.author === '地下三尺')).toBe(true);
+      expect(results.some((p) => p.author === '地下三尺')).toBe(true);
     });
 
     it('searching "06" returns the new-member post confirming birth year', () => {
       const results = findArchivedContent('06');
-      expect(results.some(p => p.content.includes('06'))).toBe(true);
-      expect(results.some(p => p.isClue)).toBe(true);
+      expect(results.some((p) => p.content.includes('06'))).toBe(true);
+      expect(results.some((p) => p.isClue)).toBe(true);
     });
   });
 
@@ -131,7 +130,7 @@ describe('Search result mappings', () => {
   describe('Shenci password assembly paths', () => {
     it('Path A: search "沈辞" → new-member post contains "贺兰山" and "06年"', () => {
       const results = findArchivedContent('沈辞');
-      const newMember = results.find(p => p.title === '新人报到帖');
+      const newMember = results.find((p) => p.title === '新人报到帖');
       expect(newMember).toBeDefined();
       expect(newMember!.content).toMatch(/贺兰山/);
       expect(newMember!.content).toMatch(/06/);
@@ -139,14 +138,14 @@ describe('Search result mappings', () => {
 
     it('Path B: search "贺兰山" → recall post confirms first site', () => {
       const results = findArchivedContent('贺兰山');
-      const recall = results.find(p => p.title.includes('回忆帖'));
+      const recall = results.find((p) => p.title.includes('回忆帖'));
       expect(recall).toBeDefined();
       expect(recall!.content).toMatch(/贺兰山是我探秘的起点/);
     });
 
     it('Path C: search "地下三尺" → new-member post', () => {
       const results = findArchivedContent('地下三尺');
-      const newMember = results.find(p => p.title === '新人报到帖');
+      const newMember = results.find((p) => p.title === '新人报到帖');
       expect(newMember).toBeDefined();
       expect(newMember!.content).toMatch(/贺兰山/);
       expect(newMember!.content).toMatch(/06/);
@@ -169,14 +168,14 @@ describe('Search result mappings', () => {
   describe('Acrostic hint verification', () => {
     it('searching "加密" reveals hint about cangtou/cangwei technique', () => {
       const results = findArchivedContent('加密');
-      const hintPost = results.find(p => p.author === 'signal_屿');
+      const hintPost = results.find((p) => p.author === 'signal_屿');
       expect(hintPost).toBeDefined();
       expect(hintPost!.content).toMatch(/藏头|藏尾|开头|结尾/);
     });
 
     it('searching "信号" reveals hint about pattern recognition', () => {
       const results = findArchivedContent('信号');
-      expect(results.some(p => p.content.includes('模式识别'))).toBe(true);
+      expect(results.some((p) => p.content.includes('模式识别'))).toBe(true);
     });
   });
 

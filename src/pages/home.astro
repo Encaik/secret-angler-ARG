@@ -5,12 +5,12 @@ import Layout from '../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
 
-<Layout
-  title="首页"
-  description="探秘者联盟 — 小众探秘爱好者社区。外星目击、古迹秘境、未解之谜、都市传说……"
->
+<Layout title="首页" description="探秘者联盟 — 小众探秘爱好者社区。外星目击、古迹秘境、未解之谜、都市传说……">
   <!-- 欢迎横幅 -->
-  <div class="card" style="margin-bottom: 20px; background: linear-gradient(135deg, #f8f6f0 0%, #ede8df 100%); border-left: 3px solid var(--color-accent);">
+  <div
+    class="card"
+    style="margin-bottom: 20px; background: linear-gradient(135deg, #f8f6f0 0%, #ede8df 100%); border-left: 3px solid var(--color-accent);"
+  >
     <h2 style="margin-bottom: 6px;">🔭 欢迎来到探秘者联盟</h2>
     <p style="margin-bottom: 0;">
       一个由探秘爱好者共同维护的小众社区。无论你仰望星空、深入古迹、追踪未解之谜还是探寻自然奇观，
@@ -29,7 +29,9 @@ const BASE = __BASE_PATH__;
       </div>
       <div class="post-item">
         <div class="post-title"><a href={`${BASE}user/shenci/`} target="_blank"><strong>地下三尺</strong></a></div>
-        <p style="margin: 2px 0; font-size: 0.88rem;">刚从神农架回来。那个所谓的"远古石阵"——石阵中央那块巨石上的熔化痕迹，确实是高温造成的……</p>
+        <p style="margin: 2px 0; font-size: 0.88rem;">
+          刚从神农架回来。那个所谓的"远古石阵"——石阵中央那块巨石上的熔化痕迹，确实是高温造成的……
+        </p>
         <div class="post-meta">2026-05-08 · <a href={`${BASE}ruins/`} target="_blank">古迹秘境</a></div>
       </div>
       <div class="post-item">
@@ -44,7 +46,9 @@ const BASE = __BASE_PATH__;
       </div>
       <div class="post-item">
         <div class="post-title"><a href={`${BASE}user/lyu/`} target="_blank"><strong>signal_屿</strong></a></div>
-        <p style="margin: 2px 0; font-size: 0.88rem;">这几天在比对几个外星目击点的坐标……几乎所有"高可信度目击报告"的落点，都分布在北纬30-45度之间……</p>
+        <p style="margin: 2px 0; font-size: 0.88rem;">
+          这几天在比对几个外星目击点的坐标……几乎所有"高可信度目击报告"的落点，都分布在北纬30-45度之间……
+        </p>
         <div class="post-meta">2026-05-05 · <a href={`${BASE}alien/`} target="_blank">外星目击</a></div>
       </div>
       <a href={`${BASE}community/`} target="_blank" style="font-size: 0.85rem;">查看更多动态 →</a>
@@ -52,45 +56,107 @@ const BASE = __BASE_PATH__;
 
     <div>
       <h3>📍 热门探秘点位</h3>
-      <div class="post-item"><span class="tag tag-alien">外星</span> <a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山1420MHz异常信号分析</a><div class="post-meta">黑龙江·五常</div></div>
-      <div class="post-item"><span class="tag tag-ruins">古迹</span> <a href={`${BASE}ruins/ruins-001/`} target="_blank">贺兰山岩画未记录区</a><div class="post-meta">宁夏·银川</div></div>
-      <div class="post-item"><span class="tag tag-alien">外星</span> <a href={`${BASE}alien/alien-003/`} target="_blank">神农架不明飞行物走廊</a><div class="post-meta">湖北·神农架</div></div>
-      <div class="post-item"><span class="tag tag-ruins">古迹</span> <a href={`${BASE}ruins/ruins-003/`} target="_blank">神农架远古石阵</a><div class="post-meta">湖北·神农架</div></div>
-      <div class="post-item"><span class="tag tag-alien">外星</span> <a href={`${BASE}alien/alien-005/`} target="_blank">罗布泊外星残骸目击地</a><div class="post-meta">新疆·若羌</div></div>
-      <a href={`${BASE}alien/`} target="_blank" style="font-size: 0.85rem;">更多外星目击 →</a> &nbsp; <a href={`${BASE}ruins/`} target="_blank" style="font-size: 0.85rem;">更多古迹秘境 →</a>
+      <div class="post-item">
+        <span class="tag tag-alien">外星</span>
+        <a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山1420MHz异常信号分析</a><div class="post-meta">
+          黑龙江·五常
+        </div>
+      </div>
+      <div class="post-item">
+        <span class="tag tag-ruins">古迹</span>
+        <a href={`${BASE}ruins/ruins-001/`} target="_blank">贺兰山岩画未记录区</a><div class="post-meta">宁夏·银川</div>
+      </div>
+      <div class="post-item">
+        <span class="tag tag-alien">外星</span>
+        <a href={`${BASE}alien/alien-003/`} target="_blank">神农架不明飞行物走廊</a><div class="post-meta">
+          湖北·神农架
+        </div>
+      </div>
+      <div class="post-item">
+        <span class="tag tag-ruins">古迹</span>
+        <a href={`${BASE}ruins/ruins-003/`} target="_blank">神农架远古石阵</a><div class="post-meta">湖北·神农架</div>
+      </div>
+      <div class="post-item">
+        <span class="tag tag-alien">外星</span>
+        <a href={`${BASE}alien/alien-005/`} target="_blank">罗布泊外星残骸目击地</a><div class="post-meta">
+          新疆·若羌
+        </div>
+      </div>
+      <a href={`${BASE}alien/`} target="_blank" style="font-size: 0.85rem;">更多外星目击 →</a> &nbsp; <a
+        href={`${BASE}ruins/`}
+        target="_blank"
+        style="font-size: 0.85rem;">更多古迹秘境 →</a
+      >
 
       <h3 style="margin-top: 20px;">🗺️ 探秘板块</h3>
       <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-        <a href={`${BASE}alien/`} target="_blank" class="tag tag-alien" style="font-size: 0.88rem; padding: 4px 12px;">外星目击</a>
-        <a href={`${BASE}ruins/`} target="_blank" class="tag tag-ruins" style="font-size: 0.88rem; padding: 4px 12px;">古迹秘境</a>
-        <a href={`${BASE}mystery/`} target="_blank" class="tag tag-mystery" style="font-size: 0.88rem; padding: 4px 12px;">未解之谜</a>
-        <a href={`${BASE}urban-legend/`} target="_blank" class="tag tag-legend" style="font-size: 0.88rem; padding: 4px 12px;">都市传说</a>
-        <a href={`${BASE}nature/`} target="_blank" class="tag tag-nature" style="font-size: 0.88rem; padding: 4px 12px;">自然奇观</a>
-        <a href={`${BASE}deep-sea/`} target="_blank" class="tag tag-deepsea" style="font-size: 0.88rem; padding: 4px 12px;">深海探秘</a>
-        <a href={`${BASE}hollow-earth/`} target="_blank" class="tag tag-hollow" style="font-size: 0.88rem; padding: 4px 12px;">地心文明</a>
+        <a href={`${BASE}alien/`} target="_blank" class="tag tag-alien" style="font-size: 0.88rem; padding: 4px 12px;"
+          >外星目击</a
+        >
+        <a href={`${BASE}ruins/`} target="_blank" class="tag tag-ruins" style="font-size: 0.88rem; padding: 4px 12px;"
+          >古迹秘境</a
+        >
+        <a
+          href={`${BASE}mystery/`}
+          target="_blank"
+          class="tag tag-mystery"
+          style="font-size: 0.88rem; padding: 4px 12px;">未解之谜</a
+        >
+        <a
+          href={`${BASE}urban-legend/`}
+          target="_blank"
+          class="tag tag-legend"
+          style="font-size: 0.88rem; padding: 4px 12px;">都市传说</a
+        >
+        <a href={`${BASE}nature/`} target="_blank" class="tag tag-nature" style="font-size: 0.88rem; padding: 4px 12px;"
+          >自然奇观</a
+        >
+        <a
+          href={`${BASE}deep-sea/`}
+          target="_blank"
+          class="tag tag-deepsea"
+          style="font-size: 0.88rem; padding: 4px 12px;">深海探秘</a
+        >
+        <a
+          href={`${BASE}hollow-earth/`}
+          target="_blank"
+          class="tag tag-hollow"
+          style="font-size: 0.88rem; padding: 4px 12px;">地心文明</a
+        >
       </div>
 
       <h3 style="margin-top: 20px;">👥 活跃探秘者</h3>
-      <div class="post-item"><a href={`${BASE}user/lyu/`} target="_blank"><strong>signal_屿</strong></a> <span class="text-muted">外星信号分析爱好者</span></div>
-      <div class="post-item"><a href={`${BASE}user/shenci/`} target="_blank"><strong>地下三尺</strong></a> <span class="text-muted">冷门古迹实地探访者</span></div>
-      <div class="post-item"><a href={`${BASE}user/nebulax/`} target="_blank">nebu1a_x</a> <span class="text-muted">天文摄影爱好者</span></div>
-      <div class="post-item"><a href={`${BASE}user/urbexlf/`} target="_blank">废弃中</a> <span class="text-muted">城市废墟探险</span></div>
-      <div class="post-item"><a href={`${BASE}user/driftlang/`} target="_blank">浪到没信号</a> <span class="text-muted">环游中国背包客</span></div>
+      <div class="post-item">
+        <a href={`${BASE}user/lyu/`} target="_blank"><strong>signal_屿</strong></a>
+        <span class="text-muted">外星信号分析爱好者</span>
+      </div>
+      <div class="post-item">
+        <a href={`${BASE}user/shenci/`} target="_blank"><strong>地下三尺</strong></a>
+        <span class="text-muted">冷门古迹实地探访者</span>
+      </div>
+      <div class="post-item">
+        <a href={`${BASE}user/nebulax/`} target="_blank">nebu1a_x</a>
+        <span class="text-muted">天文摄影爱好者</span>
+      </div>
+      <div class="post-item">
+        <a href={`${BASE}user/urbexlf/`} target="_blank">废弃中</a>
+        <span class="text-muted">城市废墟探险</span>
+      </div>
+      <div class="post-item">
+        <a href={`${BASE}user/driftlang/`} target="_blank">浪到没信号</a>
+        <span class="text-muted">环游中国背包客</span>
+      </div>
     </div>
   </div>
 
   <!-- 站点公告 -->
   <div class="card" style="margin-top: 20px; background: var(--color-bg-secondary); font-size: 0.85rem;">
     <p style="margin-bottom: 6px;"><strong>📢 站点公告</strong></p>
-    <p style="margin-bottom: 4px; color: var(--color-text-muted);">
-      各位探秘者：
-    </p>
+    <p style="margin-bottom: 4px; color: var(--color-text-muted);">各位探秘者：</p>
     <p style="margin-bottom: 4px; color: var(--color-text-muted);">
       站点计划于本周六（6月7日）凌晨进行服务器迁移，预计维护时间2:00-6:00。维护期间站点可能间歇性无法访问。不便之处敬请谅解。
     </p>
-    <p style="margin-bottom: 4px; color: var(--color-text-muted);">
-      另外几件事：
-    </p>
+    <p style="margin-bottom: 4px; color: var(--color-text-muted);">另外几件事：</p>
     <p style="margin-bottom: 4px; color: var(--color-text-muted);">
       一、近期发现部分探秘点位的投稿描述与实际地貌存在出入。如果你实地探访后觉得某条内容存在问题，请在原帖下留言说明，帮助后来的探秘者获得更准确的参考信息。
     </p>
@@ -103,9 +169,7 @@ const BASE = __BASE_PATH__;
     <p style="margin-bottom: 4px; color: var(--color-text-muted);">
       四、版主招募持续进行中。如果你注册满一年、发过至少5篇原创探秘内容，且对某个探秘领域有深入理解，欢迎去"加入我们"页面提交申请。
     </p>
-    <p style="margin-bottom: 0; color: var(--color-text-muted);">
-      探秘的路很长，慢慢走。
-    </p>
+    <p style="margin-bottom: 0; color: var(--color-text-muted);">探秘的路很长，慢慢走。</p>
     <p style="margin-bottom: 0; color: var(--color-text-muted); font-size: 0.78rem; margin-top: 6px;">
       ——深空古迹探秘导航站 管理组 · 2026年6月3日
     </p>
@@ -113,7 +177,27 @@ const BASE = __BASE_PATH__;
 </Layout>
 
 <style>
-  .search-bar { display: flex; gap: 0; justify-content: center; }
-  .search-bar input { width: 320px; max-width: 60%; padding: 8px 14px; border: 1px solid var(--color-border); border-right: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm); font-size: 0.95rem; }
-  .search-bar button { padding: 8px 18px; background: var(--color-bg-dark); color: #e0dcd5; border: 1px solid var(--color-bg-dark); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; cursor: pointer; font-size: 0.95rem; }
+  .search-bar {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+  }
+  .search-bar input {
+    width: 320px;
+    max-width: 60%;
+    padding: 8px 14px;
+    border: 1px solid var(--color-border);
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    font-size: 0.95rem;
+  }
+  .search-bar button {
+    padding: 8px 18px;
+    background: var(--color-bg-dark);
+    color: #e0dcd5;
+    border: 1px solid var(--color-bg-dark);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
 </style>

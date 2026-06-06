@@ -18,7 +18,9 @@ const BASE = __BASE_PATH__;
   <!-- 个人资料卡 -->
   <div class="card" style="margin-bottom: 20px;">
     <div style="display: flex; gap: 16px; align-items: flex-start;">
-      <div style="width: 72px; height: 72px; background: #8b6914; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.8rem; flex-shrink: 0;">
+      <div
+        style="width: 72px; height: 72px; background: #8b6914; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.8rem; flex-shrink: 0;"
+      >
         🏛️
       </div>
       <div style="flex: 1;">
@@ -80,9 +82,7 @@ const BASE = __BASE_PATH__;
       </div>
 
       <div class="post-item">
-        <div class="post-title" style="color: var(--color-text-secondary);">
-          秦岭古栈道考古笔记：傥骆道段的诡异石刻
-        </div>
+        <div class="post-title" style="color: var(--color-text-secondary);">秦岭古栈道考古笔记：傥骆道段的诡异石刻</div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           沿着傥骆古道走了三天，在华阳镇北侧悬崖上发现了一系列从未被记录的石刻符号……
         </p>
@@ -90,9 +90,7 @@ const BASE = __BASE_PATH__;
       </div>
 
       <div class="post-item">
-        <div class="post-title" style="color: var(--color-text-secondary);">
-          古迹探秘安全手册：独行者的生存指南
-        </div>
+        <div class="post-title" style="color: var(--color-text-secondary);">古迹探秘安全手册：独行者的生存指南</div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);">
           经常独行探秘，总结一些安全经验：必备装备清单、行前报备流程、紧急联络设置……
         </p>
@@ -112,8 +110,14 @@ const BASE = __BASE_PATH__;
       <!-- 仅自己可见帖文 -->
       <div class="post-item" id="shenci-hidden-post-entry" style="border-left: 3px solid #c0392b; padding-left: 10px;">
         <div class="post-title">
-          <span class="tag" style="background:#c0392b;color:#fff;font-size:0.72rem;padding:1px 6px;border-radius:3px;margin-right:4px;">仅自己可见</span>
-          <a href="javascript:void(0)" id="shenci-hidden-post-link" style="color: #c0392b;">关于贺兰山之行的一些补充笔记</a>
+          <span
+            class="tag"
+            style="background:#c0392b;color:#fff;font-size:0.72rem;padding:1px 6px;border-radius:3px;margin-right:4px;"
+            >仅自己可见</span
+          >
+          <a href="javascript:void(0)" id="shenci-hidden-post-link" style="color: #c0392b;"
+            >关于贺兰山之行的一些补充笔记</a
+          >
         </div>
         <p style="font-size: 0.85rem; color: var(--color-text-secondary);" id="shenci-hidden-post-preview">
           出发前整理的一些想法和发现。有些推测还不太成熟，暂时不便公开……
@@ -121,36 +125,49 @@ const BASE = __BASE_PATH__;
         <div class="post-meta">2026-05-25 02:40 · 阅读权限：255 · 仅作者本人可见</div>
 
         <!-- 隐藏帖文区块 -->
-        <div id="shenci-hidden-post-content" style="display:none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed #c0392b;">
+        <div
+          id="shenci-hidden-post-content"
+          style="display:none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed #c0392b;"
+        >
           <div style="font-size:0.9rem; line-height:1.9;">
-            <p>出发前整理了一些零散的想法，记在这里备忘。林屿——如果你看到这篇帖文，说明你找到了我的密码。下面这些，是我出发前想跟你说的。</p>
+            <p>
+              出发前整理了一些零散的想法，记在这里备忘。林屿——如果你看到这篇帖文，说明你找到了我的密码。下面这些，是我出发前想跟你说的。
+            </p>
 
             <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
 
-            <p>多次探访之后，我开始整理所有零散的发现。从凤凰山到神农架，从贺兰山到哀牢山——把走过的点位一个一个标在地图上之后，一个规律逐渐浮现。那些坐标像是被人精心布置过的——不是自然的散布，也不是历史的巧合。林屿的目击数据我也反复看了，同样的模式出现在完全不同的数据集里。一个做信号分析的人和一个做古迹调查的人，各自独立走到同一个结论面前——这不可能是各自看走眼。</p>
+            <p>
+              多次探访之后，我开始整理所有零散的发现。从凤凰山到神农架，从贺兰山到哀牢山——把走过的点位一个一个标在地图上之后，一个规律逐渐浮现。那些坐标像是被人精心布置过的——不是自然的散布，也不是历史的巧合。林屿的目击数据我也反复看了，同样的模式出现在完全不同的数据集里。一个做信号分析的人和一个做古迹调查的人，各自独立走到同一个结论面前——这不可能是各自看走眼。
+            </p>
 
             <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
 
-            <p>站与站之间的关联一旦被点破，就再也无法视而不见。凤凰山那个所谓的"氢线信号"——林屿用SDR拉了一下频谱，调制模式一看就是人为生成的。骗得过用手机拍星星的普通爱好者，骗不过做过信号分析的人。更让人在意的是，这些假信号的坐标和那些古迹推荐点位的坐标——我一个个比对了，几乎全部落在同一批经纬度上。同一点位，对外星爱好者说是信号热点，对古迹爱好者说是未记录遗迹。两套文案，同一批坐标。</p>
+            <p>
+              站与站之间的关联一旦被点破，就再也无法视而不见。凤凰山那个所谓的"氢线信号"——林屿用SDR拉了一下频谱，调制模式一看就是人为生成的。骗得过用手机拍星星的普通爱好者，骗不过做过信号分析的人。更让人在意的是，这些假信号的坐标和那些古迹推荐点位的坐标——我一个个比对了，几乎全部落在同一批经纬度上。同一点位，对外星爱好者说是信号热点，对古迹爱好者说是未记录遗迹。两套文案，同一批坐标。
+            </p>
 
             <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
 
-            <p>同一个模板、同一套措辞、同一种操作方式。"秘境徒步联盟"——2024年底就没人维护了，但网页快照还在搜索引擎里。我把它的置顶公告跟咱们站的一起打开，逐行对比。公告模板一样、会员体系命名规则一样、甚至页面排版都一样。三个"不同"的站点——秘境徒步联盟、星空观测者之家、深空古迹探秘——像是从同一份文档里复制粘贴出来的。如果只是偶然撞模板，两个站还有可能——三个站不可能。"永无止境"、"安全第一"——同一批人写的同一套暗语，放在不同的钓鱼站首页，每次换一个壳。</p>
+            <p>
+              同一个模板、同一套措辞、同一种操作方式。"秘境徒步联盟"——2024年底就没人维护了，但网页快照还在搜索引擎里。我把它的置顶公告跟咱们站的一起打开，逐行对比。公告模板一样、会员体系命名规则一样、甚至页面排版都一样。三个"不同"的站点——秘境徒步联盟、星空观测者之家、深空古迹探秘——像是从同一份文档里复制粘贴出来的。如果只是偶然撞模板，两个站还有可能——三个站不可能。"永无止境"、"安全第一"——同一批人写的同一套暗语，放在不同的钓鱼站首页，每次换一个壳。
+            </p>
 
             <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
 
-            <p>源头指向同一个组织，这一点已经不需要更多证据了。首页那几行字里有个加粗的词——"深度探秘"。招募页里也有，同一个词出现在"内容审核员"那个岗位描述里。招募页底下的联系方式——邮箱域名以.onion结尾。这不是给普通用户看的。这个站有些页面不是给我们写的——措辞、排版、关键位置的词语，对探秘爱好者来说只是一段通顺的正文，对另一拨人来说可能是操作指引。两套面孔，一套朝外，一套朝内。</p>
-            <p>明天出发去贺兰山验证最后一个未确认的点位。老废和阿浪的帖文我都看了——被人删过、沉过，但痕迹还在。如果顺利，三天后回来咱们把整件事理清楚。如果没回来——这些笔记就是我的底牌。你比我细心，林屿。去找那些"每天都在但从来没人认真读过的文字"。</p>
+            <p>
+              源头指向同一个组织，这一点已经不需要更多证据了。首页那几行字里有个加粗的词——"深度探秘"。招募页里也有，同一个词出现在"内容审核员"那个岗位描述里。招募页底下的联系方式——邮箱域名以.onion结尾。这不是给普通用户看的。这个站有些页面不是给我们写的——措辞、排版、关键位置的词语，对探秘爱好者来说只是一段通顺的正文，对另一拨人来说可能是操作指引。两套面孔，一套朝外，一套朝内。
+            </p>
+            <p>
+              明天出发去贺兰山验证最后一个未确认的点位。老废和阿浪的帖文我都看了——被人删过、沉过，但痕迹还在。如果顺利，三天后回来咱们把整件事理清楚。如果没回来——这些笔记就是我的底牌。你比我细心，林屿。去找那些"每天都在但从来没人认真读过的文字"。
+            </p>
 
             <hr style="margin: 16px 0; border: none; border-top: 1px dotted #ccc;" />
-
-
           </div>
         </div>
       </div>
     </div>
 
-      <!-- 右栏：动态 + 收藏 -->
+    <!-- 右栏：动态 + 收藏 -->
     <div>
       <h3>💬 最近动态</h3>
 
@@ -163,42 +180,60 @@ const BASE = __BASE_PATH__;
 
       <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          <a href={`${BASE}user/lyu/`} target="_blank"><strong>@signal_屿</strong></a> 林屿，我比对了你整理的目击点坐标和我自己探访过的古迹坐标。8个点位完全重合。8个！这不可能只是巧合。加上之前发现的<strong>公告措辞模板</strong>和废弃站一致——坐标重合+措辞模板，这两条线指向同一个结论：这个站不是表面看上去那么简单。我准备五月下旬亲自去贺兰山验证最后一个未确认的点位。
+          <a href={`${BASE}user/lyu/`} target="_blank"><strong>@signal_屿</strong></a> 林屿，我比对了你整理的目击点坐标和我自己探访过的古迹坐标。8个点位完全重合。8个！这不可能只是巧合。加上之前发现的<strong
+            >公告措辞模板</strong
+          >和废弃站一致——坐标重合+措辞模板，这两条线指向同一个结论：这个站不是表面看上去那么简单。我准备五月下旬亲自去贺兰山验证最后一个未确认的点位。
         </p>
         <div class="post-meta">2026-05-01</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px;">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          导航站推送了个"冷门秘境"给我——秦岭某处"唐代摩崖石刻"。看了坐标，那个位置我去过。根本没有任何石刻。站里对那个点的<strong>描述有明显的历史错误</strong>——说的凿刻技法是唐代的，但描述的纹样风格和术语全是明清时期的特征。写这个描述的人<strong>根本不懂石刻</strong>，像是从网上拼凑出来的。另外，这几天在翻老帖的时候偶然看到了几个已废弃探秘站的缓存页面——<strong>它们的公告措辞跟这个站高度相似</strong>。有意思，回头专门写一篇对比分析。
+          导航站推送了个"冷门秘境"给我——秦岭某处"唐代摩崖石刻"。看了坐标，那个位置我去过。根本没有任何石刻。站里对那个点的<strong
+            >描述有明显的历史错误</strong
+          >——说的凿刻技法是唐代的，但描述的纹样风格和术语全是明清时期的特征。写这个描述的人<strong>根本不懂石刻</strong
+          >，像是从网上拼凑出来的。另外，这几天在翻老帖的时候偶然看到了几个已废弃探秘站的缓存页面——<strong
+            >它们的公告措辞跟这个站高度相似</strong
+          >。有意思，回头专门写一篇对比分析。
         </p>
         <div class="post-meta">2026-04-25</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          翻到了'秘境徒步联盟'的网页快照。那个站2024年底就废弃了，但公告页面还在搜索引擎缓存里。把它的公告跟咱们站的公告放在一起对比了一下——<strong>措辞模板一模一样</strong>。'永无止境'、'安全第一'——连断行位置都相同。两个不同域名、不同名字的网站不可能撞到这个程度。如果这个站和秘境徒步联盟是同一伙人运营的，那<strong>公告就不是单纯的公告</strong>——它是某种内部通讯方式。@signal_屿 你看看。
+          翻到了'秘境徒步联盟'的网页快照。那个站2024年底就废弃了，但公告页面还在搜索引擎缓存里。把它的公告跟咱们站的公告放在一起对比了一下——<strong
+            >措辞模板一模一样</strong
+          >。'永无止境'、'安全第一'——连断行位置都相同。两个不同域名、不同名字的网站不可能撞到这个程度。如果这个站和秘境徒步联盟是同一伙人运营的，那<strong
+            >公告就不是单纯的公告</strong
+          >——它是某种内部通讯方式。@signal_屿 你看看。
         </p>
         <div class="post-meta">2026-04-20</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px;">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          最近越想越不对劲……到了现场却发现有近期人类活动的明显痕迹——新鲜的火堆、矿泉水瓶、踩踏出来的小路。但是问过当地的人，都说很少有人去那里。<strong>像是有人在那里等过什么</strong>。
+          最近越想越不对劲……到了现场却发现有近期人类活动的明显痕迹——新鲜的火堆、矿泉水瓶、踩踏出来的小路。但是问过当地的人，都说很少有人去那里。<strong
+            >像是有人在那里等过什么</strong
+          >。
         </p>
         <div class="post-meta">2026-04-18</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px;">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          重新检查了之前探访的10个点位照片。发现一个规律：每个"秘境"附近都有一些不太自然的地方——<strong>被刻意清理过的灌木、不自然折断的树枝、一些看起来很新但被匆忙掩埋的金属残片</strong>。不像探秘者留下的——探秘者不会刻意把东西埋起来。
+          重新检查了之前探访的10个点位照片。发现一个规律：每个"秘境"附近都有一些不太自然的地方——<strong
+            >被刻意清理过的灌木、不自然折断的树枝、一些看起来很新但被匆忙掩埋的金属残片</strong
+          >。不像探秘者留下的——探秘者不会刻意把东西埋起来。
         </p>
         <div class="post-meta">2026-04-10</div>
       </div>
 
       <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--color-accent);">
         <p style="font-size: 0.85rem; margin-bottom: 4px;">
-          仔细看了站里一个"明代烽燧遗址"的描述。越看越不对——描述的砖砌方式是典型的<strong>清代做法</strong>，明代烽燧根本不用那种叠砌法。提到的"青花瓷片"纹样也对不上号。搞考古的人一眼就能看出来——这些描述不是"信息采集有误"，而是<strong>根本就是编的</strong>。编的人不懂考古。
+          仔细看了站里一个"明代烽燧遗址"的描述。越看越不对——描述的砖砌方式是典型的<strong>清代做法</strong
+          >，明代烽燧根本不用那种叠砌法。提到的"青花瓷片"纹样也对不上号。搞考古的人一眼就能看出来——这些描述不是"信息采集有误"，而是<strong
+            >根本就是编的</strong
+          >。编的人不懂考古。
         </p>
         <div class="post-meta">2026-04-14</div>
       </div>
@@ -244,7 +279,9 @@ const BASE = __BASE_PATH__;
             <td><span class="tag tag-ruins">古迹</span></td>
           </tr>
         </table>
-        <p class="text-muted" style="margin-top: 6px;">⚠ 标记的为与<a href={`${BASE}user/lyu/`} target="_blank">@signal_屿</a>外星目击点位坐标重合的条目</p>
+        <p class="text-muted" style="margin-top: 6px;">
+          ⚠ 标记的为与<a href={`${BASE}user/lyu/`} target="_blank">@signal_屿</a>外星目击点位坐标重合的条目
+        </p>
       </div>
 
       <!-- 关注 -->
@@ -263,7 +300,7 @@ const BASE = __BASE_PATH__;
 
 <script is:inline>
   // 仅自己可见帖文：沈辞登录后直接展示正文，非本人显示权限提示
-  (function() {
+  (function () {
     var loggedIn = localStorage.getItem('arg_logged_in');
     var username = localStorage.getItem('arg_username');
     var isShenci = loggedIn === 'true' && username === 'shenci';

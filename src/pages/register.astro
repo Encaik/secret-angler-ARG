@@ -21,12 +21,14 @@ const BASE = __BASE_PATH__;
         邀请码
         <input type="text" id="invite-code" placeholder="请输入邀请码" autocomplete="off" style="max-width: 100%;" />
       </label>
-      <button type="submit" style="width: 100%; padding: 10px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm);">
+      <button
+        type="submit"
+        style="width: 100%; padding: 10px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm);"
+      >
         验证邀请码
       </button>
     </form>
     <p id="invite-error" style="color: #c0392b; font-size: 0.82rem; margin-top: 8px; display: none;"></p>
-
   </div>
 </Layout>
 
@@ -36,7 +38,10 @@ const BASE = __BASE_PATH__;
     const code = (document.getElementById('invite-code') as HTMLInputElement).value.trim();
     const errorEl = document.getElementById('invite-error');
     if (!code) {
-      if (errorEl) { errorEl.textContent = '请输入邀请码。'; errorEl.style.display = 'block'; }
+      if (errorEl) {
+        errorEl.textContent = '请输入邀请码。';
+        errorEl.style.display = 'block';
+      }
       return;
     }
     // 所有邀请码均无效 — 注册已关闭

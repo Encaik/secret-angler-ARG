@@ -7,18 +7,18 @@ import { describe, it, expect } from 'vitest';
 import { PUZZLES } from '../../data/puzzles';
 import { ARCHIVED_CONTENT, HIDDEN_PAGE_CACHE, MOCK_RESULTS } from '../../data/search-data';
 import { USERS } from '../../data/users';
-import {
-  MAIN_CREDENTIALS,
-  DARKNET_ACCOUNTS,
-  SHENCI_PASSWORD_PARTS,
-  LYU_PASSWORD,
-} from '../../data/credentials';
+import { MAIN_CREDENTIALS, DARKNET_ACCOUNTS, SHENCI_PASSWORD_PARTS, LYU_PASSWORD } from '../../data/credentials';
 
 // EVIDENCE_MAP 来自 ending.ts（内联验证）
 const EVIDENCE_PAGES = [
-  '/trigger/rift', '/trigger/stargate', '/trigger/base',
-  '/hidden/panlongxia', '/hidden/board', '/hidden/operation',
-  '/hidden/locations', '/hidden/dead-drop',
+  '/trigger/rift',
+  '/trigger/stargate',
+  '/trigger/base',
+  '/hidden/panlongxia',
+  '/hidden/board',
+  '/hidden/operation',
+  '/hidden/locations',
+  '/hidden/dead-drop',
 ];
 
 // ========================================
@@ -71,10 +71,9 @@ describe('Cross-reference: Puzzles vs Search Data', () => {
       for (const loc of puzzle.clueLocations) {
         // Only check pure URL paths (start with / and don't contain spaces/parentheses)
         if (loc.startsWith('/') && !loc.includes(' ') && !loc.includes('（') && !loc.includes('(')) {
-          expect(
-            loc,
-            `${puzzle.id}: path-like clueLocation "${loc}" should start with a known section`
-          ).toMatch(/^\/(user|inbox|trigger|hidden|community|member|share|login|about|search|home)\//);
+          expect(loc, `${puzzle.id}: path-like clueLocation "${loc}" should start with a known section`).toMatch(
+            /^\/(user|inbox|trigger|hidden|community|member|share|login|about|search|home)\//,
+          );
         }
       }
     }
@@ -115,10 +114,7 @@ describe('Cross-reference: Users vs Credentials', () => {
   it('all key characters (isKeyCharacter=true) have non-empty passwords', () => {
     for (const [id, user] of Object.entries(USERS)) {
       if (user.isKeyCharacter) {
-        expect(
-          user.password,
-          `Key character ${id} should have a non-empty password`
-        ).toBeTruthy();
+        expect(user.password, `Key character ${id} should have a non-empty password`).toBeTruthy();
       }
     }
   });
@@ -127,10 +123,7 @@ describe('Cross-reference: Users vs Credentials', () => {
     for (const [id, user] of Object.entries(USERS)) {
       if (!user.isKeyCharacter && USERS[id]) {
         // Non-key characters should have empty passwords (not playable)
-        expect(
-          user.password || '',
-          `Non-key character ${id} should have empty password`
-        ).toBe('');
+        expect(user.password || '', `Non-key character ${id} should have empty password`).toBe('');
       }
     }
   });
@@ -189,10 +182,9 @@ describe('Cross-reference: ARCHIVED_CONTENT authorUrls', () => {
     const allPosts = Object.values(ARCHIVED_CONTENT).flat();
     for (const post of allPosts) {
       if (post.authorUrl) {
-        expect(
-          post.authorUrl,
-          `Post "${post.title}": authorUrl "${post.authorUrl}" should start with /`
-        ).toMatch(/^\//);
+        expect(post.authorUrl, `Post "${post.title}": authorUrl "${post.authorUrl}" should start with /`).toMatch(
+          /^\//,
+        );
       }
     }
   });

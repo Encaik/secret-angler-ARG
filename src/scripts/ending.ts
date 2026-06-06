@@ -6,14 +6,14 @@
 
 // 证据页面对照表：访问过的关键页面 → 证据项
 const EVIDENCE_MAP: Record<string, { id: string; weight: number; name: string }> = {
-  '/trigger/rift':      { id: 'E1', weight: 2, name: '多站钓鱼方案矩阵' },
-  '/trigger/stargate':  { id: 'E2', weight: 2, name: '信号伪造技术方案' },
-  '/trigger/base':      { id: 'E3', weight: 3, name: '基地设施蓝图' },
+  '/trigger/rift': { id: 'E1', weight: 2, name: '多站钓鱼方案矩阵' },
+  '/trigger/stargate': { id: 'E2', weight: 2, name: '信号伪造技术方案' },
+  '/trigger/base': { id: 'E3', weight: 3, name: '基地设施蓝图' },
   '/hidden/panlongxia': { id: 'E4', weight: 3, name: '暗网交易市场记录' },
-  '/hidden/board':      { id: 'E5', weight: 2, name: '内部通讯记录' },
-  '/hidden/operation':  { id: 'E6', weight: 2, name: '作案流程手册' },
-  '/hidden/locations':  { id: 'E7', weight: 3, name: '基地精确坐标' },
-  '/hidden/dead-drop':  { id: 'E8', weight: 4, name: '叛变成员举报脚本' },
+  '/hidden/board': { id: 'E5', weight: 2, name: '内部通讯记录' },
+  '/hidden/operation': { id: 'E6', weight: 2, name: '作案流程手册' },
+  '/hidden/locations': { id: 'E7', weight: 3, name: '基地精确坐标' },
+  '/hidden/dead-drop': { id: 'E8', weight: 4, name: '叛变成员举报脚本' },
 };
 
 export interface EndingResult {
@@ -38,9 +38,7 @@ export function evaluateEnding(): EndingResult {
 
   for (const [page, evidence] of Object.entries(EVIDENCE_MAP)) {
     // 检查是否访问过该页面（支持有/无尾部斜杠两种格式）
-    const found = visited.some((v: string) =>
-      v === page || v === page + '/' || v.replace(/\/$/, '') === page
-    );
+    const found = visited.some((v: string) => v === page || v === page + '/' || v.replace(/\/$/, '') === page);
     if (found) {
       score += evidence.weight;
       collected.push(evidence.name);
@@ -62,9 +60,7 @@ export function evaluateEnding(): EndingResult {
   }
 
   // 额外规则：如果拿到了E8（叛变者举报脚本）且总分≥12，自动升级为结局4
-  const hasDeadDrop = visited.some((v: string) =>
-    v.includes('/hidden/dead-drop')
-  );
+  const hasDeadDrop = visited.some((v: string) => v.includes('/hidden/dead-drop'));
   if (hasDeadDrop && score >= 12 && ending !== 4) {
     ending = 4;
   }

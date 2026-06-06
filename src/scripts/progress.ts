@@ -56,7 +56,7 @@ function recordPageVisit(url: string): void {
   if (!progress.discoveredPages.includes(url)) {
     progress.discoveredPages.push(url);
     if (url.includes('/hidden/') || url.includes('/trigger/')) {
-      if (progress.discoveredPages.filter(p => p.includes('/hidden/') || p.includes('/trigger/')).length >= 4) {
+      if (progress.discoveredPages.filter((p) => p.includes('/hidden/') || p.includes('/trigger/')).length >= 4) {
         progress.playerTargeted = true;
       }
     }
@@ -67,14 +67,14 @@ function recordPageVisit(url: string): void {
 
 function updateExplorationProgress(progress: GameProgress): void {
   const totalDiscoverable = 40;
-  const hiddenBonus = progress.discoveredPages.filter(
-    p => p.includes('/hidden/') || p.includes('/trigger/') || p.includes('/member/')
-  ).length * 2;
+  const hiddenBonus =
+    progress.discoveredPages.filter((p) => p.includes('/hidden/') || p.includes('/trigger/') || p.includes('/member/'))
+      .length * 2;
   const puzzleBonus = Object.values(progress.solvedPuzzles).filter(Boolean).length * 5;
 
   progress.explorationProgress = Math.min(
     100,
-    Math.round((progress.discoveredPages.length / totalDiscoverable) * 60 + hiddenBonus + puzzleBonus)
+    Math.round((progress.discoveredPages.length / totalDiscoverable) * 60 + hiddenBonus + puzzleBonus),
   );
 }
 

@@ -7,7 +7,6 @@ const BASE = __BASE_PATH__;
 
 <Layout title="登录">
   <div style="max-width: 420px; margin: 60px auto;">
-
     <h2 style="text-align: center; margin-bottom: 24px;">登录探秘者联盟</h2>
 
     <!-- 登录表单 -->
@@ -22,7 +21,11 @@ const BASE = __BASE_PATH__;
         <!-- 悬浮密码提示气泡 -->
         <div id="password-bubble" class="password-bubble" style="display: none;">
           <div class="bubble-header">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#aaa"><path d="M12 1a5 5 0 0 1 5 5v3h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2h2V6a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v3h6V6a3 3 0 0 0-3-3z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#aaa"
+              ><path
+                d="M12 1a5 5 0 0 1 5 5v3h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2h2V6a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v3h6V6a3 3 0 0 0-3-3z"
+              ></path></svg
+            >
             <span>浏览器已保存的密码</span>
           </div>
           <div class="bubble-item" data-username="lyu" data-password="starchaser24">
@@ -37,7 +40,10 @@ const BASE = __BASE_PATH__;
           </div>
         </div>
       </label>
-      <button type="submit" style="width: 100%; padding: 10px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm);">
+      <button
+        type="submit"
+        style="width: 100%; padding: 10px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm);"
+      >
         登录
       </button>
     </form>
@@ -45,7 +51,9 @@ const BASE = __BASE_PATH__;
     <p id="login-success" style="color: #27ae60; font-size: 0.82rem; margin-top: 8px; display: none;"></p>
 
     <p style="text-align: center; margin-top: 20px;">
-      <a href={`${BASE}home/`} target="_blank" style="font-size: 0.85rem; color: var(--color-text-muted);">暂不登录，先随便看看</a>
+      <a href={`${BASE}home/`} target="_blank" style="font-size: 0.85rem; color: var(--color-text-muted);"
+        >暂不登录，先随便看看</a
+      >
     </p>
   </div>
 </Layout>
@@ -55,8 +63,8 @@ const BASE = __BASE_PATH__;
   const BASE = window.__BASE__ || '/';
   // 已验证的账号密码
   const CREDENTIALS: Record<string, { password: string; redirect: string }> = {
-    'lyu': { password: 'starchaser24', redirect: BASE + 'user/center/lyu/' },
-    'shenci': { password: 'helanshan06', redirect: BASE + 'user/center/shenci/' },
+    lyu: { password: 'starchaser24', redirect: BASE + 'user/center/lyu/' },
+    shenci: { password: 'helanshan06', redirect: BASE + 'user/center/shenci/' },
   };
 
   // 账号或密码框聚焦时显示气泡
@@ -64,7 +72,9 @@ const BASE = __BASE_PATH__;
   const usernameField = document.getElementById('username') as HTMLInputElement;
   const bubble = document.getElementById('password-bubble')!;
 
-  const showBubble = () => { bubble.style.display = 'block'; };
+  const showBubble = () => {
+    bubble.style.display = 'block';
+  };
   usernameField.addEventListener('focus', showBubble);
   passwordField.addEventListener('focus', showBubble);
   document.addEventListener('click', (e) => {
@@ -73,7 +83,7 @@ const BASE = __BASE_PATH__;
   });
 
   // 气泡内账号点击自动填充
-  bubble.querySelectorAll('.bubble-item').forEach(item => {
+  bubble.querySelectorAll('.bubble-item').forEach((item) => {
     item.addEventListener('click', (e) => {
       e.stopPropagation();
       const el = item as HTMLElement;
@@ -142,56 +152,108 @@ const BASE = __BASE_PATH__;
 
 <style>
   #login-form input {
-    font-size: 0.95rem; padding: 9px 12px;
+    font-size: 0.95rem;
+    padding: 9px 12px;
   }
   #login-form button:hover {
-    background: #2a2d35; color: #fff;
+    background: #2a2d35;
+    color: #fff;
   }
 
   /* 悬浮密码气泡 — 模拟浏览器原生密码管理器 */
   .password-bubble {
-    position: absolute; top: 100%; left: 0; margin-top: 4px;
-    background: #2b2d30; border: 1px solid #4a4d52; border-radius: 6px;
-    min-width: 300px; z-index: 999;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,0,0,0.2);
-    font-family: system-ui, -apple-system, sans-serif;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background: #2b2d30;
+    border: 1px solid #4a4d52;
+    border-radius: 6px;
+    min-width: 300px;
+    z-index: 999;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(0, 0, 0, 0.2);
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
   /* 小三角箭头 */
   .password-bubble::before {
-    content: ''; position: absolute; top: -6px; left: 24px;
-    width: 0; height: 0;
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 24px;
+    width: 0;
+    height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 6px solid #4a4d52;
   }
   .password-bubble::after {
-    content: ''; position: absolute; top: -5px; left: 25px;
-    width: 0; height: 0;
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 25px;
+    width: 0;
+    height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-bottom: 5px solid #2b2d30;
   }
   .bubble-header {
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 14px 8px; border-bottom: 1px solid #3a3d42;
-    font-size: 0.8rem; color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid #3a3d42;
+    font-size: 0.8rem;
+    color: #aaa;
   }
   .bubble-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 14px; cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    cursor: pointer;
     border-bottom: 1px solid #35383d;
   }
-  .bubble-item:last-child { border-bottom: none; border-radius: 0 0 6px 6px; }
-  .bubble-item:hover { background: #353a40; }
+  .bubble-item:last-child {
+    border-bottom: none;
+    border-radius: 0 0 6px 6px;
+  }
+  .bubble-item:hover {
+    background: #353a40;
+  }
   .bubble-item-left {
-    display: flex; align-items: center; gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   .bubble-avatar {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: #3a3d44; display: flex; align-items: center;
-    justify-content: center; font-size: 0.85rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #3a3d44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
   }
-  .bubble-name { font-size: 0.85rem; color: #d0d0d0; font-weight: 500; }
-  .bubble-site { font-size: 0.72rem; color: #888; margin-top: 1px; }
-  .bubble-fill { font-size: 0.72rem; color: #6ba3d6; white-space: nowrap; }
+  .bubble-name {
+    font-size: 0.85rem;
+    color: #d0d0d0;
+    font-weight: 500;
+  }
+  .bubble-site {
+    font-size: 0.72rem;
+    color: #888;
+    margin-top: 1px;
+  }
+  .bubble-fill {
+    font-size: 0.72rem;
+    color: #6ba3d6;
+    white-space: nowrap;
+  }
 </style>

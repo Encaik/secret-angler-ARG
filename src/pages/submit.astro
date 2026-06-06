@@ -2,19 +2,28 @@
 import Layout from '../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="投稿">
   <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>投稿</div>
   <h2>📬 投稿</h2>
   <p class="text-muted">分享你的探秘发现。所有投稿经审核后发布。请确保信息真实，禁止编造点位。</p>
   <hr />
   <form id="submit-form" style="max-width:500px;">
-    <label>标题：<br/><input type="text" placeholder="探秘点位名称" /></label><br/><br/>
-    <label>板块：<br/><select><option>外星目击</option><option>古迹秘境</option><option>未解之谜</option><option>都市传说</option><option>自然奇观</option><option>深海探秘</option></select></label><br/><br/>
-    <label>坐标（经纬度）：<br/><input type="text" placeholder="例：31.58, 110.42" /></label><br/><br/>
-    <label>描述：<br/><textarea rows="6" placeholder="请详细描述你的探秘经历和发现……"></textarea></label><br/><br/>
+    <label>标题：<br /><input type="text" placeholder="探秘点位名称" /></label><br /><br />
+    <label
+      >板块：<br /><select
+        ><option>外星目击</option><option>古迹秘境</option><option>未解之谜</option><option>都市传说</option><option
+          >自然奇观</option
+        ><option>深海探秘</option></select
+      ></label
+    ><br /><br />
+    <label>坐标（经纬度）：<br /><input type="text" placeholder="例：31.58, 110.42" /></label><br /><br />
+    <label>描述：<br /><textarea rows="6" placeholder="请详细描述你的探秘经历和发现……"></textarea></label><br /><br />
     <button type="submit">提交审核</button>
   </form>
-  <p id="submit-msg" class="text-muted" style="display:none;margin-top:12px;">✅ 投稿已提交，审核通过后将发布。由于审稿人经常进山，审核可能需要1-2周。</p>
+  <p id="submit-msg" class="text-muted" style="display:none;margin-top:12px;">
+    ✅ 投稿已提交，审核通过后将发布。由于审稿人经常进山，审核可能需要1-2周。
+  </p>
 </Layout>
 <script>
   document.getElementById('submit-form')?.addEventListener('submit', (e) => {

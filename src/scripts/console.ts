@@ -17,10 +17,7 @@
 
   console.log('%c探秘者联盟 v2.4.1', styles.title);
   console.log('%c内部管理系统已就绪。未经授权的访问将被记录并追踪。', styles.warn);
-  console.log(
-    `%c[系统] 在线探秘者: 47 | 今日新增投稿: 3 | 待审核: 12 | 服务器负载: 23%`,
-    styles.info
-  );
+  console.log(`%c[系统] 在线探秘者: 47 | 今日新增投稿: 3 | 待审核: 12 | 服务器负载: 23%`, styles.info);
 
   // 在隐藏/后台页面输出不同的消息
   if (window.location.pathname.includes('/hidden/')) {
@@ -35,17 +32,11 @@
 
   // 沈辞主页额外消息
   if (window.location.pathname.includes('/user/shenci')) {
-    console.log(
-      '%c[用户档案] 地下三尺 — 最后登录：2026-05-25 — 状态：离线超过7天',
-      styles.info
-    );
+    console.log('%c[用户档案] 地下三尺 — 最后登录：2026-05-25 — 状态：离线超过7天', styles.info);
   }
 
   // 林屿主页额外消息
   if (window.location.pathname.includes('/user/linyu')) {
-    console.log(
-      '%c[用户档案] signal_屿 — 最后登录：刚刚 — 状态：在线',
-      styles.info
-    );
+    console.log('%c[用户档案] signal_屿 — 最后登录：刚刚 — 状态：在线', styles.info);
   }
 })();

@@ -63,7 +63,7 @@ describe('ADMIN credentials (后台管理)', () => {
   });
 
   it('admin and staff users do not overlap', () => {
-    const overlap = ADMIN_USERS.filter(u => STAFF_USERS.includes(u));
+    const overlap = ADMIN_USERS.filter((u) => STAFF_USERS.includes(u));
     expect(overlap).toEqual([]);
   });
 });
@@ -112,9 +112,7 @@ describe('SHENCI_PASSWORD_PARTS', () => {
   });
 
   it('is composed of site + birthYear', () => {
-    expect(SHENCI_PASSWORD_PARTS.full).toBe(
-      SHENCI_PASSWORD_PARTS.site + SHENCI_PASSWORD_PARTS.birthYear
-    );
+    expect(SHENCI_PASSWORD_PARTS.full).toBe(SHENCI_PASSWORD_PARTS.site + SHENCI_PASSWORD_PARTS.birthYear);
   });
 });
 

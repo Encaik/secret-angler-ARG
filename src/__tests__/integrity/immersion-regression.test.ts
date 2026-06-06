@@ -85,8 +85,7 @@ describe('Immersion Regression Tests', () => {
       if (violations.length > 0) {
         // Warning only — real dead links should be fixed but shouldn't block CI
         console.warn(
-          `⚠ Found href="#") in ${violations.length} locations (should be fixed):\n` +
-          violations.join('\n')
+          `⚠ Found href="#") in ${violations.length} locations (should be fixed):\n` + violations.join('\n'),
         );
       }
       // Always pass — informational check
@@ -100,6 +99,25 @@ describe('Immersion Regression Tests', () => {
   describe('No game design terminology in visible content', () => {
     // 这些术语不应出现在页面可见文本中
     const FORBIDDEN_TERMS = ['谜题', '解谜', '触发', '线索', '结局'];
+
+    // 豁免列表：已知语境合理的术语使用（格式：`文件路径:术语`）
+    // 每次新增页面后若有新术语出现，需人工审核后加入此列表
+    const EXEMPTIONS = new Set([
+      // urban-legend — "线索" 在都市传说语境中是自然中文
+      'urban-legend/index.html:线索',
+      // dead-drop — "触发" 在技术文档/举报脚本语境中是标准用词，"结局" 指角色命运
+      'hidden/dead-drop/index.html:触发',
+      'hidden/dead-drop/index.html:结局',
+      // ending 页面 — "触发" 和 "结局" 在结局叙事和元信息中是合理用词
+      'ending/1/index.html:结局',
+      'ending/2/index.html:结局',
+      'ending/3/index.html:触发',
+      'ending/3/index.html:结局',
+      'ending/4/index.html:触发',
+      'ending/4/index.html:结局',
+      // ending/3 — "线索" 指调查证据线索（"医疗外包线索"），自然中文
+      'ending/3/index.html:线索',
+    ]);
 
     itIfBuilt('no game terminology in built HTML visible text', () => {
       const violations: string[] = [];
@@ -118,18 +136,22 @@ describe('Immersion Regression Tests', () => {
         const visibleText = bodyContent
           .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
           .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
-          .replace(/<[^>]+>/g, ' ')  // Remove HTML tags
+          .replace(/<[^>]+>/g, ' ') // Remove HTML tags
           .replace(/\s+/g, ' ');
+
+        const relPath = path.relative(DOCS_DIR, filePath).replace(/\\/g, '/');
 
         for (const term of FORBIDDEN_TERMS) {
           if (visibleText.includes(term)) {
+            // 检查豁免列表
+            if (EXEMPTIONS.has(`${relPath}:${term}`)) {
+              continue;
+            }
             // 找到匹配行
             const lines = bodyContent.split('\n');
             for (let i = 0; i < lines.length; i++) {
               if (lines[i].includes(term)) {
-                violations.push(
-                  `${path.relative(DOCS_DIR, filePath)}:${i + 1}: "${term}"`
-                );
+                violations.push(`${relPath}:${i + 1}: "${term}"`);
               }
             }
           }
@@ -137,12 +159,13 @@ describe('Immersion Regression Tests', () => {
       }
 
       if (violations.length > 0) {
-        // 注意：某些术语可能在叙事语境中合理（如"触发"在技术文档中、"结局"在故事中）
+        // 注意：某些术语可能在叙事语境中合理
         // 此测试仅作为 warning，不 fail 测试
+        // 新增的违规项应先人工审核再决定是否加入豁免列表
         console.warn(
           `⚠ Found game terminology in ${violations.length} locations (review manually):\n` +
-          violations.slice(0, 10).join('\n') +
-          (violations.length > 10 ? `\n... and ${violations.length - 10} more` : '')
+            violations.slice(0, 10).join('\n') +
+            (violations.length > 10 ? `\n... and ${violations.length - 10} more` : ''),
         );
       }
     });
@@ -154,15 +177,7 @@ describe('Immersion Regression Tests', () => {
   describe('No player-facing content in HTML comments', () => {
     // 玩家不应用到的注释内容
     // 仅检测明确面向玩家的注释内容，"隐藏"是合法代码结构标注
-  const FORBIDDEN_COMMENT_PATTERNS = [
-    /线索/,
-    /谜题/,
-    /解谜/,
-    /TODO/,
-    /FIXME/,
-    /TODO:/i,
-    /FIXME:/i,
-  ];
+    const FORBIDDEN_COMMENT_PATTERNS = [/线索/, /谜题/, /解谜/, /TODO/, /FIXME/, /TODO:/i, /FIXME:/i];
 
     itIfBuilt('no CLI/TODO comments in built HTML', () => {
       const violations: string[] = [];
@@ -178,9 +193,7 @@ describe('Immersion Regression Tests', () => {
           const comment = match[1];
           for (const pattern of FORBIDDEN_COMMENT_PATTERNS) {
             if (pattern.test(comment)) {
-              violations.push(
-                `${path.relative(DOCS_DIR, filePath)}: "${comment.trim().slice(0, 80)}"`
-              );
+              violations.push(`${path.relative(DOCS_DIR, filePath)}: "${comment.trim().slice(0, 80)}"`);
               break;
             }
           }
@@ -190,7 +203,7 @@ describe('Immersion Regression Tests', () => {
       if (violations.length > 0) {
         console.warn(
           `⚠ Found suspicious comments in ${violations.length} locations (review manually):\n` +
-          violations.slice(0, 10).join('\n')
+            violations.slice(0, 10).join('\n'),
         );
       }
     });

@@ -11,42 +11,45 @@ export interface Props {
 const { title, description } = Astro.props;
 const BASE = __BASE_PATH__;
 import '../styles/global.css';
+import '../styles/layout.css';
+import '../styles/components.css';
+import '../styles/utilities.css';
 ---
 
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex,nofollow" />
-  <title>{title}</title>
-  {description && <meta name="description" content={description} />}
-  <script define:vars={{ basePath: BASE }}>
-    window.__BASE__ = basePath;
-  </script>
-</head>
-<body class="hidden-page">
-  <main style="width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px; min-height: 100vh;">
-    <slot />
-  </main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <script is:inline define:vars={{ basePath: BASE }}>
+      window.__BASE__ = basePath;
+    </script>
+  </head>
+  <body class="hidden-page">
+    <main style="width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px; min-height: 100vh;">
+      <slot />
+    </main>
 
-  <script src="../scripts/console.ts"></script>
-  <script src="../scripts/progress.ts"></script>
-  <script src="../scripts/search.ts"></script>
-  <script>
-    const BASE = window.__BASE__ || '/';
-    // 记录页面访问
-    const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
-    if (!progress.discoveredClues) progress.discoveredClues = [];
-    const pagePath = window.location.pathname.replace(BASE.replace(/\/$/, ''), '').replace(/^\//, '');
-    const clueKey = `visited_${pagePath.replace(/\//g, '_')}`;
-    if (!progress.discoveredClues.includes(clueKey)) {
-      progress.discoveredClues.push(clueKey);
-      progress.explorationProgress = Math.min(100, (progress.explorationProgress || 0) + 3);
-      localStorage.setItem('arg_progress', JSON.stringify(progress));
-    }
-  </script>
-</body>
+    <script src="../scripts/console.ts"></script>
+    <script src="../scripts/progress.ts"></script>
+    <script src="../scripts/search.ts"></script>
+    <script>
+      const BASE = window.__BASE__ || '/';
+      // 记录页面访问
+      const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
+      if (!progress.discoveredClues) progress.discoveredClues = [];
+      const pagePath = window.location.pathname.replace(BASE.replace(/\/$/, ''), '').replace(/^\//, '');
+      const clueKey = `visited_${pagePath.replace(/\//g, '_')}`;
+      if (!progress.discoveredClues.includes(clueKey)) {
+        progress.discoveredClues.push(clueKey);
+        progress.explorationProgress = Math.min(100, (progress.explorationProgress || 0) + 3);
+        localStorage.setItem('arg_progress', JSON.stringify(progress));
+      }
+    </script>
+  </body>
 </html>
 
 <style>
@@ -62,7 +65,10 @@ import '../styles/global.css';
   .hidden-page a:hover {
     color: #a0782c;
   }
-  .hidden-page h1, .hidden-page h2, .hidden-page h3, .hidden-page h4 {
+  .hidden-page h1,
+  .hidden-page h2,
+  .hidden-page h3,
+  .hidden-page h4 {
     color: #2c1810;
   }
   .hidden-page .card {
@@ -89,7 +95,8 @@ import '../styles/global.css';
   .hidden-page .breadcrumb a:hover {
     color: #a0782c;
   }
-  .hidden-page input, .hidden-page textarea {
+  .hidden-page input,
+  .hidden-page textarea {
     background: #fdfaf4;
     border-color: #d5c8b0;
     color: #4a3728;

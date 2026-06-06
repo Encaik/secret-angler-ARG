@@ -64,7 +64,15 @@
       "Read(//c/Users/encai/.agents/skills/level-design/**)",
       "Read(//c/Users/encai/.agents/skills/puzzle-design/**)",
       "Read(//c/Users/encai/.agents/skills/qa-testing-playwright/**)",
-      "Bash(pnpm test *)"
+      "Bash(pnpm test *)",
+      "Bash(which openspec *)",
+      "Bash(npx openspec *)",
+      "Bash(openspec new *)",
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(ls -la .eslintrc*)",
+      "Bash(ls -la eslint.config.*)",
+      "Bash(npx vitest *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\encai\\Desktop\\secret-angler-ARG\\.claude",

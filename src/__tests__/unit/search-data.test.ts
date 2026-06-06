@@ -29,7 +29,20 @@ describe('ARCHIVED_CONTENT', () => {
   }
 
   it('has keywords for all major game search terms', () => {
-    const expectedKeys = ['shenci', '沈辞', '贺兰山', '地下三尺', '06', '林屿', 'lyu', 'signal_屿', '信号', '加密', 'GPS', '蛇药'];
+    const expectedKeys = [
+      'shenci',
+      '沈辞',
+      '贺兰山',
+      '地下三尺',
+      '06',
+      '林屿',
+      'lyu',
+      'signal_屿',
+      '信号',
+      '加密',
+      'GPS',
+      '蛇药',
+    ];
     for (const key of expectedKeys) {
       expect(ARCHIVED_CONTENT[key], `Missing keyword: ${key}`).toBeDefined();
     }
@@ -48,10 +61,7 @@ describe('ARCHIVED_CONTENT', () => {
   it('every authorUrl (when present) starts with /', () => {
     for (const { keyword, post } of allPosts) {
       if (post.authorUrl) {
-        expect(
-          post.authorUrl,
-          `${keyword}: authorUrl "${post.authorUrl}" should start with /`
-        ).toMatch(/^\//);
+        expect(post.authorUrl, `${keyword}: authorUrl "${post.authorUrl}" should start with /`).toMatch(/^\//);
       }
     }
   });
@@ -59,10 +69,7 @@ describe('ARCHIVED_CONTENT', () => {
   it('every pageUrl (when present) starts with /', () => {
     for (const { keyword, post } of allPosts) {
       if (post.pageUrl) {
-        expect(
-          post.pageUrl,
-          `${keyword}: pageUrl "${post.pageUrl}" should start with /`
-        ).toMatch(/^\//);
+        expect(post.pageUrl, `${keyword}: pageUrl "${post.pageUrl}" should start with /`).toMatch(/^\//);
       }
     }
   });
@@ -76,8 +83,7 @@ describe('ARCHIVED_CONTENT', () => {
     const shenciPosts = findArchivedContent('shenci');
     const 沈辞Posts = findArchivedContent('沈辞');
     // Both should return the new-member post
-    const hasNewMemberPost = (posts: ArchivedPost[]) =>
-      posts.some(p => p.title === '新人报到帖');
+    const hasNewMemberPost = (posts: ArchivedPost[]) => posts.some((p) => p.title === '新人报到帖');
     expect(hasNewMemberPost(shenciPosts)).toBe(true);
     expect(hasNewMemberPost(沈辞Posts)).toBe(true);
   });
@@ -97,10 +103,7 @@ describe('HIDDEN_PAGE_CACHE', () => {
   it('every entry has a valid pageUrl', () => {
     for (const [key, post] of Object.entries(HIDDEN_PAGE_CACHE)) {
       expect(post.pageUrl, `${key}: missing pageUrl`).toBeTruthy();
-      expect(
-        post.pageUrl!,
-        `${key}: pageUrl "${post.pageUrl}" should start with /`
-      ).toMatch(/^\//);
+      expect(post.pageUrl!, `${key}: pageUrl "${post.pageUrl}" should start with /`).toMatch(/^\//);
     }
   });
 
@@ -155,7 +158,10 @@ describe('MOCK_RESULTS', () => {
     const userKeys = ['沈辞', 'shenci', '地下三尺', '林屿', 'lyu', 'signal_屿'];
     for (const key of userKeys) {
       expect(MOCK_RESULTS[key], `Missing user MOCK_RESULTS key: ${key}`).toBeDefined();
-      expect(MOCK_RESULTS[key].some(u => u.includes('/user/')), `${key}: should contain user profile URL`).toBe(true);
+      expect(
+        MOCK_RESULTS[key].some((u) => u.includes('/user/')),
+        `${key}: should contain user profile URL`,
+      ).toBe(true);
     }
   });
 });
@@ -282,7 +288,7 @@ describe('findArchivedContent', () => {
   it('returns matching posts for exact keyword match', () => {
     const results = findArchivedContent('沈辞');
     expect(results.length).toBeGreaterThan(0);
-    expect(results.some(p => p.title === '新人报到帖')).toBe(true);
+    expect(results.some((p) => p.title === '新人报到帖')).toBe(true);
   });
 
   it('is case-insensitive for English keywords', () => {
@@ -300,14 +306,14 @@ describe('findArchivedContent', () => {
   it('deduplicates posts that match multiple keywords', () => {
     // "沈辞" matches both "沈辞" and potentially overlapping content with "shenci"
     const results = findArchivedContent('沈辞');
-    const titles = results.map(p => p.title + p.date);
+    const titles = results.map((p) => p.title + p.date);
     const unique = new Set(titles);
     expect(unique.size).toBe(titles.length);
   });
 
   it('sorts clue posts (isClue=true) before non-clue posts', () => {
     const results = findArchivedContent('贺兰山');
-    const firstNonClueIndex = results.findIndex(p => !p.isClue);
+    const firstNonClueIndex = results.findIndex((p) => !p.isClue);
     if (firstNonClueIndex > 0) {
       // All posts before this should be clues
       for (let i = 0; i < firstNonClueIndex; i++) {
@@ -325,16 +331,16 @@ describe('findArchivedContent', () => {
     const results = findArchivedContent('加密');
     expect(results.length).toBeGreaterThan(0);
     // Should find the "信息隐藏" post by signal_屿
-    expect(results.some(p => p.author === 'signal_屿')).toBe(true);
+    expect(results.some((p) => p.author === 'signal_屿')).toBe(true);
   });
 
   it('searching "轻舟云盘" returns the cloud drive recommendation', () => {
     const results = findArchivedContent('轻舟云盘');
-    expect(results.some(p => p.title.includes('轻舟云盘'))).toBe(true);
+    expect(results.some((p) => p.title.includes('轻舟云盘'))).toBe(true);
   });
 
   it('searching "凤凰山" returns the signal analysis post', () => {
     const results = findArchivedContent('凤凰山');
-    expect(results.some(p => p.title.includes('凤凰山'))).toBe(true);
+    expect(results.some((p) => p.title.includes('凤凰山'))).toBe(true);
   });
 });

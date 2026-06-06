@@ -2,6 +2,7 @@
 import Layout from '../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="友情链接">
   <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>友情链接</div>
   <h2>🔗 友情链接</h2>
@@ -9,12 +10,36 @@ const BASE = __BASE_PATH__;
   <hr />
   <table>
     <tr><th>站点名称</th><th>简介</th><th>状态</th></tr>
-    <tr><td><span class="external-link">牧夫天文论坛</span> <span class="link-note">(外部站点)</span></td><td>国内最大的天文爱好者社区</td><td>✅ 正常</td></tr>
-    <tr><td><span class="external-link">8264户外资料网</span> <span class="link-note">(外部站点)</span></td><td>户外运动爱好者综合平台</td><td>✅ 正常</td></tr>
-    <tr><td><span class="external-link">中国国家地理网</span> <span class="link-note">(外部站点)</span></td><td>国家地理杂志官方网站</td><td>✅ 正常</td></tr>
-    <tr><td><span class="external-link">探秘中国论坛</span> <span class="link-note">(外部站点)</span></td><td>古迹探秘爱好者交流</td><td>⚠️ 不稳定</td></tr>
-    <tr><td><span class="external-link">UFO研究网</span> <span class="link-note">(外部站点)</span></td><td>中国UFO研究会官网</td><td>❌ 已关闭</td></tr>
-    <tr><td><span class="external-link">秘境探索者联盟</span> <span class="link-note">(外部站点)</span></td><td>原为探秘爱好者组织站点</td><td>❌ 域名过期</td></tr>
+    <tr
+      ><td><span class="external-link">牧夫天文论坛</span> <span class="link-note">(外部站点)</span></td><td
+        >国内最大的天文爱好者社区</td
+      ><td>✅ 正常</td></tr
+    >
+    <tr
+      ><td><span class="external-link">8264户外资料网</span> <span class="link-note">(外部站点)</span></td><td
+        >户外运动爱好者综合平台</td
+      ><td>✅ 正常</td></tr
+    >
+    <tr
+      ><td><span class="external-link">中国国家地理网</span> <span class="link-note">(外部站点)</span></td><td
+        >国家地理杂志官方网站</td
+      ><td>✅ 正常</td></tr
+    >
+    <tr
+      ><td><span class="external-link">探秘中国论坛</span> <span class="link-note">(外部站点)</span></td><td
+        >古迹探秘爱好者交流</td
+      ><td>⚠️ 不稳定</td></tr
+    >
+    <tr
+      ><td><span class="external-link">UFO研究网</span> <span class="link-note">(外部站点)</span></td><td
+        >中国UFO研究会官网</td
+      ><td>❌ 已关闭</td></tr
+    >
+    <tr
+      ><td><span class="external-link">秘境探索者联盟</span> <span class="link-note">(外部站点)</span></td><td
+        >原为探秘爱好者组织站点</td
+      ><td>❌ 域名过期</td></tr
+    >
   </table>
   <p class="text-muted mt-2">注意：部分友链站点可能已停止运营。探秘圈子的网站总是来来去去，能坚持下来的不多。</p>
 </Layout>

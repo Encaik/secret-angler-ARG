@@ -21,7 +21,10 @@ const BASE = __BASE_PATH__;
         placeholder="输入关键词搜索站内内容……"
         style="flex: 1; max-width: 100%; font-size: 1rem; padding: 10px 14px;"
       />
-      <button id="search-page-btn" style="padding: 10px 24px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm); white-space: nowrap;">
+      <button
+        id="search-page-btn"
+        style="padding: 10px 24px; font-size: 1rem; background: var(--color-bg-dark); color: #e0dcd5; border: none; cursor: pointer; border-radius: var(--radius-sm); white-space: nowrap;"
+      >
         🔍 搜索
       </button>
     </div>
@@ -36,26 +39,25 @@ const BASE = __BASE_PATH__;
   </div>
 </Layout>
 
-<script define:vars={{
-  archivedContentJson: JSON.stringify(ARCHIVED_CONTENT),
-  mockResultsJson: JSON.stringify(MOCK_RESULTS),
-  hiddenPageCacheJson: JSON.stringify(HIDDEN_PAGE_CACHE),
-  userSearchJson: JSON.stringify(USER_SEARCH),
-  searchToken: SEARCH_TOKEN,
-  basePath: BASE,
-}}>
+<script
+  is:inline
+  define:vars={{
+    archivedContentJson: JSON.stringify(ARCHIVED_CONTENT),
+    mockResultsJson: JSON.stringify(MOCK_RESULTS),
+    hiddenPageCacheJson: JSON.stringify(HIDDEN_PAGE_CACHE),
+    userSearchJson: JSON.stringify(USER_SEARCH),
+    searchToken: SEARCH_TOKEN,
+    basePath: BASE,
+  }}
+>
+  // @ts-nocheck — define:vars 变量不在 TS 作用域内
   // BASE 路径前缀，通过 define:vars 传入（define:vars 脚本内 Vite define 不会被替换，必须通过 vars 传入）
   const BASE = basePath;
-  // 从 Astro 服务端注入的搜索数据（变量名由 define:vars 注入，TS 无法推断）
-  // @ts-ignore
+  // 从 Astro 服务端注入的搜索数据
   const ARCHIVED_CONTENT = JSON.parse(archivedContentJson);
-  // @ts-ignore
   const MOCK_RESULTS = JSON.parse(mockResultsJson);
-  // @ts-ignore
   const HIDDEN_PAGE_CACHE = JSON.parse(hiddenPageCacheJson);
-  // @ts-ignore
   const USER_SEARCH = JSON.parse(userSearchJson);
-  // @ts-ignore
   const SEARCH_TOKEN = searchToken;
 
   // 搜索权限：访问码 + 方括号双重条件，或已持久化提权
@@ -83,15 +85,23 @@ const BASE = __BASE_PATH__;
       if (lowerQuery.includes(keyword.toLowerCase())) {
         for (var j = 0; j < posts.length; j++) {
           var post = posts[j];
-          if (!results.find(function(r) { return r.title === post.title && r.date === post.date; })) {
+          if (
+            !results.find(function (r) {
+              return r.title === post.title && r.date === post.date;
+            })
+          ) {
             results.push(post);
           }
         }
       }
     }
 
-    var cluePosts = results.filter(function(p) { return p.isClue; });
-    var normalPosts = results.filter(function(p) { return !p.isClue; });
+    var cluePosts = results.filter(function (p) {
+      return p.isClue;
+    });
+    var normalPosts = results.filter(function (p) {
+      return !p.isClue;
+    });
     return cluePosts.concat(normalPosts);
   }
 
@@ -205,8 +215,9 @@ const BASE = __BASE_PATH__;
     // 用户搜索结果（优先显示）
     if (userResults.length > 0) {
       html += `<h3 style="margin-bottom:8px;">👤 用户（${userResults.length} 位）</h3>`;
-      html += userResults.map(function(u) {
-        return `
+      html += userResults
+        .map(function (u) {
+          return `
           <div class="card" style="margin-bottom:8px;padding:10px;display:flex;align-items:center;gap:12px;">
             <div style="width:44px;height:44px;background:var(--color-bg-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">
               👤
@@ -222,21 +233,23 @@ const BASE = __BASE_PATH__;
             </div>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
     // 隐藏页面缓存（优先显示，因为这些是玩家要找的关键入口）
     if (cachedPages.length > 0) {
       html += `<h3 style="margin-bottom:8px;">🌐 页面缓存（${cachedPages.length} 条）</h3>`;
-      html += cachedPages.map(function(p) {
-        var borderStyle = p.isClue ? 'border-left: 3px solid var(--color-accent);' : '';
-        var titleHtml = p.pageUrl
-          ? `<a href="${BASE}${p.pageUrl.replace(/^\//, '')}" target="_blank" style="color: var(--color-accent);">${p.title}</a>`
-          : p.title;
-        var authorHtml = p.authorUrl
-          ? `<strong><a href="${BASE}${p.authorUrl.replace(/^\//, '')}" target="_blank">${p.author}</a></strong>`
-          : `<span class="text-muted">${p.author}</span>`;
-        return `
+      html += cachedPages
+        .map(function (p) {
+          var borderStyle = p.isClue ? 'border-left: 3px solid var(--color-accent);' : '';
+          var titleHtml = p.pageUrl
+            ? `<a href="${BASE}${p.pageUrl.replace(/^\//, '')}" target="_blank" style="color: var(--color-accent);">${p.title}</a>`
+            : p.title;
+          var authorHtml = p.authorUrl
+            ? `<strong><a href="${BASE}${p.authorUrl.replace(/^\//, '')}" target="_blank">${p.author}</a></strong>`
+            : `<span class="text-muted">${p.author}</span>`;
+          return `
           <div class="card" style="margin-bottom:8px;padding:10px;${borderStyle}">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
               ${authorHtml}
@@ -246,18 +259,20 @@ const BASE = __BASE_PATH__;
             <p style="font-size:0.84rem;margin:0;line-height:1.6;">${p.content}</p>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
     // 历史存档
     if (archived.length > 0) {
       html += `<h3 style="margin-bottom:8px;">📜 历史存档（${archived.length} 条）</h3>`;
-      html += archived.map(function(p) {
-        var borderStyle = p.isClue ? 'border-left: 3px solid var(--color-accent);' : '';
-        var titleHtml = p.pageUrl
-          ? `<a href="${BASE}${p.pageUrl.replace(/^\//, '')}" target="_blank" style="color: var(--color-accent);">${p.title}</a>`
-          : p.title;
-        return `
+      html += archived
+        .map(function (p) {
+          var borderStyle = p.isClue ? 'border-left: 3px solid var(--color-accent);' : '';
+          var titleHtml = p.pageUrl
+            ? `<a href="${BASE}${p.pageUrl.replace(/^\//, '')}" target="_blank" style="color: var(--color-accent);">${p.title}</a>`
+            : p.title;
+          return `
           <div class="card" style="margin-bottom:8px;padding:10px;${borderStyle}">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
               <strong><a href="${BASE}${p.authorUrl.replace(/^\//, '')}" target="_blank">${p.author}</a></strong>
@@ -267,18 +282,23 @@ const BASE = __BASE_PATH__;
             <p style="font-size:0.84rem;margin:0;line-height:1.6;">${p.content}</p>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
       html += `<p class="text-muted" style="font-size:0.72rem;margin-top:4px;">—— 以上为历史存档内容，数据来源为搜索引擎快照与站点缓存 ——</p>`;
     }
 
     // 页面导航
     if (pageResults.length > 0) {
       html += `<h3 style="margin-top:16px;margin-bottom:8px;">📂 相关板块</h3>`;
-      html += pageResults.map(url => `
+      html += pageResults
+        .map(
+          (url) => `
         <div class="card" style="margin-bottom:6px;padding:8px 12px;">
           <a href="${BASE}${url.replace(/^\//, '')}" target="_blank" style="font-size:0.88rem;">${url}</a>
         </div>
-      `).join('');
+      `,
+        )
+        .join('');
     }
 
     listEl.innerHTML = html;

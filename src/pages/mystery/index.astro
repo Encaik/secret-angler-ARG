@@ -2,13 +2,30 @@
 import Layout from '../../components/Layout.astro';
 const BASE = __BASE_PATH__;
 ---
+
 <Layout title="未解之谜" currentNav="mystery">
   <div class="breadcrumb"><a href={`${BASE}home/`} target="_blank">首页</a><span>›</span>未解之谜</div>
   <h2>❓ 未解之谜</h2>
-  <p class="text-muted">收录全球范围内的未解之谜——从百慕大三角到麦田怪圈，从水晶头骨到远古高科技遗迹。本板块内容多为转载整理，仅供探秘爱好者交流参考。</p>
+  <p class="text-muted">
+    收录全球范围内的未解之谜——从百慕大三角到麦田怪圈，从水晶头骨到远古高科技遗迹。本板块内容多为转载整理，仅供探秘爱好者交流参考。
+  </p>
   <hr />
-  <div class="post-item"><span class="tag tag-mystery">海洋</span> <span style="color: var(--color-text-secondary);"><strong>百慕大三角海域异常</strong></span> <span class="text-muted">大西洋 | 征稿中</span></div>
-  <div class="post-item"><span class="tag tag-mystery">地外</span> <span style="color: var(--color-text-secondary);"><strong>麦田怪圈之谜</strong></span> <span class="text-muted">英国·威尔特郡 | 征稿中</span></div>
-  <div class="post-item"><span class="tag tag-mystery">古文明</span> <span style="color: var(--color-text-secondary);"><strong>水晶头骨传说</strong></span> <span class="text-muted">中美洲 | 征稿中</span></div>
-  <p class="text-muted mt-2">本板块内容较少，欢迎探秘者投稿补充。投稿请点击<a href={`${BASE}submit/`} target="_blank">此处</a>。</p>
+  <div class="post-item">
+    <span class="tag tag-mystery">海洋</span>
+    <span style="color: var(--color-text-secondary);"><strong>百慕大三角海域异常</strong></span>
+    <span class="text-muted">大西洋 | 征稿中</span>
+  </div>
+  <div class="post-item">
+    <span class="tag tag-mystery">地外</span>
+    <span style="color: var(--color-text-secondary);"><strong>麦田怪圈之谜</strong></span>
+    <span class="text-muted">英国·威尔特郡 | 征稿中</span>
+  </div>
+  <div class="post-item">
+    <span class="tag tag-mystery">古文明</span>
+    <span style="color: var(--color-text-secondary);"><strong>水晶头骨传说</strong></span>
+    <span class="text-muted">中美洲 | 征稿中</span>
+  </div>
+  <p class="text-muted mt-2">
+    本板块内容较少，欢迎探秘者投稿补充。投稿请点击<a href={`${BASE}submit/`} target="_blank">此处</a>。
+  </p>
 </Layout>

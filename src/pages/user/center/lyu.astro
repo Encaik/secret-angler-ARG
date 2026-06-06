@@ -12,7 +12,11 @@ const BASE = __BASE_PATH__;
 
   <!-- 用户信息头 -->
   <div class="card" style="margin-bottom: 20px; display: flex; gap: 16px; align-items: center;">
-    <div style="width: 56px; height: 56px; border-radius: 50%; background: #2e6b8f; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.4rem; flex-shrink: 0;">🌌</div>
+    <div
+      style="width: 56px; height: 56px; border-radius: 50%; background: #2e6b8f; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.4rem; flex-shrink: 0;"
+    >
+      🌌
+    </div>
     <div style="flex: 1;">
       <h2 style="margin: 0 0 4px 0;">signal_屿</h2>
       <p class="text-muted" style="margin: 0;">
@@ -20,7 +24,11 @@ const BASE = __BASE_PATH__;
       </p>
     </div>
     <div>
-      <a href={`${BASE}inbox/`} target="_blank" style="display: inline-block; padding: 6px 16px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm); font-size: 0.85rem;">
+      <a
+        href={`${BASE}inbox/`}
+        target="_blank"
+        style="display: inline-block; padding: 6px 16px; background: var(--color-bg-dark); color: #e0dcd5; text-decoration: none; border-radius: var(--radius-sm); font-size: 0.85rem;"
+      >
         📬 私信箱
       </a>
     </div>
@@ -32,24 +40,36 @@ const BASE = __BASE_PATH__;
       <h3>📝 最近的帖文</h3>
 
       <div class="post-item">
-        <div class="post-title"><a href={`${BASE}community/post/246/`} target="_blank">凤凰山信号异常——有人一起去实地考察吗？</a></div>
+        <div class="post-title">
+          <a href={`${BASE}community/post/246/`} target="_blank">凤凰山信号异常——有人一起去实地考察吗？</a>
+        </div>
         <div class="post-meta">2026-04-10 · <span class="tag tag-alien">外星目击</span></div>
       </div>
       <div class="post-item">
-        <div class="post-title"><a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山1420MHz异常信号全频段分析</a></div>
+        <div class="post-title">
+          <a href={`${BASE}alien/alien-001/`} target="_blank">凤凰山1420MHz异常信号全频段分析</a>
+        </div>
         <div class="post-meta">2026-04-18 · <span class="tag tag-alien">外星目击</span></div>
       </div>
       <div class="post-item">
-        <div class="post-title"><a href={`${BASE}alien/alien-002/`} target="_blank">全国外星目击高发区坐标数据集（47点）</a></div>
+        <div class="post-title">
+          <a href={`${BASE}alien/alien-002/`} target="_blank">全国外星目击高发区坐标数据集（47点）</a>
+        </div>
         <div class="post-meta">2026-04-12 · <span class="tag tag-alien">外星目击</span></div>
       </div>
       <div class="post-item">
         <div class="post-title" style="color: var(--color-text-secondary);">SDR入门：200块就能开始扫深空信号</div>
-        <div class="post-meta">2026-03-28 · <span class="tag tag-alien">外星目击</span> · <span class="text-muted">短文</span></div>
+        <div class="post-meta">
+          2026-03-28 · <span class="tag tag-alien">外星目击</span> · <span class="text-muted">短文</span>
+        </div>
       </div>
       <div class="post-item">
-        <div class="post-title" style="color: var(--color-text-secondary);">WOW信号再分析：1977年我们可能错过了什么</div>
-        <div class="post-meta">2026-03-05 · <span class="tag tag-alien">外星目击</span> · <span class="text-muted">短文</span></div>
+        <div class="post-title" style="color: var(--color-text-secondary);">
+          WOW信号再分析：1977年我们可能错过了什么
+        </div>
+        <div class="post-meta">
+          2026-03-05 · <span class="tag tag-alien">外星目击</span> · <span class="text-muted">短文</span>
+        </div>
       </div>
 
       <a href={`${BASE}user/lyu/`} target="_blank" style="font-size: 0.85rem;">查看全部帖文和动态 →</a>
@@ -62,7 +82,10 @@ const BASE = __BASE_PATH__;
         <p style="font-size: 0.85rem; margin: 0;"><strong>登录密码</strong></p>
         <p class="text-muted" style="font-size: 0.8rem; margin: 2px 0 8px;">已设置 · ********</p>
       </div>
-      <button id="logout-btn" style="margin-top: 8px; color: #c0392b; border-color: #c0392b; background: transparent; padding: 6px 16px; cursor: pointer; width: 100%;">
+      <button
+        id="logout-btn"
+        style="margin-top: 8px; color: #c0392b; border-color: #c0392b; background: transparent; padding: 6px 16px; cursor: pointer; width: 100%;"
+      >
         退出登录
       </button>
     </div>
@@ -70,7 +93,7 @@ const BASE = __BASE_PATH__;
 </Layout>
 
 <script is:inline>
-  document.getElementById('logout-btn').addEventListener('click', function() {
+  document.getElementById('logout-btn').addEventListener('click', function () {
     localStorage.removeItem('arg_logged_in');
     localStorage.removeItem('arg_username');
     var BASE = window.__BASE__ || '/';

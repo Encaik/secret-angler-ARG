@@ -39,7 +39,7 @@ function checkStuck(): boolean {
   const now = Date.now();
 
   // 20分钟内搜索5次以上 → 可能卡关
-  const withinWindow = (now - state.firstSearchTime) < 20 * 60 * 1000;
+  const withinWindow = now - state.firstSearchTime < 20 * 60 * 1000;
   return withinWindow && state.searchCount >= 5 && !state.hintsShown;
 }
 
