@@ -460,6 +460,79 @@ export const ARCHIVED_CONTENT: Record<string, ArchivedPost[]> = {
       isClue: false,
     },
   ],
+  // ---- 拼音/缩写搜索词（指向已有中文内容，确保玩家用拼音搜索也能获得结果） ----
+  helanshan: [
+    {
+      title: '回忆帖：我的入门探秘——贺兰山',
+      author: '地下三尺',
+      authorUrl: '/user/shenci/',
+      date: '2025-10-25',
+      content:
+        '翻了翻手机相册，看到大一国庆在<strong>贺兰山</strong>拍的照片。那时候装备简陋得不行——一个书包、一瓶水、手机导航。但那一天在岩画前坐了整整一个下午，看着那些几千年前的人留下的凿痕，突然就明白自己想做什么了。可以说<strong>贺兰山是我探秘的起点</strong>，从那之后每次出行都是这个感觉的延续。',
+      isClue: true,
+    },
+    {
+      title: '银川出发贺兰山三日徒步路线分享',
+      author: '山野探秘人',
+      authorUrl: '/user/mountainwolf/',
+      date: '2024-09-12',
+      content:
+        '分享一条银川出发的经典路线：西夏区方向进山，沿干沟徒步约六公里到达岩画所在的崖面。沿途有明显的牧道可以跟随。需要注意的是夏季蝮蛇活跃，务必带蛇药。',
+      isClue: false,
+    },
+  ],
+  qinling: [
+    {
+      title: '寒假探秘计划，求建议',
+      author: '地下三尺',
+      authorUrl: '/user/shenci/',
+      date: '2025-12-15',
+      content:
+        '寒假打算去<strong>秦岭</strong>走一趟，主要目标是傥骆道沿线的摩崖石刻。有去过的前辈吗？求路线建议。顺便说一下我装备已经升级了——换了个新的GPS手持机，之前那个老的在贺兰山淋了雨不太好使了。',
+      isClue: false,
+    },
+  ],
+  shennongjia: [
+    {
+      title: '神农架野人谷信号异常报告',
+      author: '北纬37',
+      authorUrl: '/user/lat37n/',
+      date: '2026-03-28',
+      content:
+        '在<strong>神农架</strong>野人谷区域测到了异常电磁波动。频段集中在1400-1450MHz，与SETI常用氢线频段重叠。但调制模式看起来不太自然。',
+      isClue: true,
+    },
+  ],
+  fenghuangshan: [
+    {
+      title: '凤凰山1420MHz异常信号全频段分析',
+      author: 'signal_屿',
+      authorUrl: '/user/lyu/',
+      date: '2026-04-18',
+      content:
+        '三次实地扫描<strong>凤凰山</strong>点位的数据。信号确实存在，但调制模式分析显示——信号源并非自然天体。频谱特征更接近民用SDR设备（HackRF One级别）产生的调制信号。写那个目击报告的人要不就是根本不懂无线电，要不就是故意的。',
+      isClue: true,
+    },
+  ],
+  laomao: [
+    {
+      title: '带闺女去爬了一次泰山——她的第一次',
+      author: '老猫',
+      authorUrl: '/user/oldcat/',
+      date: '2025-08-15',
+      content:
+        '闺女放暑假，非要跟我去爬山。她妈走后这是她第一次主动说要跟我出去走走……下山的时候腿都在抖，但她一路没喊累。这孩子，越来越像她妈了。',
+      isClue: true,
+    },
+    {
+      title: '关于这个站——建站四年的一些碎碎念',
+      author: '老猫',
+      authorUrl: '/user/oldcat/',
+      date: '2025-06-01',
+      content: '算了一下，从<strong>2021年</strong>建站到现在整整四年了。初衷很简单——给喜欢探秘的人一个交流的地方。',
+      isClue: true,
+    },
+  ],
 };
 
 // 云盘提取码，通过私信"那四个字加上今年的年份"拼凑得出
@@ -532,6 +605,15 @@ export const HIDDEN_PAGE_CACHE: Record<string, ArchivedPost> = {
     isClue: true,
     pageUrl: '/hidden/admin',
   },
+  管理后台: {
+    title: '归源宗 · 内部管理系统',
+    author: '[受限页面]',
+    authorUrl: '',
+    date: '',
+    content: '……需凭账号和密码登录。若遗忘密码，须联系管理员重置。页面为某组织的内部管理入口，外观为普通网站管理后台。',
+    isClue: true,
+    pageUrl: '/hidden/admin',
+  },
   秘境之下: {
     title: '加密共享 · 文件暂存',
     author: '[受限页面]',
@@ -573,6 +655,13 @@ export const MOCK_RESULTS: Record<string, string[]> = {
   林屿: ['/user/lyu/'],
   lyu: ['/user/lyu/'],
   signal_屿: ['/user/lyu/'],
+  // 拼音/缩写关键词 → 与中文关键词指向相同页面
+  helanshan: ['/ruins/ruins-001/', '/user/shenci/', '/community/post/247/'],
+  qinling: ['/ruins/ruins-001/', '/user/shenci/'],
+  shennongjia: ['/alien/alien-003/', '/ruins/ruins-003/'],
+  fenghuangshan: ['/alien/alien-001/', '/user/lyu/'],
+  laomao: ['/user/oldcat/'],
+  xiaoyu: ['/user/oldcat/'],
 };
 
 // ========================================
@@ -645,6 +734,59 @@ export const USER_SEARCH: Record<string, UserSearchResult> = {
     bio: '走过二十三个省。最美的风景永远不在攻略上。',
     joinedDate: '2025-03-08',
   },
+};
+
+// ========================================
+// 页面标题映射（URL 路径 → 中文页面标题）
+// 用于搜索结果的页面导航区域，替代裸 URL 显示
+// ========================================
+export const PAGE_TITLES: Record<string, string> = {
+  '/alien/': '外星探秘 — 板块首页',
+  '/alien/alien-001/': '凤凰山1420MHz异常信号全频段分析',
+  '/alien/alien-003/': '神农架野人谷信号异常报告',
+  '/alien/alien-006/': '冷湖暗夜保护区深空观测记录',
+  '/ruins/': '古迹探秘 — 板块首页',
+  '/ruins/ruins-001/': '秦岭傥骆道摩崖石刻考察报告',
+  '/ruins/ruins-003/': '神农架古战场遗址探访记录',
+  '/user/lyu/': 'signal_屿 的个人主页',
+  '/user/shenci/': '地下三尺 的个人主页',
+  '/mystery/': '秘境探秘 — 板块首页',
+  '/nature/': '自然奇观 — 板块首页',
+  '/community/': '社区 — 板块首页',
+  '/community/post/247/': '贺兰山出行准备 — 装备与路线',
+  '/hollow-earth/': '地球空心说 — 板块首页',
+  '/urban-legend/': '都市传说 — 板块首页',
+};
+
+// ========================================
+// 相关搜索推荐（模拟真实搜索引擎的相关搜索功能）
+// normal: 所有搜索均显示的推荐词
+// stuck:  卡关时（?hint=1）显示的推荐词，更具引导性
+// ========================================
+export const SEARCH_SUGGESTIONS: Record<string, { normal: string[]; stuck: string[] }> = {
+  沈辞: { normal: ['贺兰山', '地下三尺', '新人报到'], stuck: ['06', 'helanshan'] },
+  贺兰山: { normal: ['沈辞', '岩画', '山野探秘人'], stuck: ['地下三尺', '06', '蛇药'] },
+  信号: { normal: ['林屿', '凤凰山', 'SDR'], stuck: ['加密', '模式识别', '频谱'] },
+  加密: { normal: ['信号', '林屿', '云盘'], stuck: ['藏头文', '文字排列'] },
+  外星: { normal: ['凤凰山', '深空', '信号'], stuck: [] },
+  古迹: { normal: ['沈辞', '岩画', '秦岭', '摩崖石刻'], stuck: [] },
+  林屿: { normal: ['signal_屿', '信号', 'SDR'], stuck: ['lyu', '私信'] },
+  shenci: { normal: ['沈辞', '地下三尺'], stuck: ['06', '贺兰山'] },
+  '06': { normal: ['沈辞', '新人报到'], stuck: ['helanshan', '贺兰山'] },
+  凤凰山: { normal: ['信号', '外星', '林屿'], stuck: [] },
+  秦岭: { normal: ['沈辞', '古迹', '摩崖石刻'], stuck: [] },
+  坐标: { normal: ['GPS', '林屿', '沈辞'], stuck: ['点位', '经纬度'] },
+  GPS: { normal: ['坐标', '沈辞'], stuck: ['装备', '手持机'] },
+  云盘: { normal: ['轻舟云盘', '加密', '共享'], stuck: [] },
+  轻舟云盘: { normal: ['云盘', '加密', '星海漫步'], stuck: [] },
+  深度探秘: { normal: ['加入我们', '招募', '审核员'], stuck: [] },
+  '2021': { normal: ['老猫', '建站', '四年'], stuck: [] },
+  老猫: { normal: ['2021', '建站', '泰山'], stuck: ['小雨', '女儿'] },
+  新人报到: { normal: ['沈辞', '林屿', '注册'], stuck: ['06', '贺兰山'] },
+  神农架: { normal: ['信号', '野人谷', '古战场'], stuck: [] },
+  岩画: { normal: ['贺兰山', '沈辞', '摩崖石刻'], stuck: [] },
+  地下三尺: { normal: ['沈辞', 'shenci', '贺兰山'], stuck: [] },
+  lyu: { normal: ['林屿', 'signal_屿', '信号'], stuck: [] },
 };
 
 /** 根据查询词查找用户 */

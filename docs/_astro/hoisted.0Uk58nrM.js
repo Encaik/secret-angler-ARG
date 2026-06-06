@@ -1,1 +1,0 @@
-import"./hoisted.2zElEA7B.js";import"./console.C6gIykV2.js";document.getElementById("submit-form")?.addEventListener("submit",e=>{e.preventDefault();const t=document.getElementById("submit-msg");t&&(t.style.display="block")});

@@ -2,7 +2,15 @@
 // /search — 搜索结果页（独立页面，非弹窗）
 // 历史存档内容仅通过此页面可见
 import Layout from '../components/Layout.astro';
-import { ARCHIVED_CONTENT, MOCK_RESULTS, HIDDEN_PAGE_CACHE, USER_SEARCH, SEARCH_TOKEN } from '../data/search-data';
+import {
+  ARCHIVED_CONTENT,
+  MOCK_RESULTS,
+  HIDDEN_PAGE_CACHE,
+  USER_SEARCH,
+  SEARCH_TOKEN,
+  SEARCH_SUGGESTIONS,
+  PAGE_TITLES,
+} from '../data/search-data';
 const BASE = __BASE_PATH__;
 ---
 
@@ -46,6 +54,8 @@ const BASE = __BASE_PATH__;
     mockResultsJson: JSON.stringify(MOCK_RESULTS),
     hiddenPageCacheJson: JSON.stringify(HIDDEN_PAGE_CACHE),
     userSearchJson: JSON.stringify(USER_SEARCH),
+    searchSuggestionsJson: JSON.stringify(SEARCH_SUGGESTIONS),
+    pageTitlesJson: JSON.stringify(PAGE_TITLES),
     searchToken: SEARCH_TOKEN,
     basePath: BASE,
   }}
@@ -58,6 +68,8 @@ const BASE = __BASE_PATH__;
   const MOCK_RESULTS = JSON.parse(mockResultsJson);
   const HIDDEN_PAGE_CACHE = JSON.parse(hiddenPageCacheJson);
   const USER_SEARCH = JSON.parse(userSearchJson);
+  const SEARCH_SUGGESTIONS = JSON.parse(searchSuggestionsJson);
+  const PAGE_TITLES = JSON.parse(pageTitlesJson);
   const SEARCH_TOKEN = searchToken;
 
   // 搜索权限：访问码 + 方括号双重条件，或已持久化提权
@@ -208,7 +220,7 @@ const BASE = __BASE_PATH__;
     }
 
     var totalResults = archived.length + cachedPages.length + pageResults.length + userResults.length;
-    statusEl.textContent = `搜索"${query}" — 找到 ${archived.length} 条历史存档${cachedPages.length > 0 ? `、${cachedPages.length} 条缓存页面` : ''}${userResults.length > 0 ? `、${userResults.length} 位用户` : ''}${pageResults.length > 0 ? `、${pageResults.length} 个相关板块` : ''}`;
+    statusEl.textContent = `找到约 ${totalResults} 条结果`;
 
     let html = '';
 
@@ -289,15 +301,17 @@ const BASE = __BASE_PATH__;
 
     // 页面导航
     if (pageResults.length > 0) {
-      html += `<h3 style="margin-top:16px;margin-bottom:8px;">📂 相关板块</h3>`;
+      html += `<h3 style="margin-top:16px;margin-bottom:8px;">📂 相关板块（${pageResults.length}）</h3>`;
       html += pageResults
-        .map(
-          (url) => `
+        .map((url) => {
+          var title = PAGE_TITLES[url] || url;
+          return `
         <div class="card" style="margin-bottom:6px;padding:8px 12px;">
-          <a href="${BASE}${url.replace(/^\//, '')}" target="_blank" style="font-size:0.88rem;">${url}</a>
+          <a href="${BASE}${url.replace(/^\//, '')}" target="_blank" style="font-size:0.88rem;font-weight:500;">${title}</a>
+          <span class="text-muted" style="font-size:0.72rem;display:block;">${url}</span>
         </div>
-      `,
-        )
+      `;
+        })
         .join('');
     }
 
@@ -346,23 +360,36 @@ const BASE = __BASE_PATH__;
     localStorage.setItem('arg_progress', JSON.stringify(progress));
   }
 
-  // 停滞检测：如果玩家可能卡关，在结果底部显示"相关搜索"推荐
-  const urlParams = new URLSearchParams(window.location.search);
-  const showHint = urlParams.get('hint') === '1';
-  if (showHint) {
-    const hintBox = document.createElement('div');
-    hintBox.className = 'card';
-    hintBox.style.cssText = 'margin-top:16px;background:#fdfaf4;border:1px solid #e0d5c0;padding:12px 16px;';
-    hintBox.innerHTML = `
-      <p style="font-size:0.78rem;color:#9b8c7a;margin-bottom:6px;">🔗 相关搜索（由系统自动生成）</p>
-      <p style="font-size:0.82rem;margin:4px 0;">
-        <a href="${BASE}search/?q=沈辞">沈辞</a> ·
-        <a href="${BASE}search/?q=新人报到">新人报到</a> ·
-        <a href="${BASE}search/?q=贺兰山">贺兰山</a> ·
-        <a href="${BASE}search/?q=06">06</a>
-      </p>
-    `;
-    const resultsArea = document.getElementById('search-results-list');
-    if (resultsArea) resultsArea.appendChild(hintBox);
+  // 相关搜索推荐（模拟真实搜索引擎的相关搜索功能）
+  // 在所有匹配的推荐词中查找与当前搜索词最匹配的条目
+  var suggestionKey = '';
+  var lowerQueryForSuggest = query.toLowerCase();
+  var suggestKeys = Object.keys(SEARCH_SUGGESTIONS);
+  for (var sk = 0; sk < suggestKeys.length; sk++) {
+    if (lowerQueryForSuggest.includes(suggestKeys[sk].toLowerCase())) {
+      suggestionKey = suggestKeys[sk];
+      break;
+    }
+  }
+
+  if (suggestionKey) {
+    var urlParams = new URLSearchParams(window.location.search);
+    var showHint = urlParams.get('hint') === '1';
+    var suggestions = SEARCH_SUGGESTIONS[suggestionKey];
+    // 卡关时优先使用 stuck 推荐，否则使用 normal 推荐
+    var words = showHint && suggestions.stuck.length > 0 ? suggestions.stuck : suggestions.normal;
+
+    if (words.length > 0) {
+      html += `<div class="card" style="margin-top:16px;padding:12px 16px;background:var(--color-bg-secondary);">
+        <p style="font-size:0.78rem;color:var(--color-text-muted);margin-bottom:8px;">相关搜索</p>
+        <p style="font-size:0.82rem;margin:0;line-height:2;">
+          ${words
+            .map(function (w) {
+              return `<a href="${BASE}search/?q=${encodeURIComponent(w)}">${w}</a>`;
+            })
+            .join(' &nbsp;·&nbsp; ')}
+        </p>
+      </div>`;
+    }
   }
 </script>

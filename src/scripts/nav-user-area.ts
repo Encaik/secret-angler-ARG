@@ -89,4 +89,10 @@ function initNavUserArea(BASE: string): void {
 // 挂载到 window 供 Layout.astro 内联 <script> 调用
 if (typeof window !== 'undefined') {
   (window as any).initNavUserArea = initNavUserArea;
+
+  // 页面加载后自动初始化导航栏用户区
+  document.addEventListener('DOMContentLoaded', () => {
+    const BASE = (window as any).__BASE__ || '/';
+    initNavUserArea(BASE);
+  });
 }
