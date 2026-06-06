@@ -320,17 +320,18 @@ const BASE = __BASE_PATH__;
 </HiddenLayout>
 
 <script>
-  const BASE = window.__BASE__ || '/';
-
   const ADMIN_PASSWORD = 'xiaoyu2021';
   const STAFF_PASSWORD = 'portal2026';
   const ADMIN_USERS = ['admin', '首座', '监院'];
   const STAFF_USERS = ['staff'];
 
+  function $(id: string): HTMLElement { return document.getElementById(id)!; }
+  function $input(id: string): HTMLInputElement { return document.getElementById(id) as HTMLInputElement; }
+
   function doLogin() {
-    const user = document.getElementById('admin-user').value.trim();
-    const pass = document.getElementById('admin-pass').value.trim();
-    const errorEl = document.getElementById('admin-login-error');
+    const user = $input('admin-user').value.trim();
+    const pass = $input('admin-pass').value.trim();
+    const errorEl = $('admin-login-error');
 
     if (!user || !pass) {
       errorEl.textContent = '请输入账号和密码。';
@@ -340,9 +341,9 @@ const BASE = __BASE_PATH__;
 
     // Staff 登录
     if (STAFF_USERS.includes(user.toLowerCase()) && pass === STAFF_PASSWORD) {
-      document.getElementById('admin-login').style.display = 'none';
-      document.getElementById('staff-panel').style.display = 'block';
-      document.getElementById('staff-op-name').textContent = user;
+      $('admin-login').style.display = 'none';
+      $('staff-panel').style.display = 'block';
+      $('staff-op-name').textContent = user;
 
       const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
       if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
@@ -360,9 +361,9 @@ const BASE = __BASE_PATH__;
 
     // Admin 登录
     if (ADMIN_USERS.includes(user) && pass === ADMIN_PASSWORD) {
-      document.getElementById('admin-login').style.display = 'none';
-      document.getElementById('admin-panel').style.display = 'block';
-      document.getElementById('admin-op-name').textContent = user;
+      $('admin-login').style.display = 'none';
+      $('admin-panel').style.display = 'block';
+      $('admin-op-name').textContent = user;
 
       const progress = JSON.parse(localStorage.getItem('arg_progress') || '{}');
       if (!progress.solvedPuzzles) progress.solvedPuzzles = {};
@@ -382,22 +383,22 @@ const BASE = __BASE_PATH__;
     errorEl.style.display = 'block';
   }
 
-  document.getElementById('admin-login-btn').addEventListener('click', doLogin);
+  $('admin-login-btn').addEventListener('click', doLogin);
 
-  document.getElementById('admin-pass').addEventListener('keydown', (e) => {
+  $input('admin-pass').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') doLogin();
   });
 
   // 退出按钮
   document.getElementById('staff-logout-btn')?.addEventListener('click', () => {
-    document.getElementById('admin-login').style.display = 'block';
-    document.getElementById('staff-panel').style.display = 'none';
-    document.getElementById('admin-pass').value = '';
+    $('admin-login').style.display = 'block';
+    $('staff-panel').style.display = 'none';
+    $input('admin-pass').value = '';
   });
 
   document.getElementById('admin-logout-btn')?.addEventListener('click', () => {
-    document.getElementById('admin-login').style.display = 'block';
-    document.getElementById('admin-panel').style.display = 'none';
-    document.getElementById('admin-pass').value = '';
+    $('admin-login').style.display = 'block';
+    $('admin-panel').style.display = 'none';
+    $input('admin-pass').value = '';
   });
 </script>

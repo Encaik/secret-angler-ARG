@@ -3,10 +3,15 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # 允许手动触发（方便调试）
+  # 允许手动触发（方便回滚验证）
   workflow_dispatch:
 
-# 关键：每次部署会取消上一次正在进行的部署，避免并发冲突
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 每次部署会取消上一次正在进行的部署，避免并发冲突
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -14,9 +19,6 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -27,7 +29,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          # 注意：项目无 lockfile，不开启 cache
 
       - name: Install dependencies
         run: pnpm install

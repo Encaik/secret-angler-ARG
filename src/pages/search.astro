@@ -46,11 +46,16 @@ const BASE = __BASE_PATH__;
 }}>
   // BASE 路径前缀，通过 define:vars 传入（define:vars 脚本内 Vite define 不会被替换，必须通过 vars 传入）
   const BASE = basePath;
-  // 从 Astro 服务端注入的搜索数据
+  // 从 Astro 服务端注入的搜索数据（变量名由 define:vars 注入，TS 无法推断）
+  // @ts-ignore
   const ARCHIVED_CONTENT = JSON.parse(archivedContentJson);
+  // @ts-ignore
   const MOCK_RESULTS = JSON.parse(mockResultsJson);
+  // @ts-ignore
   const HIDDEN_PAGE_CACHE = JSON.parse(hiddenPageCacheJson);
+  // @ts-ignore
   const USER_SEARCH = JSON.parse(userSearchJson);
+  // @ts-ignore
   const SEARCH_TOKEN = searchToken;
 
   // 搜索权限：访问码 + 方括号双重条件，或已持久化提权

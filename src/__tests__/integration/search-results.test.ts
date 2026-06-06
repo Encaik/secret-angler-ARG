@@ -203,7 +203,7 @@ describe('Search result mappings', () => {
       expect(elevatedQuery.includes('多站同源')).toBe(true);
       const match = elevatedQuery.match(/\[(.+?)\]/);
       expect(match).not.toBeNull();
-      expect(match[1]).toBe('多站同源');
+      expect(match![1]).toBe('多站同源');
     });
 
     it('[多站同源] alone without token does NOT trigger elevation', () => {

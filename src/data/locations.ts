@@ -36,6 +36,7 @@ export interface Location {
 export const ALIEN_LOCATIONS: Location[] = [
   {
     id: 'alien-001',
+    category: 'alien',
     name: '凤凰山外星信号异常区',
     region: '黑龙江·五常',
     coordinates: { lat: 44.52, lng: 127.83 },
@@ -48,6 +49,7 @@ export const ALIEN_LOCATIONS: Location[] = [
   },
   {
     id: 'alien-002',
+    category: 'alien',
     name: '塔克拉玛干深空信号接收点',
     region: '新疆·巴音郭楞',
     coordinates: { lat: 40.15, lng: 83.67 },
@@ -59,6 +61,7 @@ export const ALIEN_LOCATIONS: Location[] = [
   },
   {
     id: 'alien-003',
+    category: 'alien',
     name: '神农架不明飞行物走廊',
     region: '湖北·神农架',
     coordinates: { lat: 31.58, lng: 110.42 },
@@ -71,6 +74,7 @@ export const ALIEN_LOCATIONS: Location[] = [
   },
   {
     id: 'alien-004',
+    category: 'alien',
     name: '长白山天池UFO观测台',
     region: '吉林·长白山',
     coordinates: { lat: 42.01, lng: 128.06 },
@@ -82,6 +86,7 @@ export const ALIEN_LOCATIONS: Location[] = [
   },
   {
     id: 'alien-005',
+    category: 'alien',
     name: '罗布泊外星残骸目击地',
     region: '新疆·若羌',
     coordinates: { lat: 40.39, lng: 90.22 },
@@ -94,6 +99,7 @@ export const ALIEN_LOCATIONS: Location[] = [
   },
   {
     id: 'alien-006',
+    category: 'alien',
     name: '昆仑山脉冲星信号异常带',
     region: '青海·格尔木',
     coordinates: { lat: 36.12, lng: 94.55 },
@@ -112,6 +118,7 @@ export const ALIEN_LOCATIONS: Location[] = [
 export const RUINS_LOCATIONS: Location[] = [
   {
     id: 'ruins-001',
+    category: 'ruins',
     name: '贺兰山岩画未记录区',
     region: '宁夏·银川',
     coordinates: { lat: 38.78, lng: 106.03 },
@@ -123,6 +130,7 @@ export const RUINS_LOCATIONS: Location[] = [
   },
   {
     id: 'ruins-002',
+    category: 'ruins',
     name: '哀牢山古滇国祭祀台',
     region: '云南·玉溪',
     coordinates: { lat: 24.05, lng: 101.67 },
@@ -134,6 +142,7 @@ export const RUINS_LOCATIONS: Location[] = [
   },
   {
     id: 'ruins-003',
+    category: 'ruins',
     name: '神农架远古石阵',
     region: '湖北·神农架',
     coordinates: { lat: 31.58, lng: 110.42 },
@@ -146,6 +155,7 @@ export const RUINS_LOCATIONS: Location[] = [
   },
   {
     id: 'ruins-004',
+    category: 'ruins',
     name: '秦岭古栈道未解石刻',
     region: '陕西·汉中',
     coordinates: { lat: 33.25, lng: 107.15 },

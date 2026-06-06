@@ -151,13 +151,10 @@ const BASE = __BASE_PATH__;
 </style>
 
 <script>
-  const BASE = (window as any).__BASE__ || '/';
-
   // 自动填入当前登录用户名
   function initForm() {
     const stored = localStorage.getItem('arg_progress');
     if (stored) {
-      const p = JSON.parse(stored);
       const loggedInUser = localStorage.getItem('arg_current_user');
       const usernameInput = document.getElementById('apply-username') as HTMLInputElement;
       if (usernameInput) {
@@ -174,8 +171,6 @@ const BASE = __BASE_PATH__;
     initForm();
 
     const INVITE_CODE = '17093280045';
-    const DARKNET_ACCOUNT = 'DR-2026-03';
-    const DARKNET_PASSWORD = 'rift0603';
 
     // 提交按钮 — 双输入逻辑
     document.getElementById('apply-submit')?.addEventListener('click', () => {
